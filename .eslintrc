@@ -10,7 +10,8 @@
     "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:jsx-a11y/recommended",
-    "prettier"
+    "prettier",
+    "plugin:@next/next/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -51,7 +52,7 @@
     "prefer-arrow-callback": "error",
     "object-shorthand": "error",
     "no-shadow": ["error", { "builtinGlobals": false }],
-    "spaced-comment": ["error", "always"],
+    "spaced-comment": ["error", "always", { "exceptions": ["+", "-"] }],
     "no-nested-ternary": "error",
     "array-callback-return": ["error", { "allowImplicit": true, "checkForEach": true }],
     "func-style": ["error", "expression"],

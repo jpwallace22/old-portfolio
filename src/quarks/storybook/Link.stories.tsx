@@ -12,6 +12,6 @@ link.parameters = {
 };
 
 link.args = {
-  href: 'https://www.webstacks.com/',
+  href: 'https://www.justinwallace.dev/',
   children: "I'm a Link. Inspect me!",
 };

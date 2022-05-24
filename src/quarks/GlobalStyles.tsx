@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import 'assets/fonts/font-styles.css';
 
 export default createGlobalStyle`
 html {

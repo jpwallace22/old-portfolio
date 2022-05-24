@@ -1,25 +1,56 @@
-// See "Links and Images" doc in Storybook
-import { ComponentProps, FC } from 'react';
-import styled from 'styled-components';
+import NextImage, { ImageProps } from 'next/image';
+import { FunctionComponent } from 'react';
 
-import { BasicProps, basic } from 'quarks/interpolations/basic';
+import { breakpoints } from 'atoms/breakpoints/breakpoints';
 
-const StyledImage = styled.img`
-  ${basic}
-`;
+import Container from 'quarks/Container';
+import { BasicProps } from 'quarks/interpolations/basic';
+import { pseudos } from 'quarks/quarkUtils/getPseudoClassProps';
+import { pseudoElements } from 'quarks/quarkUtils/getPseudoEleProps';
+import basicCSS from 'quarks/styleProps/basic';
 
-interface ImageProps extends ComponentProps<typeof StyledImage>, BasicProps {
-  /**
-   * The URL or local path of the image.
-   */
+import { objectEntries, valueof } from 'utils/typeUtils';
+
+type ModifiedBasicProps = Omit<BasicProps, 'height' | 'width' | 'objectPosition' | 'objectFit'>;
+
+interface CustomImageProps extends ModifiedBasicProps, ImageProps {
   src: string;
-  /**
-   * Alternative text to be displayed when image cannot be rendered.
-   * Required for accessiblity purposes.
-   */
+  height: number | string;
+  width: number | string;
   alt: string;
+  objectPosition?: string;
+  objectFit?: BasicProps['objectFit'];
 }
 
-const Image: FC<ImageProps> = props => <StyledImage {...props} />;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const { height, width, objectPosition, objectFit, ...remainingProps } = basicCSS;
+
+const customCSS = { ...remainingProps, ...breakpoints, ...pseudos, ...pseudoElements };
+const allCSSKeys = Object.keys(customCSS);
+
+const Image: FunctionComponent<CustomImageProps> = props => {
+  type filteredProp = [keyof CustomImageProps, valueof<CustomImageProps>];
+
+  const { filteredQuarkProps, filteredNextProps } = objectEntries(props).reduce(
+    (result, prop) => {
+      result[allCSSKeys.includes(prop[0]) ? 'filteredQuarkProps' : 'filteredNextProps'].push(prop);
+
+      return result;
+    },
+    { filteredQuarkProps: [], filteredNextProps: [] } as {
+      filteredQuarkProps: filteredProp[];
+      filteredNextProps: filteredProp[];
+    },
+  );
+
+  const quarkProps = Object.fromEntries(filteredQuarkProps);
+  const { src, ...nextProps } = Object.fromEntries(filteredNextProps);
+
+  return (
+    <Container width="fit-content" height="fit-content" {...quarkProps}>
+      <NextImage src={src} {...nextProps} />
+    </Container>
+  );
+};
 
 export default Image;

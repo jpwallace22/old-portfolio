@@ -12,8 +12,8 @@ image.parameters = {
 };
 
 image.args = {
+  unoptimized: true,
   src: './blurBackground.jpg',
-  width: '700px',
-  height: 'auto',
+  layout: 'fill',
   alt: '',
 };
