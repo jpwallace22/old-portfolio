@@ -1,0 +1,51 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import CareerCard from 'components/Cards/CareerCard/CareerCard';
+import * as stories from 'components/Cards/CareerCard/storybook/CareerCard.stories.tsx';
+
+import { iconMap } from 'utils/storyUtils.stories.tsx';
+
+<Meta
+  title="Components/Cards/Career Card"
+  component={CareerCard}
+  argTypes={{
+    endIcon: {
+      options: Object.keys(iconMap),
+      mapping: iconMap,
+      control: { type: 'select' },
+    },
+    startIcon: {
+      options: Object.keys(iconMap),
+      mapping: iconMap,
+      control: { type: 'select' },
+    },
+  }}
+/>
+
+# Career Card
+
+A standard card comprised of a heading, subhead, details, and CTA button. Subhead, details, and the button are optional
+for the most amout of flexibility possible. (If heading is not desired, use the
+[BasicCard](?path=/story/components-cards-basic-card--basic-card) component)
+
+## Usage
+
+#### Button Props
+
+The Button within the card can be manipulated with a number of basic Button props. `endIcon` and `startIcon` will add
+Icons to the beginning and end of the button, with `iconSize` determining the size of them. Additionally, `href`
+controls the destination of the button and `onClick` can be used for any event actions. Lastly, `buttonText` will
+control the CTA text and `hideButton` can be used to hide the button.
+
+#### Heading, subhead, and details
+
+The `heading`, `subhead`, and `details` can be set with the cooresponding props. Subhead and details optional and
+leaving them out will collapse the card on its location.
+
+<Canvas>
+  <Story name="Career Card" story={stories.careerCard} />
+</Canvas>
+
+### Props
+
+<ArgsTable story="Career Card" />

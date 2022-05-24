@@ -1,0 +1,425 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import { colorListArray } from 'atoms/colors/colors';
+import shadow from 'atoms/shadows/shadows';
+
+import Container from 'quarks/Container';
+import { container } from 'quarks/storybook/Container.stories.tsx';
+
+import { globalCSSValues } from 'utils/storyUtils.stories.tsx';
+import { objectKeys } from 'utils/typeUtils';
+
+export const asOptions = ['div', 'span', 'h1', 'p', 'a', 'button', 'table', 'section', 'ul', 'li', 'i', 'select'];
+
+export const flexPositionOptions = [
+  'auto',
+  'normal',
+  'flex-start',
+  'flex-end',
+  'center',
+  'baseline',
+  'stretch',
+  ...globalCSSValues,
+];
+
+export const backgroundBlendModeOptions = [
+  'normal',
+  'multiply',
+  'screen',
+  'overlay',
+  'darken',
+  'lighten',
+  'color-dodge',
+  'color-burn',
+  'hard-light',
+  'soft-light',
+  'difference',
+  'exclusion',
+  'hue',
+  'saturation',
+  'color',
+  'luminosity',
+  ...globalCSSValues,
+];
+
+export const backgroundOriginPositions = ['padding-box', 'border-box', 'content-box', ...globalCSSValues];
+
+export const backgroundRepeatOptions = [
+  'repeat',
+  'repeat-x',
+  'repeat-y',
+  'no-repeat',
+  'space',
+  'round',
+  'initial',
+  'inherit',
+];
+
+export const borderCollapseOptions = ['collapse', 'separate', ...globalCSSValues];
+
+export const borderStyleOptions = [
+  'none',
+  'hidden',
+  'dotted',
+  'dashed',
+  'solid',
+  'double',
+  'groove',
+  'ridge',
+  'inset',
+  'outset',
+  ...globalCSSValues,
+];
+
+export const boxSizingOptions = ['border-box', 'content-box', ...globalCSSValues];
+
+export const containOptions = ['none', 'strict', 'content', 'size', 'layout', 'style', 'paint', ...globalCSSValues];
+
+export const cursorOptions = [
+  'auto',
+  'default',
+  'none',
+  'context-menu',
+  'help',
+  'pointer',
+  'progress',
+  'wait',
+  'cell',
+  'crosshair',
+  'text',
+  'vertical-text',
+  'alias',
+  'copy',
+  'move',
+  'no-drop',
+  'not-allowed',
+  'e-resize',
+  'n-resize',
+  'ne-resize',
+  'nw-resize',
+  's-resize',
+  'se-resize',
+  'sw-resize',
+  'w-resize',
+  'ew-resize',
+  'ns-resize',
+  'nesw-resize',
+  'nwse-resize',
+  'col-resize',
+  'row-resize',
+  'all-scroll',
+  'zoom-in',
+  'zoom-out',
+  'grab',
+  'grabbing',
+  ...globalCSSValues,
+];
+
+export const displayOptions = [
+  'none',
+  'block',
+  'inline',
+  'flex',
+  'grid',
+  'inline-block',
+  'inline-flex',
+  'flow',
+  'table',
+  'contents',
+  '-webkit-box',
+  ...globalCSSValues,
+];
+
+export const fontStyleOptions = ['normal', 'italic', 'oblique', ...globalCSSValues];
+
+export const fontVariantOptions = [
+  'common-ligatures',
+  'no-common-ligatures',
+  'normal',
+  'small-caps',
+  'all-small-caps',
+  'petite-caps',
+  'all-petite-caps',
+  'unicase',
+  'titling-caps',
+  'ordinal',
+  'slashed-zero',
+  ...globalCSSValues,
+];
+
+export const textOverflowOptions = ['clip', 'ellipsis', '"-"', ...globalCSSValues];
+
+export const textShadowOptions = ['h-shadow', 'v-shadow', 'blur-radius', 'color', 'none', ...globalCSSValues];
+
+<Meta
+  title="Quarks/Container"
+  component={Container}
+  argTypes={{
+    active: {
+      control: { disable: true },
+    },
+    after: {
+      control: { disable: true },
+    },
+    alignSelf: {
+      options: flexPositionOptions,
+      control: { type: 'select' },
+    },
+    animation: {
+      control: { type: 'text' },
+    },
+    as: {
+      options: asOptions,
+      control: { type: 'select' },
+    },
+    backgroundAttachment: {
+      control: { type: 'text' },
+    },
+    backgroundBlendMode: {
+      options: backgroundBlendModeOptions,
+      control: { type: 'select' },
+    },
+    backgroundClip: {
+      options: boxSizingOptions,
+      control: { type: 'select' },
+    },
+    backgroundColor: {
+      options: [...colorListArray, undefined],
+      control: { type: 'select' },
+    },
+    backgroundOrigin: {
+      options: backgroundOriginPositions,
+      control: { type: 'select' },
+    },
+    backgroundPosition: {
+      control: { type: 'text' },
+    },
+    backgroundRepeat: {
+      options: backgroundRepeatOptions,
+      control: { type: 'select' },
+    },
+    backgroundSize: {
+      control: { type: 'text' },
+    },
+    before: {
+      control: { disable: true },
+    },
+    border: {
+      control: { type: 'text' },
+    },
+    borderBottom: {
+      control: { type: 'text' },
+    },
+    borderBottomColor: {
+      options: [...colorListArray, undefined],
+      control: { type: 'select' },
+    },
+    borderBottomLeftRadius: {
+      control: { type: 'text' },
+    },
+    borderBottomRightRadius: {
+      control: { type: 'text' },
+    },
+    borderCollapse: {
+      options: borderCollapseOptions,
+      control: { type: 'select' },
+    },
+    borderColor: {
+      options: [...colorListArray, undefined],
+      control: { type: 'select' },
+    },
+    borderLeft: {
+      control: { type: 'text' },
+    },
+    borderLeftColor: {
+      options: [...colorListArray, undefined],
+      control: { type: 'select' },
+    },
+    borderRadius: {
+      control: { type: 'text' },
+    },
+    borderRight: {
+      control: { type: 'text' },
+    },
+    borderRightColor: {
+      options: [...colorListArray, undefined],
+      control: { type: 'select' },
+    },
+    borderStyle: {
+      options: borderStyleOptions,
+      control: { type: 'select' },
+    },
+    borderTop: {
+      control: { type: 'text' },
+    },
+    borderTopColor: {
+      options: [...colorListArray, undefined],
+      control: { type: 'select' },
+    },
+    borderTopLeftRadius: {
+      control: { type: 'text' },
+    },
+    borderTopRightRadius: {
+      control: { type: 'text' },
+    },
+    borderWidth: {
+      control: { type: 'text' },
+    },
+    bottom: {
+      control: { type: 'text' },
+    },
+    boxShadow: {
+      options: objectKeys(shadow),
+      control: { type: 'select' },
+    },
+    boxSizing: {
+      options: boxSizingOptions,
+      control: { type: 'select' },
+    },
+    children: {
+      control: { type: 'text' },
+    },
+    contain: {
+      options: containOptions,
+      control: { type: 'select' },
+    },
+    cursor: {
+      options: cursorOptions,
+      control: { type: 'select' },
+    },
+    display: {
+      options: displayOptions,
+      control: { type: 'select' },
+    },
+    filter: {
+      control: { type: 'text' },
+    },
+    flex: {
+      control: { type: 'text' },
+    },
+    focus: {
+      control: { disable: true },
+    },
+    focusVisible: {
+      control: { disable: true },
+    },
+    focusWithin: {
+      control: { disable: true },
+    },
+    fontStyle: {
+      options: fontStyleOptions,
+      control: { type: 'select' },
+    },
+    fontVariant: {
+      options: fontVariantOptions,
+      control: { type: 'select' },
+    },
+    height: {
+      control: { type: 'text' },
+    },
+    hover: {
+      control: { disable: true },
+    },
+    justifySelf: {
+      options: flexPositionOptions,
+      control: { type: 'select' },
+    },
+    left: {
+      control: { type: 'text' },
+    },
+    lg: {
+      control: { disable: true },
+    },
+    lineClamp: {
+      control: { type: 'number', min: 1 },
+    },
+    maxHeight: {
+      control: { type: 'text' },
+    },
+    maxWidth: {
+      control: { type: 'text' },
+    },
+    md: {
+      control: { disable: true },
+    },
+    minHeight: {
+      control: { type: 'text' },
+    },
+    minWidth: {
+      control: { type: 'text' },
+    },
+    objectPosition: {
+      control: { type: 'text' },
+    },
+    opacity: {
+      control: { type: 'number', min: 0, max: 1, step: 0.1 },
+    },
+    outline: {
+      control: { type: 'text' },
+    },
+    right: {
+      control: { type: 'text' },
+    },
+    sm: {
+      control: { disable: true },
+    },
+    textColor: {
+      options: [...colorListArray, undefined],
+      control: { type: 'select' },
+    },
+    textDecoration: {
+      control: { type: 'text' },
+    },
+    textOverflow: {
+      options: textOverflowOptions,
+      control: { type: 'select' },
+    },
+    textShadow: {
+      options: textShadowOptions,
+      control: { type: 'select' },
+    },
+    top: {
+      control: { type: 'text' },
+    },
+    transform: {
+      control: { type: 'text' },
+    },
+    transition: {
+      control: { type: 'text' },
+    },
+    verticalAlign: {
+      control: { type: 'text' },
+    },
+    width: {
+      control: { type: 'text' },
+    },
+    xl: {
+      control: { disable: true },
+    },
+    xs: {
+      control: { disable: true },
+    },
+    zIndex: {
+      control: { type: 'number' },
+    },
+  }}
+/>
+
+# Container
+
+The Container is a simple `<div>` element. It accepts all basic props and nothing else, making it a good representation
+of what styling props exist on all quarks.
+
+### `As` Prop
+
+The quarks are built using `styled-components`, and include all the features of them including the `as` prop, which
+allows you to change the element tag by passing in a string value corresponding with the target tag type.
+
+Ex: Pass in `"table"` to render the quark as a `<table>` element while still benefitting from all styling props that
+exist on Container.
+
+<Canvas>
+  <Story name="Container" story={container} />
+</Canvas>
+
+<ArgsTable story="Container" />

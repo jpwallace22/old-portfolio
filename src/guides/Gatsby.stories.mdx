@@ -1,0 +1,176 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta
+  title="Guides/Set up Gatsby"
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+# Setting up Gatsby
+
+Creating a
+[Gatsby project](https://www.gatsbyjs.com/docs/using-gatsby-professionally/setting-up-gatsby-without-gatsby-new/) using
+the UI Library template requires only a few minimal steps and allows for a great deal of flexibility.
+
+## Installation
+
+In addition to installing Gatsby as a dependency, you'll need to install `babel-preset gatsby` and any peer dependencies
+as dev dependencies.
+
+```shell
+yarn add gatsby && yarn add -D babel-preset-gatsby babel-eslint core-js
+```
+
+## Babel Configuration
+
+In order to use Gatsby with the same Babel that is being used for Storybook, you'll need to add `babel-preset-gatsby` to
+the babel config. You should also enable `reactRuntime: "automatic"` which will automatically import React into every
+file with JSX.
+
+```json
+// .babelrc
+
+{
+  "presets": [
+    [
+      "babel-preset-gatsby",
+      {
+        "targets": {
+          "browsers": [
+            ">0.25%",
+            "not dead"
+          ]
+        },
+        "reactRuntime": "automatic"
+      }
+    ]
+  ]
+  ...
+}
+```
+
+## Create a layout and add ThemeProvider
+
+By default Gatsby no longer uses layouts and instead initalizes a website using pages/index.js, but that can be changed
+using [gatsby-plugin-layout](https://www.gatsbyjs.com/plugins/gatsby-plugin-layout/). Wherever your site entry point is,
+import and add ThemeProvider, which will give you access to quark styling, MUI and styled themes, and dark mode.
+
+```tsx
+// src/pages/index.tsx
+
+import { ThemeProvider } from 'contexts/ThemeProvider';
+
+import Paragraph from 'quarks/Paragraph';
+
+const Home = () => (
+  <ThemeProvider>
+    <Paragraph>Hello</Paragraph>
+  </ThemeProvider>
+);
+
+export default Home;
+```
+
+## Configure Webpack
+
+The UI library uses absolute import paths instead of relative ones. So you'll need to create a `gatsby-node.js` in your
+root directory and add the following resolver.
+
+```js
+// gatsby-node.js
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require('path');
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    },
+  });
+};
+```
+
+## Configure Storybook
+
+Storybook’s webpack configuration will require adjustments to allow you to transpile Gatsby’s source files and ensure
+the proper Babel plugins are used. You can streamline the entire configuration process by adding the
+`storybook-addon-gatsby` & `babel-plugin-remove-graphql-queries` to your Gatsby project. Run the following command:
+
+```shell
+yarn add -D storybook-addon-gatsby babel-plugin-remove-graphql-queries
+```
+
+Next, register the addon within Storybook’s main configuration file (i.e., `.storybook/main.js`).
+
+```js
+// .storybook/main.js
+
+module.exports = {
+  stories: ['../src/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
+  addons: ['@storybook/addon-essentials', 'storybook-dark-mode', 'storybook-addon-gatsby'],
+  ...
+}
+```
+
+## Add support for SVGs as React components
+
+The UI library uses [SVGR](https://react-svgr.com/docs/webpack/) in order to import SVGs as React components rather than
+asset paths. To allow this functionality in Gatsby, install
+[gatsby-plugin-svgr](https://www.gatsbyjs.com/plugins/gatsby-plugin-svgr/):
+
+```shell
+yarn add -D gatsby-plugin-svgr
+```
+
+Then add a `gatsby-config.js` in your root directory and add the plugin:
+
+```js
+// gatsby-config.js
+
+module.exports = {
+  plugins: [
+    {
+      resolve: 'gatsby-plugin-svgr',
+    },
+  ],
+};
+```
+
+Once done, you'll be able to import SVGs as asset paths _or_ React components using the following syntax:
+
+```tsx
+import starPath, { ReactComponent as Star } from 'assets/svg/star.svg';
+
+const App = () => (
+  <div>
+    <img src={starPath} alt="star" />
+    <Star />
+  </div>
+);
+```
+
+## Set up Links and Images with Gatsby
+
+To set up integration with GatsbyLink and gatsby-plugin-image, see the doc on
+[Links and Images](?path=/docs/guides-links-and-images--page).
+
+## Create Gatsby scripts
+
+At this point the only thing you need to do to run the project is run a build command. You should add these as scripts
+to your `package.json`.
+
+```json
+// package.json
+
+"scripts": {
+  "start": "gatsby develop",
+  "build": "gatsby build && gatsby serve",
+  "clean": "gatsby clean",
+  ...
+}
+```

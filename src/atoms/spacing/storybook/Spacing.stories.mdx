@@ -1,0 +1,34 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import Spacing from 'atoms/spacing/storybook/Spacing';
+import { spacing } from 'atoms/spacing/storybook/Spacing.stories.tsx';
+
+<Meta title="Atoms/Spacing" component={Spacing} />
+
+# Spacing
+
+The Spacing atom provides pre-defined values assignable to `margin` and `padding` props for use on quarks, molecules,
+and components.
+
+## Usage
+
+The spacing atom uses number keys representing a pixel value, which can be passed directly into quarks:
+
+```tsx
+<Container marginAll={16} paddingLeft={32}>
+  I am a container!
+</Container>
+```
+
+However, the component is ultimately rendered using rem values equivalents of the corresponding pixel number. For
+example, the above Container will have `padding-left: 2rem;` and `margin: 1rem;`.
+
+## Customization
+
+If you wish to customize the Spacing atom to fit your design system, you can do so by changing the values in
+`src/atoms/spacing/spacing.ts`.
+
+All available values can be found in Canvas tab and you can experiment with them in the
+[Container quark story](?path=/story/quarks-container--container).
+
+<Story name="Spacing" story={spacing} />

@@ -1,0 +1,39 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import Breakpoints from 'atoms/breakpoints/storybook/Breakpoints';
+import { breakpoints } from 'atoms/breakpoints/storybook/Breakpoints.stories.tsx';
+
+<Meta title="Atoms/Breakpoints" component={Breakpoints} />
+
+# Breakpoints
+
+The Breakpoints atom provides pre-defined breakpoint values to accommodate responsive design for different screen sizes.
+
+## Usage
+
+Each breakpoint in the breakpoints is automatically used to create a prop on all quarks. Each of those breakpoint props
+take an object with key/value pairs corresponding with other quark props.
+
+For example, if you want to change the margin and padding for a [Flex](?path=/story/quarks-flex--flex) quark when the
+screen width is _greater_ than the `sm` breakpoint, it would be set like this:
+
+```tsx
+<Flex marginAll={8} paddingAll={8} sm={{ marginAll: 16, paddingAll: 16 }}>
+  This quark is responsive!
+</Flex>
+```
+
+The default value for the 'xs' breakpoint is `576px`, so this Flex will have larger padding and margin above that screen
+width.
+
+**Important:** The UI Library uses mobile-first responsive styling, but this can be changed by switching `min-width` to
+`max-width` in the breakpoint atom.
+
+## Customization
+
+You can easily add breakpoints, remove breakpoints, and change breakpoint values by editing the `breakpoints` object in
+`src/atoms/breakpoints/breakpoints.ts`.
+
+All current Breakpoint keys and their size values can be seen on the Canvas tab.
+
+<Story name="Breakpoints" story={breakpoints} />

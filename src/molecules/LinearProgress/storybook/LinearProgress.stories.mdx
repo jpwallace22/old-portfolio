@@ -1,0 +1,58 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import LinearProgress from 'molecules/LinearProgress/LinearProgress';
+import * as stories from 'molecules/LinearProgress/storybook/LinearProgress.stories.tsx';
+
+<Meta
+  title="Molecules/Progress/Linear"
+  component={LinearProgress}
+  argTypes={{
+    value: {
+      type: { required: true },
+      control: { type: 'number', min: 0, max: 100 },
+    },
+  }}
+/>
+
+# Linear Progress
+
+Progress indicators express an unspecified wait time or display the length of a process.
+
+Progress indicators inform users about the status of ongoing processes, such as loading an app, submitting a form, or
+saving updates.
+
+- Determinate indicators display how long an operation will take.
+- Indeterminate indicators visualize an unspecified wait time.
+
+The animations of the components rely on CSS as much as possible to work even before the JavaScript is loaded.
+
+<br />
+
+## Usage
+
+The default LinearProgress bar is a determinate bar with the options to take in a `value` and a `valueBuffer`.
+
+### Values
+
+Both `value` and `valueBuffer` take a number from 0-100. The `value` prop will determine the length of the primary
+progress bar, while `valueBuffer` with determine the length of the buffer bar. By default, the `valueBuffer` prop is set
+to 100, and using it us optional.
+
+### Label
+
+The optional `label` prop when `true` creates a percentage value of the current progress of the bar. The label can be in
+4 differnt positions, either `end`, `bottom`, `track-top`, or `track-bottom`. The track positions create a hover badge
+that follows the bar either on the top or bottom.
+
+### Indeterminate
+
+If the the wait time is unspecified the `indeterminate` and `query` varients can be used. These variants do not take a
+`label`, or `value`.
+
+<Canvas>
+  <Story name="Linear" story={stories.linear} />
+</Canvas>
+
+### Props
+
+<ArgsTable story="Linear" />

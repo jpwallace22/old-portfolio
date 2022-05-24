@@ -1,0 +1,48 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import { colorListArray } from 'atoms/colors/colors';
+
+import Badge, { badgeSizeOptions } from 'molecules/Badge/Badge';
+import * as stories from 'molecules/Badge/storybook/Badge.stories.tsx';
+
+import { iconMap } from 'utils/storyUtils.stories.tsx';
+
+<Meta
+  title="Molecules/Badge"
+  component={Badge}
+  argTypes={{
+    children: {
+      options: Object.keys(iconMap),
+      mapping: iconMap,
+      description: 'Takes any ReactNode. But for the iconOnly variant, you should pass an icon',
+      control: { type: 'select' },
+    },
+    size: {
+      options: Object.keys(badgeSizeOptions),
+      control: { type: 'radio' },
+    },
+    backgroundColor: {
+      description: 'Choose a color by referencing the values in color atom',
+      options: [...colorListArray, undefined],
+      control: { type: 'select' },
+    },
+    textColor: {
+      description: 'Choose a color by referencing the values in color atom',
+      options: [...colorListArray, undefined],
+      control: { type: 'select' },
+    },
+  }}
+/>
+
+# Badges
+
+Badges help highlight important information, such as notifications or new and unread messages. They are primarily used
+for communicating secondary or additional information to text.
+
+<Canvas>
+  <Story name="Icon Only" story={stories.iconOnlyBadge} />
+</Canvas>
+
+### Props
+
+<ArgsTable story="Icon Only" />

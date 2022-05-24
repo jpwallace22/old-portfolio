@@ -1,0 +1,92 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import TextField from 'molecules/TextField/TextField';
+import * as stories from 'molecules/TextField/storybook/TextField.stories.tsx';
+
+import { iconMap } from 'utils/storyUtils.stories.tsx';
+
+<Meta
+  title="Molecules/Inputs/Text Field"
+  component={TextField}
+  argTypes={{
+    label: {
+      control: { type: 'text' },
+    },
+    tooltip: {
+      control: { type: 'text' },
+    },
+    tooltipDescription: {
+      control: { type: 'text' },
+    },
+    name: {
+      control: { type: 'text' },
+    },
+    id: {
+      control: { type: 'text' },
+    },
+    helperText: {
+      control: { type: 'text' },
+    },
+    type: {
+      options: ['password', 'text', 'email', 'number'],
+      control: { type: 'select' },
+    },
+    startIcon: {
+      options: Object.keys(iconMap),
+      mapping: iconMap,
+      control: { type: 'select' },
+    },
+    endIcon: {
+      options: Object.keys(iconMap),
+      mapping: iconMap,
+      control: { type: 'select' },
+    },
+    onChange: {
+      control: { disable: true },
+    },
+    onEndIconClick: {
+      control: { disable: true },
+    },
+    value: {
+      control: { disable: true },
+    },
+  }}
+/>
+
+# Text Field
+
+The `<TextField />` component is a complete form control including a label, input, optional helper text, icons, and even
+a tooltip option for your trailing icon.
+
+## Usage
+
+### From props
+
+Standard form attributes are supported e.g. `required`, `disabled`, `type`, `value`, `name`, etc. as well as a
+`helperText` which is used to give context about a field's input, such as how the input will be used.
+
+### Validation
+
+The `error` prop toggles the error state and the `helperText` prop can then be used to provide feedback to the user
+about the error.
+
+### Icons
+
+There are multiple way to display [Icons](?path=/docs/atoms-icons--icons). They can be displayed at the start the the
+TextField with the `startIcon` prop or at the end with the `endIcon` prop. The endIcon also takes an optional
+`onEndIconClick` prop for controling password fields or helper buttons. You can also add a tooltip to the `endIcon` with
+the `tooltip` prop.
+
+### Tooltips
+
+The title of the `tooltip` is passed as a string right into the `tooltip` prop. If a longer description is required, you
+can then pass aditional information into the `tooltipDescription` prop. Lastly, you can can control the placement with
+`tooltipPlacement`.
+
+<Canvas>
+  <Story name="Text Field" story={stories.textField} />
+</Canvas>
+
+### Props
+
+<ArgsTable story="Text Field" />

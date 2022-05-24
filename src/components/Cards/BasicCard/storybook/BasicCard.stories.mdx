@@ -1,0 +1,54 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import BasicCard from 'components/Cards/BasicCard/BasicCard';
+import * as stories from 'components/Cards/BasicCard/storybook/BasicCard.stories.tsx';
+
+import { iconMap } from 'utils/storyUtils.stories.tsx';
+
+<Meta
+  title="Components/Cards/Basic Card"
+  component={BasicCard}
+  argTypes={{
+    endIcon: {
+      options: Object.keys(iconMap),
+      mapping: iconMap,
+      control: { type: 'select' },
+    },
+    startIcon: {
+      options: Object.keys(iconMap),
+      mapping: iconMap,
+      control: { type: 'select' },
+    },
+  }}
+/>
+
+# Basic Card
+
+A standard card comprised of a heading, subhead, and CTA button. All three are optional for the most amout of
+flexibility possible.
+
+## Usage
+
+#### Size
+
+The `BasicCard` has two sizes (sm & lg) controlled by the `size` prop, and is a default of large.
+
+#### Button Props
+
+The Button within the card can be manipulated with a number of basic Button props. `endIcon` and `startIcon` will add
+Icons to the beginning and end of the button, with `iconSize` determining the size of them. Additionally, `href`
+controls the destination of the button and `onClick` can be used for any event actions. Lastly, if neither a `href` or
+`onlClick` are provided, no button will be rendered.
+
+#### Heading & subhead
+
+The `heading` and `subhead` can be set with the cooresponding props. Both are optional and leaving them out will
+collapse the card on its location.
+
+<Canvas>
+  <Story name="Basic Card" story={stories.basicCard} />
+</Canvas>
+
+### Props
+
+<ArgsTable story="Basic Card" />

@@ -1,0 +1,57 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import Flex from 'quarks/Flex';
+import { flex } from 'quarks/storybook/Flex.stories';
+
+import { globalCSSValues } from 'utils/storyUtils.stories.tsx';
+
+export const flexPositions = ['normal', 'flex-start', 'flex-end', 'center', 'stretch', ...globalCSSValues];
+
+<Meta
+  title="Quarks/Flex"
+  component={Flex}
+  argTypes={{
+    alignItems: {
+      options: [...flexPositions, 'baseline'],
+      control: { type: 'select' },
+    },
+    flexBasis: {
+      control: { type: 'text' },
+    },
+    flexShrink: {
+      control: { type: 'number' },
+    },
+    flexGrow: {
+      control: { type: 'number' },
+    },
+    gap: {
+      control: { type: 'text' },
+    },
+    rowGap: {
+      control: { type: 'text' },
+    },
+    columnGap: {
+      control: { type: 'text' },
+    },
+    justifyContent: {
+      options: [...flexPositions, 'space-between', 'space-around', 'space-evenly'],
+      control: { type: 'select' },
+    },
+    order: {
+      control: { type: 'number' },
+    },
+  }}
+/>
+
+# Flex
+
+Flex is a `<div>` with `display="flex"` on by default.
+
+It accepts all basic props found in the [Container](?path=/docs/quarks-container--container) quark story and as well as
+the flex-specific ones listed below.
+
+<Canvas>
+  <Story name="Flex" story={flex} />
+</Canvas>
+
+<ArgsTable story="Flex" />

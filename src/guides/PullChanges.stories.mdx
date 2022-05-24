@@ -1,0 +1,93 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta
+  title="Guides/Pull UI Library changes"
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+# Pull UI Library changes into your project
+
+If you want to update your project to include new code introduced to the UI Library, you can pull changes via a remote.
+Merging changes is a delicate process and should be done with care, but can be accomplished with the following steps:
+
+1. Checkout a new branch
+
+Check out a new branch to merge your changes too
+
+```shell
+git checkout -b merge-from-lib -t origin/main
+```
+
+then:
+
+2. **Add the UI Library template as a git remote.** <br /> You can make sure it was done correctly by running
+   `git remote`. Your output should show an `origin` and a `template`.
+
+```shell
+git remote add template git@github.com:webstacks-dev/webstacks-ui-library.git
+```
+
+3. **Fetch the most recent changes from origin and the template:**
+
+```shell
+git fetch --all
+```
+
+4. **Begin a [selective merge](https://gist.github.com/katylava/564416):**
+
+```shell
+git merge --no-commit --no-ff template/main --allow-unrelated-histories
+```
+
+5. Now that changes have been staged, **unstage them into your working directory with:**
+
+```shell
+git reset HEAD
+```
+
+6. You now have a list of files to choose from for committing. **You can now stage files by name:**
+
+```shell
+git add -- <filename>
+```
+
+or add all and remove the ones you don't want:
+
+```shell
+git add -A
+git reset HEAD -- <filename to exclude>
+```
+
+If you want to add a lot of files, it might be easier to use an interactive staging:
+
+```shell
+git add --interactive
+```
+
+7. **Once only files you want have been staged, remove the rest from your working directory:**
+
+```shell
+git restore .
+```
+
+8. **If you added any files with merge conflicts, fix those first.** You can easily find conflicts using `git diff` or
+   by simply searching your IDE for `>>>>`
+
+<br />
+
+9. Once you are certain about your choices, **commit changes as normal.**
+
+```shell
+git commit -m "Merges changes from UI Library template"
+```
+
+10. And push!
+
+```shell
+git push origin HEAD
+```

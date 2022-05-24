@@ -1,0 +1,45 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import Paragraph from 'quarks/Paragraph';
+import { paragraph } from 'quarks/storybook/Paragraph.stories';
+
+<Meta title="Quarks/Paragraph" component={Paragraph} />
+
+# Paragraph
+
+Paragraph is a `<p>` tag.
+
+Paragraph accepts all basic props found in the [Container](?path=/docs/quarks-container--container) quark story, as well
+as the `textStyle` prop.
+
+### `TextStyle` Prop
+
+The `textStyle` prop is used to set the Parapgraph's size using values from the
+[typography](?path=/story/atoms-typography--typography) atom.
+
+### Manual Overrides
+
+If you instead want to mix and match font properties (ex. font size and line height that don't normally go together) you
+can still set those properties using the basic props.
+
+#### Warning
+
+Styles will override each other based on the order in which they are set in the component. Props are processed from
+beginning to end, so props set earlier on will get overridden by ones set further down. For this reason, it is advised
+to set the `textStyle` first followed by any manual overrides.
+
+```tsx
+<Paragraph textStyle="xl" fontWeight="semiBold" fontSize={18} lineHeight={24} textColor="primary-600">
+  {text}
+</Paragraph>
+```
+
+In the above example, the paragraph will use the style set as "xl" in the `text` type of
+[typography](?path=/story/atoms-typography--typography), then `fontSize` and `lineHeight` will override those
+properties.
+
+<Canvas>
+  <Story name="Paragraph" story={paragraph} />
+</Canvas>
+
+<ArgsTable story="Paragraph" />

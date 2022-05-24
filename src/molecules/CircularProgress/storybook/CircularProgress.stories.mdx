@@ -1,0 +1,73 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import CircularProgress from 'molecules/CircularProgress/CircularProgress';
+import * as stories from 'molecules/CircularProgress/storybook/CircularProgress.stories.tsx';
+
+import { formatMap } from 'utils/storyUtils.stories';
+
+<Meta
+  title="Molecules/Progress/Circular"
+  component={CircularProgress}
+  argTypes={{
+    value: {
+      type: { required: true },
+      control: { type: 'number', min: 0, max: 100 },
+    },
+    labelFormat: {
+      options: Object.keys(formatMap),
+      mapping: formatMap,
+      control: { type: 'select' },
+    },
+  }}
+/>
+
+# Circular Progress
+
+Progress indicators express an unspecified wait time or display the length of a process.
+
+Progress indicators inform users about the status of ongoing processes such as loading an app, submitting a form, or
+saving updates.
+
+- Determinate indicators display how long an operation will take.
+- Indeterminate indicators visualize an unspecified wait time.
+
+The animations of the components rely on CSS as much as possible to work even before the JavaScript is loaded.
+
+<br />
+
+## Usage
+
+The default CircularProgress bar is a determinate variant with a value of 0.
+
+### Values
+
+`value` takes a number from 0-100. The `value` prop will determine the length of the primary progress circle.
+
+### Label
+
+The optional `label` prop when `true` creates a percentage value of the current progress of the bar. The label can be
+formatted with the `labelFormat` prop. `labelFormat` is a callback function that takes the value and returns a string.
+For example, the default is:
+
+```ts
+labelFormat: (value: number) => `${value}%`,
+```
+
+### Description
+
+The optional `description` prop is a string that is displayed either in the center of the circle above the label, or
+under the circle for the `xs` size variant.
+
+### Indeterminate
+
+If the the wait time is unspecified the `indeterminate` variant can be used. This variant does not take a `label`, or
+`value`, but may still take advantage of the `description` prop. The `indeterminate` variant can also make use of the
+`disableShrink` prop that changes the animation to a steady spin.
+
+<Canvas>
+  <Story name="Circular" story={stories.circular} />
+</Canvas>
+
+### Props
+
+<ArgsTable story="Circular" />

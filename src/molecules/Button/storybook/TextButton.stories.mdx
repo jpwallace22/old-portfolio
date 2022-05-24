@@ -1,0 +1,75 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import { colorListArray } from 'atoms/colors/colors';
+
+import Button from 'molecules/Button/Button';
+import * as stories from 'molecules/Button/storybook/Button.stories.tsx';
+
+import { iconMap } from 'utils/storyUtils.stories.tsx';
+
+<Meta
+  title="Molecules/Buttons"
+  component={Button}
+  argTypes={{
+    size: {
+      options: ['xlarge', 'large', 'medium', 'small', 'xsmall'],
+      control: { type: 'radio' },
+    },
+    borderColor: {
+      options: [...colorListArray, undefined],
+      control: { type: 'select' },
+    },
+    textColor: {
+      options: [...colorListArray, undefined],
+      control: { type: 'select' },
+    },
+    backgroundColor: {
+      options: [...colorListArray, undefined],
+      control: { type: 'select' },
+    },
+    disabled: {
+      control: { type: 'boolean' },
+    },
+    children: {
+      control: { type: 'text' },
+      description: 'Text or JSX element',
+    },
+    endIcon: {
+      options: Object.keys(iconMap),
+      mapping: iconMap,
+      control: { type: 'select' },
+    },
+    startIcon: {
+      options: Object.keys(iconMap),
+      mapping: iconMap,
+      control: { type: 'select' },
+    },
+  }}
+/>
+
+## Usage
+
+Using the Text Button is as almost as easy as the Contained Button. The only variation is passing the `variant` prop
+with the argument of `text`.
+
+```jsx
+<Button variant="text">This is a text button</Button>
+```
+
+#### Adding Icons
+
+You can pass any ReactNode into the endIcon or startIcon props to be rendered at the end or beginning of your Button.
+
+```jsx
+<Button variant="text" endIcon={<FiCoffee />}>
+  Coffee Time!
+</Button>
+```
+
+## Additonal Props
+
+<Canvas>
+  <Story name="Text" story={stories.text} />
+</Canvas>
+
+<ArgsTable story="Text" />

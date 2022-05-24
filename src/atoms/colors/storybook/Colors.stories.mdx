@@ -1,0 +1,49 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import Colors from 'atoms/colors/storybook/Colors';
+import { colors } from 'atoms/colors/storybook/Colors.stories.tsx';
+
+<Meta title="Atoms/Colors" component={Colors} />
+
+# Colors
+
+The pre-defined color values found in the Color atom provide consistency across a project and are assignable to the
+`backgroundColor`, `textColor` and `borderColor` props on all quarks, molecules, and components.
+
+## Usage
+
+The color atom consists of a nested object containing numbered sets of colors. For example, "gray" contains a set of
+colors with numbers 25-900. These colors can be referenced by entering a string value with the category followed by the
+number separated by a hyphen.
+
+```tsx
+<Container backgroundColor="gray-800" textColor="gray-25">
+  Light gray text on dark gray background
+</Container>
+```
+
+### Light and Dark Mode
+
+To specify separate colors for light mode and dark mode, you can pass two separate colors assigned to `light` and `dark`
+in an object.
+
+```tsx
+<Container backgroundColor={{ light: 'common-black', dark: 'common-white' }}>
+  This container is light and dark mode ready!
+</Container>
+```
+
+## Customization
+
+If you wish to customize the Color atom to best fit your project, you can do so by changing the values in
+`src/atoms/colors/colors.ts`.
+
+**Important:** Changing the hex values is safe but changing the key values will affect all existing references to that
+color entry. However, changing color names can and should still be done as long as all existing references across the
+repository are also updated. No values are hard-coded, so a simple find and replace using your IDE should be sufficient
+to change all instance of each color.
+
+All available color values are viewable in the Canvas tab and you can experiment with them in the
+[Container quark story](?path=/story/quarks-container--container).
+
+<Story name="Colors" story={colors} />

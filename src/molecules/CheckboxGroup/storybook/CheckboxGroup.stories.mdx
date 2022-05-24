@@ -1,0 +1,96 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import { colorListArray } from 'atoms/colors/colors';
+
+import Text from 'quarks/Text';
+
+import CheckboxGroup from 'molecules/CheckboxGroup/CheckboxGroup';
+import * as stories from 'molecules/CheckboxGroup/storybook/CheckboxGroup.stories.tsx';
+
+import { iconMap } from 'utils/storyUtils.stories.tsx';
+
+export const contentMap = {
+  consistentStyledText: (
+    <Text textStyle="sm" textColor={{ light: 'gray-500', dark: 'gray-300' }}>
+      $10 per month
+    </Text>
+  ),
+  multipleStyledText: (
+    <Text alignItems="baseline" textStyle="sm" textColor={{ light: 'gray-500', dark: 'gray-300' }}>
+      <Text textStyle="xl" fontWeight="semiBold" textColor={{ light: 'common-black', dark: 'common-white' }}>
+        $10
+      </Text>{' '}
+      per month
+    </Text>
+  ),
+  socialHandle: (
+    <Text textStyle="sm" textColor={{ light: 'gray-500', dark: 'gray-300' }}>
+      @olivia
+    </Text>
+  ),
+  undefined,
+};
+
+<Meta
+  title="Molecules/Checkbox Group"
+  component={CheckboxGroup}
+  argTypes={{
+    backgroundColor: {
+      options: [...colorListArray, undefined],
+      control: { type: 'select' },
+    },
+    textColor: {
+      options: [...colorListArray, undefined],
+      control: { type: 'select' },
+    },
+    content: {
+      options: Object.keys(contentMap),
+      mapping: contentMap,
+      control: { type: 'select' },
+    },
+    icon: {
+      options: Object.keys(iconMap),
+      mapping: iconMap,
+      control: { type: 'select' },
+    },
+    value: {
+      table: { disable: true },
+    },
+    checked: {
+      table: { disable: true },
+    },
+  }}
+/>
+
+# Checkbox Groups
+
+Checkbox groups are a great way to make checkboxes more interesting, or to add more information to the user's options
+without adding clutter. When options are explicitly separated into cards, it's obvious which elements belong to which
+group and easier to quickly distinguish between checkbox options.
+
+## Usage
+
+#### Label
+
+The `label` prop is required and inherently light/dark mode optimized
+
+#### Checkbox size
+
+The `checkboxSize` prop is optional and determines the size of the `Radio` or `Checkbox`
+
+#### Control Style
+
+The `controlStyle` prop is optional and determines if the `CheckboxGroup` displays a `Radio` or `Checkbox`
+
+#### Icon
+
+The `icon` prop is optional and displays an icon on the left side of a `CheckboxGroup`. If an icon exists, the `Radio`
+or `Checkbox` is displayed on the right
+
+<Canvas>
+  <Story name="Checkbox Group" story={stories.checkboxGroup} />
+</Canvas>
+
+## Props
+
+<ArgsTable story="Checkbox Group" />

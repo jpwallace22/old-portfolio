@@ -1,0 +1,162 @@
+import { Meta } from '@storybook/addon-docs';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+
+<Meta
+  title="Guides/Set up NextJS"
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+# Setting up NextJS
+
+Creating a [NextJS website](https://nextjs.org/docs) using the UI Library template requires only a few steps and allows
+for a great deal of flexibility in your project.
+
+## Installation
+
+Just install `next`. The rest has been added for you!
+
+```shell
+yarn add next
+```
+
+## Babel Configuration
+
+Next, you will need to add the `next/babel` preset (included with your installation of `next`) to your babel config.
+Unfortunately, this means you won't be able to take advantage of Next's default
+[SWC compiler](https://nextjs.org/docs/advanced-features/compiler) because it doesn't support styled-components' babel
+plugin ([yet](https://github.com/vercel/next.js/issues/30802)!).
+
+```json
+// .babelrc
+
+{
+  "presets": ["next/babel"],
+  ...
+}
+```
+
+## Create a "pages" directory and make an App file
+
+Create a top level directory called "pages" and add a file to it with the name `_app.tsx`. This will serve as the entry
+point for your site.
+
+- First, import `ThemeProvider` from `src/contexts/ThemeProvider`, which will give you access to quark styling, MUI and
+  styled themes, and dark mode. Add it to the top level of the JSX return statement.
+- Then, **remove** `import 'assets/fonts/font-styles.css';` from `src/quarks/GlobalStyles.tsx` and add it to your new
+  `_app.tsx` and `.storybook/preview.js`. This is because NextJS does not allow global CSS to be imported from anywhere
+  outside `_app.tsx`.
+
+If you get a Typescript error flagging `Component`, you may need to upgrade your `@types/react` package to version 18.
+
+```tsx
+// src/pages/_app.tsx
+
+import { ThemeProvider } from 'contexts/ThemeProvider';
+import 'assets/fonts/font-styles.css';
+
+import type { AppProps } from 'next/app';
+
+const MyApp = ({ Component, pageProps }: AppProps) => (
+  <ThemeProvider>
+    <Component {...pageProps} />
+  </ThemeProvider>
+);
+
+export default MyApp;
+```
+
+```diff
+// src/quarks/GlobalStyle.tsx
+- import 'assets/fonts/font-styles.css';
+
+```
+
+```diff
+// .storybook/preview.jsx
++ import 'assets/fonts/font-styles.css';
+
+```
+
+export const Component = () => (
+  <SyntaxHighlighter language="javascript" style={dark}>
+    {/* see @https://github.com/storybookjs/storybook/issues/14605#issuecomment-885887417 */}
+    {'(num) => num + 1'}
+  </SyntaxHighlighter>
+);
+
+Now you can create a `index.tsx` file in the same directory to serve as your homepage.
+
+## Add support for SVGs as React components
+
+The UI library uses [SVGR](https://react-svgr.com/docs/webpack/) in order to import SVGs as React components rather than
+asset paths. To allow this functionality in NextJS, you need only configure webpack to use it. To do so, create a
+`next.config.js` in your root directory and add the following:
+
+```js
+// next.config.js
+
+module.exports = {
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack', 'url-loader'],
+    });
+
+    return config;
+  },
+};
+```
+
+Once done, you'll be able to import SVGs as asset paths _or_ React components using the following syntax:
+
+```tsx
+import starPath, { ReactComponent as Star } from 'assets/svg/star.svg';
+
+const App = () => (
+  <div>
+    <img src={starPath} alt="star" />
+    <Star />
+  </div>
+);
+```
+
+## Set up Links and Images with NextJS
+
+To set up integration with next/link and next/image, see the doc on
+[Links and Images](?path=/docs/guides-links-and-images--page).
+
+## Create NextJS scripts
+
+At this point the only thing you need to do to run the project is run a build command. You should add these as scripts
+to your `package.json`.
+
+```json
+// package.json
+
+"scripts": {
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start",
+  ...
+}
+```
+
+Now that the project scripts are good, you just need to do a slight modification to your storybook scripts to allow for
+use of next/images in storybook. In your `package.json` file modify:
+
+```diff
+// package.json
+
+"scripts": {
+- "storybook": "start-storybook -p 6006",
+- "build-storybook": "build-storybook",
++ "storybook": "start-storybook -p 6006 -s ./public",
++ "build-storybook": "build-storybook -s public",
+    ...
+}
+```

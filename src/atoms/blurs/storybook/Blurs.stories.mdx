@@ -1,0 +1,50 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import Blurs from 'atoms/blurs/storybook/Blurs';
+import { blurs } from 'atoms/blurs/storybook/Blurs.stories.tsx';
+
+<Meta title="Atoms/Blurs" component={Blurs} />
+
+# Blurs
+
+The Blur atom provides pre-defined blur values assignable to the `backdropFilter` props for use on quarks, molecules,
+and components.
+
+## Usage
+
+The `backgroundFilter` prop takes a string that corresponds with a key defined in the Blur atom. For example:
+
+```tsx
+<Container backdropFilter="sm">I'm a Container. Inspect me!</Container>
+```
+
+This will render a `<div>` with `backdrop-filter: blur(8px)`, which is the default value set to "sm".
+
+## Customization
+
+To customize the Blur atom to fit your project's design system, simply change the values in `src/atoms/blurs/blurs.ts`.
+
+## Backgrounds and Exceptions
+
+As usual, Atoms can also be referenced as standard Javascript strings by importing them and passing them into the CSS
+prop, although this is discouraged if avoidable.
+
+In addition to the default "sizing" blur values, the blur atom also includes background values that can be referenced
+via the CSS prop:
+
+```tsx
+import blur from 'atoms/blurs/blurs';
+
+<Container
+  css={`
+    background-color: ${blur.background.dark};
+  `}
+>
+  I'm a Container. Inspect me!
+</Container>;
+```
+
+All available default blur values are viewable in the Canvas tab and you can experiment with them in the
+[Container quark story](?path=/docs/quarks-container--container).
+
+<Story name="Blurs" story={blurs} />

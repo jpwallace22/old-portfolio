@@ -1,0 +1,29 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import ButtonGroup from 'molecules/ButtonGroup/ButtonGroup';
+import { noIcon } from 'molecules/ButtonGroup/storybook/ButtonGroup.stories.tsx';
+
+<Meta title="Molecules/Button Groups" component={ButtonGroup} />
+
+# Button Groups
+
+Button groups combine sets of buttons into toolbars or split buttons for more complex components. Button groups are also
+useful for acting as mini “tabs” in UI, for example, switching between date ranges.
+
+### Its a wrapper
+
+The buttons can be grouped by wrapping them with the `ButtonGroup` component.
+
+- They need to be immediate children.
+- There is no limit to the amount of Buttons you can add.
+- All basic CSS props are available on both wrapper and button
+
+## No Icon
+
+Simply adding buttons and using the default variant (outlined) will create the standard effect.
+
+<Canvas>
+  <Story name="No Icon" story={noIcon} />
+</Canvas>
+
+<ArgsTable story="No Icon" />

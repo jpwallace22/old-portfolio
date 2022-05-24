@@ -1,0 +1,182 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import Slider from 'molecules/Slider/Slider';
+import * as stories from 'molecules/Slider/storybook/Slider.stories.tsx';
+
+import { formatMap } from 'utils/storyUtils.stories';
+
+export const scaleMap = {
+  Doubled: value => value * 2,
+  TenTimes: value => value * 10,
+  undefined,
+};
+
+<Meta
+  title="Molecules/Inputs/Slider"
+  component={Slider}
+  argTypes={{
+    defaultValue: { control: 'number' },
+    step: { control: 'number' },
+    tabIndex: { control: 'number' },
+    marks: { control: 'boolean' },
+    valueLabelFormat: {
+      options: Object.keys(formatMap),
+      mapping: formatMap,
+      control: { type: 'select' },
+    },
+    getAriaLabel: {
+      options: Object.keys(formatMap),
+      mapping: formatMap,
+      control: { type: 'select' },
+    },
+    getAriaValueText: {
+      options: Object.keys(formatMap),
+      mapping: formatMap,
+      control: { type: 'select' },
+    },
+    scale: {
+      options: Object.keys(scaleMap),
+      mapping: scaleMap,
+      control: { type: 'select' },
+    },
+    value: {
+      control: { disable: true },
+    },
+  }}
+/>
+
+# Slider
+
+Sliders allow users to make selections from a range of values.
+
+Sliders reflect a range of values along a bar, from which users may select a single value. They are ideal for adjusting
+settings such as volume, brightness, or applying image filters.
+
+## Usage
+
+### Continuous
+
+Continuous sliders allow users to select a value along a subjective range. The default range is from 0-100 but can be
+set using the `min` & `max` props.
+
+```jsx
+    <Slider aria-label="Normal Slider" value={value} onChange={({target}) => setValue(target.value))} />
+```
+
+### Discrete sliders
+
+Discrete sliders can be adjusted to a specific value by referencing its value indicator. You can generate a mark for
+each step with `marks={true}`.
+
+You can change the default step increment with the `step` prop
+
+```jsx
+<Slider step={10} marks min={10} max={110} value={value} onChange={({target}) => setValue(target.value))}/>
+```
+
+#### Custom marks
+
+You can have custom marks by providing a rich array to the `marks` prop.
+
+You can restrict the selectable values to those provided with the `marks` prop with `step={null}`.
+
+```jsx
+const marks = [
+  {
+    value: 0,
+    label: '0°C',
+  },
+  {
+    value: 20,
+    label: '20°C',
+  },
+  {
+    value: 37,
+    label: '37°C',
+  },
+  {
+    value: 100,
+    label: '100°C',
+  },
+];
+
+function valuetext(value) {
+  return `${value}°C`;
+}
+
+export default function DiscreteSliderMarks() {
+  return (
+    <Box sx={{ width: 300 }}>
+      <Slider
+        aria-label="Custom marks"
+        defaultValue={20}
+        getAriaValueText={valuetext}
+        valueLabelFormat={valuetext}
+        step={null}
+        valueLabelDisplay="auto"
+        marks={marks}
+      />
+    </Box>
+  );
+}
+```
+
+### Label
+
+You can control the thumb label via the `valueLabelDisplay` prop. It takes three options:
+
+- `on` which always shows the label
+- `off` which never shows the Label
+- `auto` the default, which shows the label on hover
+
+### Range slider
+
+The slider can be used to set the start and end of a range by supplying an array of values to the `value` prop.
+
+```jsx
+export default function RangeSlider() {
+  const [value, setValue] = React.useState([20, 37]);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  return <Slider value={value} onChange={handleChange} />;
+}
+```
+
+#### Minimum distance
+
+You can enforce a minimum distance between values in the onChange event handler. By default, when you move the pointer
+over a thumb while dragging another thumb, the active thumb will swap to the hovered thumb. You can disable this
+behavior with the disableSwap prop. If you want the range to shift when reaching minimum distance, you can utilize the
+activeThumb parameter in onChange.
+
+### Track
+
+The track shows the range available for user selection.
+
+- The track can be turned off with `track={false}`.
+- The track can be inverted with `track="inverted"`.
+
+### Non-linear scale
+
+You can use the `scale` prop to represent the `value` on a different scale.
+
+## Accessibility
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#slider)
+
+The component handles most of the work necessary to make it accessible. However, you need to make sure that:
+
+- Each thumb has a user-friendly label (`ariaLabel`, `ariaLabelledBy` or `getAriaLabel` prop).
+- Each thumb has a user-friendly text for its current value. This is not required if the value matches the semantics of
+  the label. You can change the name with the `getAriaValueText` or `ariaValueText` prop.
+
+<Canvas>
+  <Story name="Slider" story={stories.slider} />
+</Canvas>
+
+## Props
+
+<ArgsTable story="Slider" />

@@ -1,0 +1,41 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import Radio from 'molecules/Radio/Radio';
+import * as stories from 'molecules/Radio/storybook/Radio.stories.tsx';
+
+<Meta
+  title="Molecules/Inputs/Radio"
+  component={Radio}
+  argTypes={{
+    checked: {
+      control: { disable: true },
+    },
+    value: {
+      control: { disable: true },
+    },
+  }}
+/>
+
+# Radio Button
+
+Radio buttons allow the user to select one option from a set. Use radio buttons when the user needs to see all available
+options. If available options can be collapsed, consider using a Select component because it uses less space. Radio
+buttons should have the most commonly used option selected by default.
+
+## Usage
+
+#### Controlled component
+
+You can control the radio with the `value` and `onChange` props
+
+#### Label & helper text
+
+The `label` and `helperText` props are both optional and inherently light/dark mode optimized.
+
+<Canvas>
+  <Story name="Radio" story={stories.radio} />
+</Canvas>
+
+### Props
+
+<ArgsTable story="Radio" />

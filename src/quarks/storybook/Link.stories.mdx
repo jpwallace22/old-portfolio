@@ -1,0 +1,22 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import Link from 'quarks/Link';
+import { link } from 'quarks/storybook/Link.stories';
+
+<Meta title="Quarks/Link" component={Link} />
+
+# Link
+
+Link can be used to open both internal and external links. It takes all basic quark props as seen in
+[Container](?path=/docs/quarks-container--container), in addition to `href` which must be a full URL.
+
+### parseUrl
+
+The Link uses a function called `parseUrl` to parse the href passed in order to determine if it is an internal or
+external link, then transform it into the appropriate element. Its logic can be configured in `utils/parseUrl.ts`.
+
+<Canvas>
+  <Story name="Link" story={link} />
+</Canvas>
+
+<ArgsTable story="Link" />

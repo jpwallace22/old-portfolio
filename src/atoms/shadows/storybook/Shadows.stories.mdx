@@ -1,0 +1,37 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import Shadows from 'atoms/shadows/storybook/Shadows';
+import { shadows } from 'atoms/shadows/storybook/Shadows.stories.tsx';
+
+<Meta title="Atoms/Shadows" component={Shadows} />
+
+# Shadows
+
+The Shadow atom provides pre-defined values assignable to the `boxShadow` prop for use on quarks, molecules, and
+components.
+
+## Usage
+
+Shadows are defined using size keys that correspond with each shadow's visual strength. For example, to create a weak
+box-shadow, simply pass "xs":
+
+```tsx
+<Container boxShadow="xs">This container utilizes a pre-defined value!</Container>
+```
+
+Although discouraged, the boxShadow also allows any valid `boxShadow` css value for the purpose of adding more complex
+or particular shadows that should not be defined in your theme.
+
+```tsx
+<Container boxShadow="0px 1px 2px rgba(16, 24, 40, 0.05)">This container utilizes traditional boxShadow css!</Container>
+```
+
+## Customization
+
+You can customize the values used for the `boxShadow` prop by altering the values stored in
+`src/atoms/shadows/shadows.ts`.
+
+Available pre-defined values can be found in the Canvas tab and you can experiment with them in the
+[Container quark story](?path=/story/quarks-container--container).
+
+<Story name="Shadows" story={shadows} />

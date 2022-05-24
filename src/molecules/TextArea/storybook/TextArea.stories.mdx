@@ -1,0 +1,53 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import TextArea from 'molecules/TextArea/TextArea';
+import * as stories from 'molecules/TextArea/storybook/TextArea.stories.tsx';
+
+<Meta
+  title="Molecules/Inputs/Text Area"
+  component={TextArea}
+  argTypes={{
+    onChange: {
+      control: { disable: true },
+    },
+    value: {
+      control: { disable: true },
+    },
+  }}
+/>
+
+# TextArea
+
+A textarea component for that grows vertically with content. The `TextArea` component automatically adjust the textarea
+height on keyboard and window resize events.
+
+## Usage
+
+<br />
+
+#### Label
+
+The `label` prop takes a string that is output as the label above the Text area. Labels are required for screen readers
+as per the WCAG
+
+#### Helper Text
+
+The `helperText` prop takes a string that is then output below the text area. The helper text is used to help instruct
+the user on how to interact with the UI and to deliver error messages upon validation failures. Helper text is red if
+`error == true`.
+
+#### Controlled
+
+The `TextArea` is controlled component that expects a state driven `value` from the components `onChange` prop.
+
+```jsx
+<TextArea value={value} onChange={({ target }) => setValue(target.value)} />
+```
+
+<Canvas>
+  <Story name="Text Area" story={stories.textArea} />
+</Canvas>
+
+### Props
+
+<ArgsTable story="Text Area" />

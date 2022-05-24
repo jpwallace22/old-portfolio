@@ -1,0 +1,134 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import * as stories from 'molecules/BrandButton/storybook/BrandButton.stories.tsx';
+import StoryBrandButtons from 'molecules/BrandButton/storybook/BrandButton.tsx';
+
+<Meta
+  title="Molecules/Buttons/Brand"
+  component={StoryBrandButtons}
+  argTypes={{
+    brandColor: {
+      description:
+        'Determines the background color of the button. Can be passed any valid CSS color value, including hex, rgba, or hsl.',
+      control: { disable: true },
+    },
+    brandTextColor: {
+      description:
+        'Determines the color of text and icon on the button. Can be passed any valid CSS color value, including hex, rgba, or hsl.',
+      control: { disable: true },
+    },
+    children: {
+      description: 'Text or JSX element.',
+      control: { disable: true },
+    },
+    disabled: {
+      description: 'If `true`, the button is disabled.',
+      control: { disable: true },
+    },
+    href: {
+      description:
+        'The URL to link to when the button is clicked. If defined, an `a` element will be used as the root node.',
+      control: { disable: true },
+    },
+    onClick: {
+      description:
+        'Callback fired when the button is clicked. Also fires on space bar and enter key presses when focused. event: The event source of the callback. You can pull out the new value by accessing event.target.value (string).',
+      control: { disable: true },
+    },
+    size: {
+      description: 'the size of the component',
+      control: { disable: true },
+    },
+    startIcon: {
+      description: 'ReactNode of icon to be put at the beginning of the button',
+      control: { disable: true },
+    },
+    variant: {
+      description: 'Determines between an outlined, text, or contained button',
+      control: { disable: true },
+    },
+  }}
+/>
+
+# Brand Button
+
+These buttons are useful for log in and sign up screens and actions.
+
+## Usage
+
+<br />
+
+The `BrandButton` is built using the `Button` molecule and therefore has the same capabilities.
+
+It can be used anywhere you can use `Button`.
+
+## Props
+
+<br />
+
+### brandColor and brandTextColor
+
+The `brandColor` and `brandTextColor` props allow the `BrandButton` to take any valid CSS color value, including hex,
+rgba, or hsl. `brandColor` changes the background color of the button, while `brandTextColor` changes the color of the
+text on the button. If the color of the `startIcon` or `icon` can be altered with `textColor`, then `brandTextColor`
+will change their colors as well.
+
+As the regular `Button` molecule can only take `backgroundColor` and `textColor` values defined in the UI Library's
+`Color` atom, this makes `BrandButton` ideal if you want to utilize brand-specific colors.
+
+You can see how both props are utilized in the example code below:
+
+```
+  <BrandButton
+    startIcon={<FaFacebook />}
+    variant="contained"
+    brandColor="#1877f2"
+    brandTextColor="#FFFFFF"
+    marginBottom={16}
+  >
+    Sign in with Facebook
+  </BrandButton>
+```
+
+`backgroundColor` and `textColor` can still be used on `BrandButton` if you want to utilize any of the colors defined in
+the `Color` atom.
+
+### Variants
+
+`BrandButton` works well with the `contained` and `outline` variants available on the `Button` molecule. On the Canvas
+tab and down below, you can find examples of both variants.
+
+### Icon only
+
+If you want to create an Icon Only button, simply pass an `icon` as the child to `BrandButton`. See the example code
+below:
+
+```
+  <BrandButton
+    variant="contained"
+    brandColor="#1877f2"
+    brandTextColor="#FFFFFF"
+    paddingX={8}
+    marginBottom={16}
+  >
+    <FaFacebook size="24px" />
+  </BrandButton>
+```
+
+`startIcon` should only be used when you want an icon leading text you have on your button.
+
+### Disabled
+
+The `disabled` prop works as it does on `Button`. When it comes to `icons`, the effect `disabled={true}` has on the
+color of the `icon` will vary depending on the source of the `icon`. On the Canvas tab and below, you can see the effect
+it has on `icons` being imported from `react-icons/fa`.
+
+<Canvas>
+  <Story name="Brand" story={stories.brand} />
+</Canvas>
+
+### Additional Props
+
+Refer to the documentation on `Button` for a full list of available props.
+
+<ArgsTable story="Brand" />

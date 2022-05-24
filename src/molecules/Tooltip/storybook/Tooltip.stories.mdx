@@ -1,0 +1,73 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import Tooltip from 'molecules/Tooltip/Tooltip';
+import * as stories from 'molecules/Tooltip/storybook/Tooltip.stories.tsx';
+
+<Meta
+  title="Molecules/Tooltip"
+  component={Tooltip}
+  argTypes={{
+    title: {
+      control: { type: 'text' },
+    },
+    description: {
+      control: { type: 'text' },
+    },
+  }}
+/>
+
+# Tooltip
+
+Tooltips display informative text when users hover over, focus on, or tap an element. When activated, Tooltips display a
+text label identifying an element, such as a description of its function.
+
+<br />
+
+## Usage
+
+#### Position
+
+The `Tooltip` has 12 placements choice. They don't have directional arrows; instead, they rely on motion emanating from
+the source to convey direction.
+
+#### Arrow
+
+You can use the `arrow` prop to give your tooltip an arrow indicating which element it refers to. By default, `arrow` is
+`true`.
+
+#### Custom child element
+
+The tooltip needs to apply DOM event listeners to its child element. If the child is a custom React element, you need to
+make sure that it spreads its props to the underlying DOM element.
+
+```jsx
+const MyComponent = React.forwardRef(function MyComponent(props, ref) {
+  //  Spread the props to the underlying DOM element.
+  return <div {...props} ref={ref}>Bin</div>
+});
+
+// ...
+
+<Tooltip title="Delete">
+  <MyComponent>
+</Tooltip>
+```
+
+#### Triggers
+
+You can define the types of events that cause a tooltip to show. By default, all are active, but you can disable
+listeners by using the `disableFocusListener`, `disableHoverListener`, and `disableTouchListener` props. You can also
+use the `disableInteractive` prop if you dont want users to be able to interact with the tooltip.
+
+#### Disabled elements
+
+By default disabled elements like `<button>` do not trigger user interactions so a `Tooltip` will not activate on normal
+events like hover. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
+
+<Canvas>
+  <Story name="Tooltip" story={stories.tooltip} />
+</Canvas>
+
+### Props
+
+<ArgsTable story="Tooltip" />

@@ -1,0 +1,271 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta
+  title="Guides/Using Quarks"
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+# Using Quarks
+
+<br />
+
+## What are Quarks?
+
+Quarks are a system of styling components by implementing theme values stored in atoms. In simple terms: quarks are HTML
+elements. There are quarks for `<div>` tags, for `<p>` and `<span>` tags, for `<img>` and `<a>` tags etc. But rather
+than styling these elements using CSS classnames or by creating unique
+[styled-components](https://styled-components.com/docs/basics), quarks are styled using a vast collection of React props
+that correspond with CSS properties. Essentially, quarks are styled-components, but taken to their fullest extreme.
+
+### Basic Usage
+
+1. Import the quark you want. The below example uses `Container`, which is a standard `<div>` element.
+2. Pass any CSS styles you want to the corresponding prop. The prop name is usually a camelcased version of the original
+   CSS property.
+
+```tsx
+<Container maxWidth="100%">I'm a Container.</Container>
+```
+
+The above element will become a `<div>` with `max-width: 100%;`.
+
+### Usage with Atom values
+
+Most quark props simply implement the CSS property. But many others instead take values that correspond with theme
+values defined in atoms. For example, color props take a string that correspond with a value in the
+[color atom](?path=/story/atoms-colors--colors).
+
+```tsx
+<Container textColor="common-white">I'm a Container.</Container>
+```
+
+The above element will become a `<div>` with `color: #fff;`.
+
+You can find full lists and explanations of each quark's props in the
+[Quarks docs](?path=/story/quarks-container--container) in Storybook.
+
+## Dark and Light Mode
+
+Since color values in particular should naturally adjust depending on what mode the user is in, those props can take 2
+types of values:
+
+- a single string will represent that element's color at all times: `backgroundColor="common-black"`
+- an object will represent that element's colors according to the corresponding mode:
+
+```tsx
+<Container backgroundColor={{ light: 'common-black', dark: 'common-white' }}>I'm a Container.</Container>
+```
+
+## Creating exceptions: CSS prop
+
+You might be wondering - what if I want to add an exception? For example, add a hard-coded color value that should _not_
+be defined in the color atom. For that purpose, this UI Library comes pre-installed with styled-components' babel
+plugin, which offers the [css prop](https://styled-components.com/docs/api#css-prop). This can be used to add completely
+custom CSS without using inline styling or constantly defining new styled components. The CSS prop allows for all normal
+features of CSS props, including nesting, props, etc.
+
+```tsx
+<Container
+  css={`
+    color: '#90c9ff';
+  `}
+>
+  I'm a Container.
+</Container>
+```
+
+It even has access to the theme, which you can use to reference certain theme values if needed:
+
+```tsx
+<Container
+  css={`
+    color: ${props => (props.theme.palette.mode === 'dark' ? '#90c9ff' : '#fcfcfd')};
+  `}
+>
+  I'm a Container.
+</Container>
+```
+
+The above will render the component with a different color depending on whether or not dark mode is enabled.
+
+Unfortunately Typescript has no way of detecting what type the `props` argument is when used within the CSS prop. So you
+should import `CSSProps` from `theme/getAppTheme` and assign it to the prop argument. You can also destructure the
+`props` argument to get `theme`, and use the same function body to set multiple styles:
+
+```tsx
+import { CSSProps } from 'theme/getAppTheme';
+
+<Container
+  css={`
+    ${({ theme }: CSSProps) => `
+        color: ${theme.palette.blue[100]};
+        background-color: ${theme.palette.pink[100]};
+      `}
+  `}
+>
+  I'm a Container.
+</Container>;
+```
+
+**Note:** Naturally, using the CSS prop is discouraged at all times except when absolutely necessary, since it disrupts
+the design consistency provided by quarks.
+
+## Responsive styling
+
+The breakpoints defined in the [breakpoint atom](?path=/docs/atoms-breakpoints--breakpoints) are used to automatically
+generate props which enable responsive styling via quarks. To use them, simply add a prop with a breakpoint name, then
+pass in an object with keys and values just as you would a normal add styling with props.
+
+```tsx
+<Container
+  width="100%"
+  sm={{
+    width: '50%',
+  }}
+>
+  I'm a Container.
+</Container>
+```
+
+The above example will be `width: 100%` at all view widths _up to_ the small (`sm`) breakpoint, at which point it will
+be `width: 50%`.
+
+**Note:** The UI Library uses mobile-first responsive styling, but this can be changed by switching `min-width` to
+`max-width` in `atoms/breakpoints/breakpoints.ts`.
+
+## Pseudo-classes
+
+Just like with responsive styling, each common pseudoclass has its own prop which takes an object.
+
+```tsx
+<Container
+  color="common-black"
+  hover={{
+    color: 'primary-400',
+  }}
+>
+  I'm a Container.
+</Container>
+```
+
+The above example will have a hover state using the color from `primary-400` in the color atom.
+
+## Pseudo-elements
+
+You probably get the idea by now. Each quark comes with `before` and `after` props you can use to create
+pseudo-elements.
+
+Keep in mind: pseudo-elements require a `content` property!
+
+```tsx
+<Container
+  after={{
+    content: 'I am a pseudo-element',
+    color: 'primary-400',
+  }}
+>
+  I'm a Container.
+</Container>
+```
+
+## Use Quark props on any component
+
+By default, all molecules and components in this library have the `basic` quark props available on them. That means for
+example you can use the `marginAll` prop on the [BasicCard](?path=/story/components-cards-basic-card--basic-card)
+component without needing to wrap it in a quark.
+
+Implementing this on new components depends on whether your outermost element is a quark or accepts quark props. If it
+is/does, you need only extend the prop types of your outermost element in your interface, then spread all
+un-destructured props to the outermost element:
+
+```tsx
+import Container from 'quarks/Container'
+import { BasicProps } from 'quarks/interpolations/basic';
+
+interface BasicCardProps extends BasicProps {
+  ...
+}
+
+const BasicCard: FC<BasicCardProps> = ({
+  children,
+  ...props
+}) => {
+  return (
+    <Container {...props}>
+      {children}
+    </Container>
+  )
+}
+```
+
+If your outermost element is not a quark, for example if it's an MUI component, you can effectively turn it into a quark
+by applying an interpolation to it:
+
+```tsx
+import { BasicProps, basic } from 'quarks/interpolations/basic';
+
+const StyledButton = styled(MUIButton)`
+  & {
+    ${basic}
+  }
+`;
+```
+
+Then repeat the steps above as if it were a quark. You may need to add additional ampersands if you need to overcome
+higher specificity in native styling.
+
+## Adding new Quark props
+
+Props are generated from a set of objects defined in `quarks/styleProps`. To add a new prop, simply add a new key
+corresponding with the prop's name and with a function as its value. That function should take an argument corresponding
+with the prop's value and return an interpolation using styled-components' `css` helper function. Here's an example in
+`basicCSS`, which is used to generate props for all quarks.
+
+```ts
+const basicCSS = {
+  height: (value: Properties['height']) => css`
+    height: ${value};
+  `,
+  ...
+}
+```
+
+## Why Quarks?
+
+Quarks offer several advantages over other forms of styling:
+
+1. **They enforce the website theme.** Normally, it's easier to hard-code style values on the fly than it is to
+   consistently implement ones from the site's theme. This is problematic because it makes it difficult to change values
+   uniformly and it allows for inconsistencies across the site. By making it trivial to implement theme values, quarks
+   make this outcome much less likely (although still up to individual developers to use them).
+
+2. **They are type-safe.** Using Typescript we can define what values are permitted for each style prop and enforce
+   valid inputs with type checking. With Inellisense we can also provide hints and auto-completion to make references
+   easier and reduce confusion. Otherwise, normal CSS or styled components are written as plain text, which cannot be
+   easily parsed to check for proper types or syntax.
+
+3. **They are highly dynamic.** Having each CSS property applied through props means developers get a high degree of
+   control over conditional logic. Anything that can be done in Javascript can be applied to props.
+
+```tsx
+<Text
+  textStyle="md"
+  fontSize={size === 'small' ? 14 : 16}
+  lineHeight={size === 'small' ? 20 : 24}
+  alignSelf="flex-start"
+>
+  {label}
+</Text>
+```
+
+Above is a simple example from the [Switch](?path=/docs/molecules-inputs-switch--switch) molecule that uses ternaries
+based on the `size` prop from the encapsulating component to conditionally set the values for font size and line height.
+But much more sophisticated logic can be used.
+
+Once again, you can find full lists and explanations of each quark's props in the
+[Quarks docs](?path=/story/quarks-container--container) in Storybook.

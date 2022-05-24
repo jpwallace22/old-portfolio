@@ -1,0 +1,88 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { FiSearch, FiUser } from 'react-icons/fi';
+
+import { ReactComponent as AvatarExample } from 'assets/svg/avatar-example.svg';
+import { ReactComponent as Dot } from 'assets/svg/dot.svg';
+
+import color from 'atoms/colors/colors';
+
+import Flex from 'quarks/Flex';
+
+import Select from 'molecules/Select/Select';
+import { list } from 'molecules/Select/storybook/Select.stories.tsx';
+import * as stories from 'molecules/Select/storybook/Select.stories.tsx';
+
+export const iconMap = {
+  User: <FiUser color={color.gray[500]} strokeWidth="2px" />,
+  Dot: <Dot color={color.kermit[500]} />,
+  AvatarExample: <AvatarExample width="24px" />,
+  undefined,
+};
+
+export const searchIcon = {
+  Search: (
+    <Flex marginRight={8}>
+      <FiSearch color={color.gray[500]} strokeWidth="2px" />
+    </Flex>
+  ),
+  undefined,
+};
+
+<Meta
+  title="Molecules/Inputs/Select"
+  component={Select}
+  argTypes={{
+    defaultValue: {
+      options: Object.keys(list),
+      mapping: list,
+      control: { type: 'select' },
+    },
+    itemIcon: {
+      options: Object.keys(iconMap),
+      mapping: iconMap,
+      control: { type: 'select' },
+    },
+    startIcon: {
+      options: Object.keys(searchIcon),
+      mapping: searchIcon,
+      control: { type: 'select' },
+    },
+  }}
+/>
+
+# Select
+
+Input dropdowns are used to group together actions in a subview. They're useful for allowing users to select from a
+large amount of options, or to even search for options within the input field before selecting.
+
+## Usage
+
+`Select` can be used in any instance where you want the user to select an item from a dropdown menu.
+
+### list
+
+The `list` prop accepts a ReactNode array, including a simple array of strings or a mapped array of React Components to
+allow for multiple elements and styling
+
+### label & selectName
+
+The `label` and `selectName` props are both optional and inherently light/dark mode optimized.
+
+### itemIcon
+
+The `itemIcon` is optional and can be passed any icon or svg, including our own `Icon` atom. When the `itemIcon` is
+used, it will display an icon or svg next to each menu item, both in the dropdown menu and inside the `Select` window.
+
+### startIcon
+
+Like `itemIcon`, this prop is optional and can be passed any icon or svg, including our own `Icon` atom. Unlike
+`itemIcon`, the `startIcon` appears only inside the `Select` window itself. You can use `startIcon` and an `itemIcon` at
+the same time.
+
+<Canvas>
+  <Story name="Select" story={stories.select} />
+</Canvas>
+
+### Props
+
+<ArgsTable story="Select" />

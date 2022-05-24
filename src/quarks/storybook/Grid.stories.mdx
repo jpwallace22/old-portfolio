@@ -1,0 +1,76 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import Grid from 'quarks/Grid';
+import { grid } from 'quarks/storybook/Grid.stories';
+
+<Meta
+  title="Quarks/Grid"
+  component={Grid}
+  argTypes={{
+    columnGap: {
+      control: { type: 'text' },
+    },
+    gap: {
+      control: { type: 'text' },
+    },
+    grid: {
+      control: { type: 'text' },
+    },
+    gridArea: {
+      control: { type: 'text' },
+    },
+    gridAutoColumns: {
+      control: { type: 'text' },
+    },
+    gridAutoFlow: {
+      control: { type: 'text' },
+    },
+    gridAutoRows: {
+      control: { type: 'text' },
+    },
+    gridColumn: {
+      control: { type: 'text' },
+    },
+    gridColumnEnd: {
+      control: { type: 'text' },
+    },
+    gridColumnStart: {
+      control: { type: 'text' },
+    },
+    gridRowEnd: {
+      control: { type: 'text' },
+    },
+    gridRowStart: {
+      control: { type: 'text' },
+    },
+    gridTemplate: {
+      control: { type: 'text' },
+    },
+    gridTemplateAreas: {
+      control: { type: 'text' },
+    },
+    gridTemplateColumns: {
+      control: { type: 'text' },
+    },
+    gridTemplateRows: {
+      control: { type: 'text' },
+    },
+    rowGap: {
+      control: { type: 'text' },
+    },
+  }}
+/>
+
+# Grid
+
+Grid is a `<div>` with `display="grid"` on by default, making it a perfect choice when planning to use properties of
+grid.
+
+Grid accepts all basic props found in the [Container](?path=/docs/quarks-container--container) quark story as well as
+all grid-specific props listed below.
+
+<Canvas>
+  <Story name="Grid" story={grid} />
+</Canvas>
+
+<ArgsTable story="Grid" />

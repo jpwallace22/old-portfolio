@@ -1,0 +1,38 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import Checkbox from 'molecules/Checkbox/Checkbox';
+import * as stories from 'molecules/Checkbox/storybook/Checkbox.stories.tsx';
+
+<Meta
+  title="Molecules/Inputs/Checkbox"
+  component={Checkbox}
+  argTypes={{
+    value: {
+      control: { disable: true },
+    },
+    checked: {
+      control: { disable: true },
+    },
+  }}
+/>
+
+# Checkboxes
+
+Checkboxes allow users to select one or more items from a set, while radio buttons allow users to select just one option
+from a set. Both can also be used to turn an option on or off.
+
+## Usage
+
+### Controlled component
+
+You can control the checkbox with the `value` and `onChange` props
+
+#### Label & helper text
+
+The `label` and `helperText` props are both optional and inherently light/dark mode optimized.
+
+<Canvas>
+  <Story name="Checkbox" story={stories.checkbox} />
+</Canvas>
+
+<ArgsTable story="Checkbox" />

@@ -1,0 +1,65 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import Heading from 'quarks/Heading';
+import { heading } from 'quarks/storybook/Heading.stories';
+
+export const headingTypes = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+
+<Meta
+  title="Quarks/Heading"
+  component={Heading}
+  argTypes={{
+    as: {
+      description: 'Sets the heading type. Accepts `h1`, `h2`, `h3`, `h4`, `h5`, and `h6`.',
+      options: headingTypes,
+      control: { type: 'select' },
+    },
+    textStyle: {
+      control: { type: 'radio' },
+    },
+  }}
+/>
+
+# Heading
+
+Heading is a used to create `<h>` tags, with a default of `<h1>`.
+
+Heading accepts all basic props found in the [Container](?path=/docs/quarks-container--container) quark story, as well
+as the `textStyle` prop.
+
+### `As` Prop
+
+The type of heading can be changed via the `as` prop, which also changes the size of the heading automatically according
+to the display values set in the typography atom tag.
+
+### `TextStyle` Prop
+
+If you want a heading of a certain type, but want to use it with a different size, you can use the `textStyle` prop,
+which overwrites the styling set from the `as` prop and allows you to define the heading size using values from the
+[typography](?path=/story/atoms-typography--typography) atom.
+
+### Manual Overrides
+
+If you instead want to mix and match font properties (ex. font size and line height that don't normally go together) you
+can still set those properties using the basic props.
+
+#### Warning
+
+Styles will override each other based on the order in which they are set in the component. Props are processed from
+beginning to end, so props set earlier on will get overridden by ones set further down. For this reason, it is advised
+to set the `as` prop first, followed by `textStyle`, followed by any manual overrides last.
+
+```tsx
+<Heading as="h6" textStyle="xl" fontWeight="semiBold" fontSize={18} lineHeight={24} textColor="primary-600">
+  {heading}
+</Heading>
+```
+
+In the above example, the heading will render as an `<h6>`, but `textStyle` will override the default `h6` style, and
+finally `fontSize` and `lineHeight` will override those properties from `textStyle`.
+
+<Canvas>
+  <Story name="Heading" story={heading} />
+</Canvas>
+
+<ArgsTable story="Heading" />

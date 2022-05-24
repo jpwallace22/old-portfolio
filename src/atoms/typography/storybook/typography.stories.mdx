@@ -1,0 +1,84 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import Typography from 'atoms/typography/storybook/Typography';
+import { typography } from 'atoms/typography/storybook/typography.stories.tsx';
+
+<Meta title="Atoms/Typography" component={Typography} />
+
+# Typography
+
+The Typography atom provides pre-defined values for `fontWeight`, `fontSize`, `fontFamily`, `lineHeight`, and
+`letterSpacing` props for use on quarks, molecules, and components.
+
+## Usage
+
+<br />
+
+### FontSize and LineHeight
+
+Values like `fontSize` and `lineHeight` take number values corresponding with a size in pixels.
+
+```tsx
+<Paragraph fontSize={16} lineHeight={24}>
+  Changing font size and line height!
+</Paragraph>
+```
+
+However, the element is ultimately rendered using rem values. So this Paragraph will have `font-size: 1rem;` and
+`line-height: 1.5rem;`.
+
+### FontWeight
+
+`fontWeight` takes a string that corresponds with a numbered weight value.
+
+```tsx
+<Paragraph fontWeight="semiBold">Changing the font weight!</Paragraph>
+```
+
+For example, `semiBold` will become `font-weight: 600;`.
+
+### LetterSpacing
+
+Likewise, `letterSpacing` takes a string that corresponds with a pre-defined size value from the atom.
+
+```tsx
+<Paragraph letterSpacing="neg2">Changing the letter spacing!</Paragraph>
+```
+
+`neg2` will become `letter-spacing: -0.02em;`.
+
+### FontFamily
+
+Fonts should be set in the global theme, which can be found in `quarks/GlobalStyles.tsx`, rather than added to each
+element manually.
+
+However, if you need to set font at the element level, you can do so by passing in a string referring to a key from the
+typography atom:
+
+```tsx
+<Paragraph fontFamily="primaryFont">Font Family!</Paragraph>
+```
+
+By default there is only a single primary font - additional ones must be added to the atom.
+
+### TextStyle Prop
+
+The `textStyle` prop will set `fontFamily`, `fontSize`, and `lineHeight` with values best suited for the size chosen. It
+accepts a string corresponding with a size value:
+
+```tsx
+<Paragraph textStyle="md">Changing the text style!</Paragraph>
+```
+
+This will render the paragraph with the shorthand `font` property:
+`font: 1rem/1.5rem "Averta","Helvetica Neue","Arial Nova",sans-serif;`
+
+## Customization
+
+To customize the typography atom to match your design system, you can edit the values stored in
+`src/atoms/typography/typography.ts`.
+
+All available typography values are viewable in the Canvas tab and you can experiment with them in the
+[Container quark story](?path=/story/quarks-container--container).
+
+<Story name="Typography" story={typography} />
