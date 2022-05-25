@@ -16,7 +16,7 @@ const Spacing = () => {
       <Heading as="h1" marginBottom={20} fontWeight="bold">
         Spacing
       </Heading>
-      <Paragraph maxWidth="768px" textColor={{ light: 'gray-500', dark: 'gray-300' }} marginTop={8} marginBottom={32}>
+      <Paragraph maxWidth="768px" textColor={{ light: 'gray-900', dark: 'gray-500' }} marginTop={8} marginBottom={32}>
         Just like your color scale, working from a defined spacing system allows you to work faster and more
         consistently. Consistent, and scalable spacing helps you eliminate guesswork while designing and developing
         because you&apos;re designing with a limited set of options.

@@ -11,7 +11,7 @@ Icons.parameters = {
   },
 };
 Icons.args = {
-  color: '#2885F6',
+  color: '#007173',
   size: 75,
   title: 'Set alt name for Icon',
 };

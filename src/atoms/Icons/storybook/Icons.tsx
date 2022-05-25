@@ -36,10 +36,10 @@ const StoryIcons = (props: IconProps) => (
     <Heading as="h1" marginBottom={20} fontWeight="bold">
       Icons
     </Heading>
-    <Paragraph maxWidth="768px" textColor={{ light: 'gray-500', dark: 'gray-300' }} marginTop={8} marginBottom={32}>
-      Icons make use of the React Icons collection of libraries. We have 21 different libraries with a total of more
-      than 23k different Icons. If an Icon is not available within one of these libraries, webpack has been configured
-      to import SVGs as ReactComponents.
+    <Paragraph maxWidth="768px" textColor={{ light: 'gray-900', dark: 'gray-500' }} marginTop={8} marginBottom={32}>
+      Icons make use of the React Icons collection of libraries. I have 21 different libraries with a total of more than
+      23k different Icons. If an Icon is not available within one of these libraries, webpack has been configured to
+      import SVGs as ReactComponents.
     </Paragraph>
     <Flex display="flex" flexWrap="wrap" gap="2rem" marginTop={48}>
       <FiHelpCircle {...props} />
@@ -48,7 +48,7 @@ const StoryIcons = (props: IconProps) => (
       <RiBracketsFill {...props} />
       <VscGithub {...props} />
     </Flex>
-    <Paragraph maxWidth="768px" textColor={{ light: 'gray-500', dark: 'gray-300' }} marginTop={48}>
+    <Paragraph maxWidth="768px" textColor={{ light: 'gray-900', dark: 'gray-500' }} marginTop={48}>
       A complete searchable list of all Icons can be found{' '}
       <Link href="https://react-icons.github.io/react-icons/">here</Link>
     </Paragraph>

@@ -81,7 +81,7 @@ const CareerCard: FC<CareerCardProps> = ({
         paddingAll={16}
         borderRadius="8px"
       >
-        <Heading as="h6" fontWeight="semiBold" fontSize={18} lineHeight={24} textColor="primary-600">
+        <Heading as="h6" fontWeight="semiBold" fontSize={18} lineHeight={24} textColor="primary-500">
           {heading}
         </Heading>
         <Text
@@ -97,7 +97,7 @@ const CareerCard: FC<CareerCardProps> = ({
           {details}
         </Text>
         <Button
-          backgroundColor="primary-600"
+          backgroundColor="primary-500"
           textColor="common-white"
           marginTop={16}
           display={href || onClick ? 'flex' : 'none'}

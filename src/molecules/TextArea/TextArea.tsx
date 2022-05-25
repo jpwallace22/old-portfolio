@@ -108,7 +108,7 @@ const TextArea: FC<TextAreaProps> = ({
       >
         {label}
         {required && (
-          <Text textColor="swaggy-500" textStyle="xs" fontSize={18} lineHeight={0}>
+          <Text textColor="danger-500" textStyle="xs" fontSize={18} lineHeight={0}>
             *
           </Text>
         )}
@@ -120,24 +120,24 @@ const TextArea: FC<TextAreaProps> = ({
         backgroundColor={{ light: disabled ? 'gray-50' : 'common-white', dark: 'gray-900' }}
         textColor={{ light: 'gray-900', dark: 'gray-100' }}
         borderRadius="8px"
-        borderColor={{ light: error ? 'swaggy-300' : 'gray-300', dark: error ? 'swaggy-300' : 'gray-700' }}
+        borderColor={{ light: error ? 'danger-300' : 'gray-300', dark: error ? 'danger-300' : 'gray-700' }}
         borderWidth="1px"
         marginBottom={8}
         resize="vertical"
         focus={{
-          borderColor: error ? 'swaggy-300' : 'primary-300',
+          borderColor: error ? 'danger-300' : 'primary-300',
           outline: 'none',
           boxShadow: {
             light: `0px 1px 2px rgba(16, 24, 40, 0.05), 0px 0px 0px 4px ${error ? '#FEE4E2' : '#F4EBFF'}`,
             dark: `0px 1px 2px rgba(16, 24, 40, 0.05), 0px 0px 0px 4px ${error ? '#FDA29B30' : '#344054'}`,
           },
         }}
-        focusWithin={{ borderColor: error ? 'swaggy-300' : 'primary-300' }}
-        focusVisible={{ borderColor: error ? 'swaggy-300' : 'primary-300' }}
+        focusWithin={{ borderColor: error ? 'danger-300' : 'primary-300' }}
+        focusVisible={{ borderColor: error ? 'danger-300' : 'primary-300' }}
         hover={{ backgroundColor: { light: 'primary-25', dark: 'gray-800' } }}
         {...textAreaProps}
       />
-      <Text textStyle="xs" textColor={error ? 'swaggy-600' : { light: 'gray-500', dark: 'gray-300' }}>
+      <Text textStyle="xs" textColor={error ? 'danger-600' : { light: 'gray-500', dark: 'gray-300' }}>
         {error ? errorMessage : helperText}
       </Text>
     </Flex>

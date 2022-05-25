@@ -75,7 +75,7 @@ export interface SliderProps extends BasicProps {
    */
   tabIndex?: number;
   /**
-   * The granularity with which the slider can step through values. (A "discrete" slider.) The `min` prop serves as the origin for the valid values. We recommend (max - min) to be evenly divisible by the step.
+   * The granularity with which the slider can step through values. (A "discrete" slider.) The `min` prop serves as the origin for the valid values. I recommend (max - min) to be evenly divisible by the step.
    *
    * When step is `null`, the thumb can only be slid onto marks provided with the `marks` prop.
    */

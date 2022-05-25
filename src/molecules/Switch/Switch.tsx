@@ -96,7 +96,7 @@ const Switch: FC<SwitchProps> = ({
         <Text
           display="block"
           textStyle={size === 'small' ? 'xs' : 'sm'}
-          textColor={error ? 'swaggy-600' : { light: 'gray-500', dark: 'gray-300' }}
+          textColor={error ? 'danger-600' : { light: 'gray-500', dark: 'gray-300' }}
         >
           {error ? errorMessage : helperText}
         </Text>

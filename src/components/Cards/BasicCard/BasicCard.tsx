@@ -88,7 +88,7 @@ const BasicCard: FC<BasicCardProps> = ({
           {subhead}
         </Text>
         <Button
-          backgroundColor="primary-600"
+          backgroundColor="primary-500"
           textColor="common-white"
           display={href || onClick ? 'flex' : 'none'}
           marginTop={16}

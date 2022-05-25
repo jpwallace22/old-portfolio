@@ -134,7 +134,7 @@ const Select: FC<SelectProps> = ({
           );
         })}
       </StyledSelect>
-      <Text textStyle="sm" textColor={error ? 'swaggy-600' : { light: 'gray-500', dark: 'gray-300' }}>
+      <Text textStyle="sm" textColor={error ? 'danger-600' : { light: 'gray-500', dark: 'gray-300' }}>
         {error ? errorMessage : helperText}
       </Text>
     </StyledFormControl>

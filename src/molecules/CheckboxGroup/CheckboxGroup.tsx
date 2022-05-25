@@ -70,7 +70,7 @@ interface CheckboxGroupProps extends BasicProps {
    */
   checked?: boolean;
   /**
-   * If `true`, the component appears indeterminate. This does not set the native input element to indeterminate due to inconsistent behavior across browsers. However, we set a `data-indeterminate` attribute on the `input`.
+   * If `true`, the component appears indeterminate. This does not set the native input element to indeterminate due to inconsistent behavior across browsers. However, I set a `data-indeterminate` attribute on the `input`.
    */
   indeterminate?: boolean;
   /**

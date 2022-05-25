@@ -17,7 +17,7 @@ const Typography = () => {
         Typography
       </Heading>
       <Paragraph
-        textColor={{ light: 'gray-500', dark: 'gray-300' }}
+        textColor={{ light: 'gray-900', dark: 'gray-500' }}
         textStyle="xl"
         maxWidth="768px"
         marginTop={8}

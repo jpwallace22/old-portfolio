@@ -6,19 +6,19 @@ export const lightPalette = {
     paper: color.common.white,
   },
   text: {
-    primary: color.gray[900],
-    secondary: color.gray[700],
+    primary: color.common.black,
+    secondary: color.common.black,
   },
 };
 
 export const darkPalette = {
   background: {
-    default: color.gray[900],
-    paper: color.gray[800],
+    default: color.common.black,
+    paper: color.purple[900],
   },
   text: {
     primary: color.common.white,
-    secondary: color.gray[200],
+    secondary: color.gray[500],
   },
 };
 

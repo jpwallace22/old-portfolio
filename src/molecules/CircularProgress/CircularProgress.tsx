@@ -136,7 +136,7 @@ const CircularProgress: FC<CircularProgressProps> = ({
           gap={`${sizes[size].gap}px`}
         >
           {!isXs && description && (
-            <Text textStyle="xs" fontWeight="semiBold" textColor={{ light: 'gray-500', dark: 'gray-300' }}>
+            <Text textStyle="xs" fontWeight="semiBold" textColor={{ light: 'gray-900', dark: 'gray-500' }}>
               {description}
             </Text>
           )}
@@ -156,7 +156,7 @@ const CircularProgress: FC<CircularProgressProps> = ({
         <Text
           textStyle="xs"
           fontWeight="semiBold"
-          textColor={{ light: 'gray-500', dark: 'gray-300' }}
+          textColor={{ light: 'gray-900', dark: 'gray-500' }}
           display="block"
           width={`${sizes[size].diameter}px`}
           textAlign="center"

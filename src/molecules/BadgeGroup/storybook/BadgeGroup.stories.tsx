@@ -21,7 +21,7 @@ badgeGroup.args = {
       size="sm"
       textTransform="uppercase"
       textColor="common-white"
-      backgroundColor={{ light: 'primary-600', dark: 'gray-700' }}
+      backgroundColor={{ light: 'primary-500', dark: 'gray-700' }}
     >
       New Feature
     </Badge>

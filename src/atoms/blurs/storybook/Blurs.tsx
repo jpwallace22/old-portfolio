@@ -15,7 +15,7 @@ const Blurs = () => {
       <Heading as="h1" marginBottom={20} fontWeight="bold">
         Blurs
       </Heading>
-      <Paragraph maxWidth="768px" textColor={{ light: 'gray-500', dark: 'gray-300' }} marginTop={8} marginBottom={32}>
+      <Paragraph maxWidth="768px" textColor={{ light: 'gray-900', dark: 'gray-500' }} marginTop={8} marginBottom={32}>
         Background blurs are often used stylistically in modern UI design. However, just like shadows, they allow you to
         add depth and realism to designs by positioning elements on a z-axis.
       </Paragraph>

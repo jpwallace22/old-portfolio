@@ -47,7 +47,7 @@ interface CheckboxProps extends BasicProps {
    */
   required?: boolean;
   /**
-   * If `true`, the component appears indeterminate. This does not set the native input element to indeterminate due to inconsistent behavior across browsers. However, we set a `data-indeterminate` attribute on the `input`.
+   * If `true`, the component appears indeterminate. This does not set the native input element to indeterminate due to inconsistent behavior across browsers. However, I set a `data-indeterminate` attribute on the `input`.
    */
   indeterminate?: boolean;
   /**
@@ -96,7 +96,7 @@ const Checkbox: FC<CheckboxProps> = ({
           textStyle={size === 'small' ? 'xs' : 'sm'}
           opacity={disabled ? '0.38' : '1'}
           marginLeft={size === 'small' ? 8 : 12}
-          textColor={error ? 'swaggy-600' : { light: 'gray-500', dark: 'gray-300' }}
+          textColor={error ? 'danger-600' : { light: 'gray-500', dark: 'gray-300' }}
         >
           {error ? errorMessage : helperText}
         </Text>

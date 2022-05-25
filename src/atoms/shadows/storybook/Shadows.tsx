@@ -18,7 +18,7 @@ const Shadows = () => {
       </Heading>
       <Paragraph
         maxWidth={container.md}
-        textColor={{ light: 'gray-500', dark: 'gray-300' }}
+        textColor={{ light: 'gray-900', dark: 'gray-500' }}
         marginTop={8}
         marginBottom={32}
       >
