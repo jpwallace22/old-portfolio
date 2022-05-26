@@ -13,7 +13,7 @@ const Shadows = () => {
 
   return (
     <Container>
-      <Heading as="h1" fontWeight="semiBold" marginBottom={20}>
+      <Heading as="h1" marginBottom={20}>
         Shadows
       </Heading>
       <Paragraph
@@ -27,9 +27,7 @@ const Shadows = () => {
       <Flex display="flex" flexWrap="wrap" gap="64px" paddingBottom={64}>
         {shadowArr.map(shadowName => (
           <Container key={shadowName}>
-            <Heading as="h6" fontWeight="semiBold">
-              {shadowName}
-            </Heading>
+            <Heading as="h6">{shadowName}</Heading>
             <Container
               minWidth="160px"
               minHeight="160px"

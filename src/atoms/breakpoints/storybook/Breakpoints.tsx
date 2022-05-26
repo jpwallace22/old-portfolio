@@ -13,7 +13,7 @@ const Breakpoints = () => {
 
   return (
     <div>
-      <Heading as="h1" marginBottom={20} fontWeight="bold">
+      <Heading as="h1" marginBottom={20}>
         Breakpoints
       </Heading>
       <Paragraph maxWidth="768px" textColor={{ light: 'gray-900', dark: 'gray-500' }} marginTop={8} marginBottom={32}>
@@ -23,7 +23,7 @@ const Breakpoints = () => {
       <Flex display="flex" flexWrap="wrap" paddingAll={4} marginAll={16}>
         {breakpointArr.map(([breakpointName, breakpointSize]) => (
           <Container key={breakpointName}>
-            <Heading key={breakpointName} as="h6" fontWeight="semiBold">
+            <Heading key={breakpointName} as="h6">
               {breakpointName}
               <Text fontWeight="semiBold"> {breakpointSize}</Text>
             </Heading>

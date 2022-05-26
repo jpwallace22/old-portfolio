@@ -12,7 +12,7 @@ const Blurs = () => {
 
   return (
     <div>
-      <Heading as="h1" marginBottom={20} fontWeight="bold">
+      <Heading as="h1" marginBottom={20}>
         Blurs
       </Heading>
       <Paragraph maxWidth="768px" textColor={{ light: 'gray-900', dark: 'gray-500' }} marginTop={8} marginBottom={32}>
@@ -46,14 +46,7 @@ const Blurs = () => {
               justifyContent="center"
               height="200px"
             >
-              <Heading
-                as="h6"
-                fontWeight="semiBold"
-                marginAll="auto"
-                textColor="common-black"
-                textAlign="center"
-                alignSelf="center"
-              >
+              <Heading as="h6" marginAll="auto" textColor="common-black" textAlign="center" alignSelf="center">
                 {blurName} {backgroundName}
               </Heading>
             </Flex>

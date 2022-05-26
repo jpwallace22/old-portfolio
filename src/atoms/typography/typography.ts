@@ -1,9 +1,9 @@
-const primaryFont = '"Averta","Helvetica Neue","Arial Nova", sans-serif';
-// const secondaryFont = '';
+const secondaryFont = '"Darker Grotesque", sans-serif;';
+const primaryFont = '"IBM Plex Sans", sans-serif;';
 
 export const fontFamily = {
   primaryFont,
-  // secondaryFont: secondaryFont,
+  secondaryFont,
 } as const;
 
 export const fontSize = {
@@ -36,7 +36,8 @@ export const lineHeight = {
 } as const;
 
 export const letterSpacing = {
-  neg2: '-0.02em',
+  neg4: '-0.04em',
+  neg3: '-0.03em',
   0: '0em',
 } as const;
 
@@ -93,61 +94,61 @@ export const font = {
   },
   display: {
     xs: {
-      fontFamily: primaryFont,
+      fontFamily: secondaryFont,
       fontSize: fontSize[24],
-      lineHeight: lineHeight[32],
+      lineHeight: lineHeight[30],
       fontWeight: fontWeight.black,
-      letterSpacing: letterSpacing[0],
+      letterSpacing: letterSpacing.neg3,
       font() {
         return `${this.fontWeight} ${this.fontSize}/${this.lineHeight} ${this.fontFamily}`;
       },
     },
     sm: {
-      fontFamily: primaryFont,
+      fontFamily: secondaryFont,
       fontSize: fontSize[30],
-      lineHeight: lineHeight[38],
+      lineHeight: lineHeight[32],
       fontWeight: fontWeight.black,
-      letterSpacing: letterSpacing[0],
+      letterSpacing: letterSpacing.neg3,
       font() {
         return `${this.fontWeight} ${this.fontSize}/${this.lineHeight} ${this.fontFamily}`;
       },
     },
     md: {
-      fontFamily: primaryFont,
+      fontFamily: secondaryFont,
       fontSize: fontSize[36],
-      lineHeight: lineHeight[44],
+      lineHeight: lineHeight[38],
       fontWeight: fontWeight.black,
-      letterSpacing: letterSpacing.neg2,
+      letterSpacing: letterSpacing.neg4,
       font() {
         return `${this.fontWeight} ${this.fontSize}/${this.lineHeight} ${this.fontFamily}`;
       },
     },
     lg: {
-      fontFamily: primaryFont,
+      fontFamily: secondaryFont,
       fontSize: fontSize[48],
-      lineHeight: lineHeight[60],
+      lineHeight: lineHeight[44],
       fontWeight: fontWeight.black,
-      letterSpacing: letterSpacing.neg2,
+      letterSpacing: letterSpacing.neg4,
       font() {
         return `${this.fontWeight} ${this.fontSize}/${this.lineHeight} ${this.fontFamily}`;
       },
     },
     xl: {
-      fontFamily: primaryFont,
+      fontFamily: secondaryFont,
       fontSize: fontSize[60],
-      lineHeight: lineHeight[72],
+      lineHeight: lineHeight[60],
       fontWeight: fontWeight.black,
-      letterSpacing: letterSpacing.neg2,
+      letterSpacing: letterSpacing.neg4,
       font() {
         return `${this.fontWeight} ${this.fontSize}/${this.lineHeight} ${this.fontFamily}`;
       },
     },
     xxl: {
-      fontFamily: primaryFont,
+      fontFamily: secondaryFont,
       fontSize: fontSize[72],
-      lineHeight: lineHeight[90],
+      lineHeight: lineHeight[72],
       fontWeight: fontWeight.black,
-      letterSpacing: letterSpacing.neg2,
+      letterSpacing: letterSpacing.neg4,
       font() {
         return `${this.fontWeight} ${this.fontSize}/${this.lineHeight} ${this.fontFamily}`;
       },

@@ -2,7 +2,6 @@
 import { addDecorator } from '@storybook/react';
 import { themes } from '@storybook/theming';
 import { useDarkMode } from 'storybook-dark-mode';
-import 'assets/fonts/font-styles.css';
 
 import DocsTabContainer from '../.storybook/DocsTabContainer';
 import blackLogo from '../.storybook/public/blackLogo.png';

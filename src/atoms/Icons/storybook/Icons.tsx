@@ -33,7 +33,7 @@ interface IconProps {
 
 const StoryIcons = (props: IconProps) => (
   <Container>
-    <Heading as="h1" marginBottom={20} fontWeight="bold">
+    <Heading as="h1" marginBottom={20}>
       Icons
     </Heading>
     <Paragraph maxWidth="768px" textColor={{ light: 'gray-900', dark: 'gray-500' }} marginTop={8} marginBottom={32}>

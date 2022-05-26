@@ -3,6 +3,7 @@ import { font, fontFamily, fontWeight } from 'atoms/typography/typography';
 const typography = {
   typography: {
     fontFamily: fontFamily.primaryFont,
+    headingFontFamily: fontFamily.secondaryFont,
     fontSize: 18,
     h1: {
       fontFamily: font.display.xxl.fontFamily,

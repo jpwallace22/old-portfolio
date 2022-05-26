@@ -1,5 +1,4 @@
 import { ThemeProvider } from 'contexts/ThemeProvider';
-import 'assets/fonts/font-styles.css';
 
 import type { AppProps } from 'next/app';
 

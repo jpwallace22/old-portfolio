@@ -15,27 +15,25 @@ const ColorSwatches = () => {
       'The primary color is your "brand" color, and is used across all interactive elements such as buttons, links, inputs, etc. This color can define the overall feel and can elicit emotion.',
     danger:
       'Error colors are used across error states and in "destructive" actions. They communicate a destructive/negative action, such as removing a user from your team.',
-    creamSoda:
-      'Warning colors can communicate that an action is potentially destructive or "on-hold". These colors are commonly used in confirmations to grab the users\' attention.',
-    kermit:
-      "Success colors communicate a positive action, positive trend, or a successful confirmation. If you're using green as your primary color, it can be helpful to introduce a different hue for your success green.",
+    purple:
+      'This is a secondary brand color. The purple pairs will with the Primary green and can be used in a number of ways for both dark and light layout.',
   } as Record<keyof ColorObject, string>;
 
   const colorArray = objectEntries(color);
 
   return (
     <div>
-      <Heading as="h1" marginBottom={20} fontWeight="bold">
+      <Heading as="h1" marginBottom={20}>
         Colors
       </Heading>
       <Paragraph maxWidth={container.md} textColor={{ light: 'gray-900', dark: 'gray-500' }} marginBottom={32}>
-        Our design system leverages a purposeful set of color styles as the perfect starting point for any brand or
-        project. When it comes to color, contrast is critical for ensuring text is legible. We&apos;ve added WCAG 2.1
-        contrast ratios to our color system so you can make sure you&apos;re designing with accessibility in mind.
+        This design system leverages a purposeful set of color styles as the perfect starting point for any brand or
+        project. When it comes to color, contrast is critical for ensuring text is legible. I&apos;ve added WCAG 2.1
+        contrast ratios to my color system so you can make sure you&apos;re designing with accessibility in mind.
       </Paragraph>
       {colorArray.map(([swatchName, swatchValues]) => (
         <Container key={swatchName}>
-          <Heading as="h5" fontWeight="semiBold" marginBottom={8} textTransform="capitalize">
+          <Heading as="h5" marginBottom={8} textTransform="capitalize">
             {swatchName}
           </Heading>
           {colorDescriptions[swatchName] && (
@@ -60,7 +58,7 @@ const ColorSwatches = () => {
                   borderTopRightRadius="8px"
                 />
                 <Container paddingAll={12}>
-                  <Heading as="h6" marginBottom={8} lineHeight={28} fontWeight="semiBold">
+                  <Heading as="h6" marginBottom={8} lineHeight={28}>
                     {colorName}
                   </Heading>
                   <Paragraph fontSize={14} lineHeight={20}>

@@ -13,7 +13,7 @@ const Spacing = () => {
 
   return (
     <div>
-      <Heading as="h1" marginBottom={20} fontWeight="bold">
+      <Heading as="h1" marginBottom={20}>
         Spacing
       </Heading>
       <Paragraph maxWidth="768px" textColor={{ light: 'gray-900', dark: 'gray-500' }} marginTop={8} marginBottom={32}>

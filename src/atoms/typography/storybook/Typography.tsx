@@ -13,7 +13,7 @@ const Typography = () => {
 
   return (
     <div>
-      <Heading as="h1" marginBottom={20} fontWeight="bold" color="gray-900">
+      <Heading as="h1" marginBottom={20} fontWeight="black" color="gray-900">
         Typography
       </Heading>
       <Paragraph
@@ -23,7 +23,7 @@ const Typography = () => {
         marginTop={8}
         marginBottom={32}
       >
-        Our design system leverages a purposeful set of typographic styles. We&apos;ve stress-tested this typographic
+        This design system leverages a purposeful set of typographic styles. I&apos;ve stress-tested this typographic
         scale across dozens of projects to make sure it&apos;s robust enough to use across (almost) any project, while
         remaining as accessible as possible for everyone.
       </Paragraph>

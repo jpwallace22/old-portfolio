@@ -12,7 +12,7 @@ badgeGroup.parameters = {
   },
 };
 badgeGroup.args = {
-  title: "We've just released a new feature",
+  title: "I've just released a new feature",
   textColor: { light: 'primary-700', dark: 'gray-700' },
   backgroundColor: { light: 'primary-50', dark: 'gray-50' },
   badgePosition: 'start',

@@ -13,4 +13,8 @@ body,
   margin-block-start: 0;
   margin-block-end: 0;
 }
+h1, h2, h3, h4, h5, h6 {
+  font-family: ${props => props.theme.typography.headingFontFamily};
+  font-weight: 900;
+}
 `;
