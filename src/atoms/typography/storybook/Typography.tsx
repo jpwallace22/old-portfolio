@@ -35,19 +35,19 @@ const Typography = () => {
                 {fontWeightArr.map(([weightName]) => (
                   <Container key={weightName} borderTop="1px solid" borderTopColor="gray-300">
                     {typeName === 'display' ? (
-                      <>
+                      <Container paddingY={20}>
                         <Heading as="h2" minWidth="400px" textStyle={sizeName} fontWeight={weightName}>
                           {`${typeName} ${sizeName}`}
                         </Heading>
                         <Heading as="h2" textStyle={sizeName} fontWeight={weightName}>{`${weightName}`}</Heading>
-                      </>
+                      </Container>
                     ) : (
-                      <>
+                      <Container paddingY={16}>
                         <Paragraph textStyle={sizeName} fontWeight={weightName} minWidth="400px">
                           {`${typeName} ${sizeName}`}
                         </Paragraph>
                         <Paragraph textStyle={sizeName} fontWeight={weightName}>{`${weightName}`}</Paragraph>
-                      </>
+                      </Container>
                     )}
                   </Container>
                 ))}

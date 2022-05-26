@@ -18,7 +18,7 @@ const Breakpoints = () => {
       </Heading>
       <Paragraph maxWidth="768px" textColor={{ light: 'gray-900', dark: 'gray-500' }} marginTop={8} marginBottom={32}>
         Breakpoints are the values used to determine at what screen widths to change styles in order to accommodate a
-        responsive design.
+        responsive design. These breakpoints are used in the interpolation logic and baked into all styed-components.
       </Paragraph>
       <Flex display="flex" flexWrap="wrap" paddingAll={4} marginAll={16}>
         {breakpointArr.map(([breakpointName, breakpointSize]) => (
