@@ -29,6 +29,7 @@ const color = {
     900: '#004243',
   },
   danger: {
+    // TODO keep hue, increase brightness, aim for pinkish/fushia
     50: '#f2e2e5',
     100: '#dfb7bf',
     200: '#c98794',
