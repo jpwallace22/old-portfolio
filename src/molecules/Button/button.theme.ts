@@ -105,7 +105,7 @@ export const darkButton = {
         props: { variant: 'contained' },
         style: {
           color: color.common.black,
-          backgroundColor: color.gray[25],
+          backgroundColor: color.gray[50],
         },
       },
       {
@@ -118,7 +118,7 @@ export const darkButton = {
       {
         props: { variant: 'text' },
         style: {
-          color: color.gray[25],
+          color: color.gray[50],
         },
       },
     ],

@@ -134,7 +134,7 @@ const TextArea: FC<TextAreaProps> = ({
         }}
         focusWithin={{ borderColor: error ? 'danger-300' : 'primary-300' }}
         focusVisible={{ borderColor: error ? 'danger-300' : 'primary-300' }}
-        hover={{ backgroundColor: { light: 'primary-25', dark: 'gray-800' } }}
+        hover={{ backgroundColor: { light: 'primary-50', dark: 'gray-800' } }}
         {...textAreaProps}
       />
       <Text textStyle="xs" textColor={error ? 'danger-600' : { light: 'gray-500', dark: 'gray-300' }}>

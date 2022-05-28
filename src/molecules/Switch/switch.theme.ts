@@ -78,7 +78,7 @@ export const darkSwitch = {
         backgroundColor: color.gray[700],
       },
       thumb: {
-        backgroundColor: color.gray[25],
+        backgroundColor: color.gray[50],
         ...thumb,
       },
     },
