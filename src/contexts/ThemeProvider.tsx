@@ -31,11 +31,12 @@ interface ThemeProviderProps {
 const ThemeContext = createContext<[boolean, Dispatch<SetStateAction<boolean>>]>([false, () => null]);
 
 export const ThemeProvider: FC<ThemeProviderProps> = ({ children, storybookIsDarkMode }) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
-  useEffect(() => {
-    window.matchMedia('(prefers-color-scheme: dark)').matches && setIsDarkMode(true);
-  }, []);
+  // Currently turned off to always show dark mode regardless of preference
+  // useEffect(() => {
+  //   window.matchMedia('(prefers-color-scheme: dark)').matches && setIsDarkMode(true);
+  // }, []);
 
   useEffect(() => {
     if (typeof storybookIsDarkMode === 'boolean') {

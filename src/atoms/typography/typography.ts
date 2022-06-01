@@ -44,6 +44,8 @@ export const letterSpacing = {
 } as const;
 
 export const fontWeight = {
+  extraLight: 200,
+  light: 300,
   regular: 400,
   semiBold: 600,
   bold: 700,
