@@ -17,7 +17,8 @@ export const fontSize = {
   36: '2.25rem',
   48: '3rem',
   60: '3.75rem',
-  72: '4rem',
+  72: '4.5rem',
+  96: '6rem',
 } as const;
 
 export const lineHeight = {
@@ -30,8 +31,9 @@ export const lineHeight = {
   32: '2rem',
   38: '2.375rem',
   44: '2.75rem',
+  56: '3.5rem',
   60: '3.75rem',
-  72: '4rem',
+  72: '4.5rem',
   90: '5.625rem',
 } as const;
 
@@ -135,8 +137,8 @@ export const font = {
     },
     xl: {
       fontFamily: secondaryFont,
-      fontSize: fontSize[60],
-      lineHeight: lineHeight[60],
+      fontSize: fontSize[72],
+      lineHeight: lineHeight[44],
       fontWeight: fontWeight.black,
       letterSpacing: letterSpacing.neg4,
       font() {
@@ -145,7 +147,7 @@ export const font = {
     },
     xxl: {
       fontFamily: secondaryFont,
-      fontSize: fontSize[72],
+      fontSize: fontSize[96],
       lineHeight: lineHeight[72],
       fontWeight: fontWeight.black,
       letterSpacing: letterSpacing.neg4,

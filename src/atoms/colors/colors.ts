@@ -55,6 +55,13 @@ const color = {
   },
 } as const;
 
+export const gradient = {
+  purpleLeft: 'linear-gradient(90deg, rgba(64, 54, 122, 1) 0%, rgba(0, 113, 115, 1) 100%)',
+  purpleRight: 'linear-gradient(90deg, rgba(0,113,115,1) 0%, rgba(64,54,122,1) 100%)',
+  purpleTop: 'linear-gradient(360deg, rgba(0,113,115,1) 0%, rgba(64,54,122,1) 100%)',
+  purpleBottom: 'linear-gradient(180deg, rgba(0,113,115,1) 0%, rgba(64,54,122,1) 100%)',
+} as const;
+
 export type ColorObject = typeof color;
 
 type GetColorOptions<T> = {

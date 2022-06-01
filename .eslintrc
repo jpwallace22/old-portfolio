@@ -158,7 +158,8 @@
     {
       "files": ["*.stories.**"],
       "rules": {
-        "import/prefer-default-export": "off"
+        "import/prefer-default-export": "off",
+        "absolute-only/imports": "off"
       }
     }
   ]

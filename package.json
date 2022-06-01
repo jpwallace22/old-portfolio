@@ -8,10 +8,10 @@
     "url": "https://www.webstacks.com/"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3030",
     "build": "next build",
-    "start": "next start",
-    "storybook": "start-storybook -p 6006",
+    "start": "next start -p 3090",
+    "storybook": "start-storybook -p 3060",
     "build-storybook": "build-storybook",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx,mdx}\" --fix",
     "format": "prettier --write  --loglevel silent \"src/**/*.{js,jsx,ts,tsx,mdx}\"",
