@@ -22,6 +22,6 @@ yarn storybook
 5. **Type-safety**: This portfolio takes full advantage of Typescript for easy debugging, scalability, and (of course)
    portfolio purposes.
 
-## Versions
+## TODO
 
-- 1.00 - Completes atoms, quarks, molecules, and documentation
+- Add clearfix to basic quarks
