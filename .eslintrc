@@ -114,6 +114,11 @@
             "position": "after"
           },
           {
+            "pattern": "contexts/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
             "pattern": "theme/**",
             "group": "internal",
             "position": "after"

@@ -43,15 +43,15 @@ const color = {
   },
   purple: {
     50: '#e8e7ef',
-    100: '#c6c3d7',
-    200: '#a09bbd',
-    300: '#7972a2',
-    400: '#5d548e',
-    500: '#40367a',
-    600: '#3a3072',
-    700: '#322967',
-    800: '#2a225d',
-    900: '#1c164a',
+    100: '#D9D7E4',
+    200: '#B3AFCA',
+    300: '#8C86AF',
+    400: '#665E95',
+    500: '#40367A',
+    600: '#332B62',
+    700: '#262049',
+    800: '#1A1631',
+    900: '#0D0B18',
   },
 } as const;
 
@@ -102,6 +102,15 @@ export const getColor = (palette: DefaultTheme['palette'], colors: GetColorDefin
   const subPalette = palette[colorKey];
 
   return 'white' in subPalette ? subPalette[colorValue as Common] : subPalette[colorValue as Others];
+};
+
+export const colorParser = (colorString: ColorList) => {
+  if (!colorString) {
+    return;
+  }
+  const [colorKey, colorValue] = colorString.split('-') as ColorArray;
+
+  return colorKey === 'common' ? color[colorKey][colorValue as Common] : color[colorKey][colorValue as Others];
 };
 
 export default color;
