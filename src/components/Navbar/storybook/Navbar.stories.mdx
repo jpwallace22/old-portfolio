@@ -1,0 +1,17 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import Navbar from '../Navbar';
+
+import * as stories from './Navbar.stories.tsx';
+
+<Meta title="Components/Navbar" component={Navbar} argTypes={{}} />
+
+# Navbar
+
+<Canvas>
+  <Story name="Navbar" story={stories.NavbarStory} />
+</Canvas>
+
+### Props
+
+<ArgsTable story="Navbar" />

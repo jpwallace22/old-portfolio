@@ -1,10 +1,12 @@
 import { FC } from 'react';
 
+// Quarks
+import Container from 'quarks/Container';
 import { BasicProps } from 'quarks/interpolations/basic';
 
-// interface $nameProps extends BasicProps {}
+type $nameProps = BasicProps;
 
-const $name: FC = ({ ...props }) => <div>$name</div>;
+const $name: FC<$nameProps> = ({ ...props }) => <Container {...props}>$name</Container>;
 
 export default $name;
 
