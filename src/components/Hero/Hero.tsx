@@ -1,8 +1,13 @@
+import { useMediaQuery } from '@mui/material';
 import { FC } from 'react';
 import styled, { css } from 'styled-components';
 
 // Assets
-import { ReactComponent as Logo } from 'assets/images/logo-gradient.svg';
+import { ReactComponent as Arrow } from 'assets/svg/hand-drawn-arrow.svg';
+import { ReactComponent as Logo } from 'assets/svg/logo-gradient.svg';
+
+// Atoms
+import { media } from 'atoms/breakpoints/breakpoints';
 
 // Quarks
 import Container from 'quarks/Container';
@@ -16,9 +21,13 @@ import useDarkMode from 'contexts/ThemeProvider';
 const StyledLogo = styled(Logo)`
   ${basic}
 `;
+const DrawnArrow = styled(Arrow)`
+  ${basic}
+`;
 
 const Hero: FC<BasicProps> = ({ ...props }) => {
   const [isDarkMode] = useDarkMode();
+  const isDesktop = useMediaQuery(media.lg);
 
   return (
     <Container {...props}>
@@ -30,6 +39,7 @@ const Hero: FC<BasicProps> = ({ ...props }) => {
         sm={{ maxWidth: '580px' }}
         lg={{ maxWidth: '896px' }}
       >
+        {isDesktop && <DrawnArrow position="absolute" bottom="110%" right="70%" />}
         <StyledLogo
           width="128px"
           lg={{ float: 'left' }}

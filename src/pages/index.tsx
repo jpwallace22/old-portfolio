@@ -2,8 +2,8 @@
 import styled from 'styled-components';
 
 // Assets
-import { ReactComponent as Circle } from 'assets/images/circle.svg';
 import dots from 'assets/images/dots.webp';
+import { ReactComponent as Circle } from 'assets/svg/circle.svg';
 
 // Atoms
 import { colorParser } from 'atoms/colors/colors';
@@ -16,9 +16,6 @@ import { basic } from 'quarks/interpolations/basic';
 // Components
 import Hero from 'components/Hero/Hero';
 
-// const Dots = styled(DotSvg)`
-//   ${basic}
-// `;
 const SmallCircle = styled(Circle)`
   ${basic}
 `;
@@ -33,7 +30,7 @@ const index = () => (
         position="absolute"
         right="40%"
         bottom="50%"
-        lg={{ right: '55%' }}
+        lg={{ right: '50%' }}
       />
       <Image
         src={dots}
@@ -43,9 +40,16 @@ const index = () => (
         position="absolute"
         left="50%"
         top="0"
-        lg={{ left: '50%' }}
+        lg={{ left: '58%' }}
       />
-      <SmallCircle position="absolute" left="70%" top="10%" fill={colorParser('purple-700')} width="583px" />
+      <SmallCircle
+        position="absolute"
+        left="70%"
+        top="10%"
+        fill={colorParser('purple-700')}
+        width="583px"
+        lg={{ left: '75%' }}
+      />
       <Hero position="absolute" top="20%" left="5%" lg={{ top: '40%' }} />
     </Container>
   </>
