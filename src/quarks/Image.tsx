@@ -1,4 +1,4 @@
-import NextImage, { ImageProps } from 'next/image';
+import NextImage, { ImageProps, StaticImageData } from 'next/image';
 import { FunctionComponent } from 'react';
 
 import { breakpoints } from 'atoms/breakpoints/breakpoints';
@@ -14,7 +14,7 @@ import { objectEntries, valueof } from 'utils/typeUtils';
 type ModifiedBasicProps = Omit<BasicProps, 'height' | 'width' | 'objectPosition' | 'objectFit'>;
 
 interface CustomImageProps extends ModifiedBasicProps, ImageProps {
-  src: string;
+  src: string | StaticImageData;
   height: number | string;
   width: number | string;
   alt: string;
