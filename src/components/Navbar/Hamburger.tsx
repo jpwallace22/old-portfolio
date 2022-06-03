@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler } from 'react';
+import { FC, MouseEventHandler, SetStateAction } from 'react';
 import styled from 'styled-components';
 
 // Quarks
@@ -10,11 +10,19 @@ import { CSSProps } from 'theme/getAppTheme';
 
 type HamburgerProps = BasicProps & {
   onClick?: MouseEventHandler<HTMLDivElement>;
+  setActive: (value: SetStateAction<boolean>) => void;
+  active: boolean;
 };
 
-const Hamburger: FC<HamburgerProps> = ({ ...props }) => (
+const Hamburger: FC<HamburgerProps> = ({ setActive, active, ...props }) => (
   <Container {...props}>
-    <button className="burger-button" onClick={({ currentTarget }) => currentTarget.classList.toggle('active')}>
+    <button
+      className="burger-button"
+      onClick={({ currentTarget }) => {
+        currentTarget.classList.toggle('active');
+        setActive(!active);
+      }}
+    >
       <span></span>
       <span></span>
       <span></span>

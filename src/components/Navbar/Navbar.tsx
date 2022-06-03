@@ -8,8 +8,11 @@ import Logo from 'quarks/Logo';
 import Text from 'quarks/Text';
 import { BasicProps } from 'quarks/interpolations/basic';
 
-import Hamburger from 'molecules/Hamburger/Hamburger';
+// Molecules
 import Socials from 'molecules/Socials/Socials';
+
+// Components
+import Hamburger from 'components/Navbar/Hamburger';
 
 import { CSSProps } from 'theme/getAppTheme';
 
@@ -29,13 +32,14 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
   const [active, setActive] = useState(false);
 
   return (
-    <Flex {...props}>
+    <Flex {...props} position="sticky" top="0">
       <Hamburger
         paddingAll={16}
         position="relative"
         right={active ? '-70%' : '0'}
         transition="1s all ease"
-        onClick={() => setActive(!active)}
+        active={active}
+        setActive={setActive}
         zIndex={99}
       />
       <Flex
