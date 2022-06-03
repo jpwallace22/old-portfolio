@@ -86,7 +86,7 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
           ))}
         </Flex>
         <Flex as="ul" justifyContent="center">
-          {socials && <Socials links={socials} marginTop={64}></Socials>}
+          {socials && <Socials links={socials} marginTop={32}></Socials>}
         </Flex>
       </Flex>
     </Flex>

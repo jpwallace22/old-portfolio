@@ -26,8 +26,8 @@ const index = () => (
   <>
     <Navbar links={home.navbar.links} socials={home.navbar.socials} zIndex={99} />
     <Container
-      zIndex={-1}
-      height="calc(100vh - 70px)"
+      // zIndex={-1}
+      height="calc(90vh - 70px)"
       contain="layout"
       position="relative"
       maxWidth="1280px"
@@ -62,7 +62,7 @@ const index = () => (
         zIndex={-1}
         lg={{ left: '75%' }}
       />
-      <Hero position="absolute" top="20%" left="5%" lg={{ top: '40%' }} />
+      <Hero position="absolute" top="15%" left="5%" lg={{ top: '40%' }} />
     </Container>
   </>
 );
