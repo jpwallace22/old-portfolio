@@ -4,7 +4,6 @@ import styled, { css } from 'styled-components';
 
 // Assets
 import { ReactComponent as Arrow } from 'assets/svg/hand-drawn-arrow.svg';
-import { ReactComponent as Logo } from 'assets/svg/logo-gradient.svg';
 
 // Atoms
 import { media } from 'atoms/breakpoints/breakpoints';
@@ -12,15 +11,13 @@ import { media } from 'atoms/breakpoints/breakpoints';
 // Quarks
 import Container from 'quarks/Container';
 import Heading from 'quarks/Heading';
+import Logo from 'quarks/Logo';
 import Text from 'quarks/Text';
 import { BasicProps, basic } from 'quarks/interpolations/basic';
 
 // Contexts
 import useDarkMode from 'contexts/ThemeProvider';
 
-const StyledLogo = styled(Logo)`
-  ${basic}
-`;
 const DrawnArrow = styled(Arrow)`
   ${basic}
 `;
@@ -40,7 +37,7 @@ const Hero: FC<BasicProps> = ({ ...props }) => {
         lg={{ maxWidth: '896px' }}
       >
         {isDesktop && <DrawnArrow position="absolute" bottom="110%" right="70%" />}
-        <StyledLogo
+        <Logo
           width="128px"
           lg={{ float: 'left' }}
           marginRight={32}

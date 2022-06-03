@@ -27,4 +27,10 @@ const Link: FC<LinkProps> = ({ children, href, ...props }) => (
   </StyledLink>
 );
 
+Link.defaultProps = {
+  hover: {
+    textColor: 'primary-600',
+  },
+};
+
 export default Link;

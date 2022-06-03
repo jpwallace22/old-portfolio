@@ -89,19 +89,6 @@ export interface LightAndDark {
 
 type Common = ColorOptions['common'];
 type NumValues = valueof<Omit<ColorOptions, 'common'>>;
-
-// type WithAlpha<T extends number> =
-//   | `${T}A10`
-//   | `${T}A20`
-//   | `${T}A30`
-//   | `${T}A40`
-//   | `${T}A50`
-//   | `${T}A60`
-//   | `${T}A70`
-//   | `${T}A80`
-//   | `${T}A90`;
-
-// type ArrayOptions = WithAlpha<NumValues>;
 type ColorArray = [ColorDefinition, Common | NumValues];
 
 export type GetColorDefinition = ColorList | LightAndDark;

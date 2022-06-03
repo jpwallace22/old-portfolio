@@ -24,8 +24,15 @@ const LargeCircle = SmallCircle;
 
 const index = () => (
   <>
-    <Navbar links={home.navbar.links} zIndex={99} />
-    <Container zIndex={-1} height="100vh" contain="layout" position="relative" maxWidth="1280px" marginX="auto">
+    <Navbar links={home.navbar.links} socials={home.navbar.socials} zIndex={99} />
+    <Container
+      zIndex={-1}
+      height="calc(100vh - 70px)"
+      contain="layout"
+      position="relative"
+      maxWidth="1280px"
+      marginX="auto"
+    >
       <LargeCircle
         fill={colorParser('purple-800')}
         width="1200px"
