@@ -1,4 +1,4 @@
-// External
+import { home } from 'data/data';
 import styled from 'styled-components';
 
 // Assets
@@ -15,6 +15,7 @@ import { basic } from 'quarks/interpolations/basic';
 
 // Components
 import Hero from 'components/Hero/Hero';
+import Navbar from 'components/Navbar/Navbar';
 
 const SmallCircle = styled(Circle)`
   ${basic}
@@ -23,13 +24,15 @@ const LargeCircle = SmallCircle;
 
 const index = () => (
   <>
-    <Container height="100vh" position="relative" maxWidth="1280px" marginX="auto">
+    <Navbar links={home.navbar.links} zIndex={99} />
+    <Container zIndex={-1} height="100vh" contain="layout" position="relative" maxWidth="1280px" marginX="auto">
       <LargeCircle
         fill={colorParser('purple-800')}
         width="1200px"
         position="absolute"
         right="40%"
         bottom="50%"
+        zIndex={-1}
         lg={{ right: '50%' }}
       />
       <Image
@@ -40,6 +43,7 @@ const index = () => (
         position="absolute"
         left="50%"
         top="0"
+        zIndex={-1}
         lg={{ left: '58%' }}
       />
       <SmallCircle
@@ -48,6 +52,7 @@ const index = () => (
         top="10%"
         fill={colorParser('purple-700')}
         width="583px"
+        zIndex={-1}
         lg={{ left: '75%' }}
       />
       <Hero position="absolute" top="20%" left="5%" lg={{ top: '40%' }} />

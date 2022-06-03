@@ -88,8 +88,21 @@ export interface LightAndDark {
 }
 
 type Common = ColorOptions['common'];
-type Others = valueof<Omit<ColorOptions, 'common'>>;
-type ColorArray = [ColorDefinition, Common | Others];
+type NumValues = valueof<Omit<ColorOptions, 'common'>>;
+
+// type WithAlpha<T extends number> =
+//   | `${T}A10`
+//   | `${T}A20`
+//   | `${T}A30`
+//   | `${T}A40`
+//   | `${T}A50`
+//   | `${T}A60`
+//   | `${T}A70`
+//   | `${T}A80`
+//   | `${T}A90`;
+
+// type ArrayOptions = WithAlpha<NumValues>;
+type ColorArray = [ColorDefinition, Common | NumValues];
 
 export type GetColorDefinition = ColorList | LightAndDark;
 
@@ -101,7 +114,7 @@ export const getColor = (palette: DefaultTheme['palette'], colors: GetColorDefin
     typeof colors === 'string' ? (colors.split('-') as ColorArray) : (colors[palette.mode].split('-') as ColorArray);
   const subPalette = palette[colorKey];
 
-  return 'white' in subPalette ? subPalette[colorValue as Common] : subPalette[colorValue as Others];
+  return 'white' in subPalette ? subPalette[colorValue as Common] : subPalette[colorValue as NumValues];
 };
 
 export const colorParser = (colorString: ColorList) => {
@@ -110,7 +123,7 @@ export const colorParser = (colorString: ColorList) => {
   }
   const [colorKey, colorValue] = colorString.split('-') as ColorArray;
 
-  return colorKey === 'common' ? color[colorKey][colorValue as Common] : color[colorKey][colorValue as Others];
+  return colorKey === 'common' ? color[colorKey][colorValue as Common] : color[colorKey][colorValue as NumValues];
 };
 
 export default color;

@@ -25,3 +25,4 @@ yarn storybook
 ## TODO
 
 - Add clearfix to basic quarks
+- Add transparency to colorParser / useColor
