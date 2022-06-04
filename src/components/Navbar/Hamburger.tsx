@@ -16,13 +16,7 @@ type HamburgerProps = BasicProps & {
 
 const Hamburger: FC<HamburgerProps> = ({ setActive, active, ...props }) => (
   <Container {...props}>
-    <button
-      className="burger-button"
-      onClick={({ currentTarget }) => {
-        currentTarget.classList.toggle('active');
-        setActive(!active);
-      }}
-    >
+    <button className={active ? 'active burger-button' : 'burger-button'} onClick={() => setActive(!active)}>
       <span></span>
       <span></span>
       <span></span>
@@ -72,10 +66,10 @@ const StyledHamburger = styled(Hamburger)`
     width: 20px;
   }
   .burger-button.active span:nth-of-type(1) {
-    transform: translate(-1px, 9px) rotate(-45deg);
+    transform: translate(-4px, 9.5px) rotate(-45deg);
   }
   .burger-button.active span:nth-of-type(3) {
-    transform: translate(-1px, -9px) rotate(45deg);
+    transform: translate(-4px, -9.5px) rotate(45deg);
   }
 `;
 

@@ -1,6 +1,6 @@
 import { ComponentStory } from '@storybook/react';
 
-import Hamburger from '../Hamburger';
+import Hamburger from '../../../components/Navbar/Hamburger';
 
 const Template: ComponentStory<typeof Hamburger> = args => <Hamburger {...args} />;
 

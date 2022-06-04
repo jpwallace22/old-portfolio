@@ -25,4 +25,5 @@ yarn storybook
 ## TODO
 
 - Add clearfix to basic quarks
-- Add transparency to colorParser / useColor
+- ~~Add transparency to colorParser / useColor~~
+- Add pseudos to breakpoint interpolations
