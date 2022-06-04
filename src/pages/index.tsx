@@ -1,4 +1,3 @@
-import { home } from 'data/data';
 import styled from 'styled-components';
 
 // Assets
@@ -15,7 +14,6 @@ import { basic } from 'quarks/interpolations/basic';
 
 // Components
 import Hero from 'components/Hero/Hero';
-import Navbar from 'components/Navbar/Navbar';
 
 const SmallCircle = styled(Circle)`
   ${basic}
@@ -24,7 +22,6 @@ const LargeCircle = SmallCircle;
 
 const index = () => (
   <>
-    <Navbar links={home.navbar.links} socials={home.navbar.socials} zIndex={99} />
     <Container
       // zIndex={-1}
       height="calc(90vh - 70px)"

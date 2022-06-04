@@ -34,6 +34,15 @@ export const navbar = {
   ],
 };
 
-export const home = {
-  navbar,
-};
+export const home = {};
+
+export const works = [
+  {
+    id: 'betterMind',
+    title: 'Better Mind',
+  },
+  {
+    id: 'skillJumper',
+    title: 'Skill Jumper',
+  },
+];
