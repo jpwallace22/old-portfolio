@@ -1,16 +1,19 @@
 import { works } from 'data/data';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
+import { FiGithub } from 'react-icons/fi';
+import { GoBrowser } from 'react-icons/go';
 
 // Quarks
 import Container from 'quarks/Container';
 import { LargeCircle } from 'quarks/DesignElements';
 import Flex from 'quarks/Flex';
+import Grid from 'quarks/Grid';
 import Heading from 'quarks/Heading';
 import Image from 'quarks/Image';
 import Paragraph from 'quarks/Paragraph';
+import Text from 'quarks/Text';
 
 // Components
-
 import TechStack from 'components/TechStack/TechStack';
 
 import useDarkMode from 'contexts/ThemeProvider';
@@ -68,16 +71,16 @@ const Work = ({
           textStyle="md"
           fontWeight={isDark ? 'light' : 'regular'}
           textColor={{ light: 'gray-900', dark: 'gray-500' }}
-          marginBottom={32}
         >
           {subTitle}
         </Heading>
       )}
       <Flex
+        as="section"
         flexDirection="column"
         gap="32px"
         lg={{ flexDirection: 'row-reverse', justifyContent: 'center', gap: '128px' }}
-        marginBottom={32}
+        marginY={48}
       >
         {bannerImage && (
           <Image
@@ -92,15 +95,29 @@ const Work = ({
         )}
         {techStack && <TechStack icons={techStack} lg={{ flexDirection: 'column' }} />}
       </Flex>
-      <Container maxWidth="1280px" paddingX={16} lg={{ marginX: 'auto', paddingX: 32 }}>
+      <Container maxWidth="1100px" paddingX={16} lg={{ marginX: 'auto', paddingX: 32 }}>
         {intro && (
-          <>
-            <Heading as="h3" marginBottom={8}>
-              {intro.heading}
-            </Heading>
-            <Paragraph textColor={{ light: 'gray-900', dark: 'gray-500' }}>{intro.body}</Paragraph>
-          </>
+          <Container as="section" marginY={48}>
+            <Heading as="h3">{intro.heading}</Heading>
+            {intro.body.map((copy: string, i: number) => (
+              <Paragraph key={`intro-${i + 1}`}>{copy}</Paragraph>
+            ))}
+          </Container>
         )}
+        <Flex justifyContent="center" gap="32px" marginY={48}>
+          <Grid placeItems="center" gap="16px" width="120px">
+            <FiGithub size={64} />
+            <Text as="div" textStyle="xl" fontWeight="semiBold">
+              Repository
+            </Text>
+          </Grid>
+          <Grid placeItems="center" gap="16px" width="120px">
+            <GoBrowser size={64} />
+            <Text as="div" textStyle="xl" fontWeight="semiBold">
+              See it live
+            </Text>
+          </Grid>
+        </Flex>
       </Container>
     </Container>
   );

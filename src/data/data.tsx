@@ -48,13 +48,16 @@ export const works = [
     bannerImage: {
       src: '/images/bettermind-1.webp',
       alt: 'Woman sitting in the lotus position',
-      height: 608,
+      height: 600,
       width: 650,
     },
     techStack: ['next', 'react', 'javascript', 'css'],
     intro: {
       heading: 'A Static NextJS site',
-      body: 'I was tasked with creating a static website for a mental health organization called BetterMind. ',
+      body: [
+        'I was tasked with creating a static website for a mental health organization called BetterMind. This was a ground up project to include all branding, logo creation, web design, development, media, and copy. This is 100% my work, and was a solo project. ',
+        'I chose to work with NextJS on this project because of its SSG capabilities. Since this site was all static, I had no need to make use of any SSR. I learned a lot on this (my first Next project) and had a LOT of fun with it.',
+      ],
     },
   },
   {
