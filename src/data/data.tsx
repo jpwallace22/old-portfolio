@@ -4,15 +4,15 @@ export const navbar = {
   links: [
     {
       text: 'works',
-      url: 'https://www.wallace.dev/works',
+      url: 'https://www.justinwallace.dev/works',
     },
     {
       text: 'about',
-      url: 'https://www.wallace.dev/about',
+      url: 'https://www.justinwallace.dev/about',
     },
     {
       text: 'contact',
-      url: 'https://www.wallace.dev/contact',
+      url: 'https://www.justinwallace.dev/contact',
     },
   ],
   socials: [
@@ -40,12 +40,14 @@ export const works = [
   {
     id: 'bettermind',
     title: 'Better Mind',
+    subTitle: 'Counseling Collective',
     bannerImage: {
       src: '/images/bettermind-1.webp',
       alt: 'Woman sitting in the lotus position',
       height: 550,
       width: 588,
     },
+    techStack: ['next', 'react', 'javascript', 'css'],
   },
   {
     id: 'skilljumper',

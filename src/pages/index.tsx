@@ -64,7 +64,7 @@ const index = () => (
         zIndex={-1}
         lg={{ left: '75%' }}
       />
-      <Hero position="absolute" top="5%" left="5%" lg={{ top: '40%' }} />
+      <Hero position="absolute" top="5%" left="2%" lg={{ top: '40%' }} />
     </Container>
   </>
 );

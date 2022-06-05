@@ -105,7 +105,7 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
         }}
       >
         {!isDesktop && (
-          <Link href="https://www.wallace.dev">
+          <Link href="https://www.justinwallace.dev">
             <Logo maxWidth="200px" marginX="auto" marginTop={80} marginBottom={32} cursor="pointer" />
           </Link>
         )}

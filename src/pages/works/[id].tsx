@@ -11,6 +11,7 @@ import { colorParser } from 'atoms/colors/colors';
 
 // Quarks
 import Container from 'quarks/Container';
+import Flex from 'quarks/Flex';
 import Heading from 'quarks/Heading';
 import Image from 'quarks/Image';
 import { basic } from 'quarks/interpolations/basic';
@@ -18,7 +19,7 @@ import { allCSSWithPseudos } from 'quarks/styleProps/all';
 // import { basic } from 'quarks/interpolations/basic';
 
 // Components
-// import Hero from 'components/Hero/Hero';
+import TechStack from 'components/TechStack/TechStack';
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = works.map(work => ({
@@ -44,7 +45,9 @@ const SmallCircle = styled(Circle).withConfig({
 `;
 const LargeCircle = SmallCircle;
 
-const Work = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => (
+const Work = ({
+  data: { title, subTitle, bannerImage, techStack },
+}: InferGetStaticPropsType<typeof getStaticProps>) => (
   <Container
     as="main"
     maxWidth="1280px"
@@ -59,7 +62,7 @@ const Work = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => (
       width="1200px"
       position="absolute"
       right="20%"
-      bottom="50%"
+      top="-800px"
       zIndex={-1}
     />
     <Heading
@@ -72,26 +75,38 @@ const Work = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => (
       md={{ fontSize: 96, lineHeight: 72 }}
       lg={{ lineHeight: 56 }}
     >
-      {data.title}
+      {title}
     </Heading>
-    <Heading
-      as="h3"
-      fontFamily="primaryFont"
-      textStyle="md"
-      fontWeight="light"
-      textColor={{ light: 'gray-900', dark: 'gray-500' }}
-      marginBottom={32}
+    {subTitle && (
+      <Heading
+        as="h3"
+        fontFamily="primaryFont"
+        textStyle="md"
+        fontWeight="light"
+        textColor={{ light: 'gray-900', dark: 'gray-500' }}
+        marginBottom={32}
+      >
+        {subTitle}
+      </Heading>
+    )}
+    <Flex
+      flexDirection="column"
+      gap="32px"
+      lg={{ flexDirection: 'row-reverse', justifyContent: 'center', gap: '128px' }}
     >
-      Counseling Collective
-    </Heading>
-    <Image
-      src={data?.bannerImage?.src}
-      alt={data?.bannerImage?.alt}
-      height={data?.bannerImage?.height}
-      width={data?.bannerImage?.width}
-      maxWidth="80%"
-      marginX="auto"
-    />
+      {bannerImage && (
+        <Image
+          src={bannerImage?.src}
+          alt={bannerImage?.alt}
+          height={bannerImage?.height}
+          width={bannerImage?.width}
+          marginX="auto"
+          maxWidth="80%"
+          lg={{ marginAll: 0 }}
+        />
+      )}
+      {techStack && <TechStack icons={techStack} lg={{ flexDirection: 'column' }} />}
+    </Flex>
   </Container>
 );
 

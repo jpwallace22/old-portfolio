@@ -1,0 +1,17 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import TechStack from '../TechStack';
+
+import * as stories from './TechStack.stories.tsx';
+
+<Meta title="Components/TechStack" component={TechStack} argTypes={{}} />
+
+# TechStack
+
+<Canvas>
+  <Story name="TechStack" story={stories.TechStackStory} />
+</Canvas>
+
+### Props
+
+<ArgsTable story="TechStack" />

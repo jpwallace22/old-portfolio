@@ -27,3 +27,4 @@ yarn storybook
 - Add clearfix to basic quarks
 - ~~Add transparency to colorParser / useColor~~
 - Add pseudos to breakpoint interpolations
+- update storybook for new components
