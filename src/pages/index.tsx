@@ -33,7 +33,7 @@ const index = () => (
         zIndex={-1}
         lg={{ left: '58%' }}
       />
-      <SmallCircle position="absolute" left="70%" top="10%" zIndex={-1} lg={{ left: '75%' }} />
+      <SmallCircle position="absolute" left="80%" top="10%" zIndex={-1} lg={{ left: '75%' }} />
       <Hero position="absolute" top="5%" left="2%" lg={{ top: '40%' }} />
     </Container>
   </>

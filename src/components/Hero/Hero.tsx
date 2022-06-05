@@ -39,9 +39,10 @@ const Hero: FC<BasicProps> = ({ ...props }) => {
         {isDesktop && <DrawnArrow position="absolute" bottom="110%" right="70%" />}
         <Logo
           width="128px"
-          lg={{ float: 'left' }}
+          lg={{ float: 'left', marginBottom: 0 }}
           marginRight={32}
           marginTop={8}
+          marginBottom={16}
           css={css`
             ::after {
               content: '';
@@ -85,12 +86,13 @@ const Hero: FC<BasicProps> = ({ ...props }) => {
           fontWeight={isDarkMode ? 'extraLight' : 'regular'}
           textColor={{ dark: 'gray-500', light: 'gray-900' }}
           position="absolute"
-          right="32px"
           transform="rotate(-10deg)"
-          bottom="-10px"
+          right="16px"
+          bottom="-30px"
           xs={{ fontSize: 24 }}
-          sm={{ fontSize: 30 }}
+          sm={{ fontSize: 30, right: '32px' }}
           md={{ fontSize: 36 }}
+          lg={{ bottom: '-10px' }}
         >
           (Don&apos;t you just love alliteration?)
         </Text>

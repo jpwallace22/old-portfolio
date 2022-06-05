@@ -26,7 +26,7 @@ export const SmallCircle: FC<BasicProps> = ({ ...props }) => {
       width="583px"
       zIndex={-1}
       {...props}
-      fill={isDark ? colorParser('purple-700') : colorParser('gray-200')}
+      fill={isDark ? colorParser('purple-700') : colorParser('gray-100')}
     />
   );
 };

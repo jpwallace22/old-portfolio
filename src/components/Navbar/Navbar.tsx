@@ -61,6 +61,7 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
       position="sticky"
       justifyContent="space-between"
       backdropFilter="lg"
+      alignItems="center"
       top="0"
       paddingAll={16}
       after={
@@ -70,7 +71,7 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
               position: 'absolute',
               top: '100%',
               height: '1px',
-              backgroundColor: 'gray-500',
+              backgroundColor: isDark ? 'gray-500' : 'common-black',
               left: '0',
               right: '0',
               marginX: 'auto',
