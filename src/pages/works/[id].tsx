@@ -1,21 +1,12 @@
 import { works } from 'data/data';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
-import styled from 'styled-components';
-
-// Assets
-// import dots from 'assets/images/dots.webp';
-import { ReactComponent as Circle } from 'assets/svg/circle.svg';
-
-// Atoms
-import { colorParser } from 'atoms/colors/colors';
 
 // Quarks
 import Container from 'quarks/Container';
+import { LargeCircle } from 'quarks/DesignElements';
 import Flex from 'quarks/Flex';
 import Heading from 'quarks/Heading';
 import Image from 'quarks/Image';
-import { basic } from 'quarks/interpolations/basic';
-import { allCSSWithPseudos } from 'quarks/styleProps/all';
 // import { basic } from 'quarks/interpolations/basic';
 
 // Components
@@ -38,33 +29,20 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     },
   };
 };
-const SmallCircle = styled(Circle).withConfig({
-  shouldForwardProp: prop => !Object.keys(allCSSWithPseudos).includes(prop),
-})`
-  ${basic}
-`;
-const LargeCircle = SmallCircle;
 
 const Work = ({
   data: { title, subTitle, bannerImage, techStack },
 }: InferGetStaticPropsType<typeof getStaticProps>) => (
   <Container
     as="main"
-    maxWidth="1280px"
+    maxWidth="1440px"
     paddingY={32}
     paddingX={16}
     contain="layout"
     marginX="auto"
     lg={{ paddingX: 32, paddingY: 64 }}
   >
-    <LargeCircle
-      fill={colorParser('purple-800')}
-      width="1200px"
-      position="absolute"
-      right="20%"
-      top="-800px"
-      zIndex={-1}
-    />
+    <LargeCircle position="absolute" right="20%" top="-800px" />
     <Heading
       as="h2"
       textStyle="xxl"
