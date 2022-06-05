@@ -14,6 +14,10 @@ export const navbar = {
       text: 'contact',
       url: 'https://www.justinwallace.dev/contact',
     },
+    {
+      text: 'home',
+      url: 'https://www.justinwallace.dev',
+    },
   ],
   socials: [
     {

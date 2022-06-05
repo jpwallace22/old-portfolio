@@ -1,5 +1,6 @@
 import { useMediaQuery } from '@mui/material';
 import { FC, ReactNode, useState } from 'react';
+import { BsLightbulbFill as LightBulb, BsFillLightbulbOffFill as LightBulbOff } from 'react-icons/bs';
 import { css } from 'styled-components';
 
 // Assets
@@ -9,6 +10,7 @@ import { ReactComponent as LogoMark } from 'assets/svg/logomark-grad.svg';
 import { media } from 'atoms/breakpoints/breakpoints';
 
 import Flex from 'quarks/Flex';
+import Grid from 'quarks/Grid';
 import Link from 'quarks/Link';
 import Logo from 'quarks/Logo';
 import Text from 'quarks/Text';
@@ -19,6 +21,8 @@ import Socials from 'molecules/Socials/Socials';
 
 // Components
 import Hamburger from 'components/Navbar/Hamburger';
+
+import useDarkMode from 'contexts/ThemeProvider';
 
 import { CSSProps } from 'theme/getAppTheme';
 
@@ -36,9 +40,20 @@ type NavbarProps = BasicProps & {
 
 const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
   const [active, setActive] = useState(false);
+  const [isDark, setIsDark] = useDarkMode();
   const isDesktop = useMediaQuery(media.lg);
 
   const slideTransition = '.7s right ease';
+
+  const [{ url: home }] = links.filter(link => link.text === 'home');
+  const navLinks = links.filter(link => link.text !== 'home');
+
+  const LightSwitch = (size: number) =>
+    isDark ? (
+      <LightBulb size={size} onClick={() => setIsDark(!isDark)} />
+    ) : (
+      <LightBulbOff size={size} onClick={() => setIsDark(!isDark)} />
+    );
 
   return (
     <Flex
@@ -76,7 +91,7 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
           zIndex={99}
         />
       )}
-      <Link href="https://www.justinwallace.dev">
+      <Link href={home}>
         <LogoMark width={45} cursor="pointer" />
       </Link>
       <Flex
@@ -105,9 +120,14 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
         }}
       >
         {!isDesktop && (
-          <Link href="https://www.justinwallace.dev">
-            <Logo maxWidth="200px" marginX="auto" marginTop={80} marginBottom={32} cursor="pointer" />
-          </Link>
+          <>
+            <Grid cursor="pointer" position="relative" top="24px" left="32px">
+              {LightSwitch(32)}
+            </Grid>
+            <Link href={home}>
+              <Logo maxWidth="200px" marginX="auto" marginTop={80} marginBottom={32} cursor="pointer" />
+            </Link>
+          </>
         )}
         <Flex
           as="ul"
@@ -118,7 +138,7 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
             gap: '32px',
           }}
         >
-          {links.map(link => (
+          {navLinks.map(link => (
             <Link href={link.url} key={link.text}>
               <Flex
                 as="li"
@@ -141,6 +161,11 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
             </Link>
           ))}
         </Flex>
+        {isDesktop && (
+          <Grid cursor="pointer" placeItems="center" marginLeft={32}>
+            {LightSwitch(24)}
+          </Grid>
+        )}
         <Flex as="ul" justifyContent="center">
           {!isDesktop && socials && <Socials links={socials} marginTop={32}></Socials>}
         </Flex>

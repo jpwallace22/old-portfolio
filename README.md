@@ -28,3 +28,4 @@ yarn storybook
 - ~~Add transparency to colorParser / useColor~~
 - Add pseudos to breakpoint interpolations
 - update storybook for new components
+- create datamap for socials

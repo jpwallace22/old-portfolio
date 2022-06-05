@@ -104,6 +104,12 @@ const gridCSS = {
   gridTemplateRows: (value: Properties['gridTemplateRows']) => css`
     grid-template-rows: ${value};
   `,
+  /**
+   * Element's `grid-template-rows` value.
+   */
+  placeItems: (value: Properties['placeItems']) => css`
+    place-items: ${value};
+  `,
 };
 
 export default gridCSS;
