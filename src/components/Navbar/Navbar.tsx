@@ -76,7 +76,7 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
           zIndex={99}
         />
       )}
-      <Link href="https://justinwallace.dev">
+      <Link href="https://www.justinwallace.dev">
         <LogoMark width={45} cursor="pointer" />
       </Link>
       <Flex
@@ -105,7 +105,7 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
         }}
       >
         {!isDesktop && (
-          <Link href="https://justinwallace.dev">
+          <Link href="https://www.wallace.dev">
             <Logo maxWidth="200px" marginX="auto" marginTop={80} marginBottom={32} cursor="pointer" />
           </Link>
         )}
