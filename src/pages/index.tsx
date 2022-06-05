@@ -11,11 +11,14 @@ import { colorParser } from 'atoms/colors/colors';
 import Container from 'quarks/Container';
 import Image from 'quarks/Image';
 import { basic } from 'quarks/interpolations/basic';
+import { allCSSWithPseudos } from 'quarks/styleProps/all';
 
 // Components
 import Hero from 'components/Hero/Hero';
 
-const SmallCircle = styled(Circle)`
+const SmallCircle = styled(Circle).withConfig({
+  shouldForwardProp: prop => !Object.keys(allCSSWithPseudos).includes(prop),
+})`
   ${basic}
 `;
 const LargeCircle = SmallCircle;
@@ -23,12 +26,14 @@ const LargeCircle = SmallCircle;
 const index = () => (
   <>
     <Container
-      // zIndex={-1}
+      as="main"
       height="calc(90vh - 70px)"
       contain="layout"
       position="relative"
       maxWidth="1280px"
       marginX="auto"
+      paddingX={16}
+      lg={{ paddingX: 32 }}
     >
       <LargeCircle
         fill={colorParser('purple-800')}
@@ -43,7 +48,7 @@ const index = () => (
         src={dots}
         width="650px"
         height="650px"
-        alt="test"
+        alt=""
         position="absolute"
         left="50%"
         top="0"

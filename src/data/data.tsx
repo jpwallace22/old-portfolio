@@ -38,11 +38,17 @@ export const home = {};
 
 export const works = [
   {
-    id: 'betterMind',
+    id: 'bettermind',
     title: 'Better Mind',
+    bannerImage: {
+      src: '/images/bettermind-1.webp',
+      alt: 'Woman sitting in the lotus position',
+      height: 550,
+      width: 588,
+    },
   },
   {
-    id: 'skillJumper',
+    id: 'skilljumper',
     title: 'Skill Jumper',
   },
 ];
