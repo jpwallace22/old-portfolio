@@ -85,10 +85,10 @@ const Work = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => (
       Counseling Collective
     </Heading>
     <Image
-      src={data.bannerImage?.src}
-      alt={data.bannerImage?.alt}
-      height={data.bannerImage.height}
-      width={data.bannerImage.width}
+      src={data?.bannerImage?.src}
+      alt={data?.bannerImage?.alt}
+      height={data?.bannerImage?.height}
+      width={data?.bannerImage?.width}
       maxWidth="80%"
       marginX="auto"
     />
