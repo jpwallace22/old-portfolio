@@ -14,9 +14,6 @@ storybook-static/
 .vscode
 .DS_Store
 
-# gatsby files
-.cache/
-public/
 !.storybook/public
 
 # next files

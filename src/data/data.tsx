@@ -48,10 +48,14 @@ export const works = [
     bannerImage: {
       src: '/images/bettermind-1.webp',
       alt: 'Woman sitting in the lotus position',
-      height: 550,
-      width: 588,
+      height: 608,
+      width: 650,
     },
     techStack: ['next', 'react', 'javascript', 'css'],
+    intro: {
+      heading: 'A Static NextJS site',
+      body: 'I was tasked with creating a static website for a mental health organization called BetterMind. ',
+    },
   },
   {
     id: 'skilljumper',
