@@ -1,20 +1,18 @@
 import { works } from 'data/data';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
-import { FiGithub } from 'react-icons/fi';
-import { GoBrowser } from 'react-icons/go';
+import Masonry from 'react-masonry-css';
 
 // Quarks
 import Container from 'quarks/Container';
-import { LargeCircle } from 'quarks/DesignElements';
+import { LargeCircle, SmallCircle } from 'quarks/DesignElements';
 import Flex from 'quarks/Flex';
-import Grid from 'quarks/Grid';
 import Heading from 'quarks/Heading';
 import Image from 'quarks/Image';
 import Paragraph from 'quarks/Paragraph';
-import Text from 'quarks/Text';
 
 // Components
 import TechStack from 'components/TechStack/TechStack';
+import SmallCard, { SmallCardProps } from 'components/cards/SmallCard/SmallCard';
 
 import useDarkMode from 'contexts/ThemeProvider';
 
@@ -37,7 +35,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 const Work = ({
-  data: { title, subTitle, bannerImage, techStack, intro },
+  data: { title, subTitle, bannerImage, techStack, intro, ctas },
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [isDark] = useDarkMode();
 
@@ -95,6 +93,7 @@ const Work = ({
         )}
         {techStack && <TechStack icons={techStack} lg={{ flexDirection: 'column' }} />}
       </Flex>
+      <SmallCircle position="absolute" right="-400px" top="450px" opacity={0.3} />
       <Container maxWidth="1100px" paddingX={16} lg={{ marginX: 'auto', paddingX: 32 }}>
         {intro && (
           <Container as="section" marginY={48}>
@@ -104,20 +103,16 @@ const Work = ({
             ))}
           </Container>
         )}
-        <Flex justifyContent="center" gap="32px" marginY={48}>
-          <Grid placeItems="center" gap="16px" width="120px">
-            <FiGithub size={64} />
-            <Text as="div" textStyle="xl" fontWeight="semiBold">
-              Repository
-            </Text>
-          </Grid>
-          <Grid placeItems="center" gap="16px" width="120px">
-            <GoBrowser size={64} />
-            <Text as="div" textStyle="xl" fontWeight="semiBold">
-              See it live
-            </Text>
-          </Grid>
-        </Flex>
+        {ctas && (
+          <Flex justifyContent="center" gap="32px" marginY={48}>
+            {ctas.map((cta: SmallCardProps) => (
+              <SmallCard key={cta.title} icon={cta.icon} title={cta.title} url={cta.url} />
+            ))}
+          </Flex>
+        )}
+        <Masonry breakpointCols={3} className="my-masonry-grid" columnClassName="my-masonry-grid_column">
+          {/* array of JSX items */}
+        </Masonry>
       </Container>
     </Container>
   );

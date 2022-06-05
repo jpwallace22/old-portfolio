@@ -59,6 +59,18 @@ export const works = [
         'I chose to work with NextJS on this project because of its SSG capabilities. Since this site was all static, I had no need to make use of any SSR. I learned a lot on this (my first Next project) and had a LOT of fun with it.',
       ],
     },
+    ctas: [
+      {
+        icon: 'github',
+        title: 'Repository',
+        url: 'https://github.com/jpwallace22/BetterMind',
+      },
+      {
+        icon: 'browser',
+        title: 'Check it out',
+        url: 'https://better-mind.vercel.app/',
+      },
+    ],
   },
   {
     id: 'skilljumper',

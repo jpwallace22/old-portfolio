@@ -9,6 +9,7 @@ import { ReactComponent as LogoMark } from 'assets/svg/logomark-grad.svg';
 // Quarks
 import { media } from 'atoms/breakpoints/breakpoints';
 
+import Container from 'quarks/Container';
 import Flex from 'quarks/Flex';
 import Grid from 'quarks/Grid';
 import Link from 'quarks/Link';
@@ -56,122 +57,122 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
     );
 
   return (
-    <Flex
-      as="nav"
-      position="sticky"
-      justifyContent="space-between"
-      backdropFilter="lg"
-      alignItems="center"
-      top="0"
-      paddingAll={16}
-      after={
-        isDesktop
-          ? {
-              content: '',
-              position: 'absolute',
-              top: '100%',
-              height: '1px',
-              backgroundColor: isDark ? 'gray-500' : 'common-black',
-              left: '0',
-              right: '0',
-              marginX: 'auto',
-              width: '88%',
-            }
-          : undefined
-      }
-      lg={{ paddingX: 32, maxWidth: '1280px', marginX: 'auto' }}
-      {...props}
-    >
-      {!isDesktop && (
-        <Hamburger
-          position="relative"
-          right={active ? '-70%' : '0'}
-          transition={slideTransition}
-          active={active}
-          setActive={setActive}
-          zIndex={99}
-        />
-      )}
-      <Link href={home}>
-        <LogoMark width={45} cursor="pointer" />
-      </Link>
+    <Container backdropFilter="sm" position="sticky" top="0px" zIndex={999}>
       <Flex
-        position="absolute"
-        height="100vh"
-        width="90%"
-        flexDirection="column"
-        transition={slideTransition}
-        top="0"
-        right={active ? '10%' : '100%'}
-        backdropFilter="sm"
-        css={css`
-          background-color: ${!isDesktop
-            ? (cssProps: CSSProps) =>
-                cssProps.theme.palette.mode === 'dark' ? 'rgba(26,22,49,.90)' : 'rgba(255,255,255,.85)'
-            : undefined};
-        `}
-        lg={{
-          position: 'relative',
-          top: 'unset',
-          right: 'unset',
-          backdropFilter: undefined,
-          flexDirection: 'row',
-          justifyContent: 'flex-end',
-          height: '50px',
-        }}
+        as="nav"
+        justifyContent="space-between"
+        // backdropFilter="sm"
+        alignItems="center"
+        paddingAll={16}
+        after={
+          isDesktop
+            ? {
+                content: '',
+                position: 'absolute',
+                top: '100%',
+                height: '1px',
+                backgroundColor: isDark ? 'gray-500' : 'common-black',
+                left: '0',
+                right: '0',
+                marginX: 'auto',
+                width: '88%',
+              }
+            : undefined
+        }
+        lg={{ paddingX: 32, maxWidth: '1280px', marginX: 'auto' }}
+        {...props}
       >
         {!isDesktop && (
-          <>
-            <Grid cursor="pointer" position="relative" top="24px" left="32px">
-              {LightSwitch(32)}
-            </Grid>
-            <Link href={home}>
-              <Logo maxWidth="200px" marginX="auto" marginTop={80} marginBottom={32} cursor="pointer" />
-            </Link>
-          </>
+          <Hamburger
+            position="relative"
+            right={active ? '-70%' : '0'}
+            transition={slideTransition}
+            active={active}
+            setActive={setActive}
+            zIndex={99}
+          />
         )}
+        <Link href={home}>
+          <LogoMark width={45} cursor="pointer" />
+        </Link>
         <Flex
-          as="ul"
+          position="absolute"
+          height="100vh"
+          width="90%"
           flexDirection="column"
-          justifyContent="center"
+          transition={slideTransition}
+          top="0"
+          right={active ? '10%' : '100%'}
+          backdropFilter="sm"
+          css={css`
+            background-color: ${!isDesktop
+              ? (cssProps: CSSProps) =>
+                  cssProps.theme.palette.mode === 'dark' ? 'rgba(26,22,49,.90)' : 'rgba(255,255,255,.85)'
+              : undefined};
+          `}
           lg={{
+            position: 'relative',
+            top: 'unset',
+            right: 'unset',
+            backdropFilter: undefined,
             flexDirection: 'row',
-            gap: '32px',
+            justifyContent: 'flex-end',
+            height: '50px',
           }}
         >
-          {navLinks.map(link => (
-            <Link href={link.url} key={link.text}>
-              <Flex
-                as="li"
-                width="100%"
-                textAlign="center"
-                height="100px"
-                alignItems="center"
-                justifyContent="center"
-                hover={{
-                  backgroundColor: isDesktop ? 'transparent' : 'purple-700',
-                  textColor: isDesktop ? 'primary-500' : 'inherit',
-                }}
-                cursor="pointer"
-                lg={{ height: 'inherit' }}
-              >
-                <Text textStyle="xl" fontSize={36} fontWeight="bold" lg={{ textStyle: 'xl', fontWeight: 'light' }}>
-                  {link.text}
-                </Text>
-              </Flex>
-            </Link>
-          ))}
-        </Flex>
-        {isDesktop && (
-          <Grid cursor="pointer" placeItems="center" marginLeft={32}>
-            {LightSwitch(24)}
-          </Grid>
-        )}
-        <Flex as="ul" justifyContent="center">
-          {!isDesktop && socials && <Socials links={socials} marginTop={32}></Socials>}
+          {!isDesktop && (
+            <>
+              <Grid cursor="pointer" position="relative" top="24px" left="32px">
+                {LightSwitch(32)}
+              </Grid>
+              <Link href={home}>
+                <Logo maxWidth="200px" marginX="auto" marginTop={80} marginBottom={32} cursor="pointer" />
+              </Link>
+            </>
+          )}
+          <Flex
+            as="ul"
+            flexDirection="column"
+            justifyContent="center"
+            lg={{
+              flexDirection: 'row',
+              gap: '32px',
+            }}
+          >
+            {navLinks.map(link => (
+              <Link href={link.url} key={link.text}>
+                <Flex
+                  as="li"
+                  width="100%"
+                  textAlign="center"
+                  height="100px"
+                  alignItems="center"
+                  justifyContent="center"
+                  hover={{
+                    backgroundColor: isDesktop ? 'transparent' : 'purple-700',
+                    textColor: isDesktop ? 'primary-500' : 'inherit',
+                  }}
+                  cursor="pointer"
+                  lg={{ height: 'inherit' }}
+                >
+                  <Text textStyle="xl" fontSize={36} fontWeight="bold" lg={{ textStyle: 'xl', fontWeight: 'light' }}>
+                    {link.text}
+                  </Text>
+                </Flex>
+              </Link>
+            ))}
+          </Flex>
+          {isDesktop && (
+            <Grid cursor="pointer" placeItems="center" marginLeft={32}>
+              {LightSwitch(24)}
+            </Grid>
+          )}
+          <Flex as="ul" justifyContent="center">
+            {!isDesktop && socials && <Socials links={socials} marginTop={32}></Socials>}
+          </Flex>
         </Flex>
       </Flex>
-    </Flex>
+    </Container>
   );
 };
 

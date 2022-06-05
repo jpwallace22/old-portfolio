@@ -29,3 +29,4 @@ yarn storybook
 - Add pseudos to breakpoint interpolations
 - update storybook for new components
 - create datamap for socials
+- add shutter animation to TechStack
