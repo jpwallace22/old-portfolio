@@ -73,35 +73,34 @@ export const works = [
     ],
     gallery: [
       {
-        url: '/images/bettermind-2.webp',
-        width: 300,
-        height: 300,
-      },
-      {
-        url: '/images/bettermind-3.png',
-        width: 821,
-        height: 715,
-      },
-      {
-        url: '/images/bettermind-4.png',
-        width: 731,
-        height: 921,
-      },
-      {
-        url: '/images/bettermind-5.png',
-
-        width: 1393,
-        height: 1181,
-      },
-      {
-        url: '/images/bettermind-6.png',
-        width: 1382,
-        height: 1204,
-      },
-      {
-        url: '/images/bettermind-1.webp',
-        width: 700,
+        url: '/images/bettermind/bettermind-1.webp',
         height: 650,
+        width: 700,
+      },
+      {
+        url: '/images/bettermind/bettermind-2.webp',
+        height: 300,
+        width: 300,
+      },
+      {
+        url: '/images/bettermind/bettermind-3.png',
+        height: 715,
+        width: 821,
+      },
+      {
+        url: '/images/bettermind/bettermind-4.png',
+        height: 921,
+        width: 731,
+      },
+      {
+        url: '/images/bettermind/bettermind-5.png',
+        height: 1204,
+        width: 1382,
+      },
+      {
+        url: '/images/bettermind/bettermind-6.png',
+        height: 1181,
+        width: 1393,
       },
     ],
   },

@@ -1,9 +1,15 @@
 import { FC, ReactChild } from 'react';
 import { Carousel as Slider } from 'react-responsive-carousel';
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
+
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { ReactComponent as SmallArrow } from 'assets/svg/small-arrow.svg';
+
+import { colorParser } from 'atoms/colors/colors';
 
 import Container from 'quarks/Container';
+import Flex from 'quarks/Flex';
+import Text from 'quarks/Text';
 import { BasicProps } from 'quarks/interpolations/basic';
 
 import { CSSProps } from 'theme/getAppTheme';
@@ -20,6 +26,11 @@ type CarouselProps = BasicProps & {
   interval?: number;
 };
 
+const StyledArrow = styled(SmallArrow)`
+  position: relative;
+  left: -10px;
+`;
+
 const Carousel: FC<CarouselProps> = ({ children, autoPlay, interval, ...props }) => (
   <Container
     css={css`
@@ -33,6 +44,18 @@ const Carousel: FC<CarouselProps> = ({ children, autoPlay, interval, ...props })
     `}
     {...props}
   >
+    <Flex justifyContent="flex-end" marginX="auto" marginBottom={32} width="100%" lg={{ width: '80%' }}>
+      <Text
+        textStyle="xl"
+        fontSize={24}
+        fontWeight="light"
+        transform="rotate(-40deg)"
+        textColor={{ light: 'gray-900', dark: 'gray-500' }}
+      >
+        swipe!
+      </Text>
+      <StyledArrow fill={colorParser('primary-500')} width={140} />
+    </Flex>
     <Slider
       autoPlay={autoPlay}
       interval={interval && interval * 1000}
@@ -41,6 +64,10 @@ const Carousel: FC<CarouselProps> = ({ children, autoPlay, interval, ...props })
       showThumbs={false}
       transitionTime={800}
       infiniteLoop
+      stopOnHover
+      emulateTouch
+      preventMovementUntilSwipeScrollTolerance
+      swipeScrollTolerance={50}
       {...props}
     >
       {children}

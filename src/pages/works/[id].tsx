@@ -1,9 +1,9 @@
-import { useMediaQuery } from '@mui/material';
+// import { useMediaQuery } from '@mui/material';
 import { works } from 'data/data';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 
 // Quarks
-import { media } from 'atoms/breakpoints/breakpoints';
+// import { media } from 'atoms/breakpoints/breakpoints';
 
 import Container from 'quarks/Container';
 import { LargeCircle, SmallCircle } from 'quarks/DesignElements';
@@ -15,7 +15,7 @@ import Paragraph from 'quarks/Paragraph';
 
 // Components
 import Carousel from 'components/Carousel/Carousel';
-import Masonry from 'components/Masonry/Masonry';
+// import Masonry from 'components/Masonry/Masonry';
 import TechStack from 'components/TechStack/TechStack';
 import SmallCard, { SmallCardProps } from 'components/cards/SmallCard/SmallCard';
 
@@ -44,7 +44,7 @@ const Work = ({
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [isDark] = useDarkMode();
 
-  const isNotMobile = useMediaQuery(media.md);
+  // const isNotMobile = useMediaQuery(media.md);
 
   return (
     <Container
@@ -118,20 +118,17 @@ const Work = ({
           </Flex>
         )}
       </Container>
-      <Container as="main" maxWidth="1440px" paddingX={16} contain="layout" marginX="auto" lg={{ paddingX: 32 }}>
-        {gallery &&
-          (isNotMobile ? (
-            <Masonry>{gallery}</Masonry>
-          ) : (
-            <Carousel autoPlay interval={6}>
-              {gallery.map((image: { url: string; alt?: string; width: number; height: number }) => (
-                <Grid placeItems="center" key={image.url}>
-                  <Image src={image.url} width={image.width} height={image.height} alt={image.alt ? image.alt : ''} />
-                </Grid>
-              ))}
-            </Carousel>
-          ))}
-      </Container>
+      {gallery && (
+        <Container as="main" maxWidth="1440px" paddingX={16} contain="layout" marginX="auto" lg={{ paddingX: 32 }}>
+          <Carousel autoPlay interval={6} paddingY={48}>
+            {gallery.map((image: { url: string; alt?: string; width: number; height: number }) => (
+              <Grid placeItems="center" key={image.url}>
+                <Image src={image.url} width={image.width} height={image.height} alt={image.alt ? image.alt : ''} />
+              </Grid>
+            ))}
+          </Carousel>
+        </Container>
+      )}
       <Container maxWidth="1100px" paddingX={16} lg={{ marginX: 'auto', paddingX: 32 }}>
         {/* content */}
       </Container>
