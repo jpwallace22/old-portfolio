@@ -24,8 +24,8 @@ type MasonryProps = BasicProps & {
 
 const Masonry: FC<MasonryProps> = ({ children, ...props }) => {
   const breakpointColumnsObj = {
-    default: 3,
-    1100: 3,
+    default: 4,
+    1270: 3,
     920: 2,
   };
 

@@ -117,6 +117,16 @@ const Work = ({
             ))}
           </Flex>
         )}
+      </Container>
+      <Container
+        as="main"
+        maxWidth="1440px"
+        paddingY={32}
+        paddingX={16}
+        contain="layout"
+        marginX="auto"
+        lg={{ paddingX: 32, paddingY: 64 }}
+      >
         {isNotMobile ? (
           <Masonry marginY={48}>{gallery}</Masonry>
         ) : (
@@ -128,6 +138,9 @@ const Work = ({
             ))}
           </Carousel>
         )}
+      </Container>
+      <Container maxWidth="1100px" paddingX={16} lg={{ marginX: 'auto', paddingX: 32 }}>
+        {/* content */}
       </Container>
     </Container>
   );
