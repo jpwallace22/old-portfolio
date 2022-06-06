@@ -119,17 +119,18 @@ const Work = ({
         )}
       </Container>
       <Container as="main" maxWidth="1440px" paddingX={16} contain="layout" marginX="auto" lg={{ paddingX: 32 }}>
-        {isNotMobile && gallery ? (
-          <Masonry>{gallery}</Masonry>
-        ) : (
-          <Carousel autoPlay interval={6}>
-            {gallery.map((image: { url: string; alt?: string; width: number; height: number }) => (
-              <Grid placeItems="center" key={image.url}>
-                <Image src={image.url} width={image.width} height={image.height} alt={image.alt ? image.alt : ''} />
-              </Grid>
-            ))}
-          </Carousel>
-        )}
+        {gallery &&
+          (isNotMobile ? (
+            <Masonry>{gallery}</Masonry>
+          ) : (
+            <Carousel autoPlay interval={6}>
+              {gallery.map((image: { url: string; alt?: string; width: number; height: number }) => (
+                <Grid placeItems="center" key={image.url}>
+                  <Image src={image.url} width={image.width} height={image.height} alt={image.alt ? image.alt : ''} />
+                </Grid>
+              ))}
+            </Carousel>
+          ))}
       </Container>
       <Container maxWidth="1100px" paddingX={16} lg={{ marginX: 'auto', paddingX: 32 }}>
         {/* content */}
