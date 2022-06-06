@@ -118,19 +118,11 @@ const Work = ({
           </Flex>
         )}
       </Container>
-      <Container
-        as="main"
-        maxWidth="1440px"
-        paddingY={32}
-        paddingX={16}
-        contain="layout"
-        marginX="auto"
-        lg={{ paddingX: 32, paddingY: 64 }}
-      >
-        {isNotMobile ? (
-          <Masonry marginY={48}>{gallery}</Masonry>
+      <Container as="main" maxWidth="1440px" paddingX={16} contain="layout" marginX="auto" lg={{ paddingX: 32 }}>
+        {isNotMobile && gallery ? (
+          <Masonry>{gallery}</Masonry>
         ) : (
-          <Carousel marginY={48} autoPlay interval={6}>
+          <Carousel autoPlay interval={6}>
             {gallery.map((image: { url: string; alt?: string; width: number; height: number }) => (
               <Grid placeItems="center" key={image.url}>
                 <Image src={image.url} width={image.width} height={image.height} alt={image.alt ? image.alt : ''} />
