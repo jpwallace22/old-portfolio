@@ -1,16 +1,21 @@
+import { useMediaQuery } from '@mui/material';
 import { works } from 'data/data';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
-import Masonry from 'react-masonry-css';
 
 // Quarks
+import { media } from 'atoms/breakpoints/breakpoints';
+
 import Container from 'quarks/Container';
 import { LargeCircle, SmallCircle } from 'quarks/DesignElements';
 import Flex from 'quarks/Flex';
+import Grid from 'quarks/Grid';
 import Heading from 'quarks/Heading';
 import Image from 'quarks/Image';
 import Paragraph from 'quarks/Paragraph';
 
 // Components
+import Carousel from 'components/Carousel/Carousel';
+import Masonry from 'components/Masonry/Masonry';
 import TechStack from 'components/TechStack/TechStack';
 import SmallCard, { SmallCardProps } from 'components/cards/SmallCard/SmallCard';
 
@@ -35,9 +40,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 const Work = ({
-  data: { title, subTitle, bannerImage, techStack, intro, ctas },
+  data: { title, subTitle, bannerImage, techStack, intro, ctas, gallery },
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [isDark] = useDarkMode();
+
+  const isNotMobile = useMediaQuery(media.md);
 
   return (
     <Container
@@ -110,9 +117,17 @@ const Work = ({
             ))}
           </Flex>
         )}
-        <Masonry breakpointCols={3} className="my-masonry-grid" columnClassName="my-masonry-grid_column">
-          {/* array of JSX items */}
-        </Masonry>
+        {isNotMobile ? (
+          <Masonry marginY={48}>{gallery}</Masonry>
+        ) : (
+          <Carousel marginY={48} autoPlay interval={6}>
+            {gallery.map((image: { url: string; alt?: string; width: number; height: number }) => (
+              <Grid placeItems="center" key={image.url}>
+                <Image src={image.url} width={image.width} height={image.height} alt={image.alt ? image.alt : ''} />
+              </Grid>
+            ))}
+          </Carousel>
+        )}
       </Container>
     </Container>
   );

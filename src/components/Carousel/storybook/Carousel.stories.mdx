@@ -1,0 +1,21 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import Carousel from 'components/Carousel/Carousel';
+import * as stories from 'components/Carousel/storybook/Carousel.stories.tsx';
+
+<Meta title="Components/Carousel" component={Carousel} argTypes={{}} />
+
+# Carousel
+
+## Usage
+
+Carousel is a wrapper that takes its children and creates a Carousel with them. By default, `autoPlay` is off and the
+`interval` is 6 seconds between transitions when on.
+
+<Canvas>
+  <Story name="Carousel" story={stories.CarouselStory} />
+</Canvas>
+
+### Props
+
+<ArgsTable story="Carousel" />

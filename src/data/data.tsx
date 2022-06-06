@@ -71,6 +71,39 @@ export const works = [
         url: 'https://better-mind.vercel.app/',
       },
     ],
+    gallery: [
+      {
+        url: '/images/bettermind-2.webp',
+        width: 300,
+        height: 300,
+      },
+      {
+        url: '/images/bettermind-3.png',
+        width: 821,
+        height: 715,
+      },
+      {
+        url: '/images/bettermind-4.png',
+        width: 731,
+        height: 921,
+      },
+      {
+        url: '/images/bettermind-5.png',
+
+        width: 1393,
+        height: 1181,
+      },
+      {
+        url: '/images/bettermind-6.png',
+        width: 1382,
+        height: 1204,
+      },
+      {
+        url: '/images/bettermind-1.webp',
+        width: 700,
+        height: 650,
+      },
+    ],
   },
   {
     id: 'skilljumper',

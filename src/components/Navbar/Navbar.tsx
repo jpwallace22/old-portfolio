@@ -76,6 +76,7 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
                 right: '0',
                 marginX: 'auto',
                 width: '88%',
+                maxWidth: '1100px',
               }
             : undefined
         }
