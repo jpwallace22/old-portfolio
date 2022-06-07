@@ -6,7 +6,7 @@ import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 // import { media } from 'atoms/breakpoints/breakpoints';
 
 import Container from 'quarks/Container';
-import { LargeCircle, SmallCircle } from 'quarks/DesignElements';
+import { Dots, LargeCircle, SmallCircle } from 'quarks/DesignElements';
 import Flex from 'quarks/Flex';
 import Grid from 'quarks/Grid';
 import Heading from 'quarks/Heading';
@@ -29,18 +29,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: false };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const currentPiece = works.filter(work => work.id.toString() === params?.id);
-
-  return {
-    props: {
-      data: currentPiece[0],
-    },
-  };
-};
-
 const Work = ({
-  data: { title, subTitle, bannerImage, techStack, intro, ctas, gallery },
+  data: { title, subTitle, bannerImage, techStack, intro, ctas, gallery, takeAways },
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [isDark] = useDarkMode();
 
@@ -118,6 +108,7 @@ const Work = ({
           </Flex>
         )}
       </Container>
+      <Dots position="absolute" transform="rotate(45deg)" top="1000px" left="-270px" md={{ left: '-400px' }} />
       {gallery && (
         <Container as="main" maxWidth="1440px" paddingX={16} contain="layout" marginX="auto" lg={{ paddingX: 32 }}>
           <Carousel autoPlay interval={6} paddingY={48}>
@@ -130,10 +121,27 @@ const Work = ({
         </Container>
       )}
       <Container maxWidth="1100px" paddingX={16} lg={{ marginX: 'auto', paddingX: 32 }}>
-        {/* content */}
+        {takeAways && (
+          <Container as="section" marginY={48}>
+            <Heading as="h3">{takeAways}</Heading>
+            {intro.body.map((copy: string, i: number) => (
+              <Paragraph key={`intro-${i + 1}`}>{copy}</Paragraph>
+            ))}
+          </Container>
+        )}
       </Container>
     </Container>
   );
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const currentPiece = works.filter(work => work.id.toString() === params?.id);
+
+  return {
+    props: {
+      data: currentPiece[0],
+    },
+  };
 };
 
 export default Work;
