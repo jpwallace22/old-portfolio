@@ -120,7 +120,7 @@ export const font = {
     md: {
       fontFamily: secondaryFont,
       fontSize: fontSize[36],
-      lineHeight: lineHeight[38],
+      lineHeight: lineHeight[32],
       fontWeight: fontWeight.black,
       letterSpacing: letterSpacing.neg4,
       font() {

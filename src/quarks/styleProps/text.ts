@@ -1,10 +1,9 @@
 import { css } from 'styled-components';
 
-import { gradient } from 'atoms/colors/colors';
+import { GradientStyles, gradient } from 'atoms/colors/colors';
 import { font } from 'atoms/typography/typography';
 
 type TextStyles = keyof typeof font.text;
-type GradientStyles = keyof typeof gradient;
 
 const textCSS = {
   /**

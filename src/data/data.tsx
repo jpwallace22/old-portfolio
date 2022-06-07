@@ -44,11 +44,12 @@ export const works = [
   {
     id: 'bettermind',
     title: 'Better Mind',
+    url: 'https://www.justinwallace.dev/works/bettermind',
     subTitle: 'Counseling Collective',
     bannerImage: {
-      src: '/images/bettermind-1.webp',
+      src: '/images/bettermind/bettermind-1.webp',
       alt: 'Woman sitting in the lotus position',
-      height: 600,
+      height: 650,
       width: 650,
     },
     techStack: ['next', 'react', 'javascript', 'css'],
@@ -73,9 +74,9 @@ export const works = [
     ],
     gallery: [
       {
-        url: '/images/bettermind/bettermind-1.webp',
-        height: 650,
-        width: 700,
+        url: '/images/bettermind/bettermind-5.png',
+        height: 1204,
+        width: 1382,
       },
       {
         url: '/images/bettermind/bettermind-2.webp',
@@ -93,9 +94,10 @@ export const works = [
         width: 731,
       },
       {
-        url: '/images/bettermind/bettermind-5.png',
-        height: 1204,
-        width: 1382,
+        url: '/images/bettermind/bettermind-1.webp',
+
+        height: 700,
+        width: 700,
       },
       {
         url: '/images/bettermind/bettermind-6.png',
@@ -107,5 +109,14 @@ export const works = [
   {
     id: 'skilljumper',
     title: 'Skill Jumper',
+    url: 'https://www.justinwallace.dev/works/skilljumper',
+    bannerImage: {
+      src: '/images/skilljumper/skilljumper-1.webp',
+      alt: 'Justin Wallace as a cartoon jumping up some skill blocks',
+      height: 650,
+      width: 650,
+    },
   },
 ];
+
+export type WorksType = typeof works;

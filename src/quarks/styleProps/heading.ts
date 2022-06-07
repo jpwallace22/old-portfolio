@@ -1,5 +1,6 @@
 import { css } from 'styled-components';
 
+import { GradientStyles, gradient } from 'atoms/colors/colors';
 import { font } from 'atoms/typography/typography';
 
 import typography from 'theme/typography';
@@ -26,6 +27,11 @@ const headingCSS = {
     line-height: ${typography.typography[value].lineHeight};
     letter-spacing: ${typography.typography[value].letterSpacing};
     font-weight: ${typography.typography[value].fontWeight};
+  `,
+  gradient: (value: GradientStyles) => css`
+    background: ${gradient[value]};
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   `,
 };
 

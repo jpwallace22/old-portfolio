@@ -62,6 +62,8 @@ export const gradient = {
   purpleBottom: 'linear-gradient(180deg, rgba(0,113,115,1) 0%, rgba(64,54,122,1) 100%)',
 } as const;
 
+export type GradientStyles = keyof typeof gradient;
+
 export type ColorObject = typeof color;
 
 type GetColorOptions<T> = {

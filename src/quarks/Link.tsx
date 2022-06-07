@@ -6,7 +6,6 @@ import { BasicProps, basic } from 'quarks/interpolations/basic';
 import parseUrl from 'utils/parseUrl';
 
 const StyledLink = styled.a`
-  cursor: pointer;
   ${basic}
 `;
 

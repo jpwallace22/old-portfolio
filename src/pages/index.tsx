@@ -1,26 +1,21 @@
+import { works } from 'data/data';
+
 // Assets
 import dots from 'assets/images/dots.webp';
 
 // Quarks
 import Container from 'quarks/Container';
 import { LargeCircle, SmallCircle } from 'quarks/DesignElements';
+import Heading from 'quarks/Heading';
 import Image from 'quarks/Image';
 
 // Components
+import AlternatingSwitchbacks from 'components/AlternatingSwitchbacks/AlternatingSwitchbacks';
 import Hero from 'components/Hero/Hero';
 
 const index = () => (
-  <>
-    <Container
-      as="main"
-      height="calc(90vh - 70px)"
-      contain="layout"
-      position="relative"
-      maxWidth="1440px"
-      marginX="auto"
-      paddingX={16}
-      lg={{ paddingX: 32 }}
-    >
+  <Container as="main" maxWidth="1440px" marginX="auto" paddingX={16} lg={{ paddingX: 32 }}>
+    <Container as="section" height="90vh" contain="layout" position="relative">
       <LargeCircle position="absolute" right="40%" bottom="50%" zIndex={-1} lg={{ right: '50%' }} />
       <Image
         src={dots}
@@ -36,6 +31,10 @@ const index = () => (
       <SmallCircle position="absolute" left="80%" top="10%" zIndex={-1} lg={{ left: '75%' }} />
       <Hero position="absolute" top="5%" left="2%" lg={{ top: '40%' }} />
     </Container>
-  </>
+    <Heading as="h3" textStyle="md" marginBottom={64} textAlign="center" lg={{ textStyle: 'lg' }}>
+      works
+    </Heading>
+    <AlternatingSwitchbacks works={works} />
+  </Container>
 );
 export default index;
