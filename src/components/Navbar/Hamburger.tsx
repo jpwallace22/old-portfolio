@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler, SetStateAction } from 'react';
+import { FC, MouseEventHandler, MutableRefObject, SetStateAction, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 // Quarks
@@ -12,17 +12,45 @@ type HamburgerProps = BasicProps & {
   onClick?: MouseEventHandler<HTMLDivElement>;
   setActive: (value: SetStateAction<boolean>) => void;
   active: boolean;
+  className?: string;
+  navRef: MutableRefObject<HTMLDivElement | null>;
 };
 
-const Hamburger: FC<HamburgerProps> = ({ setActive, active, ...props }) => (
-  <Container {...props}>
-    <button className={active ? 'active burger-button' : 'burger-button'} onClick={() => setActive(!active)}>
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </Container>
-);
+const NoClickSpan = styled.span`
+  pointer-events: none;
+`;
+
+const Hamburger: FC<HamburgerProps> = ({ setActive, active, navRef, ...props }) => {
+  const burgerRef = useRef<HTMLButtonElement | null>(null);
+
+  const handleClickOutside = (e: MouseEvent) => {
+    if (!navRef?.current?.contains(e?.target as Node) && e?.target !== burgerRef?.current) {
+      setActive(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside, true);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside, true);
+    };
+  });
+
+  return (
+    <Container {...props}>
+      <button
+        className={active ? 'active burger-button' : 'burger-button'}
+        ref={burgerRef}
+        onClick={() => setActive(!active)}
+      >
+        <NoClickSpan></NoClickSpan>
+        <NoClickSpan></NoClickSpan>
+        <NoClickSpan></NoClickSpan>
+      </button>
+    </Container>
+  );
+};
 
 // https://codepen.io/nxworld/pen/RPLLbm
 const StyledHamburger = styled(Hamburger)`

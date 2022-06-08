@@ -43,7 +43,7 @@ export const home = {};
 export const works = [
   {
     id: 'bettermind',
-    title: 'Better Mind',
+    title: 'BetterMind',
     url: 'https://www.justinwallace.dev/works/bettermind',
     subTitle: 'Counseling Collective',
     bannerImage: {
@@ -56,8 +56,8 @@ export const works = [
     intro: {
       heading: 'A Static NextJS site',
       body: [
-        'I was tasked with creating a static website for a mental health organization called BetterMind. This was a ground up project to include all branding, logo creation, web design, development, media, and copy. This is 100% my work, and was a solo project. ',
-        'I chose to work with NextJS on this project because of its SSG capabilities. Since this site was all static, I had no need to make use of any SSR. I learned a lot on this (my first Next project) and had a LOT of fun with it.',
+        'I was tasked with creating a static website for a mental health organization called BetterMind. This was a ground up project to include all branding, logo creation, web design, development, media, and copy. I had 5 weeks to complete and present the project, and had to do it solo. ',
+        "I chose to work with NextJS on this project because of its SSG capabilities. Since this site was all static, I had didn't have to trouble myself with SSR or querying a CMS. This was my first dip into NextJS. I learned a ton from this and had a LOT of fun.",
       ],
     },
     ctas: [

@@ -45,5 +45,5 @@ export const LargeCircle: FC<BasicProps> = ({ ...props }) => {
 };
 
 export const Dots: FC<Omit<CustomImageProps, 'width' | 'height' | 'alt' | 'src'>> = ({ ...props }) => (
-  <Image {...props} src={dots} width="650px" height="650px" alt="" zIndex={-1} />
+  <Image {...props} src={dots} width={650} height={650} alt="" zIndex={-1} />
 );

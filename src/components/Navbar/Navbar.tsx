@@ -1,6 +1,7 @@
 import { useMediaQuery } from '@mui/material';
-import { FC, ReactNode, useState } from 'react';
+import { FC, ReactNode, useRef, useState } from 'react';
 import { BsLightbulbFill as LightBulb, BsFillLightbulbOffFill as LightBulbOff } from 'react-icons/bs';
+import { useSwipeable } from 'react-swipeable';
 import { css } from 'styled-components';
 
 // Assets
@@ -46,10 +47,16 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
   const [isDark, setIsDark] = useDarkMode();
   const isDesktop = useMediaQuery(media.lg);
 
-  const slideTransition = '.5s right ease';
+  const swipeHandler = useSwipeable({
+    onSwipedLeft: () => setActive(false),
+  });
 
-  const [{ url: home }] = links.filter(link => link.text === 'home');
-  const navLinks = links.filter(link => link.text !== 'home');
+  const mobileNav = useRef<HTMLDivElement | null>(null);
+
+  const refPassthrough = (el: HTMLDivElement) => {
+    swipeHandler.ref(el);
+    mobileNav.current = el;
+  };
 
   const LightSwitch = (size: number) =>
     isDark ? (
@@ -57,6 +64,11 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
     ) : (
       <LightBulbOff size={size} onClick={() => setIsDark(!isDark)} />
     );
+
+  const slideTransition = '.5s right ease';
+
+  const [{ url: home }] = links.filter(link => link.text === 'home');
+  const navLinks = links.filter(link => link.text !== 'home');
 
   return (
     <Container backdropFilter="sm" position="sticky" top="0px" zIndex={999}>
@@ -86,6 +98,8 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
       >
         {!isDesktop && (
           <Hamburger
+            navRef={mobileNav}
+            className={active ? 'close-menu' : undefined}
             position="relative"
             right={active ? '-70%' : '0'}
             transition={slideTransition}
@@ -98,6 +112,8 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
           <LogoMark width={45} cursor="pointer" />
         </Link>
         <Flex
+          {...swipeHandler}
+          ref={refPassthrough}
           position="absolute"
           height="100vh"
           width="90%"
@@ -159,10 +175,17 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
                   height="100px"
                   alignItems="center"
                   justifyContent="center"
-                  hover={{
-                    backgroundColor: isDesktop ? 'transparent' : 'purple-700',
-                    textColor: isDesktop ? 'primary-500' : 'inherit',
-                  }}
+                  hover={
+                    isDark
+                      ? {
+                          backgroundColor: isDesktop ? 'transparent' : 'purple-700',
+                          textColor: isDesktop ? 'primary-500' : 'inherit',
+                        }
+                      : {
+                          backgroundColor: isDesktop ? 'transparent' : 'primary-600',
+                          textColor: isDesktop ? 'primary-500' : 'common-white',
+                        }
+                  }
                   cursor="pointer"
                   lg={{ height: 'inherit' }}
                 >
