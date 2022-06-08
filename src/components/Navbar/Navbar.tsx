@@ -4,6 +4,7 @@ import { BsLightbulbFill as LightBulb, BsFillLightbulbOffFill as LightBulbOff } 
 import { css } from 'styled-components';
 
 // Assets
+import logoPath from 'assets/svg/logo-gradient.svg';
 import { ReactComponent as LogoMark } from 'assets/svg/logomark-grad.svg';
 
 // Quarks
@@ -12,8 +13,9 @@ import { media } from 'atoms/breakpoints/breakpoints';
 import Container from 'quarks/Container';
 import Flex from 'quarks/Flex';
 import Grid from 'quarks/Grid';
+import Image from 'quarks/Image';
 import Link from 'quarks/Link';
-import Logo from 'quarks/Logo';
+// import Logo from 'quarks/Logo';
 import Text from 'quarks/Text';
 import { BasicProps } from 'quarks/interpolations/basic';
 
@@ -127,7 +129,17 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
                 {LightSwitch(32)}
               </Grid>
               <Link href={home}>
-                <Logo maxWidth="200px" marginX="auto" marginTop={80} marginBottom={32} cursor="pointer" />
+                <Image
+                  src={logoPath}
+                  width={200}
+                  height={200}
+                  alt="logo"
+                  marginX="auto"
+                  marginTop={80}
+                  marginBottom={32}
+                  cursor="pointer"
+                />
+                {/* <Logo maxWidth="200px" marginX="auto" marginTop={80} marginBottom={32} cursor="pointer" /> */}
               </Link>
             </>
           )}
