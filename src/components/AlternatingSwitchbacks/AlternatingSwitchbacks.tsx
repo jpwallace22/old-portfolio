@@ -1,5 +1,9 @@
+import { useMediaQuery } from '@mui/material';
 import { WorksType } from 'data/data';
 import { FC } from 'react';
+
+// Atoms
+import { media } from 'atoms/breakpoints/breakpoints';
 
 // Quarks
 import Container from 'quarks/Container';
@@ -17,6 +21,7 @@ type AlternatingSwitchbacksProps = BasicProps & {
 
 const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({ works, ...props }) => {
   const [isDarkMode] = useDarkMode();
+  const isDesktop = useMediaQuery(media.lg);
 
   return (
     <Flex flexDirection="column" gap="64px" {...props}>
@@ -26,33 +31,40 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({ works, ...pro
         return (
           <Link href={work.url} key={work.id}>
             <Flex
+              paddingLeft={isEven ? 32 : 0}
+              paddingRight={isEven ? 0 : 32}
               justifyContent="flex-end"
               alignItems="center"
               flexDirection={isEven ? 'row-reverse' : 'row'}
               position="relative"
               cursor="pointer"
               className="switchback"
-              css={`
+              lg={{ paddingLeft: isEven ? 64 : 0, paddingRight: isEven ? 0 : 64 }}
+              css={
+                isDesktop
+                  ? `
                 :hover h4 {
-                  ${!isEven ? 'right: 30%' : 'left: 30%'};
-                  transform: scale(1.2);
+                  ${!isEven ? 'right: 200px' : 'left: 200px'};
+                  transform: scale(1.15);
                 }
                 :hover .image-wrapper {
                   transform: rotate(${isEven ? '5deg' : '-5deg'});
                 }
-              `}
+              `
+                  : undefined
+              }
             >
               <Heading
                 as="h4"
                 textAlign="center"
                 textStyle="lg"
                 position="absolute"
-                left={isEven ? '20%' : '0'}
-                right={isEven ? '0' : '20%'}
+                left={isEven ? '100px' : '0'}
+                right={isEven ? '0' : '100px'}
                 transition="all 1s ease"
                 zIndex={2}
                 textShadow={isDarkMode ? '5px 5px 10px #110e2d' : undefined}
-                lg={{ textStyle: 'xxl' }}
+                lg={{ textStyle: 'xl' }}
                 after={{
                   content: '',
                   position: 'absolute',
@@ -67,8 +79,8 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({ works, ...pro
               >
                 {work.title}
               </Heading>
-              <Container width="50%" className="image-wrapper" transition="all 1s ease">
-                <Image src={work.bannerImage.src} height={650} width={650} alt={work.bannerImage.alt} />
+              <Container width="40%" className="image-wrapper" transition="all 1s ease">
+                <Image src={work.bannerImage.src} height={550} width={550} alt={work.bannerImage.alt} />
               </Container>
             </Flex>
           </Link>

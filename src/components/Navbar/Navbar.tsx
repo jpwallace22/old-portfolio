@@ -46,7 +46,7 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
   const [isDark, setIsDark] = useDarkMode();
   const isDesktop = useMediaQuery(media.lg);
 
-  const slideTransition = '.7s right ease';
+  const slideTransition = '.5s right ease';
 
   const [{ url: home }] = links.filter(link => link.text === 'home');
   const navLinks = links.filter(link => link.text !== 'home');
@@ -63,7 +63,6 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
       <Flex
         as="nav"
         justifyContent="space-between"
-        // backdropFilter="sm"
         alignItems="center"
         paddingAll={16}
         after={
@@ -139,7 +138,6 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
                   marginBottom={32}
                   cursor="pointer"
                 />
-                {/* <Logo maxWidth="200px" marginX="auto" marginTop={80} marginBottom={32} cursor="pointer" /> */}
               </Link>
             </>
           )}
