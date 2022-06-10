@@ -1,0 +1,17 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import AboutMe from '../AboutMe';
+
+import * as stories from './AboutMe.stories.tsx';
+
+<Meta title="Components/AboutMe" component={AboutMe} argTypes={{}} />
+
+# AboutMe
+
+<Canvas>
+  <Story name="AboutMe" story={stories.AboutMeStory} />
+</Canvas>
+
+### Props
+
+<ArgsTable story="AboutMe" />

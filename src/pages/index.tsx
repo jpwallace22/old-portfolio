@@ -38,7 +38,7 @@ const index = () => (
       </Container>
       <Container as="section" position="relative" contain="layout">
         <LargeCircle position="absolute" left="50%" bottom="-500px" zIndex={-1} lg={{ bottom: '-200px' }} />
-        <Heading as="h3" textStyle="lg" marginBottom={64} lg={{ textStyle: 'xxl' }}>
+        <Heading as="h3" textStyle="lg" marginBottom={64} lg={{ textStyle: 'xl' }}>
           Some Works
         </Heading>
         <AlternatingSwitchbacks works={works} />
