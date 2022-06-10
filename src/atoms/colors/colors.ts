@@ -77,6 +77,8 @@ type GetColorList<T> = {
     ? keyof T[P]
     : never}`;
 }[keyof T];
+type GetGradientList<T extends string> = `gradient-${T}`;
+export type GradientList = GetGradientList<GradientStyles>;
 
 export type ColorList = GetColorList<ColorObject> | 'transparent' | 'initial' | 'inherit';
 export type ColorDefinition = keyof ColorObject;
@@ -98,17 +100,17 @@ export type GetColorDefinition = ColorList | LightAndDark;
 export const getColor = (palette: DefaultTheme['palette'], colors: GetColorDefinition) => {
   try {
     const standardOptions = ['transparent', 'initial', 'inherit'];
-
     if (typeof colors === 'string' && standardOptions.includes(colors)) {
       return colors;
     }
+
     const [colorKey, colorValue] =
       typeof colors === 'string' ? (colors.split('-') as ColorArray) : (colors[palette.mode].split('-') as ColorArray);
     const subPalette = palette[colorKey];
 
     return 'white' in subPalette ? subPalette[colorValue as Common] : subPalette[colorValue as NumValues];
   } catch (error) {
-    console.error(error);
+    console.error(error, colors);
   }
 };
 
@@ -121,5 +123,10 @@ export const colorParser = (colorString: ColorList) => {
 
   return colorKey === 'common' ? color[colorKey][colorValue as Common] : color[colorKey][colorValue as NumValues];
 };
+
+export const parseBackgroundGradient = (value: string) =>
+  Object.keys(gradient).includes(value.split('-')[1])
+    ? gradient[value.split('-')[1] as GradientStyles]
+    : `url(${value})`;
 
 export default color;

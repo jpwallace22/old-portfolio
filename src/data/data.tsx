@@ -38,8 +38,6 @@ export const navbar = {
   ],
 };
 
-export const home = {};
-
 export const works = [
   {
     id: 'bettermind',
@@ -95,7 +93,6 @@ export const works = [
       },
       {
         url: '/images/bettermind/bettermind-1.webp',
-
         height: 700,
         width: 700,
       },
@@ -118,5 +115,25 @@ export const works = [
     },
   },
 ];
+
+const aboutMe = {
+  heading: 'A bit about me',
+  image: {
+    url: '/images/headshot.webp',
+    height: 700,
+    width: 700,
+    alt: '',
+  },
+  bio: [
+    'I am a 14 year Navy veteran that decided to follow my dreams of becoming a web designer, only to find out that I ACTUALLY wanted to be a developer!',
+    'Halfway through my journey as a web designer I pivoted over to engineering and have never looked back. Typescript development is what truly motivates me. Whether it be React or Node, I have a absolutely love writing clean, readable, scalable code.',
+    'I currently live in sunny San Diego with my amazing wife and perfect little dog. Feel free to connect!',
+  ],
+};
+
+export const home = {
+  aboutMe,
+  works,
+};
 
 export type WorksType = typeof works;

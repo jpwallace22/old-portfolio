@@ -21,7 +21,7 @@ const flexCSS = {
     flex-wrap: ${value};
   `,
   /**
-   * Element's `flex-wrap` value. Accepts `nowrap`, `wrap`, or `wrap-reverse`
+   * The flex-direction CSS property sets how flex items are placed in the flex container defining the main axis and the direction (normal or reversed). row | row-reverse | column | column-reverse
    */
   flexDirection: (value: Properties['flexDirection']) => css`
     flex-direction: ${value};

@@ -34,7 +34,7 @@ const Work = ({
   return (
     <>
       <Head>
-        <title>Justin Wallace - {title}</title>
+        <title>Justin Wallace | {title}</title>
       </Head>
       <Container
         as="main"

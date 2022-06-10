@@ -70,7 +70,7 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({ works, ...pro
                   position: 'absolute',
                   top: '150%',
                   height: '5px',
-                  backgroundColor: 'purple-500',
+                  backgroundImage: isEven ? 'gradient-purpleRight' : 'gradient-purpleLeft',
                   left: isEven ? '15%' : 0,
                   right: isEven ? 0 : '15%',
                   marginX: 'auto',

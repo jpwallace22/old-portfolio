@@ -2,7 +2,7 @@ import { Properties } from 'csstype';
 import { DefaultTheme, css } from 'styled-components';
 
 import blur, { BlurSizes } from 'atoms/blurs/blurs';
-import { GetColorDefinition, getColor } from 'atoms/colors/colors';
+import { GetColorDefinition, GradientList, getColor, parseBackgroundGradient } from 'atoms/colors/colors';
 import { ShadowDefinition, parseShadow } from 'atoms/shadows/shadows';
 import { ContainerValues } from 'atoms/spacing/containers';
 import { MarginDefinition, PaddingDefinition, margin, padding } from 'atoms/spacing/spacing';
@@ -183,8 +183,9 @@ const basicCSS = {
   /**
    * Element's `background-image`. Accepts a URL.
    */
-  backgroundImage: (value: string) => css`
-    background-image: url(${value});
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  backgroundImage: (value: GradientList | (string & {})) => css`
+    background-image: ${parseBackgroundGradient(value)};
   `,
   /**
    * Element's `background-position` value.
