@@ -3,7 +3,7 @@ import { FC } from 'react';
 import styled, { css } from 'styled-components';
 
 // Assets
-import { ReactComponent as Arrow } from 'assets/svg/hand-drawn-arrow.svg';
+import { ReactComponent as Arrow } from 'assets/svg/drawn-arrow.svg';
 
 // Atoms
 import { media } from 'atoms/breakpoints/breakpoints';
@@ -36,7 +36,27 @@ const Hero: FC<BasicProps> = ({ ...props }) => {
         sm={{ maxWidth: '580px' }}
         lg={{ maxWidth: '896px', paddingRight: 48 }}
       >
-        {isDesktop && <DrawnArrow position="absolute" bottom="110%" right="70%" />}
+        {isDesktop && (
+          <DrawnArrow
+            position="absolute"
+            bottom="110%"
+            width="400px"
+            right="70%"
+            css={`
+              .drawn-arrow_svg__clip-1 {
+                stroke-dasharray: 1000;
+                stroke-dashoffset: 1000;
+                animation: draw 1s ease-in forwards;
+                animation-delay: 2s;
+              }
+              @keyframes draw {
+                to {
+                  stroke-dashoffset: 0;
+                }
+              }
+            `}
+          />
+        )}
         <Logo
           width="128px"
           lg={{ float: 'left', marginBottom: 0 }}
