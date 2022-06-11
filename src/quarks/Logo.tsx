@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import Container from 'quarks/Container';
+import type { BasicProps } from 'quarks/interpolations/basic';
 
-const StyledLogo = ({ ...props }) => {
+const StyledLogo: FC<BasicProps> = ({ ...props }) => {
   const [angle, setAngle] = useState(0);
 
   const handleMouseMove = (e: MouseEvent) => {
@@ -10,10 +11,9 @@ const StyledLogo = ({ ...props }) => {
     const mouseY = e.pageY - document.body.offsetTop;
     const rect = document.querySelector('#logo-svg')?.getBoundingClientRect();
     if (rect) {
-      const midx = rect.left + (rect.right - rect.left) / 2;
-      const midy = rect.top + (rect.bottom - rect.top) / 2;
-      const mouseAngle = Math.atan2(midy - mouseY, midx - mouseX);
-      const degree = (mouseAngle * 180) / Math.PI;
+      const midX = rect.left + (rect.right - rect.left) / 2;
+      const midY = rect.top + (rect.bottom - rect.top) / 2;
+      const degree = (Math.atan2(midY - mouseY, midX - mouseX) * 180) / Math.PI;
 
       return requestAnimationFrame(() => setAngle(degree));
     }

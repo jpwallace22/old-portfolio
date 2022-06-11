@@ -6,7 +6,7 @@ import dots from 'assets/images/dots.webp';
 
 // Quarks
 import Container from 'quarks/Container';
-import { LargeCircle, SmallCircle } from 'quarks/DesignElements';
+import { Dots, LargeCircle, SmallCircle } from 'quarks/DesignElements';
 import Heading from 'quarks/Heading';
 import Image from 'quarks/Image';
 
@@ -37,11 +37,13 @@ const index = () => (
         <SmallCircle position="absolute" left="80%" top="10%" zIndex={-1} lg={{ left: '75%' }} />
         <Hero position="absolute" top="5%" lg={{ top: '40%' }} />
       </Container>
-      <Container as="section" position="relative" contain="layout">
+      <Container as="section" position="relative" contain="layout" zIndex={1}>
         <Switchback {...home.aboutMe} />
+
+        <Dots position="absolute" bottom="0" left="45%" lg={{ top: '0' }} />
       </Container>
       <Container as="section" position="relative" contain="layout">
-        <LargeCircle position="absolute" left="50%" bottom="-500px" zIndex={-1} lg={{ bottom: '-200px' }} />
+        <LargeCircle position="absolute" left="80%" bottom="-500px" zIndex={-10} lg={{ bottom: '-200px' }} />
         <Heading as="h3" textStyle="lg" marginBottom={64} lg={{ textStyle: 'xl' }}>
           Some Works
         </Heading>
