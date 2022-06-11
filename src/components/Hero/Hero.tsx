@@ -41,7 +41,7 @@ const Hero: FC<BasicProps> = ({ ...props }) => {
           width="128px"
           lg={{ float: 'left', marginBottom: 0 }}
           marginRight={32}
-          marginTop={8}
+          paddingTop={8}
           marginBottom={16}
           css={css`
             ::after {
