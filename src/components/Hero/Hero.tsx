@@ -31,10 +31,10 @@ const Hero: FC<BasicProps> = ({ ...props }) => {
       <Container
         as="section"
         maxWidth="390px"
-        paddingAll={32}
         position="relative"
+        paddingRight={64}
         sm={{ maxWidth: '580px' }}
-        lg={{ maxWidth: '896px' }}
+        lg={{ maxWidth: '896px', paddingRight: 48 }}
       >
         {isDesktop && <DrawnArrow position="absolute" bottom="110%" right="70%" />}
         <Logo
