@@ -8,7 +8,6 @@ html {
 html,
 body,
 * {
-  font-family: ${props => props.theme.typography.fontFamily};
   box-sizing: border-box;
   margin-block-start: 0;
   margin-block-end: 0;

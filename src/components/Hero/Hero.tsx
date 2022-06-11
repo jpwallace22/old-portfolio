@@ -27,7 +27,7 @@ const Hero: FC<BasicProps> = ({ ...props }) => {
   const isDesktop = useMediaQuery(media.lg);
 
   return (
-    <Container {...props}>
+    <Container fontFamily="secondaryFont" {...props}>
       <Container
         as="section"
         maxWidth="390px"
@@ -81,7 +81,7 @@ const Hero: FC<BasicProps> = ({ ...props }) => {
           md={{ fontSize: 96, lineHeight: 72 }}
           lg={{ lineHeight: 56 }}
         >
-          Oh, hello there!{' '}
+          Oh, hello there!
           <Text fontSize={48} md={{ fontSize: 60 }}>
             👋🏼
           </Text>{' '}
@@ -106,13 +106,14 @@ const Hero: FC<BasicProps> = ({ ...props }) => {
           fontWeight={isDarkMode ? 'extraLight' : 'regular'}
           textColor={{ dark: 'gray-500', light: 'gray-900' }}
           position="absolute"
+          fontFamily="primaryFont"
           transform="rotate(-10deg)"
           right="16px"
-          bottom="-30px"
+          bottom="-40px"
           xs={{ fontSize: 24 }}
           sm={{ fontSize: 30, right: '32px' }}
-          md={{ fontSize: 36 }}
-          lg={{ bottom: '-10px' }}
+          md={{ fontSize: 36, bottom: '-60px' }}
+          lg={{ bottom: '-20px' }}
         >
           (Don&apos;t you just love alliteration?)
         </Text>

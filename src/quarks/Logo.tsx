@@ -1,34 +1,35 @@
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 
 import Container from 'quarks/Container';
 import type { BasicProps } from 'quarks/interpolations/basic';
 
 const StyledLogo: FC<BasicProps> = ({ ...props }) => {
-  const [angle, setAngle] = useState(0);
+  // const [angle, setAngle] = useState(0);
 
-  const handleMouseMove = (e: MouseEvent) => {
-    const mouseX = e.pageX - document.body.offsetLeft;
-    const mouseY = e.pageY - document.body.offsetTop;
-    const rect = document.querySelector('#logo-svg')?.getBoundingClientRect();
-    if (rect) {
-      const midX = rect.left + (rect.right - rect.left) / 2;
-      const midY = rect.top + (rect.bottom - rect.top) / 2;
-      const degree = (Math.atan2(midY - mouseY, midX - mouseX) * 180) / Math.PI;
+  // const handleMouseMove = (e: MouseEvent) => {
+  //   const mouseX = e.pageX - document.body.offsetLeft;
+  //   const mouseY = e.pageY - document.body.offsetTop;
+  //   const rect = document.querySelector('#logo-svg')?.getBoundingClientRect();
+  //   if (rect) {
+  //     const midX = rect.left + (rect.right - rect.left) / 2;
+  //     const midY = rect.top + (rect.bottom - rect.top) / 2;
+  //     const degree = (Math.atan2(midY - mouseY, midX - mouseX) * 180) / Math.PI;
 
-      return requestAnimationFrame(() => setAngle(degree));
-    }
-  };
+  //     return requestAnimationFrame(() => setAngle(degree));
+  //   }
+  // };
 
-  useEffect(() => {
-    document.body.addEventListener('mousemove', e => requestAnimationFrame(() => handleMouseMove(e)), false);
+  // useEffect(() => {
+  //   document.body.addEventListener('mousemove', e => requestAnimationFrame(() => handleMouseMove(e)), false);
 
-    return () => {
-      document.body.removeEventListener('mousemove', e => requestAnimationFrame(() => handleMouseMove(e)), false);
-    };
-  });
+  //   return () => {
+  //     document.body.removeEventListener('mousemove', e => requestAnimationFrame(() => handleMouseMove(e)), false);
+  //   };
+  // });
+  const size = '128px';
 
   return (
-    <Container width="128px" height="128px" {...props}>
+    <Container width={size} height={size} {...props}>
       <svg
         id="logo-svg"
         xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +39,7 @@ const StyledLogo: FC<BasicProps> = ({ ...props }) => {
         <defs>
           <style>{'.cls-1{fill:url(#linear-gradient);}'}</style>
           <linearGradient
-            gradientTransform={`rotate(${angle}, 30, 30)`}
+            // gradientTransform={`rotate(${angle}, 30, 30)`}
             id="linear-gradient"
             x1="-0.8"
             y1="-1.15"
