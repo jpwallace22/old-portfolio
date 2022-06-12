@@ -1,7 +1,7 @@
 import color from 'atoms/colors/colors';
 import shadow from 'atoms/shadows/shadows';
 import { padding } from 'atoms/spacing/spacing';
-import { fontWeight } from 'atoms/typography/typography';
+import { fontFamily, fontWeight } from 'atoms/typography/typography';
 
 declare module '@mui/material/Button' {
   interface ButtonPropsSizeOverrides {
@@ -12,13 +12,16 @@ declare module '@mui/material/Button' {
 
 const themeOverrides = {
   root: {
+    fontFamily: fontFamily.secondaryFont,
     minWidth: 0,
     textTransform: 'capitalize',
     fontWeight: fontWeight.black,
-    borderRadius: '8px',
+    borderRadius: '16px',
     fontSize: '0.875rem',
     paddingLeft: padding[16],
     paddingRight: padding[16],
+    paddingTop: 0,
+    paddingBottom: 2,
     boxShadow: shadow.xs,
   },
 };
@@ -43,7 +46,7 @@ const sizeVariants = [
     props: { size: 'medium' },
     style: {
       fontSize: '1rem',
-      lineHeight: '2',
+      lineHeight: '1.5',
       paddingLeft: padding[20],
       paddingRight: padding[20],
     },
@@ -76,7 +79,7 @@ export const lightButton = {
       {
         props: { variant: 'contained' },
         style: {
-          backgroundColor: color.primary[600],
+          backgroundColor: color.primary[500],
         },
       },
       {
@@ -89,7 +92,7 @@ export const lightButton = {
       {
         props: { variant: 'text' },
         style: {
-          color: color.primary[600],
+          color: color.primary[500],
         },
       },
     ],

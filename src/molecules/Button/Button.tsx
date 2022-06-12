@@ -93,4 +93,5 @@ Button.defaultProps = {
   width: 'fit-content',
   justifyContent: 'center',
   iconSize: 'fit-content',
+  fontSize: 24,
 };

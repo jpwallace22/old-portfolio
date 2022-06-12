@@ -22,17 +22,19 @@ import Switchback from 'components/Switchback/Switchback';
 const HeroLine = styled(Line)``;
 
 const Home = () => {
-  const [draw, setDraw] = useState(0);
+  const [drawHero, setDrawHero] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      const main = document.querySelector('.heroSection');
-      if (main) {
+      const heroSection = document.querySelector('.heroSection');
+      const aboutSection = document.querySelector('.aboutSection');
+
+      if (heroSection && aboutSection) {
         const scrollPercentage =
-          (main.scrollTop + document.documentElement.scrollTop) /
+          (heroSection.scrollTop + document.documentElement.scrollTop) /
           (document.documentElement.scrollHeight - document.documentElement.clientHeight);
 
-        setDraw(400 * scrollPercentage);
+        setDrawHero(400 * scrollPercentage);
       }
     };
 
@@ -84,7 +86,7 @@ const Home = () => {
               css={`
                 stroke-width: 1;
                 stroke-dasharray: 190;
-                stroke-dashoffset: ${190 - draw};
+                stroke-dashoffset: ${190 - drawHero};
               `}
             />
           </Container>
@@ -103,6 +105,7 @@ const Home = () => {
         <Container
           as="section"
           position="relative"
+          className="aboutSection"
           paddingBottom={64}
           contain="layout"
           zIndex={1}

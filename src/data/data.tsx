@@ -129,6 +129,14 @@ const aboutMe = {
     'Halfway through my journey as a web designer I pivoted over to engineering and have never looked back. Typescript development is what truly motivates me. Whether it be React or Node, I have a absolutely love writing clean, readable, scalable code.',
     'I currently live in sunny San Diego with my amazing wife and perfect little dog. Feel free to connect!',
   ],
+  cta1: {
+    url: 'mailto:hello@justinwallace.dev',
+    text: 'Contact',
+  },
+  cta2: {
+    url: 'https://www.github.com/jpwallace22',
+    text: 'Check My Repos',
+  },
 };
 
 export const home = {
