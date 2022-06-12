@@ -1,5 +1,6 @@
 import { useMediaQuery } from '@mui/material';
 import { WorksType } from 'data/data';
+import { motion } from 'framer-motion';
 import { FC } from 'react';
 
 // Atoms
@@ -24,66 +25,76 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({ works, ...pro
   const isDesktop = useMediaQuery(media.lg);
 
   return (
-    <Flex flexDirection="column" gap="64px" {...props}>
+    <Flex flexDirection="column" gap="32px" alignItems="center" {...props}>
       {works.map((work, i) => {
         const isEven = i % 2 === 0;
 
         return (
-          <Link href={work.url} key={work.id}>
-            <Flex
-              paddingLeft={isEven ? 32 : 0}
-              paddingRight={isEven ? 0 : 32}
-              justifyContent="flex-end"
-              alignItems="center"
-              flexDirection={isEven ? 'row-reverse' : 'row'}
-              position="relative"
-              cursor="pointer"
-              className="switchback"
-              lg={{ paddingLeft: isEven ? 64 : 0, paddingRight: isEven ? 0 : 64 }}
-              css={
-                isDesktop
-                  ? `
-                :hover h4 {
-                  ${!isEven ? 'right: 200px' : 'left: 200px'};
-                  transform: scale(1.15);
+          <motion.div
+            whileInView={{ x: 0, opacity: 1 }}
+            initial={{ x: isEven ? -100 : 100, opacity: 0 }}
+            transition={{ x: { type: 'spring', duration: 2, bounce: 0.6 }, opacity: { duration: 1 } }}
+            key={work.id}
+          >
+            <Link href={work.url}>
+              <Flex
+                gap="32px"
+                justifyContent="center"
+                textAlign={isEven ? 'left' : 'right'}
+                alignItems="center"
+                flexDirection={isEven ? 'row-reverse' : 'row'}
+                position="relative"
+                cursor="pointer"
+                lg={{ marginRight: isEven ? 80 : 0, marginLeft: isEven ? 0 : 80 }}
+                css={
+                  isDesktop
+                    ? `
+                  :hover h4 {
+                    transform: scale(1.15) translateX(${isEven ? '30px' : '-30px'});
+                  }
+                  :hover .image-wrapper {
+                    transform: rotate(${isEven ? '5deg' : '-5deg'});
+                  }
+                `
+                    : undefined
                 }
-                :hover .image-wrapper {
-                  transform: rotate(${isEven ? '5deg' : '-5deg'});
-                }
-              `
-                  : undefined
-              }
-            >
-              <Heading
-                as="h4"
-                textAlign="center"
-                textStyle="lg"
-                position="absolute"
-                left={isEven ? '100px' : '0'}
-                right={isEven ? '0' : '100px'}
-                transition="all 1s ease"
-                zIndex={2}
-                textShadow={isDarkMode ? '5px 5px 10px #110e2d' : undefined}
-                lg={{ textStyle: 'xl' }}
-                after={{
-                  content: '',
-                  position: 'absolute',
-                  top: '150%',
-                  height: '5px',
-                  backgroundImage: isEven ? 'gradient-purpleRight' : 'gradient-purpleLeft',
-                  left: isEven ? '15%' : 0,
-                  right: isEven ? 0 : '15%',
-                  marginX: 'auto',
-                  width: '30%',
-                }}
               >
-                {work.title}
-              </Heading>
-              <Container width="40%" className="image-wrapper" transition="all 1s ease">
-                <Image src={work.bannerImage.src} height={550} width={550} alt={work.bannerImage.alt} />
-              </Container>
-            </Flex>
-          </Link>
+                <Container width="50%">
+                  <Heading
+                    as="h4"
+                    textStyle="md"
+                    position="relative"
+                    transition="all 1s ease"
+                    zIndex={2}
+                    textShadow={isDarkMode ? '5px 5px 10px #110e2d' : undefined}
+                    lg={{ textStyle: 'lg' }}
+                    after={{
+                      content: '',
+                      position: 'absolute',
+                      top: '150%',
+                      height: '5px',
+                      backgroundImage: isEven ? 'gradient-purpleRight' : 'gradient-purpleLeft',
+                      left: isEven ? '15%' : 0,
+                      right: isEven ? 0 : '15%',
+                      marginX: 'auto',
+                      width: '80%',
+                    }}
+                  >
+                    {work.title}
+                  </Heading>
+                </Container>
+                <Container width="40%" className="image-wrapper" transition="all 1s ease">
+                  <Image
+                    src={work.bannerImage.src}
+                    height={500}
+                    width={500}
+                    alt={work.bannerImage.alt}
+                    marginX="auto"
+                  />
+                </Container>
+              </Flex>
+            </Link>
+          </motion.div>
         );
       })}
     </Flex>

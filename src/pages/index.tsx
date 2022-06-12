@@ -13,8 +13,10 @@ import Container from 'quarks/Container';
 import { Dots, LargeCircle, SmallCircle } from 'quarks/DesignElements';
 import Heading from 'quarks/Heading';
 import Image from 'quarks/Image';
+import Paragraph from 'quarks/Paragraph';
 
-// Components
+import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
+
 import AlternatingSwitchbacks from 'components/AlternatingSwitchbacks/AlternatingSwitchbacks';
 import Hero from 'components/Hero/Hero';
 import Switchback from 'components/Switchback/Switchback';
@@ -105,7 +107,7 @@ const Home = () => {
           </motion.div>
         </Container>
 
-        <motion.div whileInView={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 100 }} transition={{ duration: 1 }}>
+        <StandardFadeIn>
           <Container
             as="section"
             position="relative"
@@ -118,13 +120,20 @@ const Home = () => {
             <Switchback {...home.aboutMe} />
             <Dots position="absolute" bottom="0" left="45%" lg={{ top: '110px', left: '50%' }} />
           </Container>
-        </motion.div>
+        </StandardFadeIn>
 
         <Container as="section" position="relative" contain="layout" paddingY={64}>
-          <LargeCircle position="absolute" left="80%" bottom="-500px" zIndex={-10} lg={{ bottom: '-200px' }} />
-          <Heading as="h3" textStyle="lg" marginBottom={32} lg={{ textStyle: 'xl' }}>
-            Some Works
-          </Heading>
+          <LargeCircle position="absolute" left="-900px" bottom="-500px" zIndex={-10} lg={{ bottom: '-200px' }} />
+          <StandardFadeIn>
+            <Heading as="h3" textStyle="lg" marginBottom={24} lg={{ textStyle: 'xl' }}>
+              Some Works
+            </Heading>
+            <Paragraph maxWidth="730px">
+              A couple of projects that show my progression over the years. From jQuery to Node (and plenty of others in
+              between) I feel these works highlight my thought process and how I am always try to make the most out of
+              whatever tool I have.{' '}
+            </Paragraph>
+          </StandardFadeIn>
           <AlternatingSwitchbacks works={home.works} />
         </Container>
       </Container>
