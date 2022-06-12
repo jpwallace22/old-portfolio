@@ -115,6 +115,7 @@ const Home = () => {
             paddingBottom={64}
             contain="layout"
             zIndex={1}
+            id="about"
             lg={{ paddingY: 64, paddingBottom: 80 }}
           >
             <Switchback {...home.aboutMe} />
@@ -122,7 +123,7 @@ const Home = () => {
           </Container>
         </StandardFadeIn>
 
-        <Container as="section" position="relative" contain="layout" paddingY={64}>
+        <Container id="works" as="section" position="relative" contain="layout" paddingY={64}>
           <LargeCircle position="absolute" left="-900px" bottom="-500px" zIndex={-10} lg={{ bottom: '-200px' }} />
           <StandardFadeIn>
             <Heading as="h3" textStyle="lg" marginBottom={24} lg={{ textStyle: 'xl' }}>

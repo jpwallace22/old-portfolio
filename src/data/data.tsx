@@ -4,15 +4,15 @@ export const navbar = {
   links: [
     {
       text: 'works',
-      url: 'https://www.justinwallace.dev/works',
+      url: 'https://www.justinwallace.dev/#works',
     },
     {
       text: 'about',
-      url: 'https://www.justinwallace.dev/about',
+      url: 'https://www.justinwallace.dev/#about',
     },
     {
       text: 'contact',
-      url: 'https://www.justinwallace.dev/contact',
+      url: 'https://www.justinwallace.dev/#contact',
     },
     {
       text: 'home',
