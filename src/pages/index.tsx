@@ -58,14 +58,16 @@ const Home = () => {
           lg={{ height: '100vh' }}
         >
           <motion.div
-            animate={{ y: 500, x: 0, opacity: [0, 0.5, 1] }}
-            transition={{ type: 'spring', stiffness: 100, duration: 0.6 }}
+            animate={{ y: 500, x: 0 }}
+            transition={{ y: { type: 'spring', stiffness: 100 }, duration: 1 }}
+            initial={{ opacity: 0.8 }}
           >
             <LargeCircle position="absolute" right="40%" bottom="50%" zIndex={-1} opacity={1} lg={{ right: '50%' }} />
           </motion.div>
           <motion.div
-            animate={{ scale: [1.5, 1], opacity: [0.1, 0.4, 1] }}
-            transition={{ ease: 'easeInOut', duration: 1.6 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ ease: 'easeInOut', duration: 2.2 }}
+            initial={{ opacity: 0, scale: 2 }}
           >
             <Image
               src={dots}
@@ -92,8 +94,9 @@ const Home = () => {
           </Container>
 
           <motion.div
-            animate={{ y: 60, x: -20, opacity: [0, 0.8, 1] }}
-            transition={{ type: 'spring', stiffness: 300, duration: 0.5 }}
+            animate={{ y: 60, x: -20, opacity: 1 }}
+            transition={{ x: { type: 'spring', stiffness: 300 }, y: { type: 'spring', stiffness: 300 }, duration: 1.5 }}
+            initial={{ opacity: 0, x: -400 }}
           >
             <SmallCircle position="absolute" left="80%" top="10%" zIndex={-1} lg={{ left: '75%' }} />
           </motion.div>
@@ -102,18 +105,20 @@ const Home = () => {
           </motion.div>
         </Container>
 
-        <Container
-          as="section"
-          position="relative"
-          className="aboutSection"
-          paddingBottom={64}
-          contain="layout"
-          zIndex={1}
-          lg={{ paddingY: 64, paddingBottom: 80 }}
-        >
-          <Switchback {...home.aboutMe} />
-          <Dots position="absolute" bottom="0" left="45%" lg={{ top: '110px', left: '50%' }} />
-        </Container>
+        <motion.div whileInView={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 100 }} transition={{ duration: 1 }}>
+          <Container
+            as="section"
+            position="relative"
+            className="aboutSection"
+            paddingBottom={64}
+            contain="layout"
+            zIndex={1}
+            lg={{ paddingY: 64, paddingBottom: 80 }}
+          >
+            <Switchback {...home.aboutMe} />
+            <Dots position="absolute" bottom="0" left="45%" lg={{ top: '110px', left: '50%' }} />
+          </Container>
+        </motion.div>
 
         <Container as="section" position="relative" contain="layout" paddingY={64}>
           <LargeCircle position="absolute" left="80%" bottom="-500px" zIndex={-10} lg={{ bottom: '-200px' }} />
