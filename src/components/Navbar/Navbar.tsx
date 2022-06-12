@@ -16,7 +16,6 @@ import Flex from 'quarks/Flex';
 import Grid from 'quarks/Grid';
 import Image from 'quarks/Image';
 import Link from 'quarks/Link';
-// import Logo from 'quarks/Logo';
 import Text from 'quarks/Text';
 import { BasicProps } from 'quarks/interpolations/basic';
 
@@ -25,6 +24,8 @@ import Socials from 'molecules/Socials/Socials';
 
 // Components
 import Hamburger from 'components/Navbar/Hamburger';
+
+import { underlineOnHover } from 'utils/css';
 
 import useDarkMode from 'contexts/ThemeProvider';
 
@@ -175,21 +176,27 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
                   height="100px"
                   alignItems="center"
                   justifyContent="center"
+                  onClick={() => setActive(false)}
                   hover={
                     isDark
                       ? {
                           backgroundColor: isDesktop ? 'transparent' : 'purple-700',
-                          textColor: isDesktop ? 'primary-500' : 'inherit',
                         }
                       : {
                           backgroundColor: isDesktop ? 'transparent' : 'primary-600',
-                          textColor: isDesktop ? 'primary-500' : 'common-white',
                         }
                   }
                   cursor="pointer"
                   lg={{ height: 'inherit' }}
                 >
-                  <Text textStyle="xl" fontSize={36} fontWeight="bold" lg={{ textStyle: 'xl', fontWeight: 'light' }}>
+                  <Text
+                    textStyle="xl"
+                    fontSize={36}
+                    position="relative"
+                    fontWeight="bold"
+                    lg={{ textStyle: 'xl', fontWeight: 'light' }}
+                    css={isDesktop ? underlineOnHover(-10) : undefined}
+                  >
                     {link.text}
                   </Text>
                 </Flex>
