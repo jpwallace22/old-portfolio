@@ -114,6 +114,39 @@ export const works = [
       width: 650,
     },
   },
+  {
+    id: 'reactworkflow',
+    title: 'Workflow CLI',
+    url: 'https://www.justinwallace.dev/works/reactworkflow',
+    bannerImage: {
+      src: '/images/reactworkflow/reactworkflow-1.webp',
+      alt: 'React logo floating over ther terminal',
+      height: 650,
+      width: 650,
+    },
+  },
+  {
+    id: 'thissite',
+    title: 'This Website',
+    url: 'https://www.justinwallace.dev/works/thissite',
+    bannerImage: {
+      src: '/images/thissite/thissite-1.svg',
+      alt: "Justin Wallace's personal logo",
+      height: 650,
+      width: 650,
+    },
+  },
+  {
+    id: 'eslint',
+    title: 'Absolute Only',
+    url: 'https://www.justinwallace.dev/works/eslint',
+    bannerImage: {
+      src: '/images/eslint/eslint-1.webp',
+      alt: 'ESlint Absolute only logo',
+      height: 650,
+      width: 650,
+    },
+  },
 ];
 
 const aboutMe = {

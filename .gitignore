@@ -13,6 +13,7 @@ storybook-static/
 
 .vscode
 .DS_Store
+/--assets
 
 !.storybook/public
 
