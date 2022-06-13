@@ -1,3 +1,4 @@
+import { useMediaQuery } from '@mui/material';
 import { home } from 'data/data';
 import { motion } from 'framer-motion';
 import Head from 'next/head';
@@ -6,9 +7,12 @@ import styled from 'styled-components';
 
 // Assets
 import dots from 'assets/images/dots.webp';
+import { ReactComponent as Line2 } from 'assets/svg/about-line.svg';
 import { ReactComponent as Line } from 'assets/svg/hero-line.svg';
 
 // Quarks
+import { media } from 'atoms/breakpoints/breakpoints';
+
 import Container from 'quarks/Container';
 import { Dots, LargeCircle, SmallCircle } from 'quarks/DesignElements';
 import Heading from 'quarks/Heading';
@@ -22,21 +26,30 @@ import Hero from 'components/Hero/Hero';
 import Switchback from 'components/Switchback/Switchback';
 
 const HeroLine = styled(Line)``;
+const AboutLine = styled(Line2)``;
 
 const Home = () => {
+  const isDesktop = useMediaQuery(media.lg);
   const [drawHero, setDrawHero] = useState(0);
+  const [drawAbout, setDrawAbout] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      const heroSection = document.querySelector('.heroSection');
-      const aboutSection = document.querySelector('.aboutSection');
+      const worksSection = document.getElementById('works')?.getBoundingClientRect();
+      const aboutSection = document.getElementById('about')?.getBoundingClientRect();
 
-      if (heroSection && aboutSection) {
-        const scrollPercentage =
-          (heroSection.scrollTop + document.documentElement.scrollTop) /
-          (document.documentElement.scrollHeight - document.documentElement.clientHeight);
+      if (worksSection && aboutSection) {
+        const heroPercentage =
+          document.documentElement.scrollTop / (aboutSection.top + document.documentElement.scrollTop);
 
-        setDrawHero(400 * scrollPercentage);
+        const aboutPercentage =
+          (document.documentElement.scrollTop - (aboutSection.top + document.documentElement.scrollTop)) /
+          (worksSection.top +
+            document.documentElement.scrollTop -
+            (aboutSection.top + document.documentElement.scrollTop));
+
+        setDrawHero(250 * heroPercentage);
+        setDrawAbout(aboutPercentage > 0 ? 800 * aboutPercentage : 0);
       }
     };
 
@@ -84,13 +97,20 @@ const Home = () => {
             />
           </motion.div>
 
-          <Container position="absolute" width="200px" right="30%" top="70%" lg={{ width: '350px' }}>
+          <Container
+            position="absolute"
+            width="200px"
+            right="30%"
+            top="70%"
+            md={{ right: '10%' }}
+            lg={{ width: '350px', right: '30%' }}
+          >
             <HeroLine
               id="hero-line"
               css={`
                 stroke-width: 1;
                 stroke-dasharray: 190;
-                stroke-dashoffset: ${190 - drawHero};
+                stroke-dashoffset: ${drawHero > 190 ? 0 : 190 - drawHero};
               `}
             />
           </Container>
@@ -111,7 +131,6 @@ const Home = () => {
           <Container
             as="section"
             position="relative"
-            className="aboutSection"
             paddingBottom={64}
             contain="layout"
             zIndex={1}
@@ -124,6 +143,18 @@ const Home = () => {
         </StandardFadeIn>
 
         <Container id="works" as="section" position="relative" contain="layout" paddingY={64}>
+          {isDesktop && (
+            <Container position="absolute" left="380px" top="-60px">
+              <AboutLine
+                width={400}
+                css={`
+                  stroke-dasharray: 640;
+                  stroke-dashoffset: ${640 - drawAbout};
+                  stroke-width: 7;
+                `}
+              />
+            </Container>
+          )}
           <LargeCircle position="absolute" left="-900px" bottom="-500px" zIndex={-10} lg={{ bottom: '-200px' }} />
           <StandardFadeIn>
             <Heading as="h3" textStyle="lg" marginBottom={24} lg={{ textStyle: 'xl' }}>
