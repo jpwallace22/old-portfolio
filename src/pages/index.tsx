@@ -10,17 +10,20 @@ import dots from 'assets/images/dots.webp';
 import { ReactComponent as Line2 } from 'assets/svg/about-line.svg';
 import { ReactComponent as Line } from 'assets/svg/hero-line.svg';
 
-// Quarks
+// Atoms
 import { media } from 'atoms/breakpoints/breakpoints';
 
+// Quarks
 import Container from 'quarks/Container';
 import { Dots, LargeCircle, SmallCircle } from 'quarks/DesignElements';
 import Heading from 'quarks/Heading';
 import Image from 'quarks/Image';
 import Paragraph from 'quarks/Paragraph';
 
+// Molecules
 import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 
+// Components
 import AlternatingSwitchbacks from 'components/AlternatingSwitchbacks/AlternatingSwitchbacks';
 import Hero from 'components/Hero/Hero';
 import Switchback from 'components/Switchback/Switchback';
@@ -43,9 +46,10 @@ const Home = () => {
           document.documentElement.scrollTop / (aboutSection.top + document.documentElement.scrollTop);
 
         const aboutPercentage =
-          (document.documentElement.scrollTop - (aboutSection.top + document.documentElement.scrollTop)) /
+          (document.documentElement.scrollTop - (aboutSection.top + document.documentElement.scrollTop) + 250) /
           (worksSection.top +
-            document.documentElement.scrollTop -
+            document.documentElement.scrollTop +
+            250 -
             (aboutSection.top + document.documentElement.scrollTop));
 
         setDrawHero(250 * heroPercentage);
@@ -149,13 +153,13 @@ const Home = () => {
                 width={400}
                 css={`
                   stroke-dasharray: 640;
-                  stroke-dashoffset: ${640 - drawAbout};
+                  stroke-dashoffset: ${drawAbout > 640 ? 0 : 640 - drawAbout};
                   stroke-width: 7;
                 `}
               />
             </Container>
           )}
-          <LargeCircle position="absolute" left="-900px" bottom="-500px" zIndex={-10} lg={{ bottom: '-200px' }} />
+          <LargeCircle position="absolute" left="-900px" top="90px" zIndex={-10} lg={{ bottom: '-200px' }} />
           <StandardFadeIn>
             <Heading as="h3" textStyle="lg" marginBottom={24} lg={{ textStyle: 'xl' }}>
               Some Works

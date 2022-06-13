@@ -34,6 +34,7 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({ works, ...pro
             whileInView={{ x: 0, opacity: 1 }}
             initial={{ x: isEven ? -100 : 100, opacity: 0 }}
             transition={{ x: { type: 'spring', duration: 2, bounce: 0.6 }, opacity: { duration: 1 } }}
+            viewport={{ once: true }}
             key={work.id}
           >
             <Link href={work.url}>
