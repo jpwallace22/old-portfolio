@@ -25,7 +25,7 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({ works, ...pro
   const isDesktop = useMediaQuery(media.lg);
 
   return (
-    <Flex flexDirection="column" gap="32px" alignItems="center" {...props}>
+    <Flex flexDirection="column" gap="48px" alignItems="center" {...props}>
       {works.map((work, i) => {
         const isEven = i % 2 === 0;
 

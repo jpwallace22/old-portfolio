@@ -1,5 +1,6 @@
 import { FC } from 'react';
 
+import jquery from 'assets/images/jquery.png';
 import next from 'assets/images/next.jpg';
 import styledComponents from 'assets/images/styledComponents.png';
 import css from 'assets/svg/css.svg';
@@ -15,11 +16,22 @@ import Image from 'quarks/Image';
 import { FlexProps } from 'quarks/interpolations/flex';
 
 type TechStackProps = FlexProps & {
-  icons: ('css' | 'javascript' | 'next' | 'node' | 'react' | 'storybook' | 'styledComponents' | 'typescript')[];
+  icons: (
+    | 'css'
+    | 'javascript'
+    | 'next'
+    | 'node'
+    | 'react'
+    | 'storybook'
+    | 'styledComponents'
+    | 'typescript'
+    | 'jquery'
+  )[];
   iconSize?: number;
 };
 
 const iconMap = {
+  jquery,
   css,
   javascript,
   next,

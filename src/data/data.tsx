@@ -72,40 +72,41 @@ export const works = [
     ],
     gallery: [
       {
-        url: '/images/bettermind/bettermind-5.png',
-        height: 1204,
-        width: 1382,
-      },
-      {
         url: '/images/bettermind/bettermind-2.webp',
-        height: 300,
-        width: 300,
+        height: 768,
+        width: 1366,
       },
       {
-        url: '/images/bettermind/bettermind-3.png',
-        height: 715,
-        width: 821,
+        url: '/images/bettermind/bettermind-3.webp',
+        height: 768,
+        width: 1366,
       },
       {
-        url: '/images/bettermind/bettermind-4.png',
-        height: 921,
-        width: 731,
+        url: '/images/bettermind/bettermind-4.webp',
+        height: 768,
+        width: 1366,
       },
       {
-        url: '/images/bettermind/bettermind-1.webp',
-        height: 700,
-        width: 700,
+        url: '/images/bettermind/bettermind-5.webp',
+        height: 768,
+        width: 1366,
       },
       {
-        url: '/images/bettermind/bettermind-6.png',
-        height: 1181,
-        width: 1393,
+        url: '/images/bettermind/bettermind-6.webp',
+        height: 768,
+        width: 1366,
+      },
+      {
+        url: '/images/bettermind/bettermind-7.webp',
+        height: 768,
+        width: 1366,
       },
     ],
   },
   {
     id: 'skilljumper',
     title: 'Skill Jumper',
+    subTitle: 'Can you reach the top?',
     url: 'https://www.justinwallace.dev/works/skilljumper',
     bannerImage: {
       src: '/images/skilljumper/skilljumper-1.webp',
@@ -113,6 +114,43 @@ export const works = [
       height: 650,
       width: 650,
     },
+    techStack: ['jquery', 'javascript', 'css'],
+    intro: {
+      heading: 'A jQuery video game',
+      body: [
+        "SkillJumper is what I can probably call the real beginning of my javascript development journey. I had written a lot of javascript beforehand, but this is when I first starting using git version control. (even if I still wasn't using github 🤦🏼‍♂️)",
+        'I really regret doing this project in jQuery. Though I learned a lot about DOM manipulation, event listeners, and timing events, I feel like I did it with a crutch and I could have learned so much more. But hindsight is 20/20 and this little game not only highlights some of my personal skills, but it pretty fun to play too!',
+      ],
+    },
+    ctas: [
+      {
+        icon: 'github',
+        title: 'Repository',
+        url: 'https://github.com/jpwallace22/skill-jumper',
+      },
+      {
+        icon: 'browser',
+        title: 'Check it out',
+        url: 'https://skill-jumper.netlify.app/',
+      },
+    ],
+    gallery: [
+      {
+        url: '/images/skilljumper/skilljumper-2.webp',
+        height: 608,
+        width: 1080,
+      },
+      {
+        url: '/images/skilljumper/skilljumper-3.webp',
+        height: 608,
+        width: 1080,
+      },
+      {
+        url: '/images/skilljumper/skilljumper-4.webp',
+        height: 608,
+        width: 1080,
+      },
+    ],
   },
   {
     id: 'reactworkflow',
@@ -124,6 +162,58 @@ export const works = [
       height: 650,
       width: 650,
     },
+    techStack: ['next', 'react', 'javascript', 'css'],
+    intro: {
+      heading: 'A Static NextJS site',
+      body: [
+        'I was tasked with creating a static website for a mental health organization called BetterMind. This was a ground up project to include all branding, logo creation, web design, development, media, and copy. I had 5 weeks to complete and present the project, and had to do it solo. ',
+        "I chose to work with NextJS on this project because of its SSG capabilities. Since this site was all static, I had didn't have to trouble myself with SSR or querying a CMS. This was my first dip into NextJS. I learned a ton from this and had a LOT of fun.",
+      ],
+    },
+    ctas: [
+      {
+        icon: 'github',
+        title: 'Repository',
+        url: 'https://github.com/jpwallace22/BetterMind',
+      },
+      {
+        icon: 'browser',
+        title: 'Check it out',
+        url: 'https://better-mind.vercel.app/',
+      },
+    ],
+    gallery: [
+      {
+        url: '/images/bettermind/bettermind-2.webp',
+        height: 768,
+        width: 1366,
+      },
+      {
+        url: '/images/bettermind/bettermind-3.webp',
+        height: 768,
+        width: 1366,
+      },
+      {
+        url: '/images/bettermind/bettermind-4.webp',
+        height: 768,
+        width: 1366,
+      },
+      {
+        url: '/images/bettermind/bettermind-5.webp',
+        height: 768,
+        width: 1366,
+      },
+      {
+        url: '/images/bettermind/bettermind-6.webp',
+        height: 768,
+        width: 1366,
+      },
+      {
+        url: '/images/bettermind/bettermind-7.webp',
+        height: 768,
+        width: 1366,
+      },
+    ],
   },
   {
     id: 'thissite',
@@ -135,6 +225,58 @@ export const works = [
       height: 650,
       width: 650,
     },
+    techStack: ['next', 'react', 'javascript', 'css'],
+    intro: {
+      heading: 'A Static NextJS site',
+      body: [
+        'I was tasked with creating a static website for a mental health organization called BetterMind. This was a ground up project to include all branding, logo creation, web design, development, media, and copy. I had 5 weeks to complete and present the project, and had to do it solo. ',
+        "I chose to work with NextJS on this project because of its SSG capabilities. Since this site was all static, I had didn't have to trouble myself with SSR or querying a CMS. This was my first dip into NextJS. I learned a ton from this and had a LOT of fun.",
+      ],
+    },
+    ctas: [
+      {
+        icon: 'github',
+        title: 'Repository',
+        url: 'https://github.com/jpwallace22/BetterMind',
+      },
+      {
+        icon: 'browser',
+        title: 'Check it out',
+        url: 'https://better-mind.vercel.app/',
+      },
+    ],
+    gallery: [
+      {
+        url: '/images/bettermind/bettermind-2.webp',
+        height: 768,
+        width: 1366,
+      },
+      {
+        url: '/images/bettermind/bettermind-3.webp',
+        height: 768,
+        width: 1366,
+      },
+      {
+        url: '/images/bettermind/bettermind-4.webp',
+        height: 768,
+        width: 1366,
+      },
+      {
+        url: '/images/bettermind/bettermind-5.webp',
+        height: 768,
+        width: 1366,
+      },
+      {
+        url: '/images/bettermind/bettermind-6.webp',
+        height: 768,
+        width: 1366,
+      },
+      {
+        url: '/images/bettermind/bettermind-7.webp',
+        height: 768,
+        width: 1366,
+      },
+    ],
   },
   {
     id: 'eslint',
@@ -146,6 +288,58 @@ export const works = [
       height: 650,
       width: 650,
     },
+    techStack: ['next', 'react', 'javascript', 'css'],
+    intro: {
+      heading: 'A Static NextJS site',
+      body: [
+        'I was tasked with creating a static website for a mental health organization called BetterMind. This was a ground up project to include all branding, logo creation, web design, development, media, and copy. I had 5 weeks to complete and present the project, and had to do it solo. ',
+        "I chose to work with NextJS on this project because of its SSG capabilities. Since this site was all static, I had didn't have to trouble myself with SSR or querying a CMS. This was my first dip into NextJS. I learned a ton from this and had a LOT of fun.",
+      ],
+    },
+    ctas: [
+      {
+        icon: 'github',
+        title: 'Repository',
+        url: 'https://github.com/jpwallace22/BetterMind',
+      },
+      {
+        icon: 'browser',
+        title: 'Check it out',
+        url: 'https://better-mind.vercel.app/',
+      },
+    ],
+    gallery: [
+      {
+        url: '/images/bettermind/bettermind-2.webp',
+        height: 768,
+        width: 1366,
+      },
+      {
+        url: '/images/bettermind/bettermind-3.webp',
+        height: 768,
+        width: 1366,
+      },
+      {
+        url: '/images/bettermind/bettermind-4.webp',
+        height: 768,
+        width: 1366,
+      },
+      {
+        url: '/images/bettermind/bettermind-5.webp',
+        height: 768,
+        width: 1366,
+      },
+      {
+        url: '/images/bettermind/bettermind-6.webp',
+        height: 768,
+        width: 1366,
+      },
+      {
+        url: '/images/bettermind/bettermind-7.webp',
+        height: 768,
+        width: 1366,
+      },
+    ],
   },
 ];
 

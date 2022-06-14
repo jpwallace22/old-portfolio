@@ -1,4 +1,5 @@
 import { works } from 'data/data';
+import { motion } from 'framer-motion';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 
@@ -12,6 +13,8 @@ import Image from 'quarks/Image';
 import Paragraph from 'quarks/Paragraph';
 
 // Components
+import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
+
 import Carousel from 'components/Carousel/Carousel';
 import TechStack from 'components/TechStack/TechStack';
 import SmallCard, { SmallCardProps } from 'components/cards/SmallCard/SmallCard';
@@ -45,30 +48,39 @@ const Work = ({
         marginX="auto"
         lg={{ paddingX: 32, paddingY: 64 }}
       >
-        <LargeCircle position="absolute" right="20%" top="-800px" />
-        <Heading
-          as="h2"
-          textStyle="xxl"
-          fontSize={60}
-          marginBottom={12}
-          lineHeight={32}
-          sm={{ fontSize: 72, lineHeight: 56 }}
-          md={{ fontSize: 96, lineHeight: 72 }}
-          lg={{ lineHeight: 56 }}
+        <StandardFadeIn>
+          <LargeCircle position="absolute" right="20%" top="-800px" />
+        </StandardFadeIn>
+        <motion.div
+          whileInView={{ x: 0, opacity: 1 }}
+          initial={{ x: -100, opacity: 0 }}
+          transition={{ x: { type: 'spring', duration: 2, bounce: 0.6 }, opacity: { duration: 1 } }}
+          viewport={{ once: true }}
         >
-          {title}
-        </Heading>
-        {subTitle && (
           <Heading
-            as="h3"
-            fontFamily="primaryFont"
-            textStyle="md"
-            fontWeight={isDark ? 'light' : 'regular'}
-            textColor={{ light: 'gray-900', dark: 'gray-500' }}
+            as="h2"
+            textStyle="xxl"
+            fontSize={60}
+            marginBottom={12}
+            lineHeight={32}
+            sm={{ fontSize: 72, lineHeight: 56 }}
+            md={{ fontSize: 96, lineHeight: 72 }}
+            lg={{ lineHeight: 56 }}
           >
-            {subTitle}
+            {title}
           </Heading>
-        )}
+          {subTitle && (
+            <Heading
+              as="h3"
+              fontFamily="primaryFont"
+              textStyle="md"
+              fontWeight={isDark ? 'light' : 'regular'}
+              textColor={{ light: 'gray-900', dark: 'gray-500' }}
+            >
+              {subTitle}
+            </Heading>
+          )}
+        </motion.div>
         <Flex
           as="section"
           flexDirection="column"
@@ -92,12 +104,14 @@ const Work = ({
         <SmallCircle position="absolute" right="-400px" top="450px" opacity={0.3} />
         <Container maxWidth="1100px" paddingX={16} lg={{ marginX: 'auto', paddingX: 32 }}>
           {intro && (
-            <Container as="section" marginY={48}>
-              <Heading as="h3">{intro.heading}</Heading>
-              {intro.body.map((copy: string, i: number) => (
-                <Paragraph key={`intro-${i + 1}`}>{copy}</Paragraph>
-              ))}
-            </Container>
+            <StandardFadeIn>
+              <Container as="section" marginY={48}>
+                <Heading as="h3">{intro.heading}</Heading>
+                {intro.body.map((copy: string, i: number) => (
+                  <Paragraph key={`intro-${i + 1}`}>{copy}</Paragraph>
+                ))}
+              </Container>
+            </StandardFadeIn>
           )}
           {ctas && (
             <Flex justifyContent="center" gap="32px" marginY={48}>
