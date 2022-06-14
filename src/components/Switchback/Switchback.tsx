@@ -1,5 +1,5 @@
 import { useMediaQuery } from '@mui/material';
-import { FC } from 'react';
+import { FC, MouseEvent } from 'react';
 
 // Quarks
 import { media } from 'atoms/breakpoints/breakpoints';
@@ -21,18 +21,45 @@ type SwitchbackProps = FlexProps & {
   };
   reverse?: boolean;
   bio?: string[];
-  cta1: {
-    url: string;
-    text: string;
+  cta1?: {
+    url?: string;
+    text?: string;
   };
-  cta2: {
-    url: string;
-    text: string;
+  cta2?: {
+    url?: string;
+    text?: string;
   };
+  cta1Action?: (e?: MouseEvent<Element, globalThis.MouseEvent>) => void;
+  cta2Action?: (e?: MouseEvent<Element, globalThis.MouseEvent>) => void;
 };
 
-const Switchback: FC<SwitchbackProps> = ({ image, heading, reverse, bio, cta1, cta2, ...props }) => {
+const Switchback: FC<SwitchbackProps> = ({
+  image,
+  heading,
+  reverse,
+  bio,
+  cta1,
+  cta2,
+  cta1Action,
+  cta2Action,
+  ...props
+}) => {
   const isDesktop = useMediaQuery(media.lg);
+
+  const Buttons = () => (
+    <>
+      {cta1 && (
+        <Button variant="contained" size="large" href={cta1?.url} onClick={cta1Action}>
+          {cta1?.text}
+        </Button>
+      )}
+      {cta2 && (
+        <Button variant="outlined" size="large" href={cta2?.url} onClick={cta2Action}>
+          {cta2?.text}
+        </Button>
+      )}
+    </>
+  );
 
   return (
     <Flex
@@ -66,16 +93,7 @@ const Switchback: FC<SwitchbackProps> = ({ image, heading, reverse, bio, cta1, c
         {bio && bio.map(paragraph => <Paragraph key={paragraph.substring(0, 10)}>{paragraph}</Paragraph>)}
         {isDesktop && (cta1 || cta2) && (
           <Flex marginY={24} gap="24px" justifyContent="flex-start">
-            {cta1 && (
-              <Button variant="contained" size="large" href={cta1?.url}>
-                {cta1?.text}
-              </Button>
-            )}
-            {cta2 && (
-              <Button variant="outlined" size="large" href={cta2?.url}>
-                {cta2?.text}
-              </Button>
-            )}
+            <Buttons />
           </Flex>
         )}
       </Container>
@@ -83,8 +101,8 @@ const Switchback: FC<SwitchbackProps> = ({ image, heading, reverse, bio, cta1, c
         <Image
           maxWidth="70%"
           marginX="auto"
-          src={image?.url}
-          alt={image?.alt}
+          src={image.url}
+          alt={image.alt}
           width={500}
           height={500}
           lg={{ marginX: 0 }}
@@ -92,16 +110,7 @@ const Switchback: FC<SwitchbackProps> = ({ image, heading, reverse, bio, cta1, c
       )}
       {!isDesktop && (cta1 || cta2) && (
         <Flex marginY={24} gap="24px" justifyContent="center">
-          {cta1 && (
-            <Button variant="contained" size="large" href={cta1?.url}>
-              {cta1?.text}
-            </Button>
-          )}
-          {cta2 && (
-            <Button variant="outlined" size="large" href={cta2?.url}>
-              {cta2?.text}
-            </Button>
-          )}
+          <Buttons />
         </Flex>
       )}
     </Flex>

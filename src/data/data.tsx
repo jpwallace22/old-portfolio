@@ -163,7 +163,6 @@ const aboutMe = {
     'I currently live in sunny San Diego with my amazing wife and perfect little dog. Feel free to connect!',
   ],
   cta1: {
-    url: 'mailto:hello@justinwallace.dev',
     text: 'Contact',
   },
   cta2: {

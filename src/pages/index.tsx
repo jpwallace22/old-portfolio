@@ -2,6 +2,7 @@ import { useMediaQuery } from '@mui/material';
 import { home } from 'data/data';
 import { motion } from 'framer-motion';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
@@ -28,6 +29,8 @@ import AlternatingSwitchbacks from 'components/AlternatingSwitchbacks/Alternatin
 import Hero from 'components/Hero/Hero';
 import Switchback from 'components/Switchback/Switchback';
 
+import { emailObfuscator } from 'utils/functions';
+
 const HeroLine = styled(Line)``;
 const AboutLine = styled(Line2)``;
 
@@ -35,6 +38,7 @@ const Home = () => {
   const isDesktop = useMediaQuery(media.lg);
   const [drawHero, setDrawHero] = useState(0);
   const [drawAbout, setDrawAbout] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -112,7 +116,7 @@ const Home = () => {
             <HeroLine
               id="hero-line"
               css={`
-                stroke-width: 1;
+                stroke-width: ${isDesktop ? 1 : 1.75};
                 stroke-dasharray: 190;
                 stroke-dashoffset: ${drawHero > 190 ? 0 : 190 - drawHero};
               `}
@@ -141,7 +145,7 @@ const Home = () => {
             id="about"
             lg={{ paddingY: 64, paddingBottom: 80 }}
           >
-            <Switchback {...home.aboutMe} />
+            <Switchback cta1Action={() => emailObfuscator(router)} {...home.aboutMe} />
             <Dots position="absolute" bottom="0" left="45%" lg={{ top: '110px', left: '50%' }} />
           </Container>
         </StandardFadeIn>
@@ -167,7 +171,7 @@ const Home = () => {
             <Paragraph maxWidth="730px">
               A couple of projects that show my progression over the years. From jQuery to Node (and plenty of others in
               between) I feel these works highlight my thought process and how I am always try to make the most out of
-              whatever tool I have.{' '}
+              whatever tools I have.{' '}
             </Paragraph>
           </StandardFadeIn>
           <AlternatingSwitchbacks works={home.works} />
