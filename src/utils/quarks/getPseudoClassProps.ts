@@ -1,7 +1,6 @@
 import { DefaultTheme, ThemedStyledProps, css } from 'styled-components';
 
-import { DirectProps, ObjectCSS, getDirectProps } from 'quarks/quarkUtils/getDirectProps';
-
+import { DirectProps, ObjectCSS, getDirectProps } from 'utils/quarks/getDirectProps';
 import { objectKeys } from 'utils/typeUtils';
 
 export const pseudos = {

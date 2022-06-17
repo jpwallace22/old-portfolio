@@ -16,6 +16,7 @@ import Paragraph from 'quarks/Paragraph';
 import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 
 import Carousel from 'components/Carousel/Carousel';
+import Footer from 'components/Footer/Footer';
 import TechStack from 'components/TechStack/TechStack';
 import SmallCard, { SmallCardProps } from 'components/cards/SmallCard/SmallCard';
 
@@ -144,6 +145,7 @@ const Work = ({
           )}
         </Container>
       </Container>
+      <Footer size={40} />
     </>
   );
 };

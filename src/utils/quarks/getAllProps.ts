@@ -1,9 +1,9 @@
 import { DefaultTheme, ThemedStyledProps } from 'styled-components';
 
-import { DirectProps, ObjectCSS, getDirectProps } from 'quarks/quarkUtils/getDirectProps';
-import { PseudoClassProps, getPseudoClassProps } from 'quarks/quarkUtils/getPseudoClassProps';
-import { PseudoEleProps, getPseudoEleProps } from 'quarks/quarkUtils/getPseudoEleProps';
-import { ResponsiveProps, getResponsiveProps } from 'quarks/quarkUtils/getResponsiveProps';
+import { DirectProps, ObjectCSS, getDirectProps } from 'utils/quarks/getDirectProps';
+import { PseudoClassProps, getPseudoClassProps } from 'utils/quarks/getPseudoClassProps';
+import { PseudoEleProps, getPseudoEleProps } from 'utils/quarks/getPseudoEleProps';
+import { ResponsiveProps, getResponsiveProps } from 'utils/quarks/getResponsiveProps';
 
 export const getPropsFromObjectCSS = (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

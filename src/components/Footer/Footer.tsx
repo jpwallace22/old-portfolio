@@ -20,21 +20,26 @@ import Socials from 'molecules/Socials/Socials';
 import { underlineOnHover } from 'utils/css';
 import { emailObfuscator } from 'utils/functions';
 
-type FooterProps = BasicProps;
+type FooterProps = BasicProps & {
+  size?: number;
+};
 const date = new Date();
-const Footer: FC<FooterProps> = ({ ...props }) => {
+const Footer: FC<FooterProps> = ({ size = 100, ...props }) => {
   const router = useRouter();
+  const height = size - 20;
 
   return (
     <>
       <Grid
-        height="80vh"
+        height={height + 'vh'}
+        as="footer"
         backgroundColor={{ dark: 'purple-800', light: 'gray-100' }}
         position="relative"
         zIndex={1}
         placeItems="center"
-        lg={{ height: '90vh' }}
+        lg={{ height: height + 10 + 'vh' }}
         marginTop={32}
+        paddingTop={32}
         {...props}
       >
         <Flex gap="16px" flexDirection="column" lg={{ flexDirection: 'row', alignItems: 'center', gap: '32px' }}>
@@ -98,5 +103,3 @@ const Footer: FC<FooterProps> = ({ ...props }) => {
 };
 
 export default Footer;
-
-Footer.defaultProps = {};

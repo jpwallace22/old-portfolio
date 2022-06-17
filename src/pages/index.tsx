@@ -26,6 +26,7 @@ import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 
 // Components
 import AlternatingSwitchbacks from 'components/AlternatingSwitchbacks/AlternatingSwitchbacks';
+import Footer from 'components/Footer/Footer';
 import Hero from 'components/Hero/Hero';
 import Switchback from 'components/Switchback/Switchback';
 
@@ -177,6 +178,7 @@ const Home = () => {
           <AlternatingSwitchbacks works={home.works} />
         </Container>
       </Container>
+      <Footer />
     </>
   );
 };

@@ -5,10 +5,10 @@ import { breakpoints } from 'atoms/breakpoints/breakpoints';
 
 import Container from 'quarks/Container';
 import { BasicProps } from 'quarks/interpolations/basic';
-import { pseudos } from 'quarks/quarkUtils/getPseudoClassProps';
-import { pseudoElements } from 'quarks/quarkUtils/getPseudoEleProps';
 import basicCSS from 'quarks/styleProps/basic';
 
+import { pseudos } from 'utils/quarks/getPseudoClassProps';
+import { pseudoElements } from 'utils/quarks/getPseudoEleProps';
 import { objectEntries, valueof } from 'utils/typeUtils';
 
 type ModifiedBasicProps = Omit<BasicProps, 'height' | 'width' | 'objectPosition' | 'objectFit'>;

@@ -1,8 +1,9 @@
 import { css } from 'styled-components';
 
-import { GetAllPropTypes, getPropsFromObjectCSS } from 'quarks/quarkUtils/getAllProps';
 import basicCSS from 'quarks/styleProps/basic';
 import flexCSS from 'quarks/styleProps/flex';
+
+import { GetAllPropTypes, getPropsFromObjectCSS } from 'utils/quarks/getAllProps';
 
 const flexStyles = {
   ...flexCSS,

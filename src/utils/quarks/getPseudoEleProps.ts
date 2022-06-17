@@ -1,9 +1,9 @@
 import { Properties } from 'csstype';
 import { DefaultTheme, ThemedStyledProps, css } from 'styled-components';
 
-import { getDirectProps } from 'quarks/quarkUtils/getDirectProps';
 import allDirect from 'quarks/styleProps/allDirect';
 
+import { getDirectProps } from 'utils/quarks/getDirectProps';
 import { objectKeys } from 'utils/typeUtils';
 
 const validCSSContent = (value: string) => {
