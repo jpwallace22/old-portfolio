@@ -1,13 +1,5 @@
 # The portfolio of Justin Wallace
 
-## Running Storybook
-
-To run Storybook locally, simply run:
-
-```shell
-yarn storybook
-```
-
 ## Features
 
 1. **Atoms**: These are a code implementation of a design system. Values can be replaced easily and used across the
@@ -25,8 +17,5 @@ yarn storybook
 ## TODO
 
 - Add clearfix to basic quarks
-- ~~Add transparency to colorParser / useColor~~
-- Add pseudos to breakpoint interpolations
-- update storybook for new components
 - create datamap for socials
 - add shutter animation to TechStack

@@ -247,8 +247,8 @@ export const works = [
     intro: {
       heading: 'A large step up from BetterMind',
       body: [
-        "This portfolio site is more than just a website to see my work. It IS my work. This site is ready to be attached to any headless CMS (though I'm most familiar with Contentful) and launched. I didn't use a CMS simply because I am a developer. ",
-        "You might notice that the codebase for this site is pretty robust. That's because I plan on scaling and using this as a testing ground for future development ideas. ",
+        'This portfolio site is more than just a website to SEE my work. It IS my work, and I feel like it would be a disservice to not touch on the process of its creation.',
+        "You might notice that the codebase for this site is pretty robust. That's because I used a very unique way of styling, that, combined with the fact that the content is dynamically delivered, means this site is built to scale. ",
       ],
     },
     ctas: [
@@ -264,36 +264,9 @@ export const works = [
       },
     ],
     gallery: [
-      {
-        url: '/images/bettermind/bettermind-2.webp',
-        height: 768,
-        width: 1366,
-      },
-      {
-        url: '/images/bettermind/bettermind-3.webp',
-        height: 768,
-        width: 1366,
-      },
-      {
-        url: '/images/bettermind/bettermind-4.webp',
-        height: 768,
-        width: 1366,
-      },
-      {
-        url: '/images/bettermind/bettermind-5.webp',
-        height: 768,
-        width: 1366,
-      },
-      {
-        url: '/images/bettermind/bettermind-6.webp',
-        height: 768,
-        width: 1366,
-      },
-      {
-        url: '/images/bettermind/bettermind-7.webp',
-        height: 768,
-        width: 1366,
-      },
+      { url: '/images/thissite/thissite-2.webp', height: 900, width: 1386 },
+      { url: '/images/thissite/thissite-3.webp', height: 897, width: 1387 },
+      { url: '/images/thissite/thissite-4.webp', height: 897, width: 1387 },
     ],
   },
 ];
