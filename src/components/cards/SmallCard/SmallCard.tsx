@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { FaNpm } from 'react-icons/fa';
 import { FiGithub } from 'react-icons/fi';
 import { GoBrowser } from 'react-icons/go';
+import { SiStorybook } from 'react-icons/si';
 
 // Quarks
 import Grid from 'quarks/Grid';
@@ -19,6 +20,7 @@ const iconMap = {
   github: <FiGithub size={64} />,
   browser: <GoBrowser size={64} />,
   npm: <FaNpm size={64} />,
+  storyBook: <SiStorybook size={64} />,
 };
 
 const SmallCard: FC<SmallCardProps> = ({ icon, title, url, ...props }) => (

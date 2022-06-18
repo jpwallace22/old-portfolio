@@ -2,6 +2,8 @@ import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/do
 import { Fragment } from 'react';
 import { ServerStyleSheet } from 'styled-components';
 
+// console.log(ogImage);
+
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
@@ -28,7 +30,6 @@ class MyDocument extends Document {
       sheet.seal();
     }
   }
-
   render() {
     return (
       <Html>
@@ -46,6 +47,7 @@ class MyDocument extends Document {
           <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#5bbad5" />
           <meta name="msapplication-TileColor" content="#00aba9" />
           <meta name="theme-color" content="#ffffff" />
+          <meta property="og:image" content="assets/images/jwdev.webp" />
         </Head>
         <body>
           <Main />

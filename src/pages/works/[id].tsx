@@ -31,7 +31,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 const Work = ({
-  data: { title, subTitle, bannerImage, techStack, intro, ctas, gallery, takeAways },
+  data: { title, subTitle, bannerImage, techStack, intro, ctas, gallery, takeAways, autoplay = true },
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [isDark] = useDarkMode();
 
@@ -125,7 +125,7 @@ const Work = ({
         <Dots position="absolute" transform="rotate(45deg)" top="1000px" left="-270px" md={{ left: '-400px' }} />
         {gallery && (
           <Container as="main" maxWidth="1440px" paddingX={16} contain="layout" marginX="auto" lg={{ paddingX: 32 }}>
-            <Carousel autoPlay interval={6} paddingY={16}>
+            <Carousel autoPlay={autoplay} interval={6} paddingY={16}>
               {gallery.map((image: { url: string; alt?: string; width: number; height: number }) => (
                 <Grid placeItems="center" key={image.url}>
                   <Image src={image.url} width={image.width} height={image.height} alt={image.alt ? image.alt : ''} />

@@ -155,69 +155,52 @@ export const works = [
   {
     id: 'reactworkflow',
     title: 'Workflow CLI',
+    subTitle: 'For Productivity',
     url: 'https://www.justinwallace.dev/works/reactworkflow',
     bannerImage: {
       src: '/images/reactworkflow/reactworkflow-1.webp',
-      alt: 'React logo floating over ther terminal',
+      alt: 'React logo floating over the terminal',
       height: 650,
       width: 650,
     },
-    techStack: ['next', 'react', 'javascript', 'css'],
+    techStack: ['node', 'typescript'],
     intro: {
-      heading: 'A Static NextJS site',
+      heading: 'CLI Productivity Booster',
       body: [
-        'I was tasked with creating a static website for a mental health organization called BetterMind. This was a ground up project to include all branding, logo creation, web design, development, media, and copy. I had 5 weeks to complete and present the project, and had to do it solo. ',
-        "I chose to work with NextJS on this project because of its SSG capabilities. Since this site was all static, I had didn't have to trouble myself with SSR or querying a CMS. This was my first dip into NextJS. I learned a ton from this and had a LOT of fun.",
+        'When building out a lot of components I found myself spending WAY too much scaffolding out the basic structure of every component just so I could get it the point of rendering on screen. I absolutely hate wasting my time.',
+        'Workflow CLI at its current v1 stage is simply a recursive template generator used to create the basic layout of components needed for development. It uses a default path but can take a path option as well. I named it React Workflow CLI though because I plan to expand. ',
       ],
     },
     ctas: [
       {
         icon: 'github',
         title: 'Repository',
-        url: 'https://github.com/jpwallace22/BetterMind',
+        url: 'https://github.com/jpwallace22/react-workflow-cli',
       },
       {
-        icon: 'browser',
+        icon: 'npm',
         title: 'Check it out',
-        url: 'https://better-mind.vercel.app/',
+        url: 'https://www.npmjs.com/package/react-workflow-cli',
       },
     ],
+    autoplay: false,
     gallery: [
       {
-        url: '/images/bettermind/bettermind-2.webp',
-        height: 768,
-        width: 1366,
+        url: '/images/reactworkflow/reactworkflow-2.gif',
+        height: 659,
+        width: 1200,
       },
       {
-        url: '/images/bettermind/bettermind-3.webp',
-        height: 768,
-        width: 1366,
-      },
-      {
-        url: '/images/bettermind/bettermind-4.webp',
-        height: 768,
-        width: 1366,
-      },
-      {
-        url: '/images/bettermind/bettermind-5.webp',
-        height: 768,
-        width: 1366,
-      },
-      {
-        url: '/images/bettermind/bettermind-6.webp',
-        height: 768,
-        width: 1366,
-      },
-      {
-        url: '/images/bettermind/bettermind-7.webp',
-        height: 768,
-        width: 1366,
+        url: '/images/reactworkflow/reactworkflow-3.png',
+        height: 634,
+        width: 998,
       },
     ],
   },
   {
     id: 'thissite',
     title: 'This Website',
+    subTitle: 'So Meta',
     url: 'https://www.justinwallace.dev/works/thissite',
     bannerImage: {
       src: '/images/thissite/thissite-1.svg',
@@ -225,12 +208,12 @@ export const works = [
       height: 650,
       width: 650,
     },
-    techStack: ['next', 'react', 'javascript', 'css'],
+    techStack: ['next', 'react', 'typescript', 'styledComponents'],
     intro: {
-      heading: 'A Static NextJS site',
+      heading: 'A large step up from BetterMind',
       body: [
-        'I was tasked with creating a static website for a mental health organization called BetterMind. This was a ground up project to include all branding, logo creation, web design, development, media, and copy. I had 5 weeks to complete and present the project, and had to do it solo. ',
-        "I chose to work with NextJS on this project because of its SSG capabilities. Since this site was all static, I had didn't have to trouble myself with SSR or querying a CMS. This was my first dip into NextJS. I learned a ton from this and had a LOT of fun.",
+        "This portfolio site is more than just a website to see my work. It IS my work. This site is ready to be attached to any headless CMS (though I'm most familiar with Contentful) and launched. I didn't use a CMS simply because I am a developer. ",
+        "You might notice that the codebase for this site is pretty robust. That's because I plan on scaling and using this as a testing ground for future development ideas. I also took the time to build out a storybook so I can create independent components in the future (and to just show that I know how to do it) ",
       ],
     },
     ctas: [
@@ -240,8 +223,8 @@ export const works = [
         url: 'https://github.com/jpwallace22/BetterMind',
       },
       {
-        icon: 'browser',
-        title: 'Check it out',
+        icon: 'storyBook',
+        title: 'Storybook',
         url: 'https://better-mind.vercel.app/',
       },
     ],
