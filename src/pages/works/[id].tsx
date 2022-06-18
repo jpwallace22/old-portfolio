@@ -63,7 +63,7 @@ const Work = ({
             textStyle="xxl"
             fontSize={60}
             marginBottom={12}
-            lineHeight={32}
+            lineHeight={44}
             sm={{ fontSize: 72, lineHeight: 56 }}
             md={{ fontSize: 96, lineHeight: 72 }}
             lg={{ lineHeight: 56 }}
@@ -145,7 +145,7 @@ const Work = ({
           )}
         </Container>
       </Container>
-      <Footer size={40} />
+      <Footer size={50} />
     </>
   );
 };
