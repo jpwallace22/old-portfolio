@@ -16,7 +16,7 @@ import { underlineOnHover } from 'utils/css';
 const fourOhFour = () => (
   <>
     <Grid placeItems="center" height="50vh" fontSize={20} contain="content">
-      <Container width="340px" marginX="auto" position="relative">
+      <Container width="340px" marginX="auto" position="relative" top="-10%">
         <Paragraph textColor="gray-900">
           <em>// 404 page not found</em>
         </Paragraph>
