@@ -20,4 +20,4 @@ const getImageInfo = directoryPath => {
   return dataArray;
 };
 
-console.log(getImageInfo('./public/images/reactworkflow'));
+console.log(getImageInfo('./public/images/skilljumper'));

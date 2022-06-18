@@ -1,6 +1,12 @@
 import NextLink from 'next/link';
 
 const parseUrl = (href: string) => {
+  if (href === '') {
+    return {
+      as: 'div' as const,
+    };
+  }
+
   const domain = 'justinwallace.dev';
   const url = new URL(href);
   const isInternalLink = url.hostname === `www.${domain}` || url.hostname === domain;

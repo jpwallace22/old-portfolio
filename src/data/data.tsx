@@ -40,6 +40,46 @@ export const navbar = {
 
 export const works = [
   {
+    id: 'webstacks',
+    title: 'Webstacks UI Library',
+    url: 'https://www.justinwallace.dev/works/webstacks',
+    bannerImage: {
+      src: '/images/webstacks/webstacks-1.webp',
+      alt: 'ESlint Absolute only logo',
+      height: 650,
+      width: 650,
+    },
+    techStack: ['typescript', 'mui', 'styledComponents', 'storybook'],
+    intro: {
+      heading: 'Framework Agnostic Template Repository',
+      body: [
+        'While employed at Webstacks as a frontend engineer, I, along with two others, architected and developed a framework agnostic template repository/UI library. The library consists of all your basic UI elements, atomic design variables, and all supporting documentation for its use. ',
+        'The UI library leverages a customized version of MUI and Styled Components to make a prop based CSS system you can quickly style within your JSX. With the help of Typescript, it helps limit your choices for props and keeps all devs within the given style guidelines. ',
+      ],
+    },
+    ctas: [
+      {
+        icon: 'github',
+        title: 'Private repo',
+        disabled: true,
+      },
+      {
+        icon: 'browser',
+        title: 'Check it out',
+        url: 'https://webstacks-ui-library.netlify.app/',
+      },
+    ],
+    gallery: [
+      { url: '/images/webstacks/webstacks-2.gif', height: 426, width: 800 },
+      { url: '/images/webstacks/webstacks-3.gif', height: 426, width: 800 },
+      {
+        url: '/images/webstacks/webstacks-4.webp',
+        height: 427,
+        width: 800,
+      },
+    ],
+  },
+  {
     id: 'bettermind',
     title: 'BetterMind',
     url: 'https://www.justinwallace.dev/works/bettermind',
@@ -130,25 +170,20 @@ export const works = [
       },
       {
         icon: 'browser',
-        title: 'Check it out',
+        title: 'Play it',
         url: 'https://skill-jumper.netlify.app/',
       },
     ],
     gallery: [
       {
-        url: '/images/skilljumper/skilljumper-2.webp',
-        height: 608,
-        width: 1080,
+        url: '/images/skilljumper/skilljumper-2.gif',
+        height: 989,
+        width: 800,
       },
       {
         url: '/images/skilljumper/skilljumper-3.webp',
-        height: 608,
-        width: 1080,
-      },
-      {
-        url: '/images/skilljumper/skilljumper-4.webp',
-        height: 608,
-        width: 1080,
+        height: 997,
+        width: 806,
       },
     ],
   },
@@ -213,82 +248,19 @@ export const works = [
       heading: 'A large step up from BetterMind',
       body: [
         "This portfolio site is more than just a website to see my work. It IS my work. This site is ready to be attached to any headless CMS (though I'm most familiar with Contentful) and launched. I didn't use a CMS simply because I am a developer. ",
-        "You might notice that the codebase for this site is pretty robust. That's because I plan on scaling and using this as a testing ground for future development ideas. I also took the time to build out a storybook so I can create independent components in the future (and to just show that I know how to do it) ",
+        "You might notice that the codebase for this site is pretty robust. That's because I plan on scaling and using this as a testing ground for future development ideas. ",
       ],
     },
     ctas: [
       {
         icon: 'github',
         title: 'Repository',
-        url: 'https://github.com/jpwallace22/BetterMind',
-      },
-      {
-        icon: 'storyBook',
-        title: 'Storybook',
-        url: 'https://better-mind.vercel.app/',
-      },
-    ],
-    gallery: [
-      {
-        url: '/images/bettermind/bettermind-2.webp',
-        height: 768,
-        width: 1366,
-      },
-      {
-        url: '/images/bettermind/bettermind-3.webp',
-        height: 768,
-        width: 1366,
-      },
-      {
-        url: '/images/bettermind/bettermind-4.webp',
-        height: 768,
-        width: 1366,
-      },
-      {
-        url: '/images/bettermind/bettermind-5.webp',
-        height: 768,
-        width: 1366,
-      },
-      {
-        url: '/images/bettermind/bettermind-6.webp',
-        height: 768,
-        width: 1366,
-      },
-      {
-        url: '/images/bettermind/bettermind-7.webp',
-        height: 768,
-        width: 1366,
-      },
-    ],
-  },
-  {
-    id: 'eslint',
-    title: 'Absolute Only',
-    url: 'https://www.justinwallace.dev/works/eslint',
-    bannerImage: {
-      src: '/images/eslint/eslint-1.webp',
-      alt: 'ESlint Absolute only logo',
-      height: 650,
-      width: 650,
-    },
-    techStack: ['next', 'react', 'javascript', 'css'],
-    intro: {
-      heading: 'A Static NextJS site',
-      body: [
-        'I was tasked with creating a static website for a mental health organization called BetterMind. This was a ground up project to include all branding, logo creation, web design, development, media, and copy. I had 5 weeks to complete and present the project, and had to do it solo. ',
-        "I chose to work with NextJS on this project because of its SSG capabilities. Since this site was all static, I had didn't have to trouble myself with SSR or querying a CMS. This was my first dip into NextJS. I learned a ton from this and had a LOT of fun.",
-      ],
-    },
-    ctas: [
-      {
-        icon: 'github',
-        title: 'Repository',
-        url: 'https://github.com/jpwallace22/BetterMind',
+        url: 'https://github.com/jpwallace22/portfolio',
       },
       {
         icon: 'browser',
-        title: 'Check it out',
-        url: 'https://better-mind.vercel.app/',
+        title: 'This is it',
+        disabled: true,
       },
     ],
     gallery: [

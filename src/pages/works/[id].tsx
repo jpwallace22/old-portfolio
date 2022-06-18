@@ -117,7 +117,7 @@ const Work = ({
           {ctas && (
             <Flex justifyContent="center" gap="32px" marginY={48}>
               {ctas.map((cta: SmallCardProps) => (
-                <SmallCard key={cta.title} icon={cta.icon} title={cta.title} url={cta.url} />
+                <SmallCard key={cta.title} {...cta} />
               ))}
             </Flex>
           )}

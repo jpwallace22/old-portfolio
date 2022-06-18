@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
 import jquery from 'assets/images/jquery.png';
+import mui from 'assets/images/mui.png';
 import next from 'assets/images/next.jpg';
 import styledComponents from 'assets/images/styledComponents.png';
 import css from 'assets/svg/css.svg';
@@ -26,6 +27,7 @@ type TechStackProps = FlexProps & {
     | 'styledComponents'
     | 'typescript'
     | 'jquery'
+    | 'mui'
   )[];
   iconSize?: number;
 };
@@ -40,6 +42,7 @@ const iconMap = {
   storybook,
   styledComponents,
   typescript,
+  mui,
 };
 
 const TechStack: FC<TechStackProps> = ({ icons, ...props }) => (
