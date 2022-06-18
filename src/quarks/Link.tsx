@@ -1,3 +1,4 @@
+import NextLink from 'next/link';
 import { AnchorHTMLAttributes, FC, ReactNode } from 'react';
 import styled from 'styled-components';
 
@@ -9,7 +10,9 @@ const StyledLink = styled.a`
   ${basic}
 `;
 
-interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement>, BasicProps {
+type Link = typeof NextLink;
+
+interface LinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'as'>, BasicProps {
   /**
    *Takes a full url string. Internal links will be parsed as a `<Link>` and external links will be an `<a>` that safely opens in a new tab.
    */
@@ -18,6 +21,7 @@ interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement>, BasicProps 
    * The string or element within the link.
    */
   children: ReactNode;
+  as?: 'a' | 'div' | Link;
 }
 
 const Link: FC<LinkProps> = ({ children, href, ...props }) => (
