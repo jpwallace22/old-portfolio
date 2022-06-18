@@ -1,18 +1,16 @@
 {
-  "name": "webstacks",
-  "description": "Webstacks UI Library",
+  "name": "justin-wallace-portfolio",
+  "description": "The official portfolio of Justin Wallace",
   "version": "1.0",
   "license": "UNLICENSED",
   "author": {
-    "name": "Webstacks",
-    "url": "https://www.webstacks.com/"
+    "name": "Justin Wallace",
+    "url": "https://www.justinwallace.dev/"
   },
   "scripts": {
     "dev": "next dev -p 3030",
     "build": "next build",
     "start": "next start -p 3090",
-    "storybook": "start-storybook -p 3060",
-    "build-storybook": "build-storybook",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx,mdx}\" --fix",
     "format": "prettier --write  --loglevel silent \"src/**/*.{js,jsx,ts,tsx,mdx}\"",
     "prettier-watch": "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}",
@@ -40,15 +38,6 @@
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@next/eslint-plugin-next": "^12.1.6",
-    "@storybook/addon-essentials": "^6.4.22",
-    "@storybook/addons": "^6.4.22",
-    "@storybook/api": "^6.4.22",
-    "@storybook/builder-webpack5": "^6.4.22",
-    "@storybook/components": "^6.4.22",
-    "@storybook/core-events": "^6.4.22",
-    "@storybook/manager-webpack5": "^6.4.22",
-    "@storybook/react": "^6.4.22",
-    "@storybook/theming": "6.4.22",
     "@svgr/webpack": "^5.0.0",
     "@types/material-ui": "^0.21.8",
     "@types/node": "^12.0.0",
@@ -74,8 +63,6 @@
     "husky": "^4.0.0",
     "lint-staged": "^12.4.1",
     "prettier": "^2.3.2",
-    "react-docgen-typescript-plugin": "^1.0.1",
-    "storybook-dark-mode": "^1.0.8",
     "typescript": "^4.0.3",
     "url-loader": "^4.1.1",
     "uuid": "^8.3.2",
