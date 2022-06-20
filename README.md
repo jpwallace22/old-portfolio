@@ -17,5 +17,5 @@
 ## TODO
 
 - Add clearfix to basic quarks
-- create datamap for socials
+- create data-map for socials
 - add shutter animation to TechStack
