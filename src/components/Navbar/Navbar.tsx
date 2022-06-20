@@ -154,6 +154,7 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
                   marginTop={80}
                   marginBottom={32}
                   cursor="pointer"
+                  onClick={() => setActive(false)}
                 />
               </Link>
             </>
