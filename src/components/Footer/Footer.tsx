@@ -26,23 +26,28 @@ type FooterProps = BasicProps & {
 const date = new Date();
 const Footer: FC<FooterProps> = ({ size = 100, ...props }) => {
   const router = useRouter();
-  const height = size - 20;
+  const height = `calc(${size}vh - 100px)`;
 
   return (
     <>
       <Grid
-        height={height + 'vh'}
+        minHeight={height}
         as="footer"
+        id="footer"
         backgroundColor={{ dark: 'purple-800', light: 'gray-100' }}
         position="relative"
         zIndex={1}
         placeItems="center"
-        lg={{ height: height + 10 + 'vh' }}
         marginTop={32}
         paddingTop={32}
         {...props}
       >
-        <Flex gap="16px" flexDirection="column" lg={{ flexDirection: 'row', alignItems: 'center', gap: '32px' }}>
+        <Flex
+          gap="16px"
+          flexDirection="column"
+          marginBottom={32}
+          lg={{ flexDirection: 'row', alignItems: 'center', gap: '32px' }}
+        >
           <Logo paddingTop={4} />
           <Container>
             <Paragraph
@@ -71,7 +76,7 @@ const Footer: FC<FooterProps> = ({ size = 100, ...props }) => {
       </Grid>
       <Container backgroundColor={{ dark: 'purple-800', light: 'gray-100' }}>
         <Flex
-          height="20vh"
+          height="100px"
           justifyContent="center"
           paddingX={16}
           flexDirection="column"
@@ -84,7 +89,6 @@ const Footer: FC<FooterProps> = ({ size = 100, ...props }) => {
             flexDirection: 'row',
             alignItems: 'flex-end',
             justifyContent: 'space-between',
-            height: '10vh',
           }}
         >
           <Container width="33%" display="none" lg={{ display: 'block' }}>

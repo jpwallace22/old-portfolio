@@ -12,7 +12,7 @@ export const navbar = {
     },
     {
       text: 'contact',
-      url: 'https://www.justinwallace.dev/#contact',
+      url: 'https://www.justinwallace.dev/#footer',
     },
     {
       text: 'home',

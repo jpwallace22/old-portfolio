@@ -76,10 +76,10 @@ const Home = () => {
         <Container
           className="heroSection"
           as="section"
-          height="85vh"
+          minHeight="85vh"
           contain="layout"
           position="relative"
-          lg={{ height: '100vh' }}
+          lg={{ minHeight: '100vh' }}
         >
           <motion.div
             animate={{ y: 500, x: 0 }}
