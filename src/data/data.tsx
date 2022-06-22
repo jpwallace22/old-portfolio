@@ -3,12 +3,12 @@ import { FiGithub, FiInstagram, FiLinkedin } from 'react-icons/fi';
 export const navbar = {
   links: [
     {
-      text: 'works',
-      url: 'https://www.justinwallace.dev/#works',
-    },
-    {
       text: 'about',
       url: 'https://www.justinwallace.dev/#about',
+    },
+    {
+      text: 'works',
+      url: 'https://www.justinwallace.dev/#works',
     },
     {
       text: 'contact',
