@@ -86,7 +86,7 @@ const Hero: FC<BasicProps> = ({ ...props }) => {
             👋🏼
           </Text>{' '}
           I&apos;m{' '}
-          <Text fontFamily="secondaryFont" gradient="purpleLeft">
+          <Text fontFamily="secondaryFont" gradient="purpleLeft" whiteSpace="nowrap">
             Justin Wallace
           </Text>
         </Heading>
@@ -108,9 +108,10 @@ const Hero: FC<BasicProps> = ({ ...props }) => {
           position="absolute"
           fontFamily="primaryFont"
           transform="rotate(-10deg)"
-          right="16px"
+          whiteSpace="nowrap"
+          right="50px"
           bottom="-40px"
-          xs={{ fontSize: 24 }}
+          xs={{ fontSize: 24, right: '25px' }}
           sm={{ fontSize: 30, right: '32px' }}
           md={{ fontSize: 36, bottom: '-60px' }}
           lg={{ bottom: '-20px' }}
