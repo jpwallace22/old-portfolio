@@ -49,12 +49,26 @@ const Switchback: FC<SwitchbackProps> = ({
   const Buttons = () => (
     <>
       {cta1 && (
-        <Button variant="contained" size="large" href={cta1?.url} onClick={cta1Action}>
+        <Button
+          variant="contained"
+          size="large"
+          width="100%"
+          sm={{ width: 'unset' }}
+          href={cta1?.url}
+          onClick={cta1Action}
+        >
           {cta1?.text}
         </Button>
       )}
       {cta2 && (
-        <Button variant="outlined" size="large" href={cta2?.url} onClick={cta2Action}>
+        <Button
+          variant="outlined"
+          size="large"
+          width="100%"
+          sm={{ width: 'unset' }}
+          href={cta2?.url}
+          onClick={cta2Action}
+        >
           {cta2?.text}
         </Button>
       )}
@@ -109,7 +123,7 @@ const Switchback: FC<SwitchbackProps> = ({
         />
       )}
       {!isDesktop && (cta1 || cta2) && (
-        <Flex marginY={24} gap="24px" justifyContent="center">
+        <Flex marginY={24} gap="24px" justifyContent="center" flexDirection="column" sm={{ flexDirection: 'row' }}>
           <Buttons />
         </Flex>
       )}
