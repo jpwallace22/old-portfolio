@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { FaNpm } from 'react-icons/fa';
 import { FiGithub } from 'react-icons/fi';
 import { GoBrowser } from 'react-icons/go';
@@ -9,6 +8,8 @@ import Grid from 'quarks/Grid';
 import Link from 'quarks/Link';
 import Text from 'quarks/Text';
 import { BasicProps } from 'quarks/interpolations/basic';
+
+import type { FC } from 'react';
 
 export type SmallCardProps = BasicProps & {
   icon: 'browser' | 'github' | 'npm';
