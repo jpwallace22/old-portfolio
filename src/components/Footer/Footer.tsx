@@ -43,12 +43,14 @@ const Footer: FC<FooterProps> = ({ size = 100, ...props }) => {
         {...props}
       >
         <Flex
-          gap="16px"
+          gap="32px"
           flexDirection="column"
+          flexWrap="wrap"
           marginBottom={32}
-          lg={{ flexDirection: 'row', alignItems: 'center', gap: '32px' }}
+          maxWidth="530px"
+          lg={{ flexDirection: 'row', alignItems: 'center' }}
         >
-          <Logo paddingTop={4} />
+          <Logo paddingTop={4} alignSelf="center" />
           <Container>
             <Paragraph
               textColor={{ dark: 'gray-500', light: 'common-black' }}
@@ -72,6 +74,7 @@ const Footer: FC<FooterProps> = ({ size = 100, ...props }) => {
               </Heading>
             </Link>
           </Container>
+          <Socials links={navbar.socials} width="100%" />
         </Flex>
       </Grid>
       <Container backgroundColor={{ dark: 'purple-800', light: 'gray-100' }}>
@@ -96,7 +99,6 @@ const Footer: FC<FooterProps> = ({ size = 100, ...props }) => {
               <LogoMark width={50} cursor="pointer" />
             </Link>
           </Container>
-          <Socials links={navbar.socials} width="33%" />
           <Text as="small" textColor="gray-900" verticalAlign="bottom" textAlign="right" lg={{ width: '33%' }}>
             ©JW Development {date.getFullYear()}
           </Text>
