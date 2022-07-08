@@ -19,4 +19,4 @@
 - Add clearfix to basic quarks
 - create data-map for socials
 - add shutter animation to TechStack
-- add Contentful and GraphQL
+- add Contentful and GraphQL Test
