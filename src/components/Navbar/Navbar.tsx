@@ -209,9 +209,11 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
               {LightSwitch(24)}
             </Grid>
           )}
-          <Flex as="ul" justifyContent="center">
-            {!isDesktop && socials && <Socials links={socials} marginTop={32}></Socials>}
-          </Flex>
+          {!isDesktop && socials && (
+            <Flex as="ul" justifyContent="center">
+              <Socials links={socials} marginTop={32}></Socials>
+            </Flex>
+          )}
         </Flex>
       </Flex>
     </Container>
