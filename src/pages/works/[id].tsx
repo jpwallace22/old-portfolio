@@ -97,6 +97,7 @@ const Work = ({
               width={bannerImage?.width}
               marginX="auto"
               maxWidth="80%"
+              loading="eager"
               lg={{ marginAll: 0 }}
             />
           )}
