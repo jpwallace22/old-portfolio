@@ -43,6 +43,7 @@ const Hamburger: FC<HamburgerProps> = ({ setActive, active, navRef, ...props }) 
         className={active ? 'active burger-button' : 'burger-button'}
         ref={burgerRef}
         onClick={() => setActive(!active)}
+        aria-label="button"
       >
         <NoClickSpan></NoClickSpan>
         <NoClickSpan></NoClickSpan>

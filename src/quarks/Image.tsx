@@ -42,7 +42,6 @@ const Image: FunctionComponent<CustomImageProps> = props => {
       filteredNextProps: filteredProp[];
     },
   );
-
   const quarkProps = Object.fromEntries(filteredQuarkProps);
   const { src, ...nextProps } = Object.fromEntries(filteredNextProps);
 
