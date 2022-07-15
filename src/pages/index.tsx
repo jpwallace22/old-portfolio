@@ -102,6 +102,7 @@ const Home = () => {
               left="50%"
               top="0"
               zIndex={-1}
+              loading="eager"
               lg={{ left: '58%' }}
             />
           </motion.div>
