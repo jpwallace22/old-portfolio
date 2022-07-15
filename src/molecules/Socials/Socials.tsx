@@ -19,7 +19,7 @@ const Socials: FC<SocialsProps> = ({ links, ...props }) => (
     {links &&
       links.map(link => (
         <Flex as="li" key={link.platform} textAlign="center" alignItems="center" justifyContent="center">
-          <Link href={link.url}>
+          <Link href={link.url} aria-label={link.platform}>
             <Text textStyle="xl" fontSize={36} fontWeight="bold">
               {link.image}
             </Text>
