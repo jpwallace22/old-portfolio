@@ -95,8 +95,8 @@ const Home = () => {
           >
             <Image
               src={dots}
-              width={650}
-              height={650}
+              width={635}
+              height={629}
               alt=""
               position="absolute"
               left="50%"

@@ -33,7 +33,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head lang="en">
+        <Head>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
           <link
@@ -45,6 +45,7 @@ class MyDocument extends Document {
           <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
           <link rel="manifest" href="/favicons/site.webmanifest" />
           <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#5bbad5" />
+          <meta name="description" content="Personal portfolio of the frontend engineer, Justin Wallace" />
           <meta name="msapplication-TileColor" content="#00aba9" />
           <meta name="theme-color" content="#ffffff" />
           <meta property="og:image" content="assets/images/jwdev.webp" />
