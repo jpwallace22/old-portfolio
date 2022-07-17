@@ -34,7 +34,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <link rel="preload" as="image" href="assets/images/dots.webp" />
+          {/* <link rel="preload" as="image" href="assets/images/dots.webp" /> */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
           <link
