@@ -2,8 +2,6 @@ import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/do
 import { Fragment } from 'react';
 import { ServerStyleSheet } from 'styled-components';
 
-// console.log(ogImage);
-
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
