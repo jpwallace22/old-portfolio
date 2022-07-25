@@ -30,5 +30,3 @@ const Socials: FC<SocialsProps> = ({ links, ...props }) => (
 );
 
 export default Socials;
-
-Socials.defaultProps = {};
