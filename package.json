@@ -8,7 +8,7 @@
     "url": "https://www.justinwallace.dev/"
   },
   "scripts": {
-    "dev": "next dev -p 3030",
+    "dev": "yarn && next dev -p 3030",
     "build": "next build",
     "start": "next start -p 3090",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx,mdx}\" --fix",

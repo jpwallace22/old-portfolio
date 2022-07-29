@@ -42,6 +42,7 @@ export const works = [
   {
     id: 'webstacks',
     title: 'Webstacks UI Library',
+    subTitle: 'And a template repository too!',
     url: 'https://www.justinwallace.dev/works/webstacks',
     bannerImage: {
       src: '/images/webstacks/webstacks-1.webp',
@@ -77,6 +78,12 @@ export const works = [
         height: 427,
         width: 800,
       },
+    ],
+    keyPoints: [
+      'This library is currently in production by five large scale tech companies to include Freshworks, Justworks, & Mutiny.',
+      'Developed by a small team with high levels of communication (regarding complex ideas, architecture, and strategy) and collaboration.',
+      'Consistently maintained, updated, and debugged as the head "librarian" of the UI Library',
+      'Give regular training to adjacent team members on its implementations and abilities. ',
     ],
   },
   {
@@ -281,8 +288,8 @@ const aboutMe = {
   },
   bio: [
     'I am a 14 year Navy veteran that decided to follow my dreams of becoming a web designer, only to find out that I ACTUALLY wanted to be a developer!',
-    'Halfway through my journey as a web designer I pivoted over to engineering and have never looked back. Typescript development is what truly motivates me. Whether it be React or Node, I have a absolutely love writing clean, readable, scalable code.',
-    'I think my greatest asset as a developer is my absolute passion for the craft and willingness to learn. Nothing like digging into some docs with my morning coffee to start the day! ',
+    'Halfway through my journey as a web designer I pivoted over to engineering and have never looked back. Typescript development is what truly motivates me. Whether it be React or Go, I have an absolute passion for writing clean, readable, scalable code.',
+    'My greatest asset as a developer is my personal drive, love for the craft, and willingness to learn. Nothing like digging into some docs with my morning coffee to start the day! ',
   ],
   cta1: {
     text: 'Contact',

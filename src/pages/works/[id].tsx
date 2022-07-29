@@ -2,6 +2,7 @@ import { works } from 'data/data';
 import { LazyMotion, domAnimation, m as motion } from 'framer-motion';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
+import { GiCheckMark } from 'react-icons/gi';
 
 // Quarks
 import Container from 'quarks/Container';
@@ -31,7 +32,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 const Work = ({
-  data: { title, subTitle, bannerImage, techStack, intro, ctas, gallery, takeAways, autoplay = true },
+  data: { title, subTitle, bannerImage, techStack, intro, ctas, gallery, keyPoints, autoplay = true },
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [isDark] = useDarkMode();
 
@@ -136,11 +137,18 @@ const Work = ({
           </Container>
         )}
         <Container maxWidth="1100px" paddingX={16} lg={{ marginX: 'auto', paddingX: 32 }}>
-          {takeAways && (
+          {keyPoints && (
             <Container as="section" marginY={48}>
-              <Heading as="h3">{takeAways}</Heading>
-              {intro.body.map((copy: string, i: number) => (
-                <Paragraph key={`intro-${i + 1}`}>{copy}</Paragraph>
+              <Heading as="h3" paddingY={16}>
+                Key Points
+              </Heading>
+              {keyPoints.map((copy: string, i: number) => (
+                <Flex key={`intro-${i + 1}`} alignItems="center">
+                  <Container width="25px">
+                    <GiCheckMark />
+                  </Container>
+                  <Paragraph marginLeft={16}>{copy}</Paragraph>
+                </Flex>
               ))}
             </Container>
           )}

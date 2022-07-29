@@ -172,8 +172,8 @@ const Home = () => {
             </Heading>
             <Paragraph maxWidth="730px">
               A couple of projects that show my progression over the years. From jQuery to Node (and plenty of others in
-              between) I feel these works highlight my thought process and how I am always try to make the most out of
-              whatever tools I have.{' '}
+              between) I feel these works highlight my thought process and how I am always trying to make the most out
+              of whatever tools I have.{' '}
             </Paragraph>
           </StandardFadeIn>
           <AlternatingSwitchbacks works={home.works} />
