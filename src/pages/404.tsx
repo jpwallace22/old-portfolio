@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-comment-textnodes */
 import React from 'react';
 
 import { ReactComponent as Arrow } from 'assets/svg/drawn-arrow.svg';
@@ -18,6 +17,7 @@ const fourOhFour = () => (
     <Grid placeItems="center" height="50vh" fontSize={20} contain="content">
       <Container width="340px" marginX="auto" position="relative" top="-10%">
         <Paragraph textColor="gray-900">
+          {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
           <em>// 404 page not found</em>
         </Paragraph>
         <Text textColor={{ dark: 'purple-300', light: 'purple-500' }}>if </Text>( !

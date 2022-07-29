@@ -1,5 +1,5 @@
 import { works } from 'data/data';
-import { motion } from 'framer-motion';
+import { LazyMotion, domAnimation, m as motion } from 'framer-motion';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 
@@ -36,7 +36,7 @@ const Work = ({
   const [isDark] = useDarkMode();
 
   return (
-    <>
+    <LazyMotion features={domAnimation}>
       <Head>
         <title>Justin Wallace | {title}</title>
       </Head>
@@ -147,7 +147,7 @@ const Work = ({
         </Container>
       </Container>
       <Footer size={50} />
-    </>
+    </LazyMotion>
   );
 };
 

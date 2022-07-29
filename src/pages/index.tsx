@@ -1,6 +1,6 @@
 import { useMediaQuery } from '@mui/material';
 import { home } from 'data/data';
-import { motion } from 'framer-motion';
+import { LazyMotion, domAnimation, m as motion } from 'framer-motion';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -68,7 +68,7 @@ const Home = () => {
   });
 
   return (
-    <>
+    <LazyMotion features={domAnimation}>
       <Head>
         <title>Justin Wallace | Home</title>
       </Head>
@@ -180,7 +180,7 @@ const Home = () => {
         </Container>
       </Container>
       <Footer />
-    </>
+    </LazyMotion>
   );
 };
 
