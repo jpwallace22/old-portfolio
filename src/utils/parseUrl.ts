@@ -13,10 +13,9 @@ const parseUrl = (href: string) => {
 
   return {
     as: isInternalLink ? NextLink : ('a' as const),
-    to: isInternalLink ? url.href.split(url.host)[1] : undefined,
+    href: isInternalLink ? url.href.split(url.host)[1] : href,
     rel: isInternalLink ? '' : 'noreferrer noopener',
     target: isInternalLink ? '' : '_blank',
-    href,
   };
 };
 
