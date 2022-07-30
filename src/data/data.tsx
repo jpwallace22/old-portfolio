@@ -83,7 +83,7 @@ export const works = [
       'This library is currently in production by five large scale tech companies to include Freshworks, Justworks, & Mutiny.',
       'Developed by a small team with high levels of communication (regarding complex ideas, architecture, and strategy) and collaboration.',
       'Consistently maintained, updated, and debugged as the head "librarian" of the UI Library.',
-      'Give regular training to adjacent team members on its implementations and abilities. ',
+      'Gave regular training to adjacent team members on its implementations and abilities. ',
     ],
   },
   {

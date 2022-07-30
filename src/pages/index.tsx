@@ -3,7 +3,7 @@ import { home } from 'data/data';
 import { LazyMotion, domAnimation, m as motion } from 'framer-motion';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 // Assets
@@ -30,16 +30,26 @@ import Footer from 'components/Footer/Footer';
 import Hero from 'components/Hero/Hero';
 import Switchback from 'components/Switchback/Switchback';
 
-import { emailObfuscator } from 'utils/functions';
+import { emailObfuscator, useOnScreen } from 'utils/functions';
 
 const HeroLine = styled(Line)``;
 const AboutLine = styled(Line2)``;
 
-const Home = () => {
+interface HomeProps {
+  setCurrentSection: (s: string) => void;
+}
+
+const Home = ({ setCurrentSection }: HomeProps) => {
   const isDesktop = useMediaQuery(media.lg);
   const [drawHero, setDrawHero] = useState(0);
   const [drawAbout, setDrawAbout] = useState(0);
+
+  const aboutRef = useRef<HTMLElement | null>(null);
+  const worksRef = useRef<HTMLElement | null>(null);
   const router = useRouter();
+
+  const aboutActive = useOnScreen<HTMLElement | null>(aboutRef);
+  const worksActive = useOnScreen<HTMLElement | null>(worksRef);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,10 +72,13 @@ const Home = () => {
       }
     };
 
+    worksActive ? setCurrentSection('works') : setCurrentSection('');
+    aboutActive && setCurrentSection('about');
+
     window.addEventListener('scroll', handleScroll);
 
     return () => window.removeEventListener('scroll', handleScroll);
-  });
+  }, [aboutActive]);
 
   return (
     <LazyMotion features={domAnimation}>
@@ -140,6 +153,7 @@ const Home = () => {
         <StandardFadeIn>
           <Container
             as="section"
+            ref={aboutRef}
             position="relative"
             paddingBottom={64}
             contain="layout"
@@ -152,7 +166,7 @@ const Home = () => {
           </Container>
         </StandardFadeIn>
 
-        <Container id="works" as="section" position="relative" contain="layout" paddingY={64}>
+        <Container id="works" ref={worksRef} as="section" position="relative" contain="layout" paddingY={64}>
           {isDesktop && (
             <Container position="absolute" left="380px" top="-60px">
               <AboutLine

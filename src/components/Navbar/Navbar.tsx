@@ -41,10 +41,12 @@ type NavbarProps = BasicProps & {
     image: ReactNode;
     url: string;
   }[];
+  currentSection: string;
 };
 
-const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
+const Navbar: FC<NavbarProps> = ({ links, socials, currentSection, ...props }) => {
   const [active, setActive] = useState(false);
+
   const [isDark, setIsDark] = useDarkMode();
   const isDesktop = useMediaQuery(media.lg);
 
@@ -196,7 +198,7 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
                     position="relative"
                     fontWeight="bold"
                     lg={{ textStyle: 'xl', fontWeight: 'light' }}
-                    css={isDesktop ? underlineOnHover(-10) : undefined}
+                    css={isDesktop ? underlineOnHover(-10, currentSection === link.text) : undefined}
                   >
                     {link.text}
                   </Text>
