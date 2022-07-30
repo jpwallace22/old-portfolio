@@ -4,7 +4,6 @@ import { LazyMotion, domAnimation, m as motion } from 'framer-motion';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
-import { BsArrowUp } from 'react-icons/bs';
 import styled from 'styled-components';
 
 // Assets
@@ -21,7 +20,6 @@ import { Dots, LargeCircle, SmallCircle } from 'quarks/DesignElements';
 import Heading from 'quarks/Heading';
 import Image from 'quarks/Image';
 import Paragraph from 'quarks/Paragraph';
-import Text from 'quarks/Text';
 
 import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 
@@ -87,47 +85,6 @@ const Home = ({ setCurrentSection }: HomeProps) => {
         <title>Justin Wallace | Home</title>
       </Head>
       <Container as="main" maxWidth="1440px" marginX="auto" paddingX={16} lg={{ paddingX: 32 }}>
-        <Text
-          as="div"
-          textColor={{ dark: 'gray-900', light: 'purple-600' }}
-          position="absolute"
-          top="130px"
-          right="28px"
-          zIndex={2}
-          css={`
-            display: flex;
-            align-items: flex-end;
-          `}
-        >
-          <Text>Click me!</Text>
-          <Container
-            css={`
-              animation: bounce 3s ease-out infinite forwards;
-              @keyframes bounce {
-                0% {
-                  transform: translate(0, 0);
-                }
-                50% {
-                  transform: translate(0, 0);
-                }
-                62% {
-                  transform: translate(0, -10px);
-                }
-                75% {
-                  transform: translate(0, 0);
-                }
-                87% {
-                  transform: translate(0, -10px);
-                }
-                100% {
-                  transform: translate(0, 0);
-                }
-              }
-            `}
-          >
-            <BsArrowUp size={32} />
-          </Container>
-        </Text>
         <Container
           className="heroSection"
           as="section"

@@ -23,6 +23,7 @@ import { BasicProps } from 'quarks/interpolations/basic';
 import Socials from 'molecules/Socials/Socials';
 
 // Components
+import ClickMe from 'components/Navbar/ClickMe';
 import Hamburger from 'components/Navbar/Hamburger';
 
 import { underlineOnHover } from 'utils/css';
@@ -80,6 +81,7 @@ const Navbar: FC<NavbarProps> = ({ links, socials, currentSection, ...props }) =
         justifyContent="space-between"
         alignItems="center"
         paddingAll={16}
+        position="relative"
         after={
           isDesktop
             ? {
@@ -99,18 +101,18 @@ const Navbar: FC<NavbarProps> = ({ links, socials, currentSection, ...props }) =
         lg={{ paddingX: 32, maxWidth: '1280px', marginX: 'auto' }}
         {...props}
       >
-        {!isDesktop && (
-          <Hamburger
-            navRef={mobileNav}
-            className={active ? 'close-menu' : undefined}
-            position="relative"
-            right={active ? '-70%' : '0'}
-            transition={slideTransition}
-            active={active}
-            setActive={setActive}
-            zIndex={99}
-          />
-        )}
+        <ClickMe />
+        <Hamburger
+          navRef={mobileNav}
+          className={active ? 'close-menu' : undefined}
+          position="relative"
+          right={active ? '-70%' : '0'}
+          transition={slideTransition}
+          active={active}
+          setActive={setActive}
+          lg={{ display: 'none' }}
+          zIndex={99}
+        />
         <Link href={home}>
           <LogoMark width={45} cursor="pointer" />
         </Link>
