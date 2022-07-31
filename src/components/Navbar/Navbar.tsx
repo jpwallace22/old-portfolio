@@ -23,7 +23,6 @@ import { BasicProps } from 'quarks/interpolations/basic';
 import Socials from 'molecules/Socials/Socials';
 
 // Components
-import ClickMe from 'components/Navbar/ClickMe';
 import Hamburger from 'components/Navbar/Hamburger';
 
 import { underlineOnHover } from 'utils/css';
@@ -101,7 +100,6 @@ const Navbar: FC<NavbarProps> = ({ links, socials, currentSection, ...props }) =
         lg={{ paddingX: 32, maxWidth: '1280px', marginX: 'auto' }}
         {...props}
       >
-        <ClickMe />
         <Hamburger
           navRef={mobileNav}
           className={active ? 'close-menu' : undefined}

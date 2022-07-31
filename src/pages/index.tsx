@@ -27,18 +27,19 @@ import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 import AlternatingSwitchbacks from 'components/AlternatingSwitchbacks/AlternatingSwitchbacks';
 import Footer from 'components/Footer/Footer';
 import Hero from 'components/Hero/Hero';
+import ClickMe from 'components/Navbar/ClickMe';
 import Switchback from 'components/Switchback/Switchback';
 
-import { emailObfuscator, useOnScreen } from 'utils/functions';
+import { emailObfuscator } from 'utils/functions';
 
 const HeroLine = styled(Line)``;
 const AboutLine = styled(Line2)``;
 
-interface HomeProps {
-  setCurrentSection: (s: string) => void;
-}
+// interface HomeProps {
+//   setCurrentSection: (s: string) => void;
+// }
 
-const Home = ({ setCurrentSection }: HomeProps) => {
+const Home = () => {
   const isDesktop = useMediaQuery(media.lg);
   const [drawHero, setDrawHero] = useState(0);
   const [drawAbout, setDrawAbout] = useState(0);
@@ -46,9 +47,6 @@ const Home = ({ setCurrentSection }: HomeProps) => {
   const aboutRef = useRef<HTMLElement | null>(null);
   const worksRef = useRef<HTMLElement | null>(null);
   const router = useRouter();
-
-  const aboutActive = useOnScreen<HTMLElement | null>(aboutRef);
-  const worksActive = useOnScreen<HTMLElement | null>(worksRef);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,13 +69,10 @@ const Home = ({ setCurrentSection }: HomeProps) => {
       }
     };
 
-    worksActive ? setCurrentSection('works') : setCurrentSection('');
-    aboutActive && setCurrentSection('about');
-
     window.addEventListener('scroll', handleScroll);
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [aboutActive]);
+  }, []);
 
   return (
     <LazyMotion features={domAnimation}>
@@ -85,6 +80,7 @@ const Home = ({ setCurrentSection }: HomeProps) => {
         <title>Justin Wallace | Home</title>
       </Head>
       <Container as="main" maxWidth="1440px" marginX="auto" paddingX={16} lg={{ paddingX: 32 }}>
+        <ClickMe />
         <Container
           className="heroSection"
           as="section"
