@@ -9,5 +9,3 @@ type $nameProps = BasicProps;
 const $name: FC<$nameProps> = ({ ...props }) => <Container {...props}>$name</Container>;
 
 export default $name;
-
-$name.defaultProps = {};

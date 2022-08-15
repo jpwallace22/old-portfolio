@@ -50,5 +50,3 @@ const SmallCard: FC<SmallCardProps> = ({ icon, title, url, disabled, ...props })
 );
 
 export default SmallCard;
-
-SmallCard.defaultProps = {};

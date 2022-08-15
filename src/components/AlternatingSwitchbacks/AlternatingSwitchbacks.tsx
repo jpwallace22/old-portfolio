@@ -103,5 +103,3 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({ works, ...pro
 };
 
 export default AlternatingSwitchbacks;
-
-AlternatingSwitchbacks.defaultProps = {};

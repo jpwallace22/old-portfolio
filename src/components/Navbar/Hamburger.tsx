@@ -103,5 +103,3 @@ const StyledHamburger = styled(Hamburger)`
 `;
 
 export default StyledHamburger;
-
-Hamburger.defaultProps = {};

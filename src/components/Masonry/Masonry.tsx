@@ -50,5 +50,3 @@ const Masonry: FC<MasonryProps> = ({ children, ...props }) => {
 };
 
 export default Masonry;
-
-Masonry.defaultProps = {};

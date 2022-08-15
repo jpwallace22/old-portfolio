@@ -14,5 +14,3 @@ const StandardFadeIn: FC<{ children: ReactNode }> = ({ children }) => (
 );
 
 export default StandardFadeIn;
-
-StandardFadeIn.defaultProps = {};

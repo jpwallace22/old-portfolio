@@ -124,5 +124,3 @@ const Hero: FC<BasicProps> = ({ ...props }) => {
 };
 
 export default Hero;
-
-Hero.defaultProps = {};

@@ -223,5 +223,3 @@ const Navbar: FC<NavbarProps> = ({ links, socials, currentSection, ...props }) =
 };
 
 export default Navbar;
-
-Navbar.defaultProps = {};

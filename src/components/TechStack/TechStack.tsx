@@ -54,5 +54,3 @@ const TechStack: FC<TechStackProps> = ({ icons, ...props }) => (
 );
 
 export default TechStack;
-
-TechStack.defaultProps = {};

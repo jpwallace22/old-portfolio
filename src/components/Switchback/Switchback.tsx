@@ -132,5 +132,3 @@ const Switchback: FC<SwitchbackProps> = ({
 };
 
 export default Switchback;
-
-Switchback.defaultProps = {};
