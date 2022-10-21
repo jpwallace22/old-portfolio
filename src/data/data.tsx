@@ -1,4 +1,5 @@
 import betterMind from 'data/works/betterMind';
+import octoML from 'data/works/octoML';
 import reactWorkflow from 'data/works/reactWorkflow';
 import skillJumper from 'data/works/skillJumper';
 import thisSite from 'data/works/thisSite';
@@ -43,7 +44,7 @@ export const navbar = {
   ],
 };
 
-export const works = [uiLibrary, betterMind, reactWorkflow, skillJumper, thisSite];
+export const works = [uiLibrary, octoML, betterMind, reactWorkflow, skillJumper, thisSite];
 
 const aboutMe = {
   heading: 'A bit about me',
