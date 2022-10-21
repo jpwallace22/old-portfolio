@@ -16,7 +16,7 @@ const ClickMe = () => {
   }, []);
 
   return (
-    <Container maxWidth="1280px" marginX="auto" position="fixed" height="0px" width="100%" zIndex={2}>
+    <Container maxWidth="1280px" marginX="auto" position="fixed" height="5px" width="100%" zIndex={0}>
       <Text
         as="div"
         textColor={{ dark: 'gray-900', light: 'purple-600' }}

@@ -27,7 +27,6 @@ import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 import AlternatingSwitchbacks from 'components/AlternatingSwitchbacks/AlternatingSwitchbacks';
 import Footer from 'components/Footer/Footer';
 import Hero from 'components/Hero/Hero';
-import ClickMe from 'components/Navbar/ClickMe';
 import Switchback from 'components/Switchback/Switchback';
 
 import { emailObfuscator } from 'utils/functions';
@@ -80,7 +79,6 @@ const Home = () => {
         <title>Justin Wallace | Home</title>
       </Head>
       <Container as="main" maxWidth="1440px" marginX="auto" paddingX={16} lg={{ paddingX: 32 }}>
-        <ClickMe />
         <Container
           className="heroSection"
           as="section"
