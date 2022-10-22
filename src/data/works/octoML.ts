@@ -9,7 +9,7 @@ const octoML = {
     height: 650,
     width: 650,
   },
-  techStack: ['next', 'react', 'typescript', 'styledComponents', 'styledComponents', 'styledComponents'],
+  techStack: ['gatsby', 'react', 'typescript', 'styledComponents', 'dato', 'graphql'],
   //   intro: {
   //     heading: 'A large step up from BetterMind',
   //     body: [

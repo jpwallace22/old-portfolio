@@ -5,6 +5,9 @@ import mui from 'assets/images/mui.png';
 import next from 'assets/images/next.jpg';
 import styledComponents from 'assets/images/styledComponents.png';
 import css from 'assets/svg/css.svg';
+import dato from 'assets/svg/dato.svg';
+import gatsby from 'assets/svg/gatsby.svg';
+import graphql from 'assets/svg/graphql.svg';
 import javascript from 'assets/svg/javascript.svg';
 import node from 'assets/svg/node.svg';
 import react from 'assets/svg/react.svg';
@@ -28,6 +31,9 @@ type TechStackProps = FlexProps & {
     | 'typescript'
     | 'jquery'
     | 'mui'
+    | 'gatsby'
+    | 'dato'
+    | 'graphql'
   )[];
   iconSize?: number;
 };
@@ -43,10 +49,13 @@ const iconMap = {
   styledComponents,
   typescript,
   mui,
+  gatsby,
+  dato,
+  graphql,
 };
 
 const TechStack: FC<TechStackProps> = ({ icons, ...props }) => (
-  <Flex justifyContent="center" gap="32px" {...props}>
+  <Flex justifyContent="center" gap="32px" flexWrap="wrap" lg={{ flexDirection: 'column' }} {...props}>
     {icons.map(icon => (
       <Image src={iconMap[icon]} width={50} height={50} alt={icon} key={icon} />
     ))}

@@ -102,7 +102,7 @@ const Work = ({
               lg={{ marginAll: 0 }}
             />
           )}
-          {techStack && <TechStack icons={techStack} lg={{ flexDirection: 'column' }} />}
+          {techStack && <TechStack icons={techStack} />}
         </Flex>
         <SmallCircle position="absolute" right="-400px" top="450px" opacity={0.3} />
         <Container maxWidth="1100px" paddingX={16} lg={{ marginX: 'auto', paddingX: 32 }}>
