@@ -4,7 +4,7 @@ const octoML = {
   subTitle: 'Automate Model Deployment',
   url: 'https://www.justinwallace.dev/works/octoml',
   bannerImage: {
-    src: '/images/octoml/octoml-1.avif',
+    src: '/images/octoml/octoml-1.png',
     alt: "Justin Wallace's personal logo",
     height: 650,
     width: 650,
