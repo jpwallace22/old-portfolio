@@ -21,6 +21,10 @@ export const navbar = {
       url: 'https://www.justinwallace.dev/#footer',
     },
     {
+      text: 'resume',
+      url: '/Resume.pdf',
+    },
+    {
       text: 'home',
       url: 'https://www.justinwallace.dev',
     },

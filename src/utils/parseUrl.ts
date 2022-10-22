@@ -8,8 +8,8 @@ const parseUrl = (href: string) => {
   }
 
   const domain = 'justinwallace.dev';
-  const url = new URL(href);
-  const isInternalLink = url.hostname === `www.${domain}` || url.hostname === domain;
+  const url = !(href[0] === '/') && new URL(href);
+  const isInternalLink = (url && url.hostname === `www.${domain}`) || (url && url.hostname === domain);
 
   return {
     as: isInternalLink ? NextLink : ('a' as const),

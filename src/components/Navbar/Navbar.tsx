@@ -173,27 +173,28 @@ const Navbar: FC<NavbarProps> = ({ links, socials, currentSection, ...props }) =
             }}
           >
             {navLinks.map(link => (
-              <Link href={link.url} key={link.text}>
-                <Flex
-                  as="li"
-                  width="100%"
-                  textAlign="center"
-                  height="100px"
-                  alignItems="center"
-                  justifyContent="center"
-                  onClick={() => setActive(false)}
-                  hover={
-                    isDark
-                      ? {
-                          backgroundColor: isDesktop ? 'transparent' : 'purple-700',
-                        }
-                      : {
-                          backgroundColor: isDesktop ? 'transparent' : 'primary-600',
-                        }
-                  }
-                  cursor="pointer"
-                  lg={{ height: 'inherit' }}
-                >
+              <Flex
+                as="li"
+                key={link.text}
+                width="100%"
+                textAlign="center"
+                height="100px"
+                alignItems="center"
+                justifyContent="center"
+                onClick={() => setActive(false)}
+                hover={
+                  isDark
+                    ? {
+                        backgroundColor: isDesktop ? 'transparent' : 'purple-700',
+                      }
+                    : {
+                        backgroundColor: isDesktop ? 'transparent' : 'primary-600',
+                      }
+                }
+                cursor="pointer"
+                lg={{ height: 'inherit' }}
+              >
+                <Link href={link.url}>
                   <Text
                     textStyle="xl"
                     fontSize={36}
@@ -204,8 +205,8 @@ const Navbar: FC<NavbarProps> = ({ links, socials, currentSection, ...props }) =
                   >
                     {link.text}
                   </Text>
-                </Flex>
-              </Link>
+                </Link>
+              </Flex>
             ))}
           </Flex>
           {isDesktop && (
