@@ -130,7 +130,7 @@ const Work = ({
             <Carousel autoPlay={autoplay} interval={6} paddingY={16}>
               {gallery.map((image: { url: string; alt?: string; width: number; height: number }) => (
                 <Grid placeItems="center" key={image.url}>
-                  <Image src={image.url} width={image.width} height={image.height} alt={image.alt ? image.alt : ''} />
+                  <Image src={image.url} width={image.width} height={image.height} alt={image.alt || ''} />
                 </Grid>
               ))}
             </Carousel>

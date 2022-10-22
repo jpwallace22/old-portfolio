@@ -44,7 +44,7 @@ export const navbar = {
   ],
 };
 
-export const works = [uiLibrary, octoML, betterMind, reactWorkflow, skillJumper, thisSite];
+export const works = [uiLibrary, octoML, reactWorkflow, betterMind, skillJumper, thisSite];
 
 const aboutMe = {
   heading: 'A bit about me',

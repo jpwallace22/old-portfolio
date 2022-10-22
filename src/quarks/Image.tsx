@@ -15,8 +15,8 @@ type ModifiedBasicProps = Omit<BasicProps, 'height' | 'width' | 'objectPosition'
 
 export interface CustomImageProps extends ModifiedBasicProps, ImageProps {
   src: string | StaticImageData;
-  height: number | string;
-  width: number | string;
+  height?: number | string;
+  width?: number | string;
   alt: string;
   objectPosition?: string;
   objectFit?: BasicProps['objectFit'];
