@@ -57,6 +57,16 @@ class MyDocument extends Document {
               })(window,document,'script','dataLayer','GTM-PNC24L5');</script>`}
           </Script>
         </Head>
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-R2S5FWZ8HX"></Script>
+        <Script id="google-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+                 
+            gtag('config', 'G-R2S5FWZ8HX');
+          `}
+        </Script>
         <body>
           <noscript>
             <iframe
