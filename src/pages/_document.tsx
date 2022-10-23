@@ -56,17 +56,17 @@ class MyDocument extends Document {
               'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
               })(window,document,'script','dataLayer','GTM-PNC24L5');</script>`}
           </Script>
-        </Head>
-        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-R2S5FWZ8HX"></Script>
-        <Script id="google-analytics">
-          {`
+          <Script async src="https://www.googletagmanager.com/gtag/js?id=G-R2S5FWZ8HX"></Script>
+          <Script id="google-analytics">
+            {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
                  
-            gtag('config', 'G-R2S5FWZ8HX');
+            gtag('config', '${process.env.GOOGLE_TAG_ID}');
           `}
-        </Script>
+          </Script>
+        </Head>
         <body>
           <noscript>
             <iframe
