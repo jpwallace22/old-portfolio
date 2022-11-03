@@ -67,7 +67,7 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({ works, ...pro
                     position="relative"
                     transition="all 1s ease"
                     zIndex={2}
-                    textShadow={isDarkMode ? '5px 5px 10px #110e2d' : undefined}
+                    textShadow={isDarkMode && '5px 5px 10px #110e2d'}
                     lg={{ textStyle: 'lg' }}
                     after={{
                       content: '',
