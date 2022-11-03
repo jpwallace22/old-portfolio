@@ -16,7 +16,7 @@ import { BasicProps } from 'quarks/interpolations/basic';
 
 import { CSSProps } from 'theme/getAppTheme';
 
-type CarouselProps = BasicProps & {
+type CarouselProps = Omit<BasicProps, 'width'> & {
   children: ReactChild[];
   /**
    * If true the Carousel will slide on its own

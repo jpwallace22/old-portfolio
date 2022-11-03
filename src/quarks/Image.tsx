@@ -13,7 +13,7 @@ import { objectEntries, valueof } from 'utils/typeUtils';
 
 type ModifiedBasicProps = Omit<BasicProps, 'height' | 'width' | 'objectPosition' | 'objectFit'>;
 
-export interface CustomImageProps extends ModifiedBasicProps, ImageProps {
+export interface CustomImageProps extends ModifiedBasicProps, Omit<ImageProps, 'objectFit'> {
   src: string | StaticImageData;
   height?: number | string;
   width?: number | string;

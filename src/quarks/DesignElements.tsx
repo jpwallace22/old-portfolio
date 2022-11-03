@@ -23,6 +23,7 @@ export const SmallCircle: FC<BasicProps> = ({ ...props }) => {
 
   return (
     <StyledCircle
+      // @ts-expect-error need to create generic type for StyledComponents
       width="583px"
       zIndex={-1}
       {...props}
@@ -36,6 +37,7 @@ export const LargeCircle: FC<BasicProps> = ({ ...props }) => {
 
   return (
     <StyledCircle
+      // @ts-expect-error need to create generic type for StyledComponents
       width="1200px"
       zIndex={-1}
       {...props}

@@ -13,7 +13,7 @@ const StyledMason = styled(Mason).withConfig({
   ${basic}
 `;
 
-type MasonryProps = BasicProps & {
+type MasonryProps = Omit<BasicProps, 'height' | 'width'> & {
   children: {
     url: string;
     height: number;

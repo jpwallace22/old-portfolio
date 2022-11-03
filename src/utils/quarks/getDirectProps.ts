@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { DefaultTheme, FlattenSimpleInterpolation } from 'styled-components';
-
 import { objectEntries } from 'utils/typeUtils';
+
+import type { DefaultTheme, FlattenSimpleInterpolation } from 'styled-components';
 
 export type ObjectCSS = { [key: string]: (...args: any[]) => FlattenSimpleInterpolation };
 
 export const getDirectProps = (props: Record<string, any>, objectCSS: ObjectCSS, palette: DefaultTheme['palette']) => {
-  const validPassedProps = objectEntries(props).filter(([propKey]) => objectCSS[propKey]);
+  const validPassedProps = objectEntries(props).filter(
+    ([propKey, propValue]) => (propValue !== false || propValue !== null) && objectCSS[propKey],
+  );
 
   return validPassedProps.map(([propKey, propValue]) => {
     const functionFromProp = objectCSS[propKey];
@@ -16,5 +18,5 @@ export const getDirectProps = (props: Record<string, any>, objectCSS: ObjectCSS,
 };
 
 export type DirectProps<T extends ObjectCSS> = {
-  [P in keyof T]?: Parameters<T[P]>[0];
+  [P in keyof T]?: Parameters<T[P]>[0] | false | null;
 };
