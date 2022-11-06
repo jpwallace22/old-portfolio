@@ -48,8 +48,8 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({ works, ...pro
                 cursor="pointer"
                 lg={{ marginRight: isEven ? 80 : 0, marginLeft: isEven ? 0 : 80 }}
                 css={
-                  isDesktop
-                    ? `
+                  isDesktop &&
+                  `
                   :hover h4 {
                     transform: scale(1.15) translateX(${isEven ? '30px' : '-30px'});
                   }
@@ -57,7 +57,6 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({ works, ...pro
                     transform: rotate(${isEven ? '5deg' : '-5deg'});
                   }
                 `
-                    : undefined
                 }
               >
                 <Container width="50%">

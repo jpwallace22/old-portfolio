@@ -9,14 +9,14 @@ declare module 'styled-components' {
 
 declare module 'react' {
   interface DOMAttributes {
-    css?: CSSProp<AppTheme>;
+    css?: CSSProp<AppTheme> | false;
   }
 }
 
 declare global {
   namespace JSX {
     interface IntrinsicAttributes {
-      css?: CSSProp<AppTheme>;
+      css?: CSSProp<AppTheme> | false;
     }
   }
 }
