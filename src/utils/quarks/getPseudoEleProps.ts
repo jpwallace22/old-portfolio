@@ -80,5 +80,5 @@ type PseudoEleDirectProps = {
 };
 
 export type PseudoEleProps = {
-  [E in keyof typeof pseudoElements]?: PseudoEleDirectProps;
+  [E in keyof typeof pseudoElements]?: PseudoEleDirectProps | false;
 };

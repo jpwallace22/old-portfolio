@@ -34,7 +34,7 @@ const SmallCard: FC<SmallCardProps> = ({ icon, title, url, disabled, ...props })
       paddingAll={16}
       textColor={disabled ? 'gray-900' : undefined}
       backgroundColor={{ dark: 'purple-800', light: 'gray-50' }}
-      hover={!disabled ? { textColor: 'primary-600', boxShadow: 'lg', filter: 'brightness(1.125)' } : undefined}
+      hover={!disabled && { textColor: 'primary-600', boxShadow: 'lg', filter: 'brightness(1.125)' }}
       borderRadius="8px"
       cursor={!disabled ? 'pointer' : 'default'}
       {...props}

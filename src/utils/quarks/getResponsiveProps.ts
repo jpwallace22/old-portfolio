@@ -27,5 +27,5 @@ export const getResponsiveProps = (
 };
 
 export type ResponsiveProps<T extends ObjectCSS> = {
-  [S in keyof typeof media]?: DirectProps<T>;
+  [S in keyof typeof media]?: DirectProps<T> | false;
 };

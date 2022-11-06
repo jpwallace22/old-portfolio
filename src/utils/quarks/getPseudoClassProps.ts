@@ -48,5 +48,5 @@ export const getPseudoClassProps = (
 };
 
 export type PseudoClassProps<T extends ObjectCSS> = {
-  [C in keyof typeof pseudos]?: DirectProps<T>;
+  [C in keyof typeof pseudos]?: DirectProps<T> | false;
 };
