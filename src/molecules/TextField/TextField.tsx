@@ -43,14 +43,14 @@ interface TextFieldProps extends BasicProps {
    *  **Signature:**
    *  `function(event: object) => void`
    */
-  onEndIconClick?: MouseEventHandler<HTMLDivElement> | undefined;
+  onEndIconClick?: MouseEventHandler<HTMLDivElement>;
   /**
    * 	Callback fired when the value is changed.
    *  **Signature:**
    *  `function(event: object) => void`
    *  event: The event source of the callback. You can pull out the new value by accessing `event.target.value` (string).
    */
-  onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined;
+  onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   /**
    * Defines the type of text TextField or a number TextField
    */

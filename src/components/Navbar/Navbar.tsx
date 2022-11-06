@@ -83,20 +83,18 @@ const Navbar: FC<NavbarProps> = ({ links, socials, currentSection, ...props }) =
         paddingAll={16}
         position="relative"
         after={
-          isDesktop
-            ? {
-                content: '',
-                position: 'absolute',
-                top: '100%',
-                height: '1px',
-                backgroundColor: isDark ? 'gray-500' : 'common-black',
-                left: '0',
-                right: '0',
-                marginX: 'auto',
-                width: '88%',
-                maxWidth: '1100px',
-              }
-            : undefined
+          isDesktop && {
+            content: '',
+            position: 'absolute',
+            top: '100%',
+            height: '1px',
+            backgroundColor: isDark ? 'gray-500' : 'common-black',
+            left: '0',
+            right: '0',
+            marginX: 'auto',
+            width: '88%',
+            maxWidth: '1100px',
+          }
         }
         lg={{ paddingX: 32, maxWidth: '1280px', marginX: 'auto' }}
         {...props}
@@ -201,7 +199,7 @@ const Navbar: FC<NavbarProps> = ({ links, socials, currentSection, ...props }) =
                     position="relative"
                     fontWeight="bold"
                     lg={{ textStyle: 'xl', fontWeight: 'light' }}
-                    css={isDesktop ? underlineOnHover(-10, currentSection === link.text) : undefined}
+                    css={isDesktop && underlineOnHover(-10, currentSection === link.text)}
                   >
                     {link.text}
                   </Text>

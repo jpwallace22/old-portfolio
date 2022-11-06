@@ -48,7 +48,7 @@ interface TextAreaProps extends BasicProps {
    *  `function(event: ChangeEventHandler<HTMLTextAreaElement>) => void`
    *  event: The event source of the callback. You can pull out the new value by accessing `event.target.value` (string).
    */
-  onChange?: ChangeEventHandler<HTMLTextAreaElement> | undefined;
+  onChange?: ChangeEventHandler<HTMLTextAreaElement>;
   /**
    * 	If `true`, the component is disabled.
    */

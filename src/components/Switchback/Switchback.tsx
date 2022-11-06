@@ -46,7 +46,7 @@ const Switchback: FC<SwitchbackProps> = ({
 }) => {
   const isDesktop = useMediaQuery(media.lg);
 
-  const Buttons = () => (
+  const buttons = () => (
     <>
       {cta1 && (
         <Button
@@ -107,7 +107,7 @@ const Switchback: FC<SwitchbackProps> = ({
         {bio && bio.map(paragraph => <Paragraph key={paragraph.substring(0, 10)}>{paragraph}</Paragraph>)}
         {isDesktop && (cta1 || cta2) && (
           <Flex marginY={24} gap="24px" justifyContent="flex-start">
-            <Buttons />
+            {buttons()}
           </Flex>
         )}
       </Container>
@@ -124,7 +124,7 @@ const Switchback: FC<SwitchbackProps> = ({
       )}
       {!isDesktop && (cta1 || cta2) && (
         <Flex marginY={24} gap="24px" justifyContent="center" flexDirection="column" sm={{ flexDirection: 'row' }}>
-          <Buttons />
+          {buttons()}
         </Flex>
       )}
     </Flex>

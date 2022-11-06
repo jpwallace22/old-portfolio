@@ -82,12 +82,7 @@ const LinearProgress: FC<LinearProgressProps> = ({ value, label, variant, labelP
   `;
 
   return (
-    <Flex
-      alignItems="center"
-      flexDirection={labelPosition === 'bottom' ? 'column' : undefined}
-      position="relative"
-      {...props}
-    >
+    <Flex alignItems="center" flexDirection={labelPosition === 'bottom' && 'column'} position="relative" {...props}>
       <StyledLinearProgress width="100%" css={floatingLabelStyles} {...progressProps} />
       {label && labelPosition === 'end' && (
         <Text textStyle="xs" fontWeight="semiBold" marginLeft={12}>

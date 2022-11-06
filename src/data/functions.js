@@ -4,6 +4,7 @@ const path = require('path');
 
 const sizeOf = require('image-size');
 
+// utility function to get information for image sizes
 const getImageInfo = directoryPath => {
   const imageDir = fs.readdirSync(directoryPath);
   const { base } = path.parse(directoryPath);
