@@ -1,17 +1,11 @@
 import { useMediaQuery } from '@mui/material';
 import { WorksType } from 'data/data';
 import { motion } from 'framer-motion';
+import { Container, Flex, Heading, Image, Link } from 'quarks';
 import { FC } from 'react';
 
-// Atoms
 import { media } from 'atoms/breakpoints/breakpoints';
 
-// Quarks
-import Container from 'quarks/Container';
-import Flex from 'quarks/Flex';
-import Heading from 'quarks/Heading';
-import Image from 'quarks/Image';
-import Link from 'quarks/Link';
 import { BasicProps } from 'quarks/interpolations/basic';
 
 import useDarkMode from 'contexts/ThemeProvider';
