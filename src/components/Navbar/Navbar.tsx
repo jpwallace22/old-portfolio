@@ -192,7 +192,7 @@ const Navbar: FC<NavbarProps> = ({ links, socials, currentSection, ...props }) =
                 cursor="pointer"
                 lg={{ height: 'inherit' }}
               >
-                <Link href={link.url}>
+                <Link href={link.url} hover={{ textColor: undefined }}>
                   <Text
                     textStyle="xl"
                     fontSize={36}
