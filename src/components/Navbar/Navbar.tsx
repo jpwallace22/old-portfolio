@@ -214,7 +214,7 @@ const Navbar: FC<NavbarProps> = ({ links, socials, currentSection, ...props }) =
           )}
           {!isDesktop && socials && (
             <Flex justifyContent="center">
-              <Socials links={socials} marginTop={32}></Socials>
+              <Socials links={socials} marginTop={32} />
             </Flex>
           )}
         </Flex>
