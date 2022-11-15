@@ -59,9 +59,9 @@ const aboutMe = {
     alt: '',
   },
   bio: [
-    'I am a 14 year Navy veteran that decided to follow my dreams of becoming a web designer, only to find out that I ACTUALLY wanted to be a developer!',
-    'Halfway through my journey as a web designer I pivoted over to engineering and have never looked back. Typescript development is what truly motivates me. Whether it be React or Go, I have an absolute passion for writing clean, readable, scalable code.',
-    'My greatest asset as a developer is my personal drive, love for the craft, and willingness to learn. Nothing like digging into some docs with my morning coffee to start the day! ',
+    'I am a dedicated and driven software engineer with a love for fantastic frontends and intuitive interfaces. My educational background in web design/development paired with my endless curiosity helps me create accessible, semantic, responsive UX experiences.   ',
+    'I have been most recently motivated by Typescript (both on the front and backend). However, I understand the need for diversity and am always learning. I have an obsession with writing clean, readable, scalable code regardless of language or framework.',
+    'My greatest asset as a developer is my grit, curiosity, love for the craft, and willingness to learn. Nothing like digging into some docs with my morning coffee to start the day!',
   ],
   cta1: {
     text: 'Contact',

@@ -45,6 +45,7 @@ const reactWorkflow = {
   keyPoints: [
     'Command Line Interface built with Typescript in Nodejs',
     'Published as a NPM package and shared with co-workers to increase productivity',
+    'Ability to add templates to project roots to standardize code style',
   ],
 };
 
