@@ -42,6 +42,10 @@ const reactWorkflow = {
       width: 998,
     },
   ],
+  keyPoints: [
+    'Command Line Interface built with Typescript in Nodejs',
+    'Published as a NPM package and shared with co-workers to increase productivity',
+  ],
 };
 
 export default reactWorkflow;
