@@ -10,4 +10,11 @@ module.exports = {
 
     return config;
   },
+  redirects: async () => [
+    {
+      source: '/resume',
+      destination: '/resume.pdf',
+      permanent: true,
+    },
+  ],
 };
