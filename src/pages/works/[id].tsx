@@ -1,4 +1,3 @@
-import { works } from 'data/data';
 import request from 'datocms';
 import { LazyMotion, domAnimation, m as motion } from 'framer-motion';
 import { gql } from 'graphql-request';
@@ -26,8 +25,20 @@ import SmallCard, { SmallCardProps } from 'components/cards/SmallCard/SmallCard'
 import useDarkMode from 'contexts/ThemeProvider';
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = works.map(work => ({
-    params: { id: work.id.toString() },
+  const SLUG_QUERY = gql`
+    query {
+      allWorks {
+        slug
+      }
+    }
+  `;
+
+  const data = await request({
+    query: SLUG_QUERY,
+  });
+
+  const paths = data.allWorks.map((work: { slug: string }) => ({
+    params: { id: work.slug },
   }));
 
   return { paths, fallback: false };
