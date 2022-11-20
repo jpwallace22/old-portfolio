@@ -47,6 +47,14 @@ export const workFrag = gql`
     title
     subtitle
     heading
+    body {
+      value
+      blocks
+    }
+    information {
+      value
+      blocks
+    }
     bannerImage {
       ...imageFrag
     }

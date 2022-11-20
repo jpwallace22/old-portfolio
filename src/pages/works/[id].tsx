@@ -5,7 +5,6 @@ import { gql } from 'graphql-request';
 import { workFrag } from 'graphql/fragments';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
-import { GiCheckMark } from 'react-icons/gi';
 
 // Quarks
 import Container from 'quarks/Container';
@@ -14,10 +13,10 @@ import Flex from 'quarks/Flex';
 import Grid from 'quarks/Grid';
 import Heading from 'quarks/Heading';
 import Image from 'quarks/Image';
-import Paragraph from 'quarks/Paragraph';
 
 // Components
 import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
+import StructuredTextParser from 'molecules/StructuredTextParser/StructuredTextParser';
 
 import Carousel from 'components/Carousel/Carousel';
 import Footer from 'components/Footer/Footer';
@@ -35,11 +34,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 const Work = ({
-  data: { title, subtitle, bannerImage, techStack, heading, ctas, gallery, keyPoints, autoplay = true },
+  data: { title, subtitle, bannerImage, techStack, heading, ctas, gallery, body, information, autoplay = true },
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [isDark] = useDarkMode();
   const tempTechStack = techStack.map((tech: Record<string, string>) => tech.title);
-  // TODO MAKE STRUCTURED TEXT PARSER
 
   return (
     <LazyMotion features={domAnimation}>
@@ -115,9 +113,7 @@ const Work = ({
             <StandardFadeIn>
               <Container as="section" marginY={48}>
                 <Heading as="h3">{heading}</Heading>
-                {/* {intro.body.map((copy: string, i: number) => (
-                  <Paragraph key={`intro-${i + 1}`}>{copy}</Paragraph>
-                ))} */}
+                <StructuredTextParser text={body} marginTop={16} />
               </Container>
             </StandardFadeIn>
           )}
@@ -142,19 +138,12 @@ const Work = ({
           </Container>
         )}
         <Container maxWidth="1100px" paddingX={16} lg={{ marginX: 'auto', paddingX: 32 }}>
-          {keyPoints && (
+          {information && (
             <Container as="section" marginY={48}>
               <Heading as="h3" paddingY={16}>
                 Key Points
               </Heading>
-              {keyPoints.map((copy: string, i: number) => (
-                <Flex key={`intro-${i + 1}`} alignItems="center">
-                  <Container width="25px">
-                    <GiCheckMark />
-                  </Container>
-                  <Paragraph marginLeft={16}>{copy}</Paragraph>
-                </Flex>
-              ))}
+              <StructuredTextParser text={information} marginTop={16} />
             </Container>
           )}
         </Container>
@@ -165,8 +154,6 @@ const Work = ({
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  // const currentPiece = works.filter(work => work.id.toString() === params?.id);
-
   const slug = params?.id;
   const QUERY = gql`
     query {

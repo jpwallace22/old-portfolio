@@ -71,7 +71,7 @@
     "@typescript-eslint/no-use-before-define": ["error"],
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/member-delimiter-style": "warn",
-    "no-duplicate-imports": "error",
+    "@typescript-eslint/no-duplicate-imports": "error",
     "import/first": "error",
     "import/default": "error",
     "import/prefer-default-export": "warn",
