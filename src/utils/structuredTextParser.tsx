@@ -19,15 +19,6 @@ import type { StructuredTextGraphQlResponse } from 'react-datocms';
 
 type InlineTypes = 'DatoCmsComponentButton';
 
-const HeadingTextStylestMapping = {
-  1: 'lg',
-  2: 'md',
-  3: 'sm',
-  4: 'xs',
-  5: 'xs',
-  6: 'xs',
-} as const;
-
 export interface InlineRecords
   extends Omit<NodeType, '__typename'>,
     Omit<ButtonRecord, 'children' | 'internal' | '__typename'> {
@@ -44,7 +35,12 @@ const structuredTextParser = (
         data={data as StructuredTextGraphQlResponse}
         customNodeRules={[
           renderNodeRule(isHeading, ({ node, children, key }) => (
-            <Heading key={key} as={`h${node.level}`} textStyle={HeadingTextStylestMapping[node.level]} marginTop={40}>
+            <Heading
+              key={key}
+              as={`h${node.level}`}
+              marginTop={40}
+              textColor={{ light: 'common-black', dark: 'common-white' }}
+            >
               {children}
             </Heading>
           )),

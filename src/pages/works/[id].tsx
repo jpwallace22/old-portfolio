@@ -150,10 +150,7 @@ const Work = ({
         )}
         <Container maxWidth="1100px" paddingX={16} lg={{ marginX: 'auto', paddingX: 32 }}>
           {information && (
-            <Container as="section" marginY={48}>
-              <Heading as="h3" paddingY={16}>
-                Key Points
-              </Heading>
+            <Container as="section">
               <StructuredTextParser text={information} marginTop={16} />
             </Container>
           )}
