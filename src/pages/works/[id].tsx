@@ -1,5 +1,8 @@
 import { works } from 'data/data';
+import request from 'datocms';
 import { LazyMotion, domAnimation, m as motion } from 'framer-motion';
+import { gql } from 'graphql-request';
+import { workFrag } from 'graphql/fragments';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import { GiCheckMark } from 'react-icons/gi';
@@ -161,6 +164,21 @@ const Work = ({
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const currentPiece = works.filter(work => work.id.toString() === params?.id);
+
+  const QUERY = gql`
+    query {
+      work {
+        ...workFrag
+      }
+    }
+    ${workFrag}
+  `;
+
+  const data = await request({
+    query: QUERY,
+  });
+
+  console.warn(data);
 
   return {
     props: {
