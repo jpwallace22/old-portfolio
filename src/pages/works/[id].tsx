@@ -35,9 +35,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 const Work = ({
-  data: { title, subTitle, bannerImage, techStack, intro, ctas, gallery, keyPoints, autoplay = true },
+  data: { title, subtitle, bannerImage, techStack, heading, ctas, gallery, keyPoints, autoplay = true },
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [isDark] = useDarkMode();
+  const tempTechStack = techStack.map((tech: Record<string, string>) => tech.title);
+  // TODO MAKE STRUCTURED TEXT PARSER
 
   return (
     <LazyMotion features={domAnimation}>
@@ -74,7 +76,7 @@ const Work = ({
           >
             {title}
           </Heading>
-          {subTitle && (
+          {subtitle && (
             <Heading
               as="h3"
               fontFamily="primaryFont"
@@ -82,7 +84,7 @@ const Work = ({
               fontWeight={isDark ? 'light' : 'regular'}
               textColor={{ light: 'gray-900', dark: 'gray-500' }}
             >
-              {subTitle}
+              {subtitle}
             </Heading>
           )}
         </motion.div>
@@ -95,27 +97,27 @@ const Work = ({
         >
           {bannerImage && (
             <Image
-              src={bannerImage?.src}
+              src={bannerImage?.url}
               alt={bannerImage?.alt}
-              height={bannerImage?.height}
-              width={bannerImage?.width}
+              height={650}
+              width={650}
               marginX="auto"
               maxWidth="80%"
               loading="eager"
               lg={{ marginAll: 0 }}
             />
           )}
-          {techStack && <TechStack icons={techStack} />}
+          {techStack && <TechStack icons={tempTechStack} />}
         </Flex>
         <SmallCircle position="absolute" right="-400px" top="450px" opacity={0.3} />
         <Container maxWidth="1100px" paddingX={16} lg={{ marginX: 'auto', paddingX: 32 }}>
-          {intro && (
+          {heading && (
             <StandardFadeIn>
               <Container as="section" marginY={48}>
-                <Heading as="h3">{intro.heading}</Heading>
-                {intro.body.map((copy: string, i: number) => (
+                <Heading as="h3">{heading}</Heading>
+                {/* {intro.body.map((copy: string, i: number) => (
                   <Paragraph key={`intro-${i + 1}`}>{copy}</Paragraph>
-                ))}
+                ))} */}
               </Container>
             </StandardFadeIn>
           )}
@@ -163,26 +165,24 @@ const Work = ({
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const currentPiece = works.filter(work => work.id.toString() === params?.id);
+  // const currentPiece = works.filter(work => work.id.toString() === params?.id);
 
+  const slug = params?.id;
   const QUERY = gql`
     query {
-      work {
+      work(filter: {slug: {eq: ${slug}}}) {
         ...workFrag
       }
     }
     ${workFrag}
   `;
-
   const data = await request({
     query: QUERY,
   });
 
-  console.warn(data);
-
   return {
     props: {
-      data: currentPiece[0],
+      data: data.work,
     },
   };
 };

@@ -1,6 +1,6 @@
 module.exports = {
   images: {
-    domains: ['localhost', 'justinwallace.dev'],
+    domains: ['localhost', 'justinwallace.dev', 'www.datocms-assets.com'],
   },
   webpack(config) {
     config.module.rules.push({
