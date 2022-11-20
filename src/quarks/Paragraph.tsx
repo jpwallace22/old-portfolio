@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { ComponentType, FC, ReactNode } from 'react';
 import styled from 'styled-components';
 
 import { TextProps, text } from 'quarks/interpolations/text';
@@ -9,10 +9,11 @@ const ParagraphTemplate = styled.p`
 
 interface ParagraphProps extends TextProps {
   children: ReactNode;
+  as?: string | ComponentType<any>;
 }
 
-const Paragraph: FC<ParagraphProps> = ({ children, ...props }) => (
-  <ParagraphTemplate textColor={{ dark: 'gray-500', light: 'purple-900' }} marginY={16} {...props}>
+const Paragraph: FC<ParagraphProps> = ({ children, as, ...props }) => (
+  <ParagraphTemplate as={as} textColor={{ dark: 'gray-500', light: 'purple-900' }} {...props}>
     {children}
   </ParagraphTemplate>
 );

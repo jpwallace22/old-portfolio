@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { MutableRefObject, useEffect, useState } from 'react';
 
 import type { NextRouter } from 'next/router';
