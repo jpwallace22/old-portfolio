@@ -31,7 +31,7 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({ works, ...pro
             viewport={{ once: true }}
             key={work.id}
           >
-            <Link href={`https://www.justinwallace.com/works/${work.slug}`}>
+            <Link href={`https://www.justinwallace.dev/works/${work.slug}`}>
               <Flex
                 gap="32px"
                 justifyContent="center"
