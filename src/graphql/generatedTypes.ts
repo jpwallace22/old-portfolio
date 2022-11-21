@@ -79,7 +79,7 @@ export enum ButtonModelOrderBy {
   UpdatedAt_ASC = 'updatedAt_ASC',
   UpdatedAt_DESC = 'updatedAt_DESC',
   Url_ASC = 'url_ASC',
-  Url_DESC = 'url_DESC',
+  Url_DESC = 'url_DESC'
 }
 
 /** Record of type Button (button) */
@@ -106,6 +106,7 @@ export type ButtonRecord = RecordInterface & {
   url?: Maybe<Scalars['String']>;
 };
 
+
 /** Record of type Button (button) */
 export type ButtonRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
@@ -128,7 +129,7 @@ export enum ColorBucketType {
   Purple = 'purple',
   Red = 'red',
   White = 'white',
-  Yellow = 'yellow',
+  Yellow = 'yellow'
 }
 
 export type ColorField = {
@@ -161,7 +162,7 @@ export type CreatedAtFilter = {
 export enum FaviconType {
   AppleTouchIcon = 'appleTouchIcon',
   Icon = 'icon',
-  MsApplication = 'msApplication',
+  MsApplication = 'msApplication'
 }
 
 export type FileField = FileFieldInterface & {
@@ -195,10 +196,12 @@ export type FileField = FileFieldInterface & {
   width?: Maybe<Scalars['IntType']>;
 };
 
+
 export type FileFieldAltArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
+
 
 export type FileFieldBlurUpThumbArgs = {
   imgixParams?: InputMaybe<ImgixParams>;
@@ -207,15 +210,18 @@ export type FileFieldBlurUpThumbArgs = {
   size?: InputMaybe<Scalars['Int']>;
 };
 
+
 export type FileFieldCustomDataArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
 
+
 export type FileFieldFocalPointArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
+
 
 export type FileFieldResponsiveImageArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
@@ -224,10 +230,12 @@ export type FileFieldResponsiveImageArgs = {
   sizes?: InputMaybe<Scalars['String']>;
 };
 
+
 export type FileFieldTitleArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
+
 
 export type FileFieldUrlArgs = {
   imgixParams?: InputMaybe<ImgixParams>;
@@ -263,10 +271,12 @@ export type FileFieldInterface = {
   width?: Maybe<Scalars['IntType']>;
 };
 
+
 export type FileFieldInterfaceAltArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
+
 
 export type FileFieldInterfaceBlurUpThumbArgs = {
   imgixParams?: InputMaybe<ImgixParams>;
@@ -275,15 +285,18 @@ export type FileFieldInterfaceBlurUpThumbArgs = {
   size?: InputMaybe<Scalars['Int']>;
 };
 
+
 export type FileFieldInterfaceCustomDataArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
 
+
 export type FileFieldInterfaceFocalPointArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
+
 
 export type FileFieldInterfaceResponsiveImageArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
@@ -292,10 +305,12 @@ export type FileFieldInterfaceResponsiveImageArgs = {
   sizes?: InputMaybe<Scalars['String']>;
 };
 
+
 export type FileFieldInterfaceTitleArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
+
 
 export type FileFieldInterfaceUrlArgs = {
   imgixParams?: InputMaybe<ImgixParams>;
@@ -336,6 +351,92 @@ export type GlobalSeoField = {
   siteName?: Maybe<Scalars['String']>;
   titleSuffix?: Maybe<Scalars['String']>;
   twitterAccount?: Maybe<Scalars['String']>;
+};
+
+export type HomepageModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<HomepageModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  aboutMe?: InputMaybe<LinkFilter>;
+  createdAt?: InputMaybe<CreatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  internalName?: InputMaybe<StringFilter>;
+  updatedAt?: InputMaybe<UpdatedAtFilter>;
+  works?: InputMaybe<LinksFilter>;
+  worksHeading?: InputMaybe<StringFilter>;
+  worksIntro?: InputMaybe<StructuredTextFilter>;
+};
+
+export enum HomepageModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  CreatedAt_ASC = 'createdAt_ASC',
+  CreatedAt_DESC = 'createdAt_DESC',
+  Id_ASC = 'id_ASC',
+  Id_DESC = 'id_DESC',
+  InternalName_ASC = 'internalName_ASC',
+  InternalName_DESC = 'internalName_DESC',
+  UpdatedAt_ASC = 'updatedAt_ASC',
+  UpdatedAt_DESC = 'updatedAt_DESC',
+  WorksHeading_ASC = 'worksHeading_ASC',
+  WorksHeading_DESC = 'worksHeading_DESC'
+}
+
+export type HomepageModelWorksIntroField = {
+  __typename?: 'HomepageModelWorksIntroField';
+  blocks: Array<Scalars['String']>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+};
+
+/** Record of type Homepage (homepage) */
+export type HomepageRecord = RecordInterface & {
+  __typename?: 'HomepageRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  aboutMe?: Maybe<SwitchbackRecord>;
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  internalName?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['DateTime'];
+  works: Array<WorkRecord>;
+  worksHeading?: Maybe<Scalars['String']>;
+  worksIntro?: Maybe<HomepageModelWorksIntroField>;
+};
+
+
+/** Record of type Homepage (homepage) */
+export type HomepageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
 };
 
 export type ImgixParams = {
@@ -1527,7 +1628,7 @@ export enum ImgixParamsAuto {
   Compress = 'compress',
   Enhance = 'enhance',
   Format = 'format',
-  Redeye = 'redeye',
+  Redeye = 'redeye'
 }
 
 export enum ImgixParamsBlendAlign {
@@ -1536,7 +1637,7 @@ export enum ImgixParamsBlendAlign {
   Left = 'left',
   Middle = 'middle',
   Right = 'right',
-  Top = 'top',
+  Top = 'top'
 }
 
 export enum ImgixParamsBlendCrop {
@@ -1544,7 +1645,7 @@ export enum ImgixParamsBlendCrop {
   Faces = 'faces',
   Left = 'left',
   Right = 'right',
-  Top = 'top',
+  Top = 'top'
 }
 
 export enum ImgixParamsBlendFit {
@@ -1552,7 +1653,7 @@ export enum ImgixParamsBlendFit {
   Clip = 'clip',
   Crop = 'crop',
   Max = 'max',
-  Scale = 'scale',
+  Scale = 'scale'
 }
 
 export enum ImgixParamsBlendMode {
@@ -1571,17 +1672,17 @@ export enum ImgixParamsBlendMode {
   Overlay = 'overlay',
   Saturation = 'saturation',
   Screen = 'screen',
-  Softlight = 'softlight',
+  Softlight = 'softlight'
 }
 
 export enum ImgixParamsBlendSize {
-  Inherit = 'inherit',
+  Inherit = 'inherit'
 }
 
 export enum ImgixParamsCh {
   Dpr = 'dpr',
   SaveData = 'saveData',
-  Width = 'width',
+  Width = 'width'
 }
 
 export enum ImgixParamsCrop {
@@ -1592,19 +1693,19 @@ export enum ImgixParamsCrop {
   Focalpoint = 'focalpoint',
   Left = 'left',
   Right = 'right',
-  Top = 'top',
+  Top = 'top'
 }
 
 export enum ImgixParamsCs {
   Adobergb1998 = 'adobergb1998',
   Srgb = 'srgb',
   Strip = 'strip',
-  Tinysrgb = 'tinysrgb',
+  Tinysrgb = 'tinysrgb'
 }
 
 export enum ImgixParamsFill {
   Blur = 'blur',
-  Solid = 'solid',
+  Solid = 'solid'
 }
 
 export enum ImgixParamsFit {
@@ -1616,13 +1717,13 @@ export enum ImgixParamsFit {
   Fillmax = 'fillmax',
   Max = 'max',
   Min = 'min',
-  Scale = 'scale',
+  Scale = 'scale'
 }
 
 export enum ImgixParamsFlip {
   H = 'h',
   Hv = 'hv',
-  V = 'v',
+  V = 'v'
 }
 
 export enum ImgixParamsFm {
@@ -1639,12 +1740,12 @@ export enum ImgixParamsFm {
   Png8 = 'png8',
   Png32 = 'png32',
   Webm = 'webm',
-  Webp = 'webp',
+  Webp = 'webp'
 }
 
 export enum ImgixParamsIptc {
   Allow = 'allow',
-  Block = 'block',
+  Block = 'block'
 }
 
 export enum ImgixParamsMarkAlign {
@@ -1653,7 +1754,7 @@ export enum ImgixParamsMarkAlign {
   Left = 'left',
   Middle = 'middle',
   Right = 'right',
-  Top = 'top',
+  Top = 'top'
 }
 
 export enum ImgixParamsMarkFit {
@@ -1661,25 +1762,25 @@ export enum ImgixParamsMarkFit {
   Crop = 'crop',
   Fill = 'fill',
   Max = 'max',
-  Scale = 'scale',
+  Scale = 'scale'
 }
 
 export enum ImgixParamsMarkTile {
-  Grid = 'grid',
+  Grid = 'grid'
 }
 
 export enum ImgixParamsPalette {
   Css = 'css',
-  Json = 'json',
+  Json = 'json'
 }
 
 export enum ImgixParamsTransparency {
-  Grid = 'grid',
+  Grid = 'grid'
 }
 
 export enum ImgixParamsTrim {
   Auto = 'auto',
-  Color = 'color',
+  Color = 'color'
 }
 
 export enum ImgixParamsTxtAlign {
@@ -1688,18 +1789,18 @@ export enum ImgixParamsTxtAlign {
   Left = 'left',
   Middle = 'middle',
   Right = 'right',
-  Top = 'top',
+  Top = 'top'
 }
 
 export enum ImgixParamsTxtClip {
   Ellipsis = 'ellipsis',
   End = 'end',
   Middle = 'middle',
-  Start = 'start',
+  Start = 'start'
 }
 
 export enum ImgixParamsTxtFit {
-  Max = 'max',
+  Max = 'max'
 }
 
 /** Specifies how to filter by usage */
@@ -1723,8 +1824,22 @@ export type ItemIdFilter = {
 export enum ItemStatus {
   Draft = 'draft',
   Published = 'published',
-  Updated = 'updated',
+  Updated = 'updated'
 }
+
+/** Specifies how to filter Single-link fields */
+export type LinkFilter = {
+  /** Search for records with an exact match. The specified value must be a Record ID */
+  eq?: InputMaybe<Scalars['ItemId']>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars['BooleanType']>;
+  /** Filter records linked to one of the specified records */
+  in?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>;
+  /** Exclude records with an exact match. The specified value must be a Record ID */
+  neq?: InputMaybe<Scalars['ItemId']>;
+  /** Filter records not linked to one of the specified records */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>;
+};
 
 /** Specifies how to filter Multiple-links fields */
 export type LinksFilter = {
@@ -1743,7 +1858,7 @@ export type LinksFilter = {
 export enum MuxThumbnailFormatType {
   Gif = 'gif',
   Jpg = 'jpg',
-  Png = 'png',
+  Png = 'png'
 }
 
 /** Specifies how to filter by image orientation */
@@ -1778,6 +1893,10 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allButtonsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allHomepagesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allSwitchbacksMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allTechStacksMeta: CollectionMetadata;
   /** Returns meta information regarding an assets collection */
   _allUploadsMeta?: Maybe<CollectionMetadata>;
@@ -1788,6 +1907,10 @@ export type Query = {
   /** Returns a collection of records */
   allButtons: Array<ButtonRecord>;
   /** Returns a collection of records */
+  allHomepages: Array<HomepageRecord>;
+  /** Returns a collection of records */
+  allSwitchbacks: Array<SwitchbackRecord>;
+  /** Returns a collection of records */
   allTechStacks: Array<TechStackRecord>;
   /** Returns a collection of assets */
   allUploads: Array<FileField>;
@@ -1796,12 +1919,17 @@ export type Query = {
   /** Returns a specific record */
   button?: Maybe<ButtonRecord>;
   /** Returns a specific record */
+  homepage?: Maybe<HomepageRecord>;
+  /** Returns a specific record */
+  switchback?: Maybe<SwitchbackRecord>;
+  /** Returns a specific record */
   techStack?: Maybe<TechStackRecord>;
   /** Returns a specific asset */
   upload?: Maybe<FileField>;
   /** Returns a specific record */
   work?: Maybe<WorkRecord>;
 };
+
 
 /** The query root for this schema */
 export type Query_AllButtonsMetaArgs = {
@@ -1810,6 +1938,23 @@ export type Query_AllButtonsMetaArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+
+/** The query root for this schema */
+export type Query_AllHomepagesMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<HomepageModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type Query_AllSwitchbacksMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SwitchbackModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
 /** The query root for this schema */
 export type Query_AllTechStacksMetaArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
@@ -1817,11 +1962,13 @@ export type Query_AllTechStacksMetaArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+
 /** The query root for this schema */
 export type Query_AllUploadsMetaArgs = {
   filter?: InputMaybe<UploadFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
+
 
 /** The query root for this schema */
 export type Query_AllWorksMetaArgs = {
@@ -1830,11 +1977,13 @@ export type Query_AllWorksMetaArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+
 /** The query root for this schema */
 export type Query_SiteArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
+
 
 /** The query root for this schema */
 export type QueryAllButtonsArgs = {
@@ -1846,6 +1995,29 @@ export type QueryAllButtonsArgs = {
   skip?: InputMaybe<Scalars['IntType']>;
 };
 
+
+/** The query root for this schema */
+export type QueryAllHomepagesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<HomepageModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<HomepageModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
+
+/** The query root for this schema */
+export type QueryAllSwitchbacksArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SwitchbackModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SwitchbackModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
+
 /** The query root for this schema */
 export type QueryAllTechStacksArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
@@ -1855,6 +2027,7 @@ export type QueryAllTechStacksArgs = {
   orderBy?: InputMaybe<Array<InputMaybe<TechStackModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']>;
 };
+
 
 /** The query root for this schema */
 export type QueryAllUploadsArgs = {
@@ -1866,6 +2039,7 @@ export type QueryAllUploadsArgs = {
   skip?: InputMaybe<Scalars['IntType']>;
 };
 
+
 /** The query root for this schema */
 export type QueryAllWorksArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
@@ -1876,6 +2050,7 @@ export type QueryAllWorksArgs = {
   skip?: InputMaybe<Scalars['IntType']>;
 };
 
+
 /** The query root for this schema */
 export type QueryButtonArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
@@ -1883,6 +2058,25 @@ export type QueryButtonArgs = {
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<ButtonModelOrderBy>>>;
 };
+
+
+/** The query root for this schema */
+export type QueryHomepageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<HomepageModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<HomepageModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+export type QuerySwitchbackArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SwitchbackModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SwitchbackModelOrderBy>>>;
+};
+
 
 /** The query root for this schema */
 export type QueryTechStackArgs = {
@@ -1892,6 +2086,7 @@ export type QueryTechStackArgs = {
   orderBy?: InputMaybe<Array<InputMaybe<TechStackModelOrderBy>>>;
 };
 
+
 /** The query root for this schema */
 export type QueryUploadArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
@@ -1899,6 +2094,7 @@ export type QueryUploadArgs = {
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<UploadOrderBy>>>;
 };
+
 
 /** The query root for this schema */
 export type QueryWorkArgs = {
@@ -1923,6 +2119,7 @@ export type RecordInterface = {
   id: Scalars['ItemId'];
 };
 
+
 export type RecordInterface_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
@@ -1943,7 +2140,7 @@ export enum ResolutionType {
   Icon = 'icon',
   Large = 'large',
   Medium = 'medium',
-  Small = 'small',
+  Small = 'small'
 }
 
 export type ResponsiveImage = {
@@ -1977,9 +2174,11 @@ export type Site = {
   locales: Array<SiteLocale>;
 };
 
+
 export type SiteFaviconMetaTagsArgs = {
   variants?: InputMaybe<Array<InputMaybe<FaviconType>>>;
 };
+
 
 export type SiteGlobalSeoArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
@@ -1987,7 +2186,7 @@ export type SiteGlobalSeoArgs = {
 };
 
 export enum SiteLocale {
-  En = 'en',
+  En = 'en'
 }
 
 /** Specifies how to filter Slug fields */
@@ -2052,6 +2251,96 @@ export type StructuredTextFilter = {
   notMatches?: InputMaybe<StringMatchesFilter>;
 };
 
+export type SwitchbackModelBodyField = {
+  __typename?: 'SwitchbackModelBodyField';
+  blocks: Array<Scalars['String']>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+};
+
+export type SwitchbackModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<SwitchbackModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  body?: InputMaybe<StructuredTextFilter>;
+  buttons?: InputMaybe<LinksFilter>;
+  createdAt?: InputMaybe<CreatedAtFilter>;
+  heading?: InputMaybe<StringFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  image?: InputMaybe<FileFilter>;
+  internalName?: InputMaybe<StringFilter>;
+  reverse?: InputMaybe<BooleanFilter>;
+  updatedAt?: InputMaybe<UpdatedAtFilter>;
+};
+
+export enum SwitchbackModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  CreatedAt_ASC = 'createdAt_ASC',
+  CreatedAt_DESC = 'createdAt_DESC',
+  Heading_ASC = 'heading_ASC',
+  Heading_DESC = 'heading_DESC',
+  Id_ASC = 'id_ASC',
+  Id_DESC = 'id_DESC',
+  InternalName_ASC = 'internalName_ASC',
+  InternalName_DESC = 'internalName_DESC',
+  Reverse_ASC = 'reverse_ASC',
+  Reverse_DESC = 'reverse_DESC',
+  UpdatedAt_ASC = 'updatedAt_ASC',
+  UpdatedAt_DESC = 'updatedAt_DESC'
+}
+
+/** Record of type Switchback (switchback) */
+export type SwitchbackRecord = RecordInterface & {
+  __typename?: 'SwitchbackRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  body?: Maybe<SwitchbackModelBodyField>;
+  buttons: Array<ButtonRecord>;
+  createdAt: Scalars['DateTime'];
+  heading?: Maybe<Scalars['String']>;
+  id: Scalars['ItemId'];
+  image?: Maybe<FileField>;
+  internalName?: Maybe<Scalars['String']>;
+  reverse?: Maybe<Scalars['BooleanType']>;
+  updatedAt: Scalars['DateTime'];
+};
+
+
+/** Record of type Switchback (switchback) */
+export type SwitchbackRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 export type Tag = {
   __typename?: 'Tag';
   attributes?: Maybe<Scalars['MetaTagAttributes']>;
@@ -2103,7 +2392,7 @@ export enum TechStackModelOrderBy {
   Title_ASC = 'title_ASC',
   Title_DESC = 'title_DESC',
   UpdatedAt_ASC = 'updatedAt_ASC',
-  UpdatedAt_DESC = 'updatedAt_DESC',
+  UpdatedAt_DESC = 'updatedAt_DESC'
 }
 
 /** Record of type Tech Stack (tech_stack) */
@@ -2127,6 +2416,7 @@ export type TechStackRecord = RecordInterface & {
   title?: Maybe<Scalars['String']>;
   updatedAt: Scalars['DateTime'];
 };
+
 
 /** Record of type Tech Stack (tech_stack) */
 export type TechStackRecord_SeoMetaTagsArgs = {
@@ -2370,13 +2660,13 @@ export enum UploadOrderBy {
   Resolution_ASC = 'resolution_ASC',
   Resolution_DESC = 'resolution_DESC',
   Size_ASC = 'size_ASC',
-  Size_DESC = 'size_DESC',
+  Size_DESC = 'size_DESC'
 }
 
 export enum UploadOrientation {
   Landscape = 'landscape',
   Portrait = 'portrait',
-  Square = 'square',
+  Square = 'square'
 }
 
 /** Specifies how to filter by size */
@@ -2435,7 +2725,7 @@ export enum UploadType {
   Presentation = 'presentation',
   Richtext = 'richtext',
   Spreadsheet = 'spreadsheet',
-  Video = 'video',
+  Video = 'video'
 }
 
 /** Specifies how to filter by update datetime */
@@ -2465,10 +2755,12 @@ export type UploadVideoField = {
   thumbnailUrl: Scalars['String'];
 };
 
+
 export type UploadVideoFieldMp4UrlArgs = {
   exactRes?: InputMaybe<VideoMp4Res>;
   res?: InputMaybe<VideoMp4Res>;
 };
+
 
 export type UploadVideoFieldThumbnailUrlArgs = {
   format?: InputMaybe<MuxThumbnailFormatType>;
@@ -2493,7 +2785,7 @@ export type UploadWidthFilter = {
 export enum VideoMp4Res {
   High = 'high',
   Low = 'low',
-  Medium = 'medium',
+  Medium = 'medium'
 }
 
 export type WorkModelBodyField = {
@@ -2566,7 +2858,7 @@ export enum WorkModelOrderBy {
   Title_ASC = 'title_ASC',
   Title_DESC = 'title_DESC',
   UpdatedAt_ASC = 'updatedAt_ASC',
-  UpdatedAt_DESC = 'updatedAt_DESC',
+  UpdatedAt_DESC = 'updatedAt_DESC'
 }
 
 /** Record of type Work (work) */
@@ -2598,6 +2890,7 @@ export type WorkRecord = RecordInterface & {
   title?: Maybe<Scalars['String']>;
   updatedAt: Scalars['DateTime'];
 };
+
 
 /** Record of type Work (work) */
 export type WorkRecord_SeoMetaTagsArgs = {
