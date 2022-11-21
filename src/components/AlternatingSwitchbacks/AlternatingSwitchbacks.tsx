@@ -1,6 +1,6 @@
 import { useMediaQuery } from '@mui/material';
-import { WorksType } from 'data/data';
 import { motion } from 'framer-motion';
+import { WorkRecord } from 'graphql/generatedTypes';
 import { Container, Flex, Heading, Image, Link } from 'quarks';
 import { FC } from 'react';
 
@@ -11,7 +11,7 @@ import { BasicProps } from 'quarks/interpolations/basic';
 import useDarkMode from 'contexts/ThemeProvider';
 
 type AlternatingSwitchbacksProps = BasicProps & {
-  works: WorksType;
+  works: WorkRecord[];
 };
 
 const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({ works, ...props }) => {
@@ -31,7 +31,7 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({ works, ...pro
             viewport={{ once: true }}
             key={work.id}
           >
-            <Link href={work.url}>
+            <Link href={`https://www.justinwallace.com/work/${work.slug}`}>
               <Flex
                 gap="32px"
                 justifyContent="center"
@@ -79,11 +79,11 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({ works, ...pro
                 </Container>
                 <Container width="40%" className="image-wrapper" transition="all 1s ease">
                   <Image
-                    src={work.bannerImage.src}
+                    src={work?.bannerImage?.url || ''}
                     height={500}
                     width={500}
-                    alt={work.bannerImage.alt}
                     marginX="auto"
+                    alt={work?.bannerImage?.alt || ''}
                   />
                 </Container>
               </Flex>

@@ -39,6 +39,27 @@ export const techFrag = gql`
   ${imageFrag}
 `;
 
+export const switchBackFrag = gql`
+  fragment switchBackFrag on SwitchbackRecord {
+    __typename
+    id
+    internalName
+    reverse
+    heading
+    body {
+      value
+    }
+    image {
+      ...imageFrag
+    }
+    buttons {
+      ...buttonFrag
+    }
+  }
+  ${imageFrag}
+  ${buttonFrag}
+`;
+
 export const workFrag = gql`
   fragment workFrag on WorkRecord {
     __typename

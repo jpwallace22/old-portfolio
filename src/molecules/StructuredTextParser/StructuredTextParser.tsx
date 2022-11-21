@@ -10,7 +10,7 @@ import type { StructuredTextGraphQlResponse } from 'react-datocms';
 
 type StructuredTextProps = TextProps &
   FlexProps & {
-    text: StructuredTextGraphQlResponse | Record<string, unknown> | null;
+    text?: StructuredTextGraphQlResponse | Record<string, unknown> | null;
   };
 
 const StructuredTextParser: FC<StructuredTextProps> = ({ text, ...props }) => (

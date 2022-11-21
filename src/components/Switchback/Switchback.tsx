@@ -1,4 +1,5 @@
 import { useMediaQuery } from '@mui/material';
+import { SwitchbackRecord } from 'graphql/generatedTypes';
 import { FC, MouseEvent } from 'react';
 
 // Quarks
@@ -8,68 +9,52 @@ import Container from 'quarks/Container';
 import Flex from 'quarks/Flex';
 import Heading from 'quarks/Heading';
 import Image from 'quarks/Image';
-import Paragraph from 'quarks/Paragraph';
 import { FlexProps } from 'quarks/interpolations/flex';
 
 import Button from 'molecules/Button/Button';
+import StructuredTextParser from 'molecules/StructuredTextParser/StructuredTextParser';
 
-type SwitchbackProps = FlexProps & {
-  heading?: string;
-  image?: {
-    url: string;
-    alt: string;
-  };
-  reverse?: boolean;
-  bio?: string[];
-  cta1?: {
-    url?: string;
-    text?: string;
-  };
-  cta2?: {
-    url?: string;
-    text?: string;
-  };
+interface SwitchbackProps extends FlexProps, SwitchbackRecord {
   cta1Action?: (e?: MouseEvent<Element, globalThis.MouseEvent>) => void;
   cta2Action?: (e?: MouseEvent<Element, globalThis.MouseEvent>) => void;
-};
+}
 
 const Switchback: FC<SwitchbackProps> = ({
   image,
   heading,
   reverse,
-  bio,
-  cta1,
-  cta2,
+  body,
+  buttons,
   cta1Action,
   cta2Action,
   ...props
 }) => {
   const isDesktop = useMediaQuery(media.lg);
 
-  const buttons = () => (
+  const renderButtons = () => (
     <>
-      {cta1 && (
+      {buttons[0] && (
         <Button
           variant="contained"
           size="large"
           width="100%"
           sm={{ width: 'unset' }}
-          href={cta1?.url}
+          href={buttons[0]?.url || ''}
           onClick={cta1Action}
         >
-          {cta1?.text}
+          {buttons[0]?.title}
         </Button>
       )}
-      {cta2 && (
+      {buttons[1] && (
         <Button
           variant="outlined"
           size="large"
           width="100%"
           sm={{ width: 'unset' }}
-          href={cta2?.url}
+          href={buttons[1]?.url || ''}
           onClick={cta2Action}
         >
-          {cta2?.text}
+          {buttons[1]?.title}
         </Button>
       )}
     </>
@@ -104,10 +89,10 @@ const Switchback: FC<SwitchbackProps> = ({
         >
           {heading}
         </Heading>
-        {bio && bio.map(paragraph => <Paragraph key={paragraph.substring(0, 10)}>{paragraph}</Paragraph>)}
-        {isDesktop && (cta1 || cta2) && (
+        <StructuredTextParser text={body} />
+        {isDesktop && buttons.length > 0 && (
           <Flex marginY={24} gap="24px" justifyContent="flex-start">
-            {buttons()}
+            {renderButtons()}
           </Flex>
         )}
       </Container>
@@ -116,15 +101,15 @@ const Switchback: FC<SwitchbackProps> = ({
           maxWidth="70%"
           marginX="auto"
           src={image.url}
-          alt={image.alt}
+          alt={image.alt || ''}
           width={500}
           height={500}
           lg={{ marginX: 0 }}
         />
       )}
-      {!isDesktop && (cta1 || cta2) && (
+      {!isDesktop && buttons.length > 0 && (
         <Flex marginY={24} gap="24px" justifyContent="center" flexDirection="column" sm={{ flexDirection: 'row' }}>
-          {buttons()}
+          {renderButtons()}
         </Flex>
       )}
     </Flex>

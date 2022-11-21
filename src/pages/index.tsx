@@ -1,6 +1,9 @@
 import { useMediaQuery } from '@mui/material';
-import { home } from 'data/data';
+import request from 'datocms';
 import { LazyMotion, domAnimation, m as motion } from 'framer-motion';
+import { gql } from 'graphql-request';
+import { switchBackFrag } from 'graphql/fragments';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
@@ -19,11 +22,10 @@ import Container from 'quarks/Container';
 import { Dots, LargeCircle, SmallCircle } from 'quarks/DesignElements';
 import Heading from 'quarks/Heading';
 import Image from 'quarks/Image';
-import Paragraph from 'quarks/Paragraph';
 
 import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
+import StructuredTextParser from 'molecules/StructuredTextParser/StructuredTextParser';
 
-// Components
 import AlternatingSwitchbacks from 'components/AlternatingSwitchbacks/AlternatingSwitchbacks';
 import Footer from 'components/Footer/Footer';
 import Hero from 'components/Hero/Hero';
@@ -34,11 +36,8 @@ import { emailObfuscator } from 'utils/functions';
 const HeroLine = styled(Line)``;
 const AboutLine = styled(Line2)``;
 
-// interface HomeProps {
-//   setCurrentSection: (s: string) => void;
-// }
-
-const Home = () => {
+const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const { worksHeading, worksIntro, aboutMe, works } = data;
   const isDesktop = useMediaQuery(media.lg);
   const [drawHero, setDrawHero] = useState(0);
   const [drawAbout, setDrawAbout] = useState(0);
@@ -154,7 +153,7 @@ const Home = () => {
             id="about"
             lg={{ paddingY: 64, paddingBottom: 80 }}
           >
-            <Switchback cta1Action={() => emailObfuscator(router)} {...home.aboutMe} />
+            <Switchback cta1Action={() => emailObfuscator(router)} {...aboutMe} />
             <Dots position="absolute" bottom="0" left="45%" lg={{ top: '110px', left: '50%' }} />
           </Container>
         </StandardFadeIn>
@@ -175,20 +174,51 @@ const Home = () => {
           <LargeCircle position="absolute" left="-900px" top="90px" zIndex={-10} lg={{ bottom: '-200px' }} />
           <StandardFadeIn>
             <Heading as="h3" textStyle="lg" marginBottom={24} lg={{ textStyle: 'xl' }}>
-              Some Works
+              {worksHeading}
             </Heading>
-            <Paragraph maxWidth="730px">
-              A couple of projects that show my progression over the years. From jQuery to Node (and plenty of others in
-              between) I feel these works highlight my thought process and how I am always trying to make the most out
-              of whatever tools I have.{' '}
-            </Paragraph>
+            <StructuredTextParser text={worksIntro} maxWidth="730px" />
           </StandardFadeIn>
-          <AlternatingSwitchbacks works={home.works} />
+          <AlternatingSwitchbacks works={works} />
         </Container>
       </Container>
       <Footer />
     </LazyMotion>
   );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const QUERY = gql`
+    query {
+      homepage {
+        __typename
+        worksHeading
+        worksIntro {
+          value
+        }
+        aboutMe {
+          ...switchBackFrag
+        }
+        works {
+          slug
+          title
+          bannerImage {
+            ...imageFrag
+          }
+        }
+      }
+    }
+    ${switchBackFrag}
+  `;
+
+  const data = await request({
+    query: QUERY,
+  });
+
+  return {
+    props: {
+      data: data.homepage,
+    },
+  };
 };
 
 export default Home;
