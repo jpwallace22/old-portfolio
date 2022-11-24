@@ -13,8 +13,7 @@ export const emailObfuscator = (router: NextRouter) => {
   router.push(`${['m', 'a', 'i', 'l', 't', 'o'].join('')}:hello${at}justinwallace${dot}dev`);
 };
 
-// eslint-disable-next-line func-style
-export function useOnScreen<T extends Element | null>(ref: MutableRefObject<T>, rootMargin = '0px'): boolean {
+export const useOnScreen = <T extends Element | null>(ref: MutableRefObject<T>, rootMargin = '0px'): boolean => {
   const [isIntersecting, setIntersecting] = useState<boolean>(false);
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -41,4 +40,9 @@ export function useOnScreen<T extends Element | null>(ref: MutableRefObject<T>, 
   }, []);
 
   return isIntersecting;
-}
+};
+
+/**
+ * @returns a semi-random 10 char string. Should NOT be used for cases where true randomness is needed
+ */
+export const getSemiRandomString = () => Math.random().toString(36).slice(2, 12);
