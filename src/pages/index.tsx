@@ -2,7 +2,7 @@ import { useMediaQuery } from '@mui/material';
 import request from 'datocms';
 import { LazyMotion, domAnimation, m as motion } from 'framer-motion';
 import { gql } from 'graphql-request';
-import { switchBackFrag } from 'graphql/fragments';
+import { buttonFrag, imageFrag, switchBackFrag } from 'graphql/fragments';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -207,6 +207,8 @@ export const getStaticProps: GetStaticProps = async () => {
         }
       }
     }
+    ${buttonFrag}
+    ${imageFrag}
     ${switchBackFrag}
   `;
 

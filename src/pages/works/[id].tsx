@@ -2,14 +2,15 @@ import request from 'datocms';
 import { LazyMotion, domAnimation, m as motion } from 'framer-motion';
 import { gql } from 'graphql-request';
 import { workFrag } from 'graphql/fragments';
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
+import { WorkRecord } from 'graphql/generatedTypes';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 
 // Quarks
 import Container from 'quarks/Container';
 import { Dots, LargeCircle, SmallCircle } from 'quarks/DesignElements';
 import Flex from 'quarks/Flex';
-import Grid from 'quarks/Grid';
+// import Grid from 'quarks/Grid';
 import Heading from 'quarks/Heading';
 import Image from 'quarks/Image';
 
@@ -17,10 +18,10 @@ import Image from 'quarks/Image';
 import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 import StructuredTextParser from 'molecules/StructuredTextParser/StructuredTextParser';
 
-import Carousel from 'components/Carousel/Carousel';
+// import Carousel from 'components/Carousel/Carousel';
 import Footer from 'components/Footer/Footer';
-import TechStack from 'components/TechStack/TechStack';
-import SmallCard, { SmallCardProps } from 'components/cards/SmallCard/SmallCard';
+import TechStack, { TechStackProps } from 'components/TechStack/TechStack';
+import SmallCard from 'components/cards/SmallCard/SmallCard';
 
 import useDarkMode from 'contexts/ThemeProvider';
 
@@ -44,11 +45,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: false };
 };
 
-const Work = ({
-  data: { title, subtitle, bannerImage, techStack, heading, ctas, gallery, body, information, autoplay = true },
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+interface IWorkPage {
+  data: WorkRecord;
+}
+
+const Work = ({ data: { title, subtitle, bannerImage, techStack, heading, ctas, body, information } }: IWorkPage) => {
   const [isDark] = useDarkMode();
-  const tempTechStack = techStack.map((tech: Record<string, string>) => tech.title);
+  const tempTechStack = techStack.map(tech => tech.title);
 
   return (
     <LazyMotion features={domAnimation}>
@@ -107,7 +110,7 @@ const Work = ({
           {bannerImage && (
             <Image
               src={bannerImage?.url}
-              alt={bannerImage?.alt}
+              alt={bannerImage?.alt || ''}
               height={650}
               width={650}
               marginX="auto"
@@ -116,7 +119,7 @@ const Work = ({
               lg={{ marginAll: 0 }}
             />
           )}
-          {techStack && <TechStack icons={tempTechStack} />}
+          {techStack && <TechStack icons={tempTechStack as TechStackProps['icons']} />}
         </Flex>
         <SmallCircle position="absolute" right="-400px" top="450px" opacity={0.3} />
         <Container maxWidth="1100px" paddingX={16} lg={{ marginX: 'auto', paddingX: 32 }}>
@@ -130,14 +133,14 @@ const Work = ({
           )}
           {ctas && (
             <Flex justifyContent="center" gap="32px" marginY={48}>
-              {ctas.map((cta: SmallCardProps) => (
+              {ctas.map(cta => (
                 <SmallCard key={cta.title} {...cta} />
               ))}
             </Flex>
           )}
         </Container>
         <Dots position="absolute" transform="rotate(45deg)" top="1000px" left="-270px" md={{ left: '-400px' }} />
-        {gallery && (
+        {/* {gallery && (
           <Container as="main" maxWidth="1440px" paddingX={16} contain="layout" marginX="auto" lg={{ paddingX: 32 }}>
             <Carousel autoPlay={autoplay} interval={6} paddingY={16}>
               {gallery.map((image: { url: string; alt?: string; width: number; height: number }) => (
@@ -147,7 +150,8 @@ const Work = ({
               ))}
             </Carousel>
           </Container>
-        )}
+        )} */}
+
         <Container maxWidth="1100px" paddingX={16} lg={{ marginX: 'auto', paddingX: 32 }}>
           {information && (
             <Container as="section">

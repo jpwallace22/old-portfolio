@@ -112,6 +112,95 @@ export type ButtonRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+export type CaseStudyCardModelBodyField = {
+  __typename?: 'CaseStudyCardModelBodyField';
+  blocks: Array<Scalars['String']>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+};
+
+export type CaseStudyCardModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<CaseStudyCardModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  body?: InputMaybe<StructuredTextFilter>;
+  createdAt?: InputMaybe<CreatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  image?: InputMaybe<FileFilter>;
+  internalName?: InputMaybe<StringFilter>;
+  stats?: InputMaybe<StructuredTextFilter>;
+  updatedAt?: InputMaybe<UpdatedAtFilter>;
+};
+
+export enum CaseStudyCardModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  CreatedAt_ASC = 'createdAt_ASC',
+  CreatedAt_DESC = 'createdAt_DESC',
+  Id_ASC = 'id_ASC',
+  Id_DESC = 'id_DESC',
+  InternalName_ASC = 'internalName_ASC',
+  InternalName_DESC = 'internalName_DESC',
+  UpdatedAt_ASC = 'updatedAt_ASC',
+  UpdatedAt_DESC = 'updatedAt_DESC'
+}
+
+export type CaseStudyCardModelStatsField = {
+  __typename?: 'CaseStudyCardModelStatsField';
+  blocks: Array<Scalars['String']>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+};
+
+/** Record of type Case Study Card (case_study_card) */
+export type CaseStudyCardRecord = RecordInterface & {
+  __typename?: 'CaseStudyCardRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  body?: Maybe<CaseStudyCardModelBodyField>;
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  image?: Maybe<FileField>;
+  internalName?: Maybe<Scalars['String']>;
+  stats?: Maybe<CaseStudyCardModelStatsField>;
+  updatedAt: Scalars['DateTime'];
+};
+
+
+/** Record of type Case Study Card (case_study_card) */
+export type CaseStudyCardRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 export type CollectionMetadata = {
   __typename?: 'CollectionMetadata';
   count: Scalars['IntType'];
@@ -1893,6 +1982,8 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allButtonsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allCaseStudyCardsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allHomepagesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allSwitchbacksMeta: CollectionMetadata;
@@ -1907,6 +1998,8 @@ export type Query = {
   /** Returns a collection of records */
   allButtons: Array<ButtonRecord>;
   /** Returns a collection of records */
+  allCaseStudyCards: Array<CaseStudyCardRecord>;
+  /** Returns a collection of records */
   allHomepages: Array<HomepageRecord>;
   /** Returns a collection of records */
   allSwitchbacks: Array<SwitchbackRecord>;
@@ -1918,6 +2011,8 @@ export type Query = {
   allWorks: Array<WorkRecord>;
   /** Returns a specific record */
   button?: Maybe<ButtonRecord>;
+  /** Returns a specific record */
+  caseStudyCard?: Maybe<CaseStudyCardRecord>;
   /** Returns a specific record */
   homepage?: Maybe<HomepageRecord>;
   /** Returns a specific record */
@@ -1935,6 +2030,14 @@ export type Query = {
 export type Query_AllButtonsMetaArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<ButtonModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type Query_AllCaseStudyCardsMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<CaseStudyCardModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -1992,6 +2095,17 @@ export type QueryAllButtonsArgs = {
   first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<ButtonModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
+
+/** The query root for this schema */
+export type QueryAllCaseStudyCardsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<CaseStudyCardModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<CaseStudyCardModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']>;
 };
 
@@ -2057,6 +2171,15 @@ export type QueryButtonArgs = {
   filter?: InputMaybe<ButtonModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<ButtonModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+export type QueryCaseStudyCardArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<CaseStudyCardModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<CaseStudyCardModelOrderBy>>>;
 };
 
 
@@ -2814,6 +2937,7 @@ export type WorkModelFilter = {
   id?: InputMaybe<ItemIdFilter>;
   information?: InputMaybe<StructuredTextFilter>;
   internalName?: InputMaybe<StringFilter>;
+  slider?: InputMaybe<LinksFilter>;
   slug?: InputMaybe<SlugFilter>;
   subtitle?: InputMaybe<StringFilter>;
   techStack?: InputMaybe<LinksFilter>;
@@ -2884,6 +3008,7 @@ export type WorkRecord = RecordInterface & {
   id: Scalars['ItemId'];
   information?: Maybe<WorkModelInformationField>;
   internalName?: Maybe<Scalars['String']>;
+  slider: Array<CaseStudyCardRecord>;
   slug?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   techStack: Array<TechStackRecord>;
