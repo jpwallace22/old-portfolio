@@ -19,6 +19,7 @@ import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 import StructuredTextParser from 'molecules/StructuredTextParser/StructuredTextParser';
 
 // import Carousel from 'components/Carousel/Carousel';
+import Carousel from 'components/Carousel/CarouselNew';
 import Footer from 'components/Footer/Footer';
 import TechStack, { TechStackProps } from 'components/TechStack/TechStack';
 import SmallCard from 'components/cards/SmallCard/SmallCard';
@@ -49,7 +50,9 @@ interface IWorkPage {
   data: WorkRecord;
 }
 
-const Work = ({ data: { title, subtitle, bannerImage, techStack, heading, ctas, body, information } }: IWorkPage) => {
+const Work = ({
+  data: { title, subtitle, bannerImage, techStack, heading, ctas, body, information, slider },
+}: IWorkPage) => {
   const [isDark] = useDarkMode();
   const tempTechStack = techStack.map(tech => tech.title);
 
@@ -151,7 +154,7 @@ const Work = ({ data: { title, subtitle, bannerImage, techStack, heading, ctas, 
             </Carousel>
           </Container>
         )} */}
-
+        <Carousel cards={slider} />
         <Container maxWidth="1100px" paddingX={16} lg={{ marginX: 'auto', paddingX: 32 }}>
           {information && (
             <Container as="section">

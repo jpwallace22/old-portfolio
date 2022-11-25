@@ -1,4 +1,6 @@
+import { CaseStudyCardRecord } from 'graphql/generatedTypes';
 import { FC, useState } from 'react';
+import { useSwipeable } from 'react-swipeable';
 import { useMeasure } from 'react-use';
 
 import Container from 'quarks/Container';
@@ -7,10 +9,10 @@ import type { BasicProps } from 'quarks/interpolations/basic';
 
 import ComponentPagination from 'molecules/ComponentPagination/ComponentPagination';
 
-import { getSemiRandomString } from 'utils/functions';
+import { CaseStudyCard } from 'components/cards';
 
 type CarouselCardProps = BasicProps & {
-  cards: Array<Record<string | number, unknown>>;
+  cards: CaseStudyCardRecord[];
 };
 
 const Carousel: FC<CarouselCardProps> = ({ cards }) => {
@@ -18,6 +20,15 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
   const [ref, { width: cardWidth }] = useMeasure<HTMLDivElement>();
   const gapBetweenCards = 64;
   const cardCount = cards?.length;
+
+  const swipeHandler = useSwipeable({
+    onSwipedRight: () => (activeIndex === 0 ? setActive(cardCount - 1) : setActive(activeIndex - 1)),
+    onSwipedLeft: () => (activeIndex === cardCount - 1 ? setActive(0) : setActive(activeIndex + 1)),
+  });
+
+  const refPassthrough = (el: HTMLDivElement) => {
+    swipeHandler.ref(el);
+  };
 
   const handleArrowClick = (direction: string) => {
     if (direction === 'Right' && cardCount) {
@@ -29,26 +40,29 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
 
   return (
     <Flex
-      gap="48px"
+      gap="24px"
       flexDirection="column"
       paddingY={48}
       justifyContent="center"
       md={{ paddingY: 64 }}
-      lg={{ paddingY: 96 }}
+      lg={{ paddingY: 96, gap: '48px' }}
+      {...swipeHandler}
+      ref={refPassthrough}
     >
       <Container width={`${cardCount}00%`}>
         <Flex
+          marginLeft={32}
           md={{ marginLeft: 32 }}
           xl={{ marginLeft: 40 }}
-          gap="64px"
+          gap={`${gapBetweenCards}px`}
           transform={`translateX(-${activeIndex * (cardWidth + gapBetweenCards)}px)`}
           transition="transform 0.5s"
           flexWrap="nowrap"
           alignItems="stretch"
         >
           {cards?.map(card => (
-            <Flex alignItems="center" key={getSemiRandomString()} ref={ref}>
-              {card?.title as string}
+            <Flex alignItems="center" key={card?.internalName} ref={ref}>
+              <CaseStudyCard {...card} />
             </Flex>
           ))}
         </Flex>

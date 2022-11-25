@@ -13,9 +13,9 @@ type StructuredTextProps = TextProps &
     text?: StructuredTextGraphQlResponse | Record<string, unknown> | null;
   };
 
-const StructuredTextParser: FC<StructuredTextProps> = ({ text, ...props }) => (
+const StructuredTextParser: FC<StructuredTextProps> = ({ text, textColor, ...props }) => (
   <Paragraph as={Flex} flexDirection="column" gap="24px" {...props}>
-    {structuredTextParser(text)}
+    {structuredTextParser(text, textColor)}
   </Paragraph>
 );
 

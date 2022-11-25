@@ -98,7 +98,11 @@ const Tooltip: FC<TooltipProps> = ({ children, title, description, ...props }) =
     title={
       <>
         {title}
-        {description && <Paragraph textStyle="xs">{description}</Paragraph>}
+        {description && (
+          <Paragraph textColor={{ dark: 'gray-500', light: 'purple-900' }} textStyle="xs">
+            {description}
+          </Paragraph>
+        )}
       </>
     }
     {...props}
