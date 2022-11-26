@@ -19,8 +19,8 @@ import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 import StructuredTextParser from 'molecules/StructuredTextParser/StructuredTextParser';
 
 // import Carousel from 'components/Carousel/Carousel';
-import Carousel from 'components/Carousel/CarouselNew';
 import Footer from 'components/Footer/Footer';
+import Slider from 'components/Slider/Slider';
 import TechStack, { TechStackProps } from 'components/TechStack/TechStack';
 import SmallCard from 'components/cards/SmallCard/SmallCard';
 
@@ -147,7 +147,7 @@ const Work = ({
           )}
         </Container>
         <Dots position="absolute" transform="rotate(45deg)" top="1000px" left="-270px" md={{ left: '-400px' }} />
-        <Carousel cards={slider} />
+        <Slider cards={slider} />
         <Container maxWidth="1100px" paddingX={16} lg={{ marginX: 'auto', paddingX: 32 }}>
           {information && (
             <Container as="section">

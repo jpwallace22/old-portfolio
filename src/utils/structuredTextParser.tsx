@@ -71,7 +71,9 @@ const structuredTextParser = (
                 {children}
               </Paragraph>
             ) : (
-              <Container key={key}>{children}</Container>
+              <Container key={key} textColor={textColor}>
+                {children}
+              </Container>
             );
           }),
           renderNodeRule(isCode, ({ node, key }) => (
@@ -94,7 +96,7 @@ const structuredTextParser = (
         ]}
         customMarkRules={[
           renderMarkRule('strong', ({ children, key }) => (
-            <Text key={key} fontWeight="bold">
+            <Text key={key} fontWeight="bold" textColor={textColor}>
               {children}
             </Text>
           )),

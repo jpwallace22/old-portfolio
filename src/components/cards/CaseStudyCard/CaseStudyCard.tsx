@@ -16,16 +16,20 @@ const OffsetGridCard: FC<CaseStudyCardProps> = ({ image }) => (
     boxShadow="xxl"
     overflowY="hidden"
     width="80vw"
-    md={{ width: 'unset', maxWidth: '550px' }}
-    xl={{ maxWidth: '800px' }}
+    maxWidth="800px"
+    maxHeight="700px"
+    lg={{ width: '60vw' }}
+    aspectRatio={[image?.width, image?.height]}
+    position="relative"
   >
     <Image
       src={image?.url || ''}
       alt={image?.alt || ''}
-      width={image?.width || 0}
-      height={image?.height > 700 ? 700 : image?.height}
+      layout="fill"
       objectFit="cover"
-      objectPosition="top"
+      md={{ width: 'unset', maxWidth: '550px' }}
+      xl={{ maxWidth: '800px' }}
+      // objectPosition="top"
     />
   </Container>
 );

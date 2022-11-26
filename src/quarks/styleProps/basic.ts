@@ -587,6 +587,13 @@ const basicCSS = {
   contain: (value: Properties['contain']) => css`
     contain: ${value};
   `,
+  /**
+   * The aspect-ratio CSS property sets a preferred aspect ratio for the box,
+   * which will be used in the calculation of auto sizes and some other layout functions.
+   */
+  aspectRatio: (value: [number, number]) => css`
+    aspect-ratio: ${value[0]} / ${value[1]};
+  `,
 };
 
 export default basicCSS;

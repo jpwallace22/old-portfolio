@@ -11,11 +11,11 @@ import StructuredTextParser from 'molecules/StructuredTextParser/StructuredTextP
 
 import { CaseStudyCard } from 'components/cards';
 
-type CarouselCardProps = BasicProps & {
+type SliderCardProps = BasicProps & {
   cards: CaseStudyCardRecord[];
 };
 
-const Carousel: FC<CarouselCardProps> = ({ cards }) => {
+const Slider: FC<SliderCardProps> = ({ cards }) => {
   const [activeIndex, setActive] = useState(0);
   const [cardWidths, setCardWidths] = useState<number[]>([]);
 
@@ -112,4 +112,4 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
   );
 };
 
-export default Carousel;
+export default Slider;
