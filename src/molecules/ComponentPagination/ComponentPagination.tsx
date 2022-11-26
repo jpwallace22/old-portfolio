@@ -1,5 +1,5 @@
 import { FC, useCallback } from 'react';
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { TiChevronLeft, TiChevronRight } from 'react-icons/ti';
 
 import Flex from 'quarks/Flex';
 
@@ -62,12 +62,13 @@ const ComponentPagination: FC<ComponentPaginationProps> = ({
     <Flex gap="32px" justifyContent="center" alignItems="center">
       {isWithArrow && (
         <Button
-          // tabIndex={0}
+          boxShadow="none"
           textColor="gray-900"
           aria-label="left"
+          hover={{ textColor: 'primary-600', backgroundColor: 'transparent' }}
           onClick={handleLeftArrowClick}
         >
-          <FiChevronLeft />
+          <TiChevronLeft />
         </Button>
       )}
       <Flex gap="16px">
@@ -79,18 +80,20 @@ const ComponentPagination: FC<ComponentPaginationProps> = ({
               color={color}
               onKeyDown={e => e.key === 'Enter' && handleActiveDot(index)}
               onClick={() => handleActiveDot(index)}
+              hover={{ backgroundColor: activeDot && index < activeDot ? 'primary-600' : 'purple-500' }}
             />
           ),
         )}
       </Flex>
       {isWithArrow && (
         <Button
-          // tabIndex={0}
+          boxShadow="none"
           textColor="gray-900"
           aria-label="right"
+          hover={{ textColor: 'purple-500', backgroundColor: 'transparent' }}
           onClick={handleRightArrowClick}
         >
-          <FiChevronRight />
+          <TiChevronRight />
         </Button>
       )}
     </Flex>

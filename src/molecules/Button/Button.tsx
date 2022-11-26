@@ -62,6 +62,7 @@ const Button: FC<ButtonProps> = ({ children, endIcon, startIcon, href, iconSize,
   return (
     <StyledButton
       {...urlProps}
+      disableRipple
       textDecoration="none"
       forwardedAs={as}
       startIcon={

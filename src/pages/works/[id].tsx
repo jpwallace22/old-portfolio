@@ -130,7 +130,11 @@ const Work = ({
             <StandardFadeIn>
               <Container as="section" marginY={48}>
                 <Heading as="h3">{heading}</Heading>
-                <StructuredTextParser text={body} marginTop={16} />
+                <StructuredTextParser
+                  textColor={{ dark: 'gray-500', light: 'purple-900' }}
+                  text={body}
+                  marginTop={16}
+                />
               </Container>
             </StandardFadeIn>
           )}
@@ -143,17 +147,6 @@ const Work = ({
           )}
         </Container>
         <Dots position="absolute" transform="rotate(45deg)" top="1000px" left="-270px" md={{ left: '-400px' }} />
-        {/* {gallery && (
-          <Container as="main" maxWidth="1440px" paddingX={16} contain="layout" marginX="auto" lg={{ paddingX: 32 }}>
-            <Carousel autoPlay={autoplay} interval={6} paddingY={16}>
-              {gallery.map((image: { url: string; alt?: string; width: number; height: number }) => (
-                <Grid placeItems="center" key={image.url}>
-                  <Image src={image.url} width={image.width} height={image.height} alt={image.alt || ''} />
-                </Grid>
-              ))}
-            </Carousel>
-          </Container>
-        )} */}
         <Carousel cards={slider} />
         <Container maxWidth="1100px" paddingX={16} lg={{ marginX: 'auto', paddingX: 32 }}>
           {information && (

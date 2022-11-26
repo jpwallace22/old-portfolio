@@ -185,7 +185,7 @@ const basicCSS = {
    */
   // eslint-disable-next-line @typescript-eslint/ban-types
   backgroundImage: (value: GradientList | (string & {})) => css`
-    background-image: ${parseBackgroundGradient(value)};
+    background-image: ${value && parseBackgroundGradient(value)};
   `,
   /**
    * Element's `background-position` value.

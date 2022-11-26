@@ -28,11 +28,12 @@ const Dots: FC<DotsProps> = forwardRef(({ isActive, color, onKeyDown, onClick, .
   <Container
     tabIndex={0}
     cursor="pointer"
-    width={isActive ? '24px' : '12px'}
+    width={isActive ? '48px' : '12px'}
     height="12px"
     borderRadius={isActive ? '200px' : '50%'}
-    transition="width .2s"
-    backgroundColor={isActive ? 'gray-900' : color}
+    transition="width .2s, border-radius .5s"
+    backgroundColor={color}
+    backgroundImage={isActive && 'gradient-purpleRight'}
     onKeyDown={onKeyDown}
     onClick={onClick}
     {...ref}
