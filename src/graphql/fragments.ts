@@ -96,9 +96,6 @@ export const workFrag = gql`
     techStack {
       ...techFrag
     }
-    gallery {
-      ...imageFrag
-    }
     slider {
       ...caseStudyCardFrag
     }
