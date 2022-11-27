@@ -5,6 +5,8 @@ import { Text } from 'quarks';
 import { StructuredText, renderMarkRule, renderNodeRule } from 'react-datocms';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 
+import { GetColorDefinition } from 'atoms/colors/colors';
+
 import Container from 'quarks/Container';
 import Flex from 'quarks/Flex';
 import Heading from 'quarks/Heading';
@@ -27,7 +29,7 @@ export interface InlineRecords
 
 const structuredTextParser = (
   data?: StructuredTextGraphQlResponse | Record<string, unknown> | null,
-  isBackgroundDark?: boolean,
+  textColor?: false | GetColorDefinition | null | undefined,
 ) => {
   if (data?.value) {
     return (
@@ -46,7 +48,7 @@ const structuredTextParser = (
           )),
           renderNodeRule(isList, ({ node, children, key }) =>
             node.style === 'bulleted' ? (
-              <List discColor={isBackgroundDark ? 'common-white' : 'primary-500'} key={key}>
+              <List discColor="common-white" textColor={{ dark: 'gray-500', light: 'purple-900' }} key={key}>
                 {children}
               </List>
             ) : (
@@ -64,7 +66,15 @@ const structuredTextParser = (
             const nodeData = children && (children[0] as ReactElement);
             const isText = nodeData?.props.children && typeof nodeData.props.children[0] === 'string';
 
-            return isText ? <Paragraph key={key}>{children}</Paragraph> : <Container key={key}>{children}</Container>;
+            return isText ? (
+              <Paragraph textColor={textColor} key={key}>
+                {children}
+              </Paragraph>
+            ) : (
+              <Container key={key} textColor={textColor}>
+                {children}
+              </Container>
+            );
           }),
           renderNodeRule(isCode, ({ node, key }) => (
             <SyntaxHighlighter
@@ -86,7 +96,7 @@ const structuredTextParser = (
         ]}
         customMarkRules={[
           renderMarkRule('strong', ({ children, key }) => (
-            <Text key={key} fontWeight="bold">
+            <Text key={key} fontWeight="bold" textColor={textColor}>
               {children}
             </Text>
           )),

@@ -19,7 +19,7 @@ import Flex from 'quarks/Flex';
 import Image from 'quarks/Image';
 import { FlexProps } from 'quarks/interpolations/flex';
 
-type TechStackProps = FlexProps & {
+export type TechStackProps = FlexProps & {
   icons: (
     | 'css'
     | 'javascript'

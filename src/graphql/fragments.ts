@@ -26,6 +26,20 @@ export const buttonFrag = gql`
   }
 `;
 
+export const caseStudyCardFrag = gql`
+  fragment caseStudyCardFrag on CaseStudyCardRecord {
+    __typename
+    id
+    internalName
+    image {
+      ...imageFrag
+    }
+    body {
+      value
+    }
+  }
+`;
+
 export const techFrag = gql`
   fragment techFrag on TechStackRecord {
     __typename
@@ -36,7 +50,6 @@ export const techFrag = gql`
       ...imageFrag
     }
   }
-  ${imageFrag}
 `;
 
 export const switchBackFrag = gql`
@@ -56,8 +69,6 @@ export const switchBackFrag = gql`
       ...buttonFrag
     }
   }
-  ${imageFrag}
-  ${buttonFrag}
 `;
 
 export const workFrag = gql`
@@ -88,7 +99,12 @@ export const workFrag = gql`
     gallery {
       ...imageFrag
     }
+    slider {
+      ...caseStudyCardFrag
+    }
   }
   ${buttonFrag}
   ${techFrag}
+  ${caseStudyCardFrag}
+  ${imageFrag}
 `;

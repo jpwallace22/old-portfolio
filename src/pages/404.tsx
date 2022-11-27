@@ -16,7 +16,7 @@ const fourOhFour = () => (
   <>
     <Grid placeItems="center" height="50vh" fontSize={20} contain="content">
       <Container width="340px" marginX="auto" position="relative" top="-10%">
-        <Paragraph textColor="gray-900">
+        <Paragraph textColor={{ dark: 'gray-900', light: 'purple-900' }}>
           {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
           <em>// 404 page not found</em>
         </Paragraph>

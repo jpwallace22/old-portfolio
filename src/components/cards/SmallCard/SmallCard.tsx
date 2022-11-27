@@ -12,9 +12,9 @@ import { BasicProps } from 'quarks/interpolations/basic';
 import type { FC } from 'react';
 
 export type SmallCardProps = BasicProps & {
-  icon: 'browser' | 'github' | 'npm';
-  title: string;
-  url?: string;
+  icon?: string | null;
+  title?: string | null;
+  url?: string | null;
   disabled?: boolean;
 };
 
@@ -40,7 +40,7 @@ const SmallCard: FC<SmallCardProps> = ({ icon, title, url, disabled, ...props })
       {...props}
     >
       <>
-        {iconMap[icon]}
+        {icon && iconMap[icon as keyof typeof iconMap]}
         <Text as="div" textStyle="xl" fontWeight="semiBold">
           {title}
         </Text>
