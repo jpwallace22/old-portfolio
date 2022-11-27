@@ -163,6 +163,7 @@ const Work = ({
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params?.id;
+
   const QUERY = gql`
     query {
       work(filter: {slug: {eq: ${slug}}}) {

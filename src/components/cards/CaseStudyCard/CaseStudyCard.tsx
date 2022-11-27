@@ -13,12 +13,12 @@ const OffsetGridCard: FC<CaseStudyCardProps> = ({ image }) => (
     backgroundColor={{ dark: 'purple-800', light: 'common-white' }}
     borderRadius="16px"
     lineHeight={0}
-    boxShadow="xxl"
+    boxShadow="xl"
     overflowY="hidden"
     width="80vw"
     maxWidth="800px"
     maxHeight="700px"
-    lg={{ width: '60vw' }}
+    lg={{ width: '60vw', marginBottom: 32 }}
     aspectRatio={[image?.width, image?.height]}
     position="relative"
   >

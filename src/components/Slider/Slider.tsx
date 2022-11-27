@@ -50,7 +50,7 @@ const Slider: FC<SliderCardProps> = ({ cards }) => {
 
   const calculateSlide = (arr: number[], gap: number) => arr.reduce((a, b) => a + b + gap, 0);
 
-  return (
+  return cards?.length > 1 ? (
     <Flex
       as="section"
       gap="24px"
@@ -63,19 +63,21 @@ const Slider: FC<SliderCardProps> = ({ cards }) => {
       ref={refPassthrough}
     >
       <StructuredTextParser
-        text={cards[activeIndex].body}
+        text={cards[activeIndex]?.body}
         textColor={{ dark: 'gray-500', light: 'purple-900' }}
-        marginLeft={24}
+        paddingX={24}
         justifyContent="flex-end"
         width="100%"
         minHeight="150px"
         lg={{ display: 'none' }}
       />
+
       <Flex width={`calc(${cardCount}00% + 300px)`} flexDirection="column" lg={{ flexDirection: 'row' }}>
         <StructuredTextParser
-          text={cards[activeIndex].body}
+          text={cards[activeIndex]?.body}
           textColor={{ dark: 'gray-500', light: 'purple-900' }}
           marginLeft={24}
+          marginRight={24}
           textStyle="xl"
           justifyContent="center"
           width="300px"
@@ -109,7 +111,7 @@ const Slider: FC<SliderCardProps> = ({ cards }) => {
         onSetActiveDot={dot => setActive(dot)}
       />
     </Flex>
-  );
+  ) : null;
 };
 
 export default Slider;

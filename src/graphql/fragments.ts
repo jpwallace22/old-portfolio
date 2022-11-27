@@ -37,9 +37,6 @@ export const caseStudyCardFrag = gql`
     body {
       value
     }
-    stats {
-      value
-    }
   }
 `;
 
