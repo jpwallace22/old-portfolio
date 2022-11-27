@@ -52,7 +52,7 @@ export const useOnScreen = <T extends Element | null>(ref: MutableRefObject<T>, 
 export const getSemiRandomString = () => Math.random().toString(36).slice(2, 12);
 
 export const timeToRead = (structuredText?: StructuredData) => {
-  const wordsPerMin = 300;
+  const wordsPerMin = 200;
 
   const content = render(structuredText as StructuredTextGraphQlResponse);
 

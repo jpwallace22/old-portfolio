@@ -1,6 +1,7 @@
 import request from 'datocms';
 import { gql } from 'graphql-request';
 import { blogPostFrag } from 'graphql/fragments';
+import { BlogPostRecord } from 'graphql/generatedTypes';
 import { GetStaticPaths, GetStaticProps } from 'next';
 
 import Container from 'quarks/Container';
@@ -18,6 +19,8 @@ import StructuredTextParser from 'molecules/StructuredTextParser/StructuredTextP
 // import SocialShareLinks from 'components/BlogPost/SocialShareLinks';
 
 import { timeToRead } from 'utils/functions';
+
+import useDarkMode from 'contexts/ThemeProvider';
 
 import type { FC } from 'react';
 
@@ -41,25 +44,28 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: false };
 };
 
-type BlogDetailProps = DatoCmsTemplateBlogPost;
-
-const BlogDetail: FC<BlogDetailProps> = ({
-  // slug,
-  title,
-  featuredImage,
-  body,
-  // tags,
-  // authors,
-  publishDate,
-}: BlogDetailProps) => {
+const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, publishDate }) => {
   const breadcrumbs = [
-    { label: 'Home', link: '/' },
-    { label: 'Blog', link: '/blog' },
+    { label: 'Home', link: 'https://www.justinwallace.dev' },
+    { label: 'Blog', link: 'https://www.justinwallace.dev/blog' },
   ];
+
+  const formattedDate = new Date(publishDate).toLocaleDateString(undefined, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+
+  const [isDark] = useDarkMode();
 
   return (
     <>
-      <Container backgroundColor="common-white">
+      <Container
+        backgroundColor={{ dark: 'purple-800', light: 'gray-50' }}
+        position="relative"
+        top="-70px"
+        lg={{ top: '-82px' }}
+      >
         <Flex
           flexDirection="column"
           maxWidth="1170px"
@@ -73,25 +79,46 @@ const BlogDetail: FC<BlogDetailProps> = ({
           xl={{ maxWidth: '1170px' }}
         >
           <Breadcrumbs breadcrumbs={breadcrumbs} />
-          <Flex marginTop={64} alignItems="center" gap="32px" flexDirection="column" lg={{ flexDirection: 'row' }}>
-            <Flex flexDirection="column" gap="24px" lg={{ width: featuredImage ? '50%' : '100%' }}>
-              {title && <Heading>{title}</Heading>}
-              <Flex gap="12px" alignItems="center" flexWrap="wrap">
+          <Flex marginTop={64} gap="32px" flexDirection="column" lg={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Flex flexDirection="column" lg={{ width: featuredImage ? '50%' : '100%' }}>
+              {title && (
+                <Heading as="h2" textStyle="lg">
+                  {title}
+                </Heading>
+              )}
+              {subtitle && (
+                <Heading
+                  as="h3"
+                  fontFamily="primaryFont"
+                  textStyle="md"
+                  fontWeight={isDark ? 'light' : 'regular'}
+                  textColor={{ light: 'gray-900', dark: 'gray-500' }}
+                >
+                  {subtitle}
+                </Heading>
+              )}
+              <Flex gap="12px" alignItems="center" flexWrap="wrap" marginTop={32}>
+                {publishDate && <Paragraph textStyle="md">{formattedDate}</Paragraph>}
                 <Flex width="5px" height="5px" borderRadius="50%" backgroundColor="primary-600" />
-                {publishDate && <Paragraph textStyle="md">{publishDate}</Paragraph>}
-                <Flex width="5px" height="5px" borderRadius="50%" backgroundColor="primary-600" />
-                {body && <Text textStyle="md">{timeToRead(body)} minutes</Text>}
+                {body && <Text textStyle="md">{timeToRead(body)} minute read</Text>}
               </Flex>
             </Flex>
             {featuredImage && (
-              <Container xl={{ width: '50%' }} flex="1 1 50%">
-                <Image src={featuredImage.url} alt={featuredImage?.alt || ''} />
+              <Container
+                flex="1 1 50%"
+                position="relative"
+                aspectRatio={[featuredImage.width, featuredImage.height]}
+                width="100%"
+                maxWidth="600px"
+                marginX="auto"
+              >
+                <Image src={featuredImage.url} alt={featuredImage?.alt || ''} layout="fill" />
               </Container>
             )}
           </Flex>
         </Flex>
       </Container>
-      <Container backgroundColor="gray-50">
+      <Container>
         <Flex
           justifyContent="space-between"
           paddingTop={48}
@@ -103,9 +130,9 @@ const BlogDetail: FC<BlogDetailProps> = ({
           lg={{ flexDirection: 'row', maxWidth: '970px' }}
           xl={{ maxWidth: '1170px' }}
         >
-          {/* <Container position="sticky" top="100px" display="block" height="100%">
-            <SocialShareLinks slug={slug || ''} title={title} />
-          </Container> */}
+          <Container position="sticky" top="100px" display="block" height="100%">
+            Socials
+          </Container>
           <Container lg={{ maxWidth: '870px' }}>
             {body && <StructuredTextParser text={body} textStyle="lg" />}
           </Container>
@@ -131,9 +158,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   });
 
   return {
-    props: {
-      data: data.blogPost,
-    },
+    props: data.blogPost,
   };
 };
 

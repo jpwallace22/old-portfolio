@@ -112,6 +112,7 @@ export const blogPostFrag = gql`
     id
     internalName
     title
+    subtitle
     publishDate
     body {
       value
