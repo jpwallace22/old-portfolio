@@ -27,10 +27,9 @@ export interface InlineRecords
   __typename: string | InlineTypes;
 }
 
-const structuredTextParser = (
-  data?: StructuredTextGraphQlResponse | Record<string, unknown> | null,
-  textColor?: false | GetColorDefinition | null | undefined,
-) => {
+export type StructuredData = StructuredTextGraphQlResponse | Record<string, unknown> | null;
+
+const structuredTextParser = (data?: StructuredData, textColor?: false | GetColorDefinition | null | undefined) => {
   if (data?.value) {
     return (
       <StructuredText

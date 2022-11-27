@@ -105,3 +105,21 @@ export const workFrag = gql`
   ${caseStudyCardFrag}
   ${imageFrag}
 `;
+
+export const blogPostFrag = gql`
+  fragment blogPostFrag on BlogPostRecord {
+    __typename
+    id
+    internalName
+    title
+    publishDate
+    body {
+      value
+      blocks
+    }
+    featuredImage {
+      ...imageFrag
+    }
+  }
+  ${imageFrag}
+`;
