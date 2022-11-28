@@ -169,15 +169,19 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params?.id;
 
   const QUERY = gql`
-    query {
-      work(filter: {slug: {eq: ${slug}}}) {
+    query workQuery($slug: String) {
+      work(filter: { slug: { eq: $slug } }) {
         ...workFrag
       }
     }
     ${workFrag}
   `;
+
   const data = await request({
     query: QUERY,
+    variables: {
+      slug: slug as string,
+    },
   });
 
   return {

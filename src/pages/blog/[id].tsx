@@ -4,6 +4,8 @@ import { blogPostFrag } from 'graphql/fragments';
 import { BlogPostRecord } from 'graphql/generatedTypes';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
+import { FC, useLayoutEffect, useRef, useState } from 'react';
+import { useWindowScroll } from 'react-use';
 
 import Container from 'quarks/Container';
 import Flex from 'quarks/Flex';
@@ -13,6 +15,7 @@ import Paragraph from 'quarks/Paragraph';
 import Text from 'quarks/Text';
 
 import Breadcrumbs from 'molecules/Breadcrumbs/Breadcrumbs';
+import LinearProgress from 'molecules/LinearProgress/LinearProgress';
 import Socials from 'molecules/Socials/Socials';
 import StructuredTextParser from 'molecules/StructuredTextParser/StructuredTextParser';
 
@@ -26,8 +29,6 @@ import { timeToRead } from 'utils/functions';
 import tocParser, { StructuredData } from 'utils/tocParser';
 
 import useDarkMode from 'contexts/ThemeProvider';
-
-import type { FC } from 'react';
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const SLUG_QUERY = gql`
@@ -50,6 +51,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, publishDate, slug }) => {
+  const footerRef = useRef<HTMLElement | null>(null);
+  const [scrollPercentage, setScrollPercentage] = useState(0);
+  const [isDark] = useDarkMode();
+  const { y } = useWindowScroll();
+
   const breadcrumbs = [
     { label: 'Home', link: 'https://www.justinwallace.dev' },
     { label: 'All Blogs', link: 'https://www.justinwallace.dev/blog' },
@@ -75,7 +81,15 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
     day: 'numeric',
   });
 
-  const [isDark] = useDarkMode();
+  useLayoutEffect(() => {
+    if (window === undefined || !footerRef.current?.offsetHeight) {
+      return;
+    }
+    const contentHeight = document.body.offsetHeight - window.innerHeight - footerRef.current?.offsetHeight - 100;
+    const currentScroll = Math.round((y / contentHeight) * 100);
+
+    setScrollPercentage(currentScroll);
+  }, [y, footerRef]);
 
   return (
     <>
@@ -167,8 +181,7 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
               <Text
                 as={Flex}
                 flexDirection="column"
-                gap="16px"
-                marginTop={16}
+                marginTop={8}
                 textColor={{ dark: 'gray-500', light: 'purple-900' }}
               >
                 {tocParser(body as StructuredData, slug)}
@@ -187,8 +200,16 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
             )}
           </Container>
         </Flex>
+        <LinearProgress
+          value={scrollPercentage}
+          position="fixed"
+          top="70px"
+          lg={{ position: 'sticky', top: 'unset', bottom: 0 }}
+          width="100%"
+          bottomBarColor="transparent"
+        />
       </Container>
-      <Footer size={50} />
+      <Footer size={50} marginTop={0} ref={footerRef} />
     </>
   );
 };
@@ -197,8 +218,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params?.id;
 
   const QUERY = gql`
-    query {
-      blogPost(filter: {slug: {eq: ${slug}}}) {
+    query blogQuery($slug: String) {
+      blogPost(filter: { slug: { eq: $slug } }) {
         ...blogPostFrag
       }
     }
@@ -206,6 +227,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   `;
   const data = await request({
     query: QUERY,
+    variables: {
+      slug: slug as string,
+    },
   });
 
   return {

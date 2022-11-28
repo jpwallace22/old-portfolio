@@ -10,7 +10,7 @@ import type { FC } from 'react';
 interface BreadcrumbsProps extends BasicProps {
   breadcrumbs: {
     label: string;
-    link: string;
+    link?: string;
   }[];
 }
 

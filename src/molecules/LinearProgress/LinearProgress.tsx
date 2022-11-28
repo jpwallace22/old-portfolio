@@ -2,6 +2,7 @@ import MUILinearProgress from '@mui/material/LinearProgress';
 import { FC } from 'react';
 import styled, { css } from 'styled-components';
 
+import { ColorList, colorParser } from 'atoms/colors/colors';
 import shadow from 'atoms/shadows/shadows';
 import { padding } from 'atoms/spacing/spacing';
 import { font, fontWeight } from 'atoms/typography/typography';
@@ -41,10 +42,19 @@ interface LinearProgressProps extends BasicProps {
   /**
    * The variant to use. Use indeterminate or query when there is no progress value.
    */
-  variant?: 'buffer' | 'indeterminate' | 'query';
+  variant?: 'buffer' | 'indeterminate' | 'query' | 'determinate';
+  bottomBarColor?: ColorList;
 }
 
-const LinearProgress: FC<LinearProgressProps> = ({ value, label, variant, labelPosition, valueBuffer, ...props }) => {
+const LinearProgress: FC<LinearProgressProps> = ({
+  value,
+  label,
+  variant,
+  labelPosition,
+  valueBuffer,
+  bottomBarColor,
+  ...props
+}) => {
   const isTrack = (labelPosition === 'track-top' || labelPosition === 'track-bottom') && variant === 'buffer';
 
   const progressProps = {
@@ -78,6 +88,11 @@ const LinearProgress: FC<LinearProgressProps> = ({ value, label, variant, labelP
         padding-right: ${padding[16]};
         border-radius: 8px;
       }
+    }
+    .MuiLinearProgress-colorPrimary,
+    .MuiLinearProgress-dashed {
+      background-color: ${colorParser(bottomBarColor)};
+      background-image: unset;
     }
   `;
 

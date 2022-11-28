@@ -1,7 +1,7 @@
 import { navbar } from 'data/data';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { FC } from 'react';
+import { ForwardedRef, forwardRef } from 'react';
 
 import { ReactComponent as LogoMark } from 'assets/svg/logomark-grad.svg';
 
@@ -24,13 +24,14 @@ type FooterProps = BasicProps & {
   size?: number;
 };
 const date = new Date();
-const Footer: FC<FooterProps> = ({ size = 100, ...props }) => {
+const Footer = forwardRef(({ size = 100, ...props }: FooterProps, ref?: ForwardedRef<HTMLElement>) => {
   const router = useRouter();
   const height = `calc(${size}vh - 100px)`;
 
   return (
     <>
       <Grid
+        ref={ref}
         minHeight={height}
         as="footer"
         id="footer"
@@ -106,6 +107,6 @@ const Footer: FC<FooterProps> = ({ size = 100, ...props }) => {
       </Container>
     </>
   );
-};
+});
 
 export default Footer;
