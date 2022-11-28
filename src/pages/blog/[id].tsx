@@ -3,6 +3,7 @@ import { gql } from 'graphql-request';
 import { blogPostFrag } from 'graphql/fragments';
 import { BlogPostRecord } from 'graphql/generatedTypes';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
 
 import Container from 'quarks/Container';
 import Flex from 'quarks/Flex';
@@ -12,13 +13,17 @@ import Paragraph from 'quarks/Paragraph';
 import Text from 'quarks/Text';
 
 import Breadcrumbs from 'molecules/Breadcrumbs/Breadcrumbs';
+import Socials from 'molecules/Socials/Socials';
 import StructuredTextParser from 'molecules/StructuredTextParser/StructuredTextParser';
 
 // import ComponentBadge from 'components/Badge/Badge';
 // import Authors from 'components/BlogPost/Authors';
 // import SocialShareLinks from 'components/BlogPost/SocialShareLinks';
 
+import Footer from 'components/Footer/Footer';
+
 import { timeToRead } from 'utils/functions';
+import tocParser, { StructuredData } from 'utils/tocParser';
 
 import useDarkMode from 'contexts/ThemeProvider';
 
@@ -44,10 +49,24 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: false };
 };
 
-const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, publishDate }) => {
+const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, publishDate, slug }) => {
   const breadcrumbs = [
     { label: 'Home', link: 'https://www.justinwallace.dev' },
-    { label: 'Blog', link: 'https://www.justinwallace.dev/blog' },
+    { label: 'All Blogs', link: 'https://www.justinwallace.dev/blog' },
+    { label: 'Blog' },
+  ];
+
+  const socials = [
+    {
+      platform: 'facebook',
+      url: `https://www.facebook.com/sharer/sharer.php?u=https://justinwallace.dev/blog/${slug}`,
+    } as const,
+    { platform: 'linkedin', url: `https://www.linkedin.com/share?url=https://justinwallace.dev/blog/${slug}` } as const,
+    {
+      platform: 'twitter',
+      url: `https://twitter.com/intent/tweet?url=https://justinwallace.dev/blog/${slug}`,
+    } as const,
+    { platform: 'mail', url: `mailto:?subject=${title}&body=https://justinwallace.dev/blog/${slug}` } as const,
   ];
 
   const formattedDate = new Date(publishDate).toLocaleDateString(undefined, {
@@ -60,6 +79,9 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
 
   return (
     <>
+      <Head>
+        <title>Justin Wallace | {title}</title>
+      </Head>
       <Container
         backgroundColor={{ dark: 'purple-800', light: 'gray-50' }}
         position="relative"
@@ -80,7 +102,7 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
         >
           <Breadcrumbs breadcrumbs={breadcrumbs} />
           <Flex marginTop={64} gap="32px" flexDirection="column" lg={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Flex flexDirection="column" lg={{ width: featuredImage ? '50%' : '100%' }}>
+            <Flex flexDirection="column" gap="8px" lg={{ width: featuredImage ? '50%' : '100%' }}>
               {title && (
                 <Heading as="h2" textStyle="lg">
                   {title}
@@ -98,9 +120,14 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
                 </Heading>
               )}
               <Flex gap="12px" alignItems="center" flexWrap="wrap" marginTop={32}>
-                {publishDate && <Paragraph textStyle="md">{formattedDate}</Paragraph>}
-                <Flex width="5px" height="5px" borderRadius="50%" backgroundColor="primary-600" />
-                {body && <Text textStyle="md">{timeToRead(body)} minute read</Text>}
+                {publishDate && <Paragraph textStyle="xl">{formattedDate}</Paragraph>}
+                <Flex
+                  width="5px"
+                  height="5px"
+                  borderRadius="50%"
+                  backgroundColor={{ dark: 'common-white', light: 'purple-900' }}
+                />
+                {body && <Text textStyle="xl">{timeToRead(body)} minute read</Text>}
               </Flex>
             </Flex>
             {featuredImage && (
@@ -111,6 +138,8 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
                 width="100%"
                 maxWidth="600px"
                 marginX="auto"
+                borderRadius="16px"
+                overflowY="hidden"
               >
                 <Image src={featuredImage.url} alt={featuredImage?.alt || ''} layout="fill" />
               </Container>
@@ -123,21 +152,43 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
           justifyContent="space-between"
           paddingTop={48}
           paddingBottom={96}
-          gap="30px"
+          gap="60px"
           flexDirection="column-reverse"
           paddingX={24}
           marginX="auto"
-          lg={{ flexDirection: 'row', maxWidth: '970px' }}
-          xl={{ maxWidth: '1170px' }}
+          lg={{ flexDirection: 'row' }}
+          xl={{ maxWidth: '1256px' }}
         >
-          <Container position="sticky" top="100px" display="block" height="100%">
-            Socials
-          </Container>
-          <Container lg={{ maxWidth: '870px' }}>
-            {body && <StructuredTextParser text={body} textStyle="lg" />}
+          <Flex position="sticky" top="120px" display="flex" height="100%" flexDirection="column" gap="32px">
+            <Container display="none" lg={{ display: 'block' }}>
+              <Text textStyle="xl" fontWeight="bold">
+                In this article
+              </Text>
+              <Text
+                as={Flex}
+                flexDirection="column"
+                gap="16px"
+                marginTop={16}
+                textColor={{ dark: 'gray-500', light: 'purple-900' }}
+              >
+                {tocParser(body as StructuredData, slug)}
+              </Text>
+            </Container>
+            <Container>
+              <Text textStyle="xl" fontWeight="bold" textAlign="center">
+                Share
+              </Text>
+              <Socials socials={socials} size={24} marginTop={16} justifyContent="flex-start" lg={{ marginLeft: 8 }} />
+            </Container>
+          </Flex>
+          <Container lg={{ maxWidth: '1024px' }}>
+            {body?.value && (
+              <StructuredTextParser text={body} textStyle="lg" textColor={{ dark: 'gray-500', light: 'purple-900' }} />
+            )}
           </Container>
         </Flex>
       </Container>
+      <Footer size={50} />
     </>
   );
 };

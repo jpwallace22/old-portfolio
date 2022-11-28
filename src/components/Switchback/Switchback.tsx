@@ -89,7 +89,7 @@ const Switchback: FC<SwitchbackProps> = ({
         >
           {heading}
         </Heading>
-        <StructuredTextParser text={body} />
+        <StructuredTextParser text={body} textColor={{ dark: 'gray-500', light: 'purple-900' }} />
         {isDesktop && buttons.length > 0 && (
           <Flex marginY={24} gap="24px" justifyContent="flex-start">
             {renderButtons()}

@@ -74,7 +74,7 @@ const Footer: FC<FooterProps> = ({ size = 100, ...props }) => {
               </Heading>
             </Link>
           </Container>
-          <Socials links={navbar.socials} width="100%" />
+          <Socials {...navbar.socials} size={36} width="100%" />
         </Flex>
       </Grid>
       <Container backgroundColor={{ dark: 'purple-800', light: 'gray-100' }}>

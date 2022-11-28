@@ -176,7 +176,11 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
             <Heading as="h3" textStyle="lg" marginBottom={24} lg={{ textStyle: 'xl' }}>
               {worksHeading}
             </Heading>
-            <StructuredTextParser text={worksIntro} maxWidth="730px" />
+            <StructuredTextParser
+              text={worksIntro}
+              maxWidth="730px"
+              textColor={{ dark: 'gray-500', light: 'purple-900' }}
+            />
           </StandardFadeIn>
           <AlternatingSwitchbacks works={works} />
         </Container>

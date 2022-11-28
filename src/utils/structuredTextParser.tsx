@@ -39,8 +39,9 @@ const structuredTextParser = (data?: StructuredData, textColor?: false | GetColo
             <Heading
               key={key}
               as={`h${node.level}`}
-              marginTop={40}
+              marginTop={key !== 't-0' && 32}
               textColor={{ light: 'common-black', dark: 'common-white' }}
+              id={key}
             >
               {children}
             </Heading>

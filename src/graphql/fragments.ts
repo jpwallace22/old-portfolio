@@ -114,6 +114,7 @@ export const blogPostFrag = gql`
     title
     subtitle
     publishDate
+    slug
     body {
       value
       blocks

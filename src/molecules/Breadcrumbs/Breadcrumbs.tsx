@@ -24,16 +24,17 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
           (item, idx) =>
             item?.label && (
               <>
-                <Link
-                  key={item?.label}
-                  href={item?.link || ''}
-                  fontSize={14}
-                  textDecoration="none"
-                  textColor={idx < breadcrumbsLength - 1 ? 'gray-500' : 'primary-600'}
-                  hover={{ textDecoration: 'underline' }}
-                >
+                <Link key={item?.label} href={item?.link || ''}>
                   <Flex flexDirection="row" alignItems="center">
-                    <Text fontWeight="bold">{item?.label}</Text>
+                    <Text
+                      fontSize={16}
+                      textDecoration="none"
+                      textColor={idx < breadcrumbsLength - 1 ? 'gray-800' : 'common-white'}
+                      fontWeight="bold"
+                      cursor={item.link && 'pointer'}
+                    >
+                      {item?.label}
+                    </Text>
                   </Flex>
                 </Link>
                 {idx < breadcrumbsLength - 1 && <TiChevronRight />}

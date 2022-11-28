@@ -1,5 +1,5 @@
 import { useMediaQuery } from '@mui/material';
-import { FC, ReactNode, useRef, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import { BsLightbulbFill as LightBulb, BsFillLightbulbOffFill as LightBulbOff } from 'react-icons/bs';
 import { useSwipeable } from 'react-swipeable';
 import { css } from 'styled-components';
@@ -20,7 +20,7 @@ import Text from 'quarks/Text';
 import { BasicProps } from 'quarks/interpolations/basic';
 
 // Molecules
-import Socials from 'molecules/Socials/Socials';
+import Socials, { SocialsProps } from 'molecules/Socials/Socials';
 
 // Components
 import ClickMe from 'components/Navbar/ClickMe';
@@ -37,11 +37,7 @@ type NavbarProps = BasicProps & {
     text: string;
     url: string;
   }[];
-  socials?: {
-    platform: string;
-    image: ReactNode;
-    url: string;
-  }[];
+  socials?: SocialsProps;
   currentSection: string;
 };
 
@@ -214,7 +210,7 @@ const Navbar: FC<NavbarProps> = ({ links, socials, currentSection, ...props }) =
           )}
           {!isDesktop && socials && (
             <Flex justifyContent="center">
-              <Socials links={socials} marginTop={32} />
+              <Socials {...socials} size={36} marginTop={32} />
             </Flex>
           )}
         </Flex>
