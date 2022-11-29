@@ -71,6 +71,16 @@ export const switchBackFrag = gql`
   }
 `;
 
+export const categoryFrag = gql`
+  fragment categoryFrag on CategoryRecord {
+    __typename
+    id
+    internalName
+    name
+    slug
+  }
+`;
+
 export const workFrag = gql`
   fragment workFrag on WorkRecord {
     __typename
@@ -115,6 +125,9 @@ export const blogPostFrag = gql`
     subtitle
     publishDate
     slug
+    categories {
+      ...categoryFrag
+    }
     body {
       value
       blocks
@@ -123,5 +136,6 @@ export const blogPostFrag = gql`
       ...imageFrag
     }
   }
+  ${categoryFrag}
   ${imageFrag}
 `;

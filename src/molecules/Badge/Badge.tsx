@@ -1,3 +1,4 @@
+import { Link } from 'quarks';
 import { FC, ReactNode } from 'react';
 
 import Flex from 'quarks/Flex';
@@ -34,13 +35,27 @@ const badgeSizes = {
   },
 } as const;
 
+const colorMap = {
+  css: 'danger-600',
+  typescript: 'primary-600',
+  javascript: 'purple-600',
+  gatsby: 'purple-300',
+  nextjs: 'common-black',
+} as const;
+
+export type BadgeTitles = keyof typeof colorMap;
+
 export const badgeSizeOptions = badgeSizes['normal'];
 
 interface BadgeProps extends FlexProps {
   /**
    * The badge can accept a string, icon, or any ReactNode.
    */
-  children: ReactNode;
+  children?: ReactNode;
+  /**
+   * The badge can accept a string.
+   */
+  title?: BadgeTitles;
   /**
    * This displays the variant of badge you want.
    */
@@ -53,6 +68,7 @@ interface BadgeProps extends FlexProps {
    * Choose the horizontal size of the icon, with height set automatically. Takes any valid CSS width.
    */
   iconSize?: string;
+  url?: string | null;
   /**
    * Choose an icon to appear on the left of the normal badge variant, before text. Takes any ReactNode.
    */
@@ -71,33 +87,40 @@ const Badge: FC<BadgeProps> = ({
   iconSize,
   variant = 'normal',
   textColor,
+  title,
+  url,
   ...props
 }) => {
   const isIconOnly = variant === 'iconOnly';
 
   return (
-    <Flex
-      textColor={textColor}
-      alignItems="center"
-      borderRadius={isIconOnly ? '50%' : '4px'}
-      paddingX={badgeSizes[variant][size].paddingX}
-      paddingY={badgeSizes[variant][size].paddingY}
-      fontSize={12}
-      lineHeight={isIconOnly ? 0 : 20}
-      {...props}
-    >
-      {startIcon && !isIconOnly && (
-        <Flex marginRight={4} width={iconSize}>
-          {startIcon}
-        </Flex>
-      )}
-      {children}
-      {endIcon && !isIconOnly && (
-        <Flex marginLeft={4} width={iconSize}>
-          {endIcon}
-        </Flex>
-      )}
-    </Flex>
+    <Link href={url || ''}>
+      <Flex
+        cursor={url && 'pointer'}
+        fontFamily="secondaryFont"
+        textColor={title ? colorMap[title] : textColor}
+        alignItems="center"
+        borderRadius={isIconOnly ? '50%' : '8px'}
+        paddingX={badgeSizes[variant][size].paddingX}
+        paddingY={badgeSizes[variant][size].paddingY}
+        fontSize={12}
+        lineHeight={isIconOnly ? 0 : 20}
+        hover={{ filter: url && 'brightness(.92)' }}
+        {...props}
+      >
+        {startIcon && !isIconOnly && (
+          <Flex marginRight={4} width={iconSize}>
+            {startIcon}
+          </Flex>
+        )}
+        {typeof children === 'string' ? children.toUpperCase() : children || title?.toUpperCase()}
+        {endIcon && !isIconOnly && (
+          <Flex marginLeft={4} width={iconSize}>
+            {endIcon}
+          </Flex>
+        )}
+      </Flex>
+    </Link>
   );
 };
 
@@ -105,10 +128,10 @@ export default Badge;
 
 Badge.defaultProps = {
   variant: 'normal',
-  size: 'sm',
+  size: 'md',
   iconSize: '12px',
-  backgroundColor: 'primary-50',
-  textColor: 'primary-900',
+  backgroundColor: { dark: 'gray-50', light: 'gray-200' },
+  textColor: 'purple-900',
   width: 'fit-content',
   fontWeight: 'semiBold',
 };

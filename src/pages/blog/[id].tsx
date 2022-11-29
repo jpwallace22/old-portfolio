@@ -17,6 +17,7 @@ import Image from 'quarks/Image';
 import Paragraph from 'quarks/Paragraph';
 import Text from 'quarks/Text';
 
+import Badge, { BadgeTitles } from 'molecules/Badge/Badge';
 import Breadcrumbs from 'molecules/Breadcrumbs/Breadcrumbs';
 import LinearProgress from 'molecules/LinearProgress/LinearProgress';
 import Socials from 'molecules/Socials/Socials';
@@ -53,7 +54,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: false };
 };
 
-const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, publishDate, slug }) => {
+const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, publishDate, slug, categories }) => {
   const footerRef = useRef<HTMLElement | null>(null);
   const [scrollPercentage, setScrollPercentage] = useState(0);
   const [circleX, setCircleX] = useState(0);
@@ -128,8 +129,26 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
           <Breadcrumbs breadcrumbs={breadcrumbs} />
           <Flex marginTop={64} gap="32px" flexDirection="column" lg={{ flexDirection: 'row', alignItems: 'center' }}>
             <Flex flexDirection="column" gap="8px" lg={{ width: featuredImage ? '50%' : '100%' }}>
+              {categories?.length > 0 && (
+                <Flex gap="8px">
+                  {categories.map(cat => (
+                    <Badge
+                      key={cat.name}
+                      title={cat.name as BadgeTitles}
+                      // url={`https://www.justinwallace.dev/blog?category=${cat.slug}`}
+                    />
+                  ))}
+                </Flex>
+              )}
               {title && (
-                <Heading as="h1" textStyle="lg" lg={{ textStyle: 'xl', lineHeight: 60 }}>
+                <Heading
+                  as="h1"
+                  textStyle="lg"
+                  lg={{ textStyle: 'xl', lineHeight: 60 }}
+                  css={`
+                    pointer-events: none;
+                  `}
+                >
                   {title}
                 </Heading>
               )}

@@ -64,7 +64,7 @@ const structuredTextParser = (data?: StructuredData, textColor?: false | GetColo
         customNodeRules={[
           renderNodeRule(isHeading, ({ node, children, key }) => {
             const nodeData = children && (children[0] as ReactElement);
-            const serialNumber = nodeData?.props?.children[0].match(/\b\w/g).join('');
+            const serialNumber = nodeData?.props?.children[0]?.match(/\b\w/g)?.join('');
 
             return (
               <Heading

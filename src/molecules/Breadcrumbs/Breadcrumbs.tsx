@@ -29,7 +29,11 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
                     <Text
                       fontSize={16}
                       textDecoration="none"
-                      textColor={idx < breadcrumbsLength - 1 ? 'gray-800' : 'common-white'}
+                      textColor={
+                        idx < breadcrumbsLength - 1
+                          ? { dark: 'gray-800', light: 'purple-600' }
+                          : { dark: 'common-white', light: 'primary-600' }
+                      }
                       fontWeight="bold"
                       cursor={item.link && 'pointer'}
                     >

@@ -40,6 +40,7 @@ export type BlogPostModelFilter = {
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   body?: InputMaybe<StructuredTextFilter>;
+  categories?: InputMaybe<LinksFilter>;
   createdAt?: InputMaybe<CreatedAtFilter>;
   featuredImage?: InputMaybe<FileFilter>;
   id?: InputMaybe<ItemIdFilter>;
@@ -99,6 +100,7 @@ export type BlogPostRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
   body?: Maybe<BlogPostModelBodyField>;
+  categories: Array<CategoryRecord>;
   createdAt: Scalars['DateTime'];
   featuredImage?: Maybe<FileField>;
   id: Scalars['ItemId'];
@@ -284,6 +286,81 @@ export type CaseStudyCardRecord = RecordInterface & {
 
 /** Record of type Case Study Card (case_study_card) */
 export type CaseStudyCardRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+export type CategoryModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<CategoryModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  createdAt?: InputMaybe<CreatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  internalName?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+  slug?: InputMaybe<SlugFilter>;
+  updatedAt?: InputMaybe<UpdatedAtFilter>;
+};
+
+export enum CategoryModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  CreatedAt_ASC = 'createdAt_ASC',
+  CreatedAt_DESC = 'createdAt_DESC',
+  Id_ASC = 'id_ASC',
+  Id_DESC = 'id_DESC',
+  InternalName_ASC = 'internalName_ASC',
+  InternalName_DESC = 'internalName_DESC',
+  Name_ASC = 'name_ASC',
+  Name_DESC = 'name_DESC',
+  UpdatedAt_ASC = 'updatedAt_ASC',
+  UpdatedAt_DESC = 'updatedAt_DESC'
+}
+
+/** Record of type Category (category) */
+export type CategoryRecord = RecordInterface & {
+  __typename?: 'CategoryRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  internalName?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['DateTime'];
+};
+
+
+/** Record of type Category (category) */
+export type CategoryRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2076,6 +2153,8 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allCaseStudyCardsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allCategoriesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allHomepagesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allSwitchbacksMeta: CollectionMetadata;
@@ -2094,6 +2173,8 @@ export type Query = {
   /** Returns a collection of records */
   allCaseStudyCards: Array<CaseStudyCardRecord>;
   /** Returns a collection of records */
+  allCategories: Array<CategoryRecord>;
+  /** Returns a collection of records */
   allHomepages: Array<HomepageRecord>;
   /** Returns a collection of records */
   allSwitchbacks: Array<SwitchbackRecord>;
@@ -2109,6 +2190,8 @@ export type Query = {
   button?: Maybe<ButtonRecord>;
   /** Returns a specific record */
   caseStudyCard?: Maybe<CaseStudyCardRecord>;
+  /** Returns a specific record */
+  category?: Maybe<CategoryRecord>;
   /** Returns a specific record */
   homepage?: Maybe<HomepageRecord>;
   /** Returns a specific record */
@@ -2142,6 +2225,14 @@ export type Query_AllButtonsMetaArgs = {
 export type Query_AllCaseStudyCardsMetaArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<CaseStudyCardModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type Query_AllCategoriesMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<CategoryModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2226,6 +2317,17 @@ export type QueryAllCaseStudyCardsArgs = {
 
 
 /** The query root for this schema */
+export type QueryAllCategoriesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<CategoryModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<CategoryModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
+
+/** The query root for this schema */
 export type QueryAllHomepagesArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<HomepageModelFilter>;
@@ -2304,6 +2406,15 @@ export type QueryCaseStudyCardArgs = {
   filter?: InputMaybe<CaseStudyCardModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<CaseStudyCardModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+export type QueryCategoryArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<CategoryModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<CategoryModelOrderBy>>>;
 };
 
 
