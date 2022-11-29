@@ -139,3 +139,41 @@ export const blogPostFrag = gql`
   ${categoryFrag}
   ${imageFrag}
 `;
+
+export const blogCardFrag = gql`
+  fragment blogCardFrag on BlogPostRecord {
+    __typename
+    id
+    internalName
+    title
+    publishDate
+    slug
+    categories {
+      ...categoryFrag
+    }
+    body {
+      value
+      blocks
+    }
+    featuredImage {
+      ...imageFrag
+    }
+    excerpt {
+      value
+    }
+  }
+  ${categoryFrag}
+  ${imageFrag}
+`;
+
+export const blogPageFrag = gql`
+  fragment blogPageFrag on BlogPageRecord {
+    __typename
+    id
+    title
+    subtitle
+    body {
+      value
+    }
+  }
+`;

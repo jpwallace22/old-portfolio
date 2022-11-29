@@ -182,7 +182,7 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
                 width="100%"
                 maxWidth="600px"
                 marginX="auto"
-                borderRadius="16px"
+                borderRadius="8px"
                 overflowY="hidden"
               >
                 <Image src={featuredImage.url} alt={featuredImage?.alt || ''} layout="fill" />

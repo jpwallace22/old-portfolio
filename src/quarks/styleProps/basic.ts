@@ -594,6 +594,12 @@ const basicCSS = {
   aspectRatio: (value: [number, number]) => css`
     aspect-ratio: ${value[0]} / ${value[1]};
   `,
+  lineClap: (value: number) => css`
+    display: -webkit-box;
+    -webkit-line-clamp: ${value};
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  `,
 };
 
 export default basicCSS;
