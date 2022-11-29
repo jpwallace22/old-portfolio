@@ -4,7 +4,7 @@ import { blogPostFrag } from 'graphql/fragments';
 import { BlogPostRecord } from 'graphql/generatedTypes';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
-import { FC, useLayoutEffect, useRef, useState } from 'react';
+import { FC, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useWindowScroll } from 'react-use';
 
 import { colorParser } from 'atoms/colors/colors';
@@ -28,7 +28,7 @@ import StructuredTextParser from 'molecules/StructuredTextParser/StructuredTextP
 
 import Footer from 'components/Footer/Footer';
 
-import { timeToRead } from 'utils/functions';
+import { randomIntFromInterval, timeToRead } from 'utils/functions';
 import tocParser, { StructuredData } from 'utils/tocParser';
 
 import useDarkMode from 'contexts/ThemeProvider';
@@ -56,6 +56,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, publishDate, slug }) => {
   const footerRef = useRef<HTMLElement | null>(null);
   const [scrollPercentage, setScrollPercentage] = useState(0);
+  const [circleX, setCircleX] = useState(0);
+  const [circleY, setCircleY] = useState(0);
+
   const [isDark] = useDarkMode();
   const { y } = useWindowScroll();
 
@@ -93,6 +96,11 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
 
     setScrollPercentage(currentScroll);
   }, [y, footerRef]);
+
+  useMemo(() => {
+    setCircleX(randomIntFromInterval(0, 500));
+    setCircleY(randomIntFromInterval(0, 150));
+  }, []);
 
   return (
     <>
@@ -187,8 +195,8 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
           >
             <LargeCircle
               position="absolute"
-              left="-1100px"
-              top="-20px"
+              left="-1300px"
+              top={`${scrollPercentage * 3}px`}
               zIndex={-10}
               display="none"
               lg={{ display: 'block' }}
@@ -235,7 +243,7 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
             </Container>
           </Flex>
           <Container lg={{ maxWidth: '1024px' }}>
-            <Dots position="absolute" bottom={0} right={0} />
+            <Dots position="absolute" bottom={circleY + 'px'} right={circleX + 'px'} />
             {body?.value && (
               <StructuredTextParser text={body} textStyle="lg" textColor={{ dark: 'gray-500', light: 'purple-900' }} />
             )}
