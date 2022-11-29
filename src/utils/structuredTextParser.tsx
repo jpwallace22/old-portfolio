@@ -63,8 +63,8 @@ const structuredTextParser = (data?: StructuredData, textColor?: false | GetColo
         data={data as StructuredTextGraphQlResponse}
         customNodeRules={[
           renderNodeRule(isHeading, ({ node, children, key }) => {
-            // @ts-expect-error parser needs updated types
-            const serialNumber = children[0].props?.children[0].match(/\b\w/g).join('');
+            const nodeData = children && (children[0] as ReactElement);
+            const serialNumber = nodeData?.props?.children[0].match(/\b\w/g).join('');
 
             return (
               <Heading

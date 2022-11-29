@@ -1,5 +1,6 @@
 import { isHeading } from 'datocms-structured-text-utils';
 import { Container, Link, Text } from 'quarks';
+import { ReactElement } from 'react';
 import { StructuredText, renderNodeRule } from 'react-datocms';
 
 import type { StructuredTextGraphQlResponse } from 'react-datocms';
@@ -23,8 +24,8 @@ const tocParser = (data?: StructuredData, slug?: string | null) => {
         data={onlyHeadings as StructuredTextGraphQlResponse}
         customNodeRules={[
           renderNodeRule(isHeading, ({ children, key }) => {
-            // @ts-expect-error parser needs updated types
-            const serialNumber = children[0].props?.children[0].match(/\b\w/g).join('');
+            const nodeData = children && (children[0] as ReactElement);
+            const serialNumber = nodeData?.props?.children[0].match(/\b\w/g).join('');
 
             return (
               <Link

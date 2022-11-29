@@ -59,4 +59,4 @@ export const timeToRead = (structuredText?: StructuredData) => {
   return content && Math.ceil(content.split(' ').length / wordsPerMin);
 };
 
-export default timeToRead;
+export const randomIntFromInterval = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1) + min);

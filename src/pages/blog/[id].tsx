@@ -10,6 +10,7 @@ import { useWindowScroll } from 'react-use';
 import { colorParser } from 'atoms/colors/colors';
 
 import Container from 'quarks/Container';
+import { Dots, LargeCircle } from 'quarks/DesignElements';
 import Flex from 'quarks/Flex';
 import Heading from 'quarks/Heading';
 import Image from 'quarks/Image';
@@ -184,6 +185,14 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
             flexDirection="column"
             gap="32px"
           >
+            <LargeCircle
+              position="absolute"
+              left="-1100px"
+              top="-20px"
+              zIndex={-10}
+              display="none"
+              lg={{ display: 'block' }}
+            />
             <Container display="none" lg={{ display: 'block' }}>
               <Paragraph textStyle="xl" fontWeight="bold" marginBottom={8}>
                 In this article
@@ -226,6 +235,7 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
             </Container>
           </Flex>
           <Container lg={{ maxWidth: '1024px' }}>
+            <Dots position="absolute" bottom={0} right={0} />
             {body?.value && (
               <StructuredTextParser text={body} textStyle="lg" textColor={{ dark: 'gray-500', light: 'purple-900' }} />
             )}
