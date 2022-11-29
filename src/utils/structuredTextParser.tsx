@@ -29,6 +29,33 @@ export interface InlineRecords
 
 export type StructuredData = StructuredTextGraphQlResponse | Record<string, unknown> | null;
 
+const headingMap = {
+  1: {
+    mobile: 'lg',
+    desktop: 'xl',
+  },
+  2: {
+    mobile: 'lg',
+    desktop: 'xl',
+  },
+  3: {
+    mobile: 'md',
+    desktop: 'lg',
+  },
+  4: {
+    mobile: 'md',
+    desktop: 'md',
+  },
+  5: {
+    mobile: 'sm',
+    desktop: 'sm',
+  },
+  6: {
+    mobile: 'xs',
+    desktop: 'xs',
+  },
+} as const;
+
 const structuredTextParser = (data?: StructuredData, textColor?: false | GetColorDefinition | null | undefined) => {
   if (data?.value) {
     return (
@@ -43,9 +70,11 @@ const structuredTextParser = (data?: StructuredData, textColor?: false | GetColo
               <Heading
                 key={key}
                 as={`h${node.level}`}
+                textStyle={headingMap[node.level as keyof typeof headingMap].mobile}
                 marginTop={key !== 't-0' && 32}
                 textColor={{ light: 'common-black', dark: 'common-white' }}
                 id={serialNumber}
+                lg={{ textStyle: headingMap[node.level as keyof typeof headingMap].desktop }}
               >
                 {children}
               </Heading>

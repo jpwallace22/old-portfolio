@@ -44,6 +44,7 @@ interface LinearProgressProps extends BasicProps {
    */
   variant?: 'buffer' | 'indeterminate' | 'query' | 'determinate';
   bottomBarColor?: ColorList;
+  height?: string;
 }
 
 const LinearProgress: FC<LinearProgressProps> = ({
@@ -53,6 +54,7 @@ const LinearProgress: FC<LinearProgressProps> = ({
   labelPosition,
   valueBuffer,
   bottomBarColor,
+  height,
   ...props
 }) => {
   const isTrack = (labelPosition === 'track-top' || labelPosition === 'track-bottom') && variant === 'buffer';
@@ -98,7 +100,7 @@ const LinearProgress: FC<LinearProgressProps> = ({
 
   return (
     <Flex alignItems="center" flexDirection={labelPosition === 'bottom' && 'column'} position="relative" {...props}>
-      <StyledLinearProgress width="100%" css={floatingLabelStyles} {...progressProps} />
+      <StyledLinearProgress width="100%" css={floatingLabelStyles} {...progressProps} height={height} />
       {label && labelPosition === 'end' && (
         <Text textStyle="xs" fontWeight="semiBold" marginLeft={12}>
           {`${Math.round(value)}%`}

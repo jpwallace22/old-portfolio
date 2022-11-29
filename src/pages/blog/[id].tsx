@@ -7,6 +7,8 @@ import Head from 'next/head';
 import { FC, useLayoutEffect, useRef, useState } from 'react';
 import { useWindowScroll } from 'react-use';
 
+import { colorParser } from 'atoms/colors/colors';
+
 import Container from 'quarks/Container';
 import Flex from 'quarks/Flex';
 import Heading from 'quarks/Heading';
@@ -173,30 +175,48 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
           lg={{ flexDirection: 'row' }}
           xl={{ maxWidth: '1256px' }}
         >
-          <Flex position="sticky" top="120px" display="flex" height="100%" flexDirection="column" gap="32px">
-            <Container
-              display="none"
-              overflowY="scroll"
-              lg={{ display: 'block' }}
-              maxHeight="65vh"
-              css={`
-                scrollbar-width: none;
-                ::-webkit-scrollbar {
-                  display: none; /* for Chrome, Safari, and Opera */
-                }
-              `}
-            >
-              <Text textStyle="xl" fontWeight="bold">
+          <Flex
+            flex="1 0 250px"
+            position="sticky"
+            top="120px"
+            display="flex"
+            height="100%"
+            flexDirection="column"
+            gap="32px"
+          >
+            <Container display="none" lg={{ display: 'block' }}>
+              <Paragraph textStyle="xl" fontWeight="bold" marginBottom={8}>
                 In this article
-              </Text>
-              <Text
-                as={Flex}
-                flexDirection="column"
-                marginTop={8}
-                textColor={{ dark: 'gray-500', light: 'purple-900' }}
+              </Paragraph>
+              <Container
+                position="relative"
+                left="-16px"
+                overflowY="scroll"
+                maxHeight="65vh"
+                paddingLeft={16}
+                css={`
+                  direction: rtl;
+                  ::-webkit-scrollbar {
+                    width: 8px;
+                    background: transparent;
+                  }
+                  ::-webkit-scrollbar-thumb {
+                    background: ${colorParser(isDark ? 'purple-700' : 'gray-200')};
+                    -webkit-border-radius: 1ex;
+                  }
+                `}
               >
-                {tocParser(body as StructuredData, slug)}
-              </Text>
+                <Text
+                  as={Flex}
+                  flexDirection="column"
+                  textColor={{ dark: 'gray-500', light: 'purple-900' }}
+                  css={`
+                    direction: ltr;
+                  `}
+                >
+                  {tocParser(body as StructuredData, slug)}
+                </Text>
+              </Container>
             </Container>
             <Container>
               <Text textStyle="xl" fontWeight="bold" textAlign="center">
@@ -212,12 +232,12 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
           </Container>
         </Flex>
         <LinearProgress
-          value={scrollPercentage}
+          value={scrollPercentage > 0 ? scrollPercentage : 0}
           position="fixed"
           top="70px"
-          lg={{ position: 'sticky', top: 'unset', bottom: 0 }}
           width="100%"
           bottomBarColor="transparent"
+          lg={{ position: 'sticky', top: 'unset', bottom: 0 }}
         />
       </Container>
       <Footer size={50} marginTop={0} ref={footerRef} />
