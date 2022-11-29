@@ -35,17 +35,22 @@ const structuredTextParser = (data?: StructuredData, textColor?: false | GetColo
       <StructuredText
         data={data as StructuredTextGraphQlResponse}
         customNodeRules={[
-          renderNodeRule(isHeading, ({ node, children, key }) => (
-            <Heading
-              key={key}
-              as={`h${node.level}`}
-              marginTop={key !== 't-0' && 32}
-              textColor={{ light: 'common-black', dark: 'common-white' }}
-              id={key}
-            >
-              {children}
-            </Heading>
-          )),
+          renderNodeRule(isHeading, ({ node, children, key }) => {
+            // @ts-expect-error parser needs updated types
+            const serialNumber = children[0].props?.children[0].match(/\b\w/g).join('');
+
+            return (
+              <Heading
+                key={key}
+                as={`h${node.level}`}
+                marginTop={key !== 't-0' && 32}
+                textColor={{ light: 'common-black', dark: 'common-white' }}
+                id={serialNumber}
+              >
+                {children}
+              </Heading>
+            );
+          }),
           renderNodeRule(isList, ({ node, children, key }) =>
             node.style === 'bulleted' ? (
               <List discColor="common-white" textColor={{ dark: 'gray-500', light: 'purple-900' }} key={key}>

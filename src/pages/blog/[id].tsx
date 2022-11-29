@@ -118,7 +118,7 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
           <Flex marginTop={64} gap="32px" flexDirection="column" lg={{ flexDirection: 'row', alignItems: 'center' }}>
             <Flex flexDirection="column" gap="8px" lg={{ width: featuredImage ? '50%' : '100%' }}>
               {title && (
-                <Heading as="h2" textStyle="lg">
+                <Heading as="h1" textStyle="lg" lg={{ textStyle: 'xl', lineHeight: 60 }}>
                   {title}
                 </Heading>
               )}
@@ -174,7 +174,18 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
           xl={{ maxWidth: '1256px' }}
         >
           <Flex position="sticky" top="120px" display="flex" height="100%" flexDirection="column" gap="32px">
-            <Container display="none" lg={{ display: 'block' }}>
+            <Container
+              display="none"
+              overflowY="scroll"
+              lg={{ display: 'block' }}
+              maxHeight="65vh"
+              css={`
+                scrollbar-width: none;
+                ::-webkit-scrollbar {
+                  display: none; /* for Chrome, Safari, and Opera */
+                }
+              `}
+            >
               <Text textStyle="xl" fontWeight="bold">
                 In this article
               </Text>

@@ -22,24 +22,29 @@ const tocParser = (data?: StructuredData, slug?: string | null) => {
       <StructuredText
         data={onlyHeadings as StructuredTextGraphQlResponse}
         customNodeRules={[
-          renderNodeRule(isHeading, ({ children, key }) => (
-            <Link
-              key={key}
-              display="block"
-              textColor={{ light: 'common-black', dark: 'common-white' }}
-              href={`https://www.justinwallace.dev/blog/${slug}#${key}`}
-            >
-              <Container
-                hover={{ backgroundColor: { dark: 'purple-800', light: 'gray-50' } }}
-                paddingX={8}
-                paddingY={12}
-                borderRadius="8px"
-                cursor="pointer"
+          renderNodeRule(isHeading, ({ children, key }) => {
+            // @ts-expect-error parser needs updated types
+            const serialNumber = children[0].props?.children[0].match(/\b\w/g).join('');
+
+            return (
+              <Link
+                key={key}
+                display="block"
+                textColor={{ light: 'common-black', dark: 'common-white' }}
+                href={`https://www.justinwallace.dev/blog/${slug}#${serialNumber}`}
               >
-                <Text>{children}</Text>
-              </Container>
-            </Link>
-          )),
+                <Container
+                  hover={{ backgroundColor: { dark: 'purple-800', light: 'gray-50' } }}
+                  paddingX={8}
+                  paddingY={12}
+                  borderRadius="8px"
+                  cursor="pointer"
+                >
+                  <Text>{children}</Text>
+                </Container>
+              </Link>
+            );
+          }),
         ]}
       />
     );
