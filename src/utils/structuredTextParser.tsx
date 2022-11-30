@@ -1,9 +1,9 @@
-import { isCode, isHeading, isLink, isList, isParagraph } from 'datocms-structured-text-utils';
+import { isBlockquote, isCode, isHeading, isLink, isList, isParagraph } from 'datocms-structured-text-utils';
 import { ButtonRecord } from 'graphql/generatedTypes';
 import { Text } from 'quarks';
 import { StructuredText, renderMarkRule, renderNodeRule } from 'react-datocms';
 
-import { GetColorDefinition } from 'atoms/colors/colors';
+import { GetColorDefinition, gradient } from 'atoms/colors/colors';
 
 import Container from 'quarks/Container';
 import Flex from 'quarks/Flex';
@@ -82,11 +82,28 @@ const structuredTextParser = (data?: StructuredData, textColor?: false | GetColo
           }),
           renderNodeRule(isList, ({ node, children, key }) =>
             node.style === 'bulleted' ? (
-              <List discColor="common-white" textColor={{ dark: 'gray-500', light: 'purple-900' }} key={key}>
+              <List
+                key={key}
+                discColor="purple-500"
+                marginLeft={24}
+                textColor={{ dark: 'gray-500', light: 'purple-900' }}
+              >
                 {children}
               </List>
             ) : (
-              <Flex as="ol" gap="16px" flexDirection="column" key={key}>
+              <Flex
+                key={key}
+                as="ol"
+                flexDirection="column"
+                marginLeft={4}
+                gap="16px"
+                css={`
+                  li {
+                    list-style-position: outside;
+                    padding-left: 24px;
+                  }
+                `}
+              >
                 {children}
               </Flex>
             ),
@@ -96,12 +113,35 @@ const structuredTextParser = (data?: StructuredData, textColor?: false | GetColo
               {children}
             </Link>
           )),
+          renderNodeRule(isBlockquote, ({ node, children, key }) => (
+            <Container
+              key={key}
+              paddingLeft={24}
+              css={`
+                border-image-source: ${gradient.purpleBottom};
+                border-image-slice: 1;
+                border-width: 0 0 0 8px;
+                border-style: solid;
+              `}
+            >
+              <>
+                <Paragraph as="div" fontSize={24} fontWeight="semiBold">
+                  {children}
+                </Paragraph>
+                {node.attribution && (
+                  <Paragraph fontSize={16} marginTop={24}>
+                    {node.attribution}
+                  </Paragraph>
+                )}
+              </>
+            </Container>
+          )),
           renderNodeRule(isParagraph, ({ children, key }) => {
             const nodeData = children && (children[0] as ReactElement);
             const isText = nodeData?.props.children && typeof nodeData.props.children[0] === 'string';
 
             return isText ? (
-              <Paragraph textColor={textColor} key={key}>
+              <Paragraph key={key} textColor={textColor}>
                 {children}
               </Paragraph>
             ) : (
@@ -110,7 +150,7 @@ const structuredTextParser = (data?: StructuredData, textColor?: false | GetColo
               </Container>
             );
           }),
-          renderNodeRule(isCode, ({ node, key }) => <CodeBlock node={node} key={key} />),
+          renderNodeRule(isCode, ({ node, key }) => <CodeBlock key={key} node={node} />),
         ]}
         customMarkRules={[
           renderMarkRule('strong', ({ children, key }) => (

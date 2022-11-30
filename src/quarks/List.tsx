@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import check from 'assets/svg/check.svg';
 
-import { ColorList } from 'atoms/colors/colors';
+import { ColorList, colorParser } from 'atoms/colors/colors';
 
 import { BasicProps, basic } from 'quarks/interpolations/basic';
 
@@ -26,6 +26,7 @@ const List = styled.ul<ListProps>`
     content: '';
     width: 19px;
     height: 19px;
+    background-color: ${props => colorParser(props.discColor)};
     background-image: url(${check});
     border-radius: 50%;
     margin-top: 4px;

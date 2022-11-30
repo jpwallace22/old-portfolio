@@ -216,7 +216,7 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
               top={`${scrollPercentage * 3}px`}
               zIndex={-10}
               display="none"
-              lg={{ display: 'block' }}
+              xl={{ display: 'block' }}
             />
             <Container display="none" xl={{ display: 'block' }}>
               <Paragraph textStyle="xl" fontWeight="bold" marginBottom={8}>

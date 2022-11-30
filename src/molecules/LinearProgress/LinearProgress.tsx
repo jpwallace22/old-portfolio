@@ -15,7 +15,7 @@ import { allCSSWithPseudos } from 'quarks/styleProps/all';
 import { CSSProps } from 'theme/getAppTheme';
 
 const StyledLinearProgress = styled(MUILinearProgress).withConfig({
-  shouldForwardProp: prop => ![...Object.keys(allCSSWithPseudos), 'labelPosition'].includes(prop),
+  shouldForwardProp: prop => ![...Object.keys(allCSSWithPseudos), 'labelPosition', 'hasLabel'].includes(prop),
 })`
   && {
     ${basic}
@@ -34,7 +34,7 @@ interface LinearProgressProps extends BasicProps {
   /**
    * If `true` displays label with percentage of progress.
    */
-  label?: boolean;
+  hasLabel?: boolean;
   /**
    * Determines where and how the label will be shown
    */
@@ -49,7 +49,7 @@ interface LinearProgressProps extends BasicProps {
 
 const LinearProgress: FC<LinearProgressProps> = ({
   value,
-  label,
+  hasLabel,
   variant,
   labelPosition,
   valueBuffer,
@@ -61,7 +61,7 @@ const LinearProgress: FC<LinearProgressProps> = ({
 
   const progressProps = {
     value,
-    label,
+    hasLabel,
     labelPosition,
     variant,
     valueBuffer,
@@ -101,12 +101,12 @@ const LinearProgress: FC<LinearProgressProps> = ({
   return (
     <Flex alignItems="center" flexDirection={labelPosition === 'bottom' && 'column'} position="relative" {...props}>
       <StyledLinearProgress width="100%" css={floatingLabelStyles} {...progressProps} height={height} />
-      {label && labelPosition === 'end' && (
+      {hasLabel && labelPosition === 'end' && (
         <Text textStyle="xs" fontWeight="semiBold" marginLeft={12}>
           {`${Math.round(value)}%`}
         </Text>
       )}
-      {label && labelPosition === 'bottom' && (
+      {hasLabel && labelPosition === 'bottom' && (
         <Text textStyle="xs" fontWeight="semiBold" marginTop={8} display="block" width="100%" textAlign="right">
           {`${Math.round(value)}%`}
         </Text>
@@ -119,7 +119,7 @@ export default LinearProgress;
 
 LinearProgress.defaultProps = {
   variant: 'buffer',
-  label: false,
+  hasLabel: false,
   labelPosition: 'track-top',
   valueBuffer: 100,
   value: 0,

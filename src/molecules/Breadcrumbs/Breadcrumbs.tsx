@@ -1,3 +1,4 @@
+import React from 'react';
 import { TiChevronRight } from 'react-icons/ti';
 
 import Flex from 'quarks/Flex';
@@ -23,8 +24,8 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
         breadcrumbs.map(
           (item, idx) =>
             item?.label && (
-              <>
-                <Link key={item?.label} href={item?.link || ''}>
+              <React.Fragment key={item?.label}>
+                <Link href={item?.link || ''}>
                   <Flex flexDirection="row" alignItems="center">
                     <Text
                       fontSize={16}
@@ -42,7 +43,7 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
                   </Flex>
                 </Link>
                 {idx < breadcrumbsLength - 1 && <TiChevronRight />}
-              </>
+              </React.Fragment>
             ),
         )}
     </Flex>

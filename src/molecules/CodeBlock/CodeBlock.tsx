@@ -11,16 +11,15 @@ import { StyledCode, StyledPre } from 'molecules/CodeBlock/codeBlock.styles';
 
 interface ICodeBlock {
   node: Code;
-  key: string;
 }
 
-const CodeBlock: FC<ICodeBlock> = ({ node, key }) => {
+const CodeBlock: FC<ICodeBlock> = ({ node }) => {
   useEffect(() => {
     Prism.highlightAll();
   }, []);
 
   return (
-    <StyledPre key={key}>
+    <StyledPre>
       <StyledCode className={`language-${node.language}`}>{node.code}</StyledCode>
     </StyledPre>
   );

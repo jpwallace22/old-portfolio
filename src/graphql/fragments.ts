@@ -17,6 +17,7 @@ export const structuredTextImage = gql`
   fragment structuredTextImage on ImageRecord {
     id
     media {
+      title
       ...imageFrag
     }
   }

@@ -99,6 +99,9 @@ export type GetColorDefinition = ColorList | LightAndDark;
 
 export const getColor = (palette: DefaultTheme['palette'], colors: GetColorDefinition) => {
   try {
+    if (!colors) {
+      return;
+    }
     const standardOptions = ['transparent', 'initial', 'inherit'];
     if (typeof colors === 'string' && standardOptions.includes(colors)) {
       return colors;

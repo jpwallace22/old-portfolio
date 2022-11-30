@@ -50,7 +50,7 @@ export type BlogPageRecord_SeoMetaTagsArgs = {
 
 export type BlogPostModelBodyField = {
   __typename?: 'BlogPostModelBodyField';
-  blocks: Array<Scalars['String']>;
+  blocks: Array<ImageRecord>;
   links: Array<Scalars['String']>;
   value: Scalars['JsonField'];
 };
@@ -678,6 +678,32 @@ export type HomepageRecord = RecordInterface & {
 
 /** Record of type Homepage (homepage) */
 export type HomepageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Block of type Image (image) */
+export type ImageRecord = RecordInterface & {
+  __typename?: 'ImageRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  media?: Maybe<FileField>;
+  updatedAt: Scalars['DateTime'];
+};
+
+
+/** Block of type Image (image) */
+export type ImageRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
