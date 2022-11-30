@@ -124,12 +124,18 @@ const structuredTextParser = (data?: StructuredData, textColor?: false | GetColo
           switch (record.__typename) {
             case 'FileField':
               return (
-                <Flex marginY={48} flexDirection="column" alignItems="center" gap="16px">
+                <Flex marginY={16} flexDirection="column" alignItems="center" gap="16px">
                   <>
-                    <Image src={record.url as string} alt={(record.alt as string) || ''} width="100%" height="100%" />
+                    <Container
+                      position="relative"
+                      width="100%"
+                      aspectRatio={[record.width as number, record.height as number]}
+                    >
+                      <Image src={record.url as string} alt={(record.alt as string) || ''} layout="fill" />
+                    </Container>
                     {record?.title && (
-                      <Paragraph fontSize={16} fontWeight="regular" textAlign="center">
-                        {(record?.title as string) || ''}
+                      <Paragraph fontSize={16} fontWeight="regular" textAlign="center" textColor={textColor}>
+                        {record?.title as string}
                       </Paragraph>
                     )}
                   </>

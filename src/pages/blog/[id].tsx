@@ -241,7 +241,6 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
                 <Text
                   as={Flex}
                   flexDirection="column"
-                  textColor={{ dark: 'gray-500', light: 'purple-900' }}
                   css={`
                     direction: ltr;
                   `}

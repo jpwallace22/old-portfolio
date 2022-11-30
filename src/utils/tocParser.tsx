@@ -41,7 +41,7 @@ const tocParser = (data?: StructuredData, slug?: string | null) => {
                   borderRadius="8px"
                   cursor="pointer"
                 >
-                  <Text>{children}</Text>
+                  <Text textColor={{ dark: 'gray-500', light: 'purple-900' }}>{children}</Text>
                 </Container>
               </Link>
             );
