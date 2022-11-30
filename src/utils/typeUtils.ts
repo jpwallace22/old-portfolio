@@ -20,6 +20,5 @@ export type CleanDato<T> = Omit<
   | 'updatedAt'
   | 'id'
 >;
-export const objectEntries: ObjectEntries = object =>
-  Object.entries(object as object) as ObjectEntriesReturn<typeof object>;
-export const objectKeys: ObjectKeys = object => Object.keys(object as object) as (keyof typeof object)[];
+export const objectEntries: ObjectEntries = object => Object.entries(object) as ObjectEntriesReturn<typeof object>;
+export const objectKeys: ObjectKeys = object => Object.keys(object) as (keyof typeof object)[];
