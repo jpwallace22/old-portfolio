@@ -110,6 +110,12 @@ const gridCSS = {
   placeItems: (value: Properties['placeItems']) => css`
     place-items: ${value};
   `,
+  /**
+   * The CSS justify-items property defines the default justify-self for all items of the box, giving them all a default way of justifying each box along the appropriate axis.
+   */
+  justifyItems: (value: Properties['justifyItems']) => css`
+    justify-items: ${value};
+  `,
 };
 
 export default gridCSS;

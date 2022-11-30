@@ -11,7 +11,7 @@ type CaseStudyCardProps = BasicProps & CaseStudyCardRecord;
 const OffsetGridCard: FC<CaseStudyCardProps> = ({ image }) => (
   <Container
     backgroundColor={{ dark: 'purple-800', light: 'common-white' }}
-    borderRadius="16px"
+    borderRadius="8px"
     lineHeight={0}
     boxShadow="xl"
     overflowY="hidden"

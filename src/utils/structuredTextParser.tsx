@@ -1,11 +1,9 @@
-/* eslint-disable arrow-body-style */
-import { isCode, isHeading, isLink, isList, isParagraph } from 'datocms-structured-text-utils';
+import { isBlockquote, isCode, isHeading, isLink, isList, isParagraph } from 'datocms-structured-text-utils';
 import { ButtonRecord } from 'graphql/generatedTypes';
 import { Text } from 'quarks';
 import { StructuredText, renderMarkRule, renderNodeRule } from 'react-datocms';
-import SyntaxHighlighter from 'react-syntax-highlighter';
 
-import { GetColorDefinition } from 'atoms/colors/colors';
+import { GetColorDefinition, gradient } from 'atoms/colors/colors';
 
 import Container from 'quarks/Container';
 import Flex from 'quarks/Flex';
@@ -14,6 +12,8 @@ import Image from 'quarks/Image';
 import Link from 'quarks/Link';
 import List from 'quarks/List';
 import Paragraph from 'quarks/Paragraph';
+
+import CodeBlock from 'molecules/CodeBlock/CodeBlock';
 
 import type { Record as NodeType } from 'datocms-structured-text-utils';
 import type { ReactElement } from 'react';
@@ -27,32 +27,83 @@ export interface InlineRecords
   __typename: string | InlineTypes;
 }
 
-const structuredTextParser = (
-  data?: StructuredTextGraphQlResponse | Record<string, unknown> | null,
-  textColor?: false | GetColorDefinition | null | undefined,
-) => {
+export type StructuredData = StructuredTextGraphQlResponse | Record<string, unknown> | null;
+
+const headingMap = {
+  1: {
+    mobile: 'lg',
+    desktop: 'xl',
+  },
+  2: {
+    mobile: 'lg',
+    desktop: 'xl',
+  },
+  3: {
+    mobile: 'md',
+    desktop: 'lg',
+  },
+  4: {
+    mobile: 'md',
+    desktop: 'md',
+  },
+  5: {
+    mobile: 'sm',
+    desktop: 'sm',
+  },
+  6: {
+    mobile: 'xs',
+    desktop: 'xs',
+  },
+} as const;
+
+const structuredTextParser = (data?: StructuredData, textColor?: false | GetColorDefinition | null | undefined) => {
   if (data?.value) {
     return (
       <StructuredText
         data={data as StructuredTextGraphQlResponse}
         customNodeRules={[
-          renderNodeRule(isHeading, ({ node, children, key }) => (
-            <Heading
-              key={key}
-              as={`h${node.level}`}
-              marginTop={40}
-              textColor={{ light: 'common-black', dark: 'common-white' }}
-            >
-              {children}
-            </Heading>
-          )),
+          renderNodeRule(isHeading, ({ node, children, key }) => {
+            const nodeData = children && (children[0] as ReactElement);
+            const serialNumber = nodeData?.props?.children[0]?.match(/\b\w/g)?.join('');
+
+            return (
+              <Heading
+                key={key}
+                as={`h${node.level}`}
+                textStyle={headingMap[node.level as keyof typeof headingMap].mobile}
+                marginTop={key !== 't-0' && 32}
+                textColor={{ light: 'common-black', dark: 'common-white' }}
+                id={serialNumber}
+                lg={{ textStyle: headingMap[node.level as keyof typeof headingMap].desktop }}
+              >
+                {children}
+              </Heading>
+            );
+          }),
           renderNodeRule(isList, ({ node, children, key }) =>
             node.style === 'bulleted' ? (
-              <List discColor="common-white" textColor={{ dark: 'gray-500', light: 'purple-900' }} key={key}>
+              <List
+                key={key}
+                discColor="purple-500"
+                marginLeft={24}
+                textColor={{ dark: 'gray-500', light: 'purple-900' }}
+              >
                 {children}
               </List>
             ) : (
-              <Flex as="ol" gap="16px" flexDirection="column" key={key}>
+              <Flex
+                key={key}
+                as="ol"
+                flexDirection="column"
+                marginLeft={4}
+                gap="16px"
+                css={`
+                  li {
+                    list-style-position: outside;
+                    padding-left: 24px;
+                  }
+                `}
+              >
                 {children}
               </Flex>
             ),
@@ -62,12 +113,35 @@ const structuredTextParser = (
               {children}
             </Link>
           )),
+          renderNodeRule(isBlockquote, ({ node, children, key }) => (
+            <Container
+              key={key}
+              paddingLeft={24}
+              css={`
+                border-image-source: ${gradient.purpleBottom};
+                border-image-slice: 1;
+                border-width: 0 0 0 8px;
+                border-style: solid;
+              `}
+            >
+              <>
+                <Paragraph as="div" fontSize={24} fontWeight="semiBold">
+                  {children}
+                </Paragraph>
+                {node.attribution && (
+                  <Paragraph fontSize={16} marginTop={24}>
+                    {node.attribution}
+                  </Paragraph>
+                )}
+              </>
+            </Container>
+          )),
           renderNodeRule(isParagraph, ({ children, key }) => {
             const nodeData = children && (children[0] as ReactElement);
             const isText = nodeData?.props.children && typeof nodeData.props.children[0] === 'string';
 
             return isText ? (
-              <Paragraph textColor={textColor} key={key}>
+              <Paragraph key={key} textColor={textColor}>
                 {children}
               </Paragraph>
             ) : (
@@ -76,23 +150,7 @@ const structuredTextParser = (
               </Container>
             );
           }),
-          renderNodeRule(isCode, ({ node, key }) => (
-            <SyntaxHighlighter
-              key={key}
-              language={node.language}
-              showLineNumbers
-              wrapLines
-              useInlineStyles={false}
-              customStyle={{
-                fontSize: '16px',
-                background: 'rgb(240, 240, 240)',
-                color: 'rgb(68, 68, 68)',
-                padding: '0.5em',
-              }}
-            >
-              {node.code}
-            </SyntaxHighlighter>
-          )),
+          renderNodeRule(isCode, ({ node, key }) => <CodeBlock key={key} node={node} />),
         ]}
         customMarkRules={[
           renderMarkRule('strong', ({ children, key }) => (
@@ -106,12 +164,18 @@ const structuredTextParser = (
           switch (record.__typename) {
             case 'FileField':
               return (
-                <Flex marginY={48} flexDirection="column" alignItems="center" gap="16px">
+                <Flex marginY={16} flexDirection="column" alignItems="center" gap="16px">
                   <>
-                    <Image src={record.src as string} alt={(record.alt as string) || ''} width="100%" height="auto" />
+                    <Container
+                      position="relative"
+                      width="100%"
+                      aspectRatio={[record.width as number, record.height as number]}
+                    >
+                      <Image src={record.url as string} alt={(record.alt as string) || ''} layout="fill" />
+                    </Container>
                     {record?.title && (
-                      <Paragraph fontSize={16} fontWeight="regular" textAlign="center">
-                        {(record?.title as string) || ''}
+                      <Paragraph fontSize={16} fontWeight="regular" textAlign="center" textColor={textColor}>
+                        {record?.title as string}
                       </Paragraph>
                     )}
                   </>

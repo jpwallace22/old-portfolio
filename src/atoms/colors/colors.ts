@@ -99,6 +99,9 @@ export type GetColorDefinition = ColorList | LightAndDark;
 
 export const getColor = (palette: DefaultTheme['palette'], colors: GetColorDefinition) => {
   try {
+    if (!colors) {
+      return;
+    }
     const standardOptions = ['transparent', 'initial', 'inherit'];
     if (typeof colors === 'string' && standardOptions.includes(colors)) {
       return colors;
@@ -114,9 +117,13 @@ export const getColor = (palette: DefaultTheme['palette'], colors: GetColorDefin
   }
 };
 
-export const colorParser = (colorString: ColorList) => {
+export const colorParser = (colorString?: ColorList) => {
   if (!colorString) {
     return;
+  }
+  const standardOptions = ['transparent', 'initial', 'inherit'];
+  if (typeof colorString === 'string' && standardOptions.includes(colorString)) {
+    return colorString;
   }
 
   const [colorKey, colorValue] = colorString.split('-') as ColorArray;

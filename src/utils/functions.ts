@@ -1,6 +1,10 @@
+import { render } from 'datocms-structured-text-to-plain-text';
 import { MutableRefObject, useEffect, useState } from 'react';
 
+import { StructuredData } from 'utils/structuredTextParser';
+
 import type { NextRouter } from 'next/router';
+import type { StructuredTextGraphQlResponse } from 'react-datocms';
 
 /**
  * @param router `NextRouter`
@@ -46,3 +50,13 @@ export const useOnScreen = <T extends Element | null>(ref: MutableRefObject<T>, 
  * @returns a semi-random 10 char string. Should NOT be used for cases where true randomness is needed
  */
 export const getSemiRandomString = () => Math.random().toString(36).slice(2, 12);
+
+export const timeToRead = (structuredText?: StructuredData) => {
+  const wordsPerMin = 200;
+
+  const content = render(structuredText as StructuredTextGraphQlResponse);
+
+  return content && Math.ceil(content.split(' ').length / wordsPerMin);
+};
+
+export const randomIntFromInterval = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1) + min);

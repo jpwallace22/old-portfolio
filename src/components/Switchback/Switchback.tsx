@@ -1,5 +1,5 @@
 import { useMediaQuery } from '@mui/material';
-import { SwitchbackRecord } from 'graphql/generatedTypes';
+import { ButtonRecord, SwitchbackRecord } from 'graphql/generatedTypes';
 import { FC, MouseEvent } from 'react';
 
 // Quarks
@@ -10,16 +10,21 @@ import Flex from 'quarks/Flex';
 import Heading from 'quarks/Heading';
 import Image from 'quarks/Image';
 import { FlexProps } from 'quarks/interpolations/flex';
+import { HeadingTypes } from 'quarks/styleProps/heading';
 
 import Button from 'molecules/Button/Button';
 import StructuredTextParser from 'molecules/StructuredTextParser/StructuredTextParser';
 
-interface SwitchbackProps extends FlexProps, SwitchbackRecord {
+import { CleanDato } from 'utils/typeUtils';
+
+interface SwitchbackProps extends FlexProps, Omit<CleanDato<SwitchbackRecord>, 'buttons'> {
+  buttons?: ButtonRecord[] | null;
   cta1Action?: (e?: MouseEvent<Element, globalThis.MouseEvent>) => void;
   cta2Action?: (e?: MouseEvent<Element, globalThis.MouseEvent>) => void;
 }
 
 const Switchback: FC<SwitchbackProps> = ({
+  headingAs,
   image,
   heading,
   reverse,
@@ -31,34 +36,43 @@ const Switchback: FC<SwitchbackProps> = ({
 }) => {
   const isDesktop = useMediaQuery(media.lg);
 
-  const renderButtons = () => (
-    <>
-      {buttons[0] && (
-        <Button
-          variant="contained"
-          size="large"
-          width="100%"
-          sm={{ width: 'unset' }}
-          href={buttons[0]?.url || ''}
-          onClick={cta1Action}
-        >
-          {buttons[0]?.title}
-        </Button>
-      )}
-      {buttons[1] && (
-        <Button
-          variant="outlined"
-          size="large"
-          width="100%"
-          sm={{ width: 'unset' }}
-          href={buttons[1]?.url || ''}
-          onClick={cta2Action}
-        >
-          {buttons[1]?.title}
-        </Button>
-      )}
-    </>
-  );
+  const renderButtons = () =>
+    buttons &&
+    buttons?.length > 0 && (
+      <Flex
+        marginY={24}
+        gap="24px"
+        justifyContent="center"
+        flexDirection="column"
+        sm={{ flexDirection: 'row' }}
+        lg={{ justifyContent: 'flex-start' }}
+      >
+        {buttons[0] && (
+          <Button
+            variant="contained"
+            size="large"
+            width="100%"
+            sm={{ width: 'unset' }}
+            href={buttons[0]?.url || ''}
+            onClick={cta1Action}
+          >
+            {buttons[0]?.title}
+          </Button>
+        )}
+        {buttons[1] && (
+          <Button
+            variant="outlined"
+            size="large"
+            width="100%"
+            sm={{ width: 'unset' }}
+            href={buttons[1]?.url || ''}
+            onClick={cta2Action}
+          >
+            {buttons[1]?.title}
+          </Button>
+        )}
+      </Flex>
+    );
 
   return (
     <Flex
@@ -66,13 +80,13 @@ const Switchback: FC<SwitchbackProps> = ({
       justifyContent="center"
       maxWidth="1280px"
       marginX="auto"
+      gap="24px"
       lg={{ flexDirection: reverse ? 'row-reverse' : 'row', gap: '64px', flexBasis: '500px' }}
       {...props}
     >
       <Container lg={{ maxWidth: '50%' }}>
         <Heading
-          as="h3"
-          textStyle="lg"
+          as={headingAs as HeadingTypes}
           position="relative"
           alignSelf="flex-start"
           marginBottom={24}
@@ -89,12 +103,8 @@ const Switchback: FC<SwitchbackProps> = ({
         >
           {heading}
         </Heading>
-        <StructuredTextParser text={body} />
-        {isDesktop && buttons.length > 0 && (
-          <Flex marginY={24} gap="24px" justifyContent="flex-start">
-            {renderButtons()}
-          </Flex>
-        )}
+        <StructuredTextParser text={body} textColor={{ dark: 'gray-500', light: 'purple-900' }} />
+        {isDesktop && renderButtons()}
       </Container>
       {image && (
         <Image
@@ -107,11 +117,7 @@ const Switchback: FC<SwitchbackProps> = ({
           lg={{ marginX: 0 }}
         />
       )}
-      {!isDesktop && buttons.length > 0 && (
-        <Flex marginY={24} gap="24px" justifyContent="center" flexDirection="column" sm={{ flexDirection: 'row' }}>
-          {renderButtons()}
-        </Flex>
-      )}
+      {!isDesktop && renderButtons()}
     </Flex>
   );
 };

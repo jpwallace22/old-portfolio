@@ -1,4 +1,5 @@
 import MUIButton from '@mui/material/Button';
+import NextLink from 'next/link';
 import { FC, MouseEvent, ReactNode } from 'react';
 import styled from 'styled-components';
 
@@ -57,14 +58,13 @@ export interface ButtonProps extends FlexProps {
 }
 
 const Button: FC<ButtonProps> = ({ children, endIcon, startIcon, href, iconSize, ...props }) => {
-  const { as, ...urlProps } = href ? parseUrl(href) : ({ as: undefined } as const);
+  const { isInternal, ...urlProps } = parseUrl(href || '');
 
-  return (
+  const renderButton = () => (
     <StyledButton
       {...urlProps}
       disableRipple
       textDecoration="none"
-      forwardedAs={as}
       startIcon={
         startIcon && (
           <Flex width={iconSize} alignItems="center">
@@ -83,6 +83,14 @@ const Button: FC<ButtonProps> = ({ children, endIcon, startIcon, href, iconSize,
     >
       {children}
     </StyledButton>
+  );
+
+  return isInternal ? (
+    <NextLink href={href || ''} passHref>
+      {renderButton()}
+    </NextLink>
+  ) : (
+    renderButton()
   );
 };
 

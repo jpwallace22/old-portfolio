@@ -100,7 +100,7 @@ export const font = {
     xs: {
       fontFamily: secondaryFont,
       fontSize: fontSize[24],
-      lineHeight: lineHeight[30],
+      lineHeight: lineHeight[24],
       fontWeight: fontWeight.black,
       letterSpacing: letterSpacing.neg3,
       font() {
@@ -110,7 +110,7 @@ export const font = {
     sm: {
       fontFamily: secondaryFont,
       fontSize: fontSize[30],
-      lineHeight: lineHeight[32],
+      lineHeight: lineHeight[30],
       fontWeight: fontWeight.black,
       letterSpacing: letterSpacing.neg3,
       font() {
@@ -140,7 +140,7 @@ export const font = {
     xl: {
       fontFamily: secondaryFont,
       fontSize: fontSize[72],
-      lineHeight: lineHeight[44],
+      lineHeight: lineHeight[60],
       fontWeight: fontWeight.black,
       letterSpacing: letterSpacing.neg4,
       font() {

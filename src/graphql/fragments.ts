@@ -13,6 +13,16 @@ export const imageFrag = gql`
   }
 `;
 
+export const structuredTextImage = gql`
+  fragment structuredTextImage on ImageRecord {
+    id
+    media {
+      title
+      ...imageFrag
+    }
+  }
+`;
+
 export const buttonFrag = gql`
   fragment buttonFrag on ButtonRecord {
     __typename
@@ -59,6 +69,7 @@ export const switchBackFrag = gql`
     internalName
     reverse
     heading
+    headingAs
     body {
       value
     }
@@ -68,6 +79,16 @@ export const switchBackFrag = gql`
     buttons {
       ...buttonFrag
     }
+  }
+`;
+
+export const categoryFrag = gql`
+  fragment categoryFrag on CategoryRecord {
+    __typename
+    id
+    internalName
+    name
+    slug
   }
 `;
 
@@ -104,4 +125,67 @@ export const workFrag = gql`
   ${techFrag}
   ${caseStudyCardFrag}
   ${imageFrag}
+`;
+
+export const blogPostFrag = gql`
+  fragment blogPostFrag on BlogPostRecord {
+    __typename
+    id
+    internalName
+    title
+    subtitle
+    publishDate
+    slug
+    categories {
+      ...categoryFrag
+    }
+    body {
+      value
+      blocks {
+        ...structuredTextImage
+      }
+    }
+    featuredImage {
+      ...imageFrag
+    }
+  }
+  ${structuredTextImage}
+  ${categoryFrag}
+  ${imageFrag}
+`;
+
+export const blogCardFrag = gql`
+  fragment blogCardFrag on BlogPostRecord {
+    __typename
+    id
+    internalName
+    title
+    publishDate
+    slug
+    categories {
+      ...categoryFrag
+    }
+    body {
+      value
+    }
+    featuredImage {
+      ...imageFrag
+    }
+    excerpt {
+      value
+    }
+  }
+  ${categoryFrag}
+  ${imageFrag}
+`;
+
+export const blogPageFrag = gql`
+  fragment blogPageFrag on BlogPageRecord {
+    __typename
+    switchback {
+      ...switchBackFrag
+    }
+  }
+  ${buttonFrag}
+  ${switchBackFrag}
 `;

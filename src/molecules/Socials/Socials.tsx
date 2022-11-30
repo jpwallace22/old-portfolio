@@ -1,27 +1,38 @@
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
+import { FiFacebook, FiGithub, FiInstagram, FiLinkedin, FiMail, FiTwitter } from 'react-icons/fi';
 
-// Quarks
+import { FontSizeDefinition } from 'atoms/typography/typography';
+
 import Flex from 'quarks/Flex';
 import Link from 'quarks/Link';
 import Text from 'quarks/Text';
-import { BasicProps } from 'quarks/interpolations/basic';
+import { FlexProps } from 'quarks/interpolations/flex';
 
-type SocialsProps = BasicProps & {
-  links: {
-    platform: string;
-    image: ReactNode;
-    url: string;
-  }[];
+const iconMap = {
+  instagram: <FiInstagram />,
+  github: <FiGithub />,
+  linkedin: <FiLinkedin />,
+  twitter: <FiTwitter />,
+  facebook: <FiFacebook />,
+  mail: <FiMail />,
 };
 
-const Socials: FC<SocialsProps> = ({ links, ...props }) => (
+export type SocialsProps = FlexProps & {
+  socials: {
+    platform: keyof typeof iconMap;
+    url: string;
+  }[];
+  size?: FontSizeDefinition;
+};
+
+const Socials: FC<SocialsProps> = ({ socials, size, ...props }) => (
   <Flex as="ul" justifyContent="center" gap="2rem" {...props}>
-    {links &&
-      links.map(link => (
+    {socials &&
+      socials.map(link => (
         <Flex as="li" key={link.platform} textAlign="center" alignItems="center" justifyContent="center">
           <Link href={link.url} aria-label={link.platform}>
-            <Text textStyle="xl" fontSize={36} fontWeight="bold">
-              {link.image}
+            <Text textStyle="xl" fontSize={size} fontWeight="bold" hover={{ textColor: 'primary-600' }}>
+              {iconMap[link.platform]}
             </Text>
           </Link>
         </Flex>

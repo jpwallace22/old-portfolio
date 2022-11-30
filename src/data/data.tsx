@@ -1,6 +1,4 @@
 /* eslint-disable import/prefer-default-export */
-import { FiGithub, FiInstagram, FiLinkedin } from 'react-icons/fi';
-
 export const navbar = {
   links: [
     {
@@ -12,33 +10,32 @@ export const navbar = {
       url: 'https://www.justinwallace.dev/#works',
     },
     {
-      text: 'contact',
-      url: 'https://www.justinwallace.dev/#footer',
+      text: 'blog',
+      url: 'https://www.justinwallace.dev/blog',
     },
     {
-      text: 'resume',
-      url: '/Resume.pdf',
+      text: 'contact',
+      url: 'https://www.justinwallace.dev/#footer',
     },
     {
       text: 'home',
       url: 'https://www.justinwallace.dev',
     },
   ],
-  socials: [
-    {
-      platform: 'Instagram',
-      image: <FiInstagram />,
-      url: 'https://instagram.com/van.surf.climb',
-    },
-    {
-      platform: 'Github',
-      image: <FiGithub />,
-      url: 'https://github.com/jpwallace22',
-    },
-    {
-      platform: 'LinkedIn',
-      image: <FiLinkedin />,
-      url: 'https://www.linkedin.com/in/thejustinwallace/',
-    },
-  ],
+  socials: {
+    socials: [
+      {
+        platform: 'instagram' as const,
+        url: 'https://instagram.com/van.surf.climb',
+      },
+      {
+        platform: 'github' as const,
+        url: 'https://github.com/jpwallace22',
+      },
+      {
+        platform: 'linkedin' as const,
+        url: 'https://www.linkedin.com/in/thejustinwallace/',
+      },
+    ],
+  },
 };

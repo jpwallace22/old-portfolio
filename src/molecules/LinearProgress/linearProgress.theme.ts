@@ -33,13 +33,13 @@ export const lightLinearProgress = {
         backgroundColor: color.primary[50],
       },
       bar1Buffer: {
-        backgroundColor: color.primary[600],
+        backgroundColor: color.purple[500],
       },
       bar1Indeterminate: {
-        backgroundColor: color.primary[600],
+        backgroundColor: color.purple[500],
       },
       bar1Determinate: {
-        backgroundColor: color.primary[600],
+        backgroundColor: color.purple[500],
       },
     },
     variants,
@@ -52,7 +52,7 @@ export const darkLinearProgress = {
       root: rootStyles,
       bar: barStyles,
       barColorPrimary: {
-        backgroundColor: color.gray[800],
+        backgroundColor: color.purple[800],
       },
       bar1Buffer: {
         backgroundColor: color.primary[600],

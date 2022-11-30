@@ -5,8 +5,8 @@ import { workFrag } from 'graphql/fragments';
 import { WorkRecord } from 'graphql/generatedTypes';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
+import { FC } from 'react';
 
-// Quarks
 import Container from 'quarks/Container';
 import { Dots, LargeCircle, SmallCircle } from 'quarks/DesignElements';
 import Flex from 'quarks/Flex';
@@ -46,13 +46,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: false };
 };
 
-interface IWorkPage {
-  data: WorkRecord;
-}
-
-const Work = ({
-  data: { title, subtitle, bannerImage, techStack, heading, ctas, body, information, slider },
-}: IWorkPage) => {
+const Work: FC<WorkRecord> = ({
+  title,
+  subtitle,
+  bannerImage,
+  techStack,
+  heading,
+  ctas,
+  body,
+  information,
+  slider,
+}) => {
   const [isDark] = useDarkMode();
   const tempTechStack = techStack.map(tech => tech.title);
 
@@ -165,21 +169,23 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params?.id;
 
   const QUERY = gql`
-    query {
-      work(filter: {slug: {eq: ${slug}}}) {
+    query workQuery($slug: String) {
+      work(filter: { slug: { eq: $slug } }) {
         ...workFrag
       }
     }
     ${workFrag}
   `;
+
   const data = await request({
     query: QUERY,
+    variables: {
+      slug: slug as string,
+    },
   });
 
   return {
-    props: {
-      data: data.work,
-    },
+    props: data.work,
   };
 };
 

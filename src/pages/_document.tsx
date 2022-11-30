@@ -49,25 +49,18 @@ class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#00aba9" />
           <meta name="theme-color" content="#ffffff" />
           <meta property="og:image" content="assets/images/jwdev.webp" />
-          <Script id="google-tag-manager" strategy="afterInteractive">
-            {`<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-PNC24L5');</script>`}
-          </Script>
         </Head>
+        <Script strategy="lazyOnload" async src="https://www.googletagmanager.com/gtag/js?id=G-R2S5FWZ8HX"></Script>
+        <Script strategy="lazyOnload" id="g-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+          
+            gtag('config', '${process.env.GOOGLE_TAG_ID}');
+          `}
+        </Script>
         <body>
-          <noscript>
-            <iframe
-              title="googleTagManager"
-              src="https://www.googletagmanager.com/ns.html?id=GTM-PNC24L5"
-              height="0"
-              width="0"
-              // eslint-disable-next-line no-inline-styles/no-inline-styles
-              style={{ display: 'none', visibility: 'hidden' }}
-            ></iframe>
-          </noscript>
           <Main />
           <NextScript />
         </body>

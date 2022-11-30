@@ -2,6 +2,7 @@ import MUILinearProgress from '@mui/material/LinearProgress';
 import { FC } from 'react';
 import styled, { css } from 'styled-components';
 
+import { ColorList, colorParser } from 'atoms/colors/colors';
 import shadow from 'atoms/shadows/shadows';
 import { padding } from 'atoms/spacing/spacing';
 import { font, fontWeight } from 'atoms/typography/typography';
@@ -14,7 +15,7 @@ import { allCSSWithPseudos } from 'quarks/styleProps/all';
 import { CSSProps } from 'theme/getAppTheme';
 
 const StyledLinearProgress = styled(MUILinearProgress).withConfig({
-  shouldForwardProp: prop => ![...Object.keys(allCSSWithPseudos), 'labelPosition'].includes(prop),
+  shouldForwardProp: prop => ![...Object.keys(allCSSWithPseudos), 'labelPosition', 'hasLabel'].includes(prop),
 })`
   && {
     ${basic}
@@ -33,7 +34,7 @@ interface LinearProgressProps extends BasicProps {
   /**
    * If `true` displays label with percentage of progress.
    */
-  label?: boolean;
+  hasLabel?: boolean;
   /**
    * Determines where and how the label will be shown
    */
@@ -41,15 +42,26 @@ interface LinearProgressProps extends BasicProps {
   /**
    * The variant to use. Use indeterminate or query when there is no progress value.
    */
-  variant?: 'buffer' | 'indeterminate' | 'query';
+  variant?: 'buffer' | 'indeterminate' | 'query' | 'determinate';
+  bottomBarColor?: ColorList;
+  height?: string;
 }
 
-const LinearProgress: FC<LinearProgressProps> = ({ value, label, variant, labelPosition, valueBuffer, ...props }) => {
+const LinearProgress: FC<LinearProgressProps> = ({
+  value,
+  hasLabel,
+  variant,
+  labelPosition,
+  valueBuffer,
+  bottomBarColor,
+  height,
+  ...props
+}) => {
   const isTrack = (labelPosition === 'track-top' || labelPosition === 'track-bottom') && variant === 'buffer';
 
   const progressProps = {
     value,
-    label,
+    hasLabel,
     labelPosition,
     variant,
     valueBuffer,
@@ -79,17 +91,22 @@ const LinearProgress: FC<LinearProgressProps> = ({ value, label, variant, labelP
         border-radius: 8px;
       }
     }
+    .MuiLinearProgress-colorPrimary,
+    .MuiLinearProgress-dashed {
+      background-color: ${colorParser(bottomBarColor)};
+      background-image: unset;
+    }
   `;
 
   return (
     <Flex alignItems="center" flexDirection={labelPosition === 'bottom' && 'column'} position="relative" {...props}>
-      <StyledLinearProgress width="100%" css={floatingLabelStyles} {...progressProps} />
-      {label && labelPosition === 'end' && (
+      <StyledLinearProgress width="100%" css={floatingLabelStyles} {...progressProps} height={height} />
+      {hasLabel && labelPosition === 'end' && (
         <Text textStyle="xs" fontWeight="semiBold" marginLeft={12}>
           {`${Math.round(value)}%`}
         </Text>
       )}
-      {label && labelPosition === 'bottom' && (
+      {hasLabel && labelPosition === 'bottom' && (
         <Text textStyle="xs" fontWeight="semiBold" marginTop={8} display="block" width="100%" textAlign="right">
           {`${Math.round(value)}%`}
         </Text>
@@ -102,7 +119,7 @@ export default LinearProgress;
 
 LinearProgress.defaultProps = {
   variant: 'buffer',
-  label: false,
+  hasLabel: false,
   labelPosition: 'track-top',
   valueBuffer: 100,
   value: 0,
