@@ -8,37 +8,19 @@ import { FC } from 'react';
 
 import Container from 'quarks/Container';
 import Flex from 'quarks/Flex';
-import Heading from 'quarks/Heading';
 
 import Breadcrumbs from 'molecules/Breadcrumbs/Breadcrumbs';
-import StructuredTextParser from 'molecules/StructuredTextParser/StructuredTextParser';
 
 import BlogListing from 'components/BlogListing/BlogListing';
 import Footer from 'components/Footer/Footer';
-
-import useDarkMode from 'contexts/ThemeProvider';
+import Switchback from 'components/Switchback/Switchback';
 
 interface IBlogPage extends BlogPageRecord {
   blogs: BlogPostRecord[];
 }
 
-const BlogPage: FC<IBlogPage> = ({ title, subtitle, body, blogs }) => {
-  // const [scrollPercentage, setScrollPercentage] = useState(0);
-
-  const [isDark] = useDarkMode();
-  // const { y } = useWindowScroll();
-
+const BlogPage: FC<IBlogPage> = ({ switchback, blogs }) => {
   const breadcrumbs = [{ label: 'Home', link: 'https://www.justinwallace.dev' }, { label: 'All Blogs' }];
-
-  // useLayoutEffect(() => {
-  //   if (window === undefined) {
-  //     return;
-  //   }
-  //   const contentHeight = document.body.offsetHeight - window.innerHeight;
-  //   const currentScroll = Math.round((y / contentHeight) * 100);
-
-  //   setScrollPercentage(currentScroll);
-  // }, [y]);
 
   return (
     <>
@@ -50,6 +32,7 @@ const BlogPage: FC<IBlogPage> = ({ title, subtitle, body, blogs }) => {
         position="relative"
         top="-70px"
         lg={{ top: '-82px' }}
+        zIndex={2}
       >
         <Flex
           flexDirection="column"
@@ -64,48 +47,7 @@ const BlogPage: FC<IBlogPage> = ({ title, subtitle, body, blogs }) => {
           xl={{ maxWidth: '1170px' }}
         >
           <Breadcrumbs breadcrumbs={breadcrumbs} />
-          <Flex marginTop={64} gap="32px" flexDirection="column" lg={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Flex flexDirection="column" gap="8px">
-              {title && (
-                <Heading as="h1" textStyle="lg" lg={{ textStyle: 'xxl', lineHeight: 90 }}>
-                  {title}
-                </Heading>
-              )}
-              {subtitle && (
-                <Heading
-                  as="h3"
-                  fontFamily="primaryFont"
-                  textStyle="md"
-                  fontWeight={isDark ? 'light' : 'regular'}
-                  textColor={{ light: 'gray-900', dark: 'gray-500' }}
-                >
-                  {subtitle}
-                </Heading>
-              )}
-              {body && (
-                <StructuredTextParser
-                  text={body}
-                  marginTop={16}
-                  maxWidth="740px"
-                  textColor={{ dark: 'gray-500', light: 'purple-900' }}
-                />
-              )}
-            </Flex>
-            {/* {featuredImage && (
-              <Container
-                flex="1 1 50%"
-                position="relative"
-                aspectRatio={[featuredImage.width, featuredImage.height]}
-                width="100%"
-                maxWidth="600px"
-                marginX="auto"
-                borderRadius="8px"
-                overflowY="hidden"
-              >
-                <Image src={featuredImage.url} alt={featuredImage?.alt || ''} layout="fill" />
-              </Container>
-            )} */}
-          </Flex>
+          <Switchback {...switchback} paddingTop={32} alignItems="center" />
         </Flex>
       </Container>
       <BlogListing blogs={blogs} />

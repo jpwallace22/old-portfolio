@@ -7,12 +7,11 @@ import { BasicProps, basic } from 'quarks/interpolations/basic';
 import parseUrl from 'utils/parseUrl';
 
 const StyledLink = styled.a`
+  cursor: pointer;
   ${basic}
 `;
 
-type Link = typeof NextLink;
-
-interface LinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'as'>, BasicProps {
+interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement>, BasicProps {
   /**
    *Takes a full url string. Internal links will be parsed as a `<Link>` and external links will be an `<a>` that safely opens in a new tab.
    */
@@ -21,19 +20,22 @@ interface LinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'as'>,
    * The string or element within the link.
    */
   children: ReactNode;
-  as?: 'a' | 'div' | Link;
 }
 
-const Link: FC<LinkProps> = ({ children, href, ...props }) => (
-  <StyledLink {...parseUrl(href)} {...props}>
-    {children}
-  </StyledLink>
-);
+const Link: FC<LinkProps> = ({ children, href, ...props }) => {
+  const { isInternal, href: url, ...rest } = parseUrl(href);
 
-Link.defaultProps = {
-  hover: {
-    textColor: 'primary-600',
-  },
+  return isInternal ? (
+    <NextLink href={url || ''} passHref>
+      <StyledLink {...props} aria-label={href}>
+        {children}
+      </StyledLink>
+    </NextLink>
+  ) : (
+    <StyledLink href={url} {...rest} {...props}>
+      {children}
+    </StyledLink>
+  );
 };
 
 export default Link;

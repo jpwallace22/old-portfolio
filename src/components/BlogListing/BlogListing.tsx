@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { media } from 'atoms/breakpoints/breakpoints';
 
 import Container from 'quarks/Container';
+import { Dots, SmallCircle } from 'quarks/DesignElements';
 import Grid from 'quarks/Grid';
 import Link from 'quarks/Link';
 import { BasicProps } from 'quarks/interpolations/basic';
@@ -48,27 +49,33 @@ const BlogListing: FC<BlogListingProps> = ({ blogs, ...props }) => {
   }, [currentPage, amountOfPages, postsPerPage]);
 
   return (
-    <Container {...props}>
+    <Container paddingBottom={32} paddingX={24} {...props} marginX="auto" position="relative" contain="layout">
+      <Dots position="absolute" left="-100px" top="-200px" zIndex={-1} />
+      <SmallCircle position="absolute" left="80%" top="20%" zIndex={-1} lg={{ left: '75%' }} />
       <Grid
         gap="30px"
         justifyItems="center"
-        md={{ gridTemplateColumns: 'repeat(2, 1fr)' }}
-        xl={{ gridTemplateColumns: 'repeat(3, 1fr)' }}
+        paddingBottom={32}
+        md={{ gridTemplateColumns: 'repeat(2, 1fr)', maxWidth: '970px' }}
+        xl={{ gridTemplateColumns: 'repeat(3, 1fr)', maxWidth: '1256px' }}
+        marginX="auto"
       >
-        {currentPosts?.map(post => (
+        {currentPosts?.map((post, i) => (
           <Link key={post.internalName} href={`https://www.justinwallace.dev/blog/${post.slug}`}>
-            <BlogListingCard {...post} />
+            <BlogListingCard {...post} index={i} />
           </Link>
         ))}
       </Grid>
-      <Pagination
-        // marginTop={48}
-        dotsCount={amountOfPages}
-        activeDot={currentPage}
-        onLeftArrowClick={() => setCurrentPage(currentPage - 1)}
-        onRightArrowClick={() => setCurrentPage(currentPage + 1)}
-        onSetActiveDot={number => setCurrentPage(number)}
-      />
+      {amountOfPages > 1 && (
+        <Pagination
+          dotsCount={amountOfPages}
+          activeDot={currentPage}
+          onLeftArrowClick={() => setCurrentPage(currentPage - 1)}
+          onRightArrowClick={() => setCurrentPage(currentPage + 1)}
+          onSetActiveDot={number => setCurrentPage(number)}
+          disableOnEnd
+        />
+      )}
     </Container>
   );
 };

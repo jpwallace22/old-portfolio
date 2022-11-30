@@ -22,13 +22,6 @@ export type Scalars = {
   UploadId: any;
 };
 
-export type BlogPageModelBodyField = {
-  __typename?: 'BlogPageModelBodyField';
-  blocks: Array<Scalars['String']>;
-  links: Array<Scalars['String']>;
-  value: Scalars['JsonField'];
-};
-
 /** Record of type Blog Page (blog_page) */
 export type BlogPageRecord = RecordInterface & {
   __typename?: 'BlogPageRecord';
@@ -43,11 +36,9 @@ export type BlogPageRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
-  body?: Maybe<BlogPageModelBodyField>;
   createdAt: Scalars['DateTime'];
   id: Scalars['ItemId'];
-  subtitle?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
+  switchback?: Maybe<SwitchbackRecord>;
   updatedAt: Scalars['DateTime'];
 };
 
@@ -2595,6 +2586,7 @@ export type SwitchbackModelFilter = {
   buttons?: InputMaybe<LinksFilter>;
   createdAt?: InputMaybe<CreatedAtFilter>;
   heading?: InputMaybe<StringFilter>;
+  headingAs?: InputMaybe<StringFilter>;
   id?: InputMaybe<ItemIdFilter>;
   image?: InputMaybe<FileFilter>;
   internalName?: InputMaybe<StringFilter>;
@@ -2621,6 +2613,8 @@ export enum SwitchbackModelOrderBy {
   _updatedAt_DESC = '_updatedAt_DESC',
   CreatedAt_ASC = 'createdAt_ASC',
   CreatedAt_DESC = 'createdAt_DESC',
+  HeadingAs_ASC = 'headingAs_ASC',
+  HeadingAs_DESC = 'headingAs_DESC',
   Heading_ASC = 'heading_ASC',
   Heading_DESC = 'heading_DESC',
   Id_ASC = 'id_ASC',
@@ -2651,6 +2645,7 @@ export type SwitchbackRecord = RecordInterface & {
   buttons: Array<ButtonRecord>;
   createdAt: Scalars['DateTime'];
   heading?: Maybe<Scalars['String']>;
+  headingAs?: Maybe<Scalars['String']>;
   id: Scalars['ItemId'];
   image?: Maybe<FileField>;
   internalName?: Maybe<Scalars['String']>;

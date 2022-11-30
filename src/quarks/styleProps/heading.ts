@@ -5,7 +5,7 @@ import { font } from 'atoms/typography/typography';
 
 import typography from 'theme/typography';
 
-type HeadingTypes = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+export type HeadingTypes = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
 type TextStyles = keyof typeof font.display;
 

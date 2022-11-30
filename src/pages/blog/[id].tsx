@@ -23,10 +23,6 @@ import LinearProgress from 'molecules/LinearProgress/LinearProgress';
 import Socials from 'molecules/Socials/Socials';
 import StructuredTextParser from 'molecules/StructuredTextParser/StructuredTextParser';
 
-// import ComponentBadge from 'components/Badge/Badge';
-// import Authors from 'components/BlogPost/Authors';
-// import SocialShareLinks from 'components/BlogPost/SocialShareLinks';
-
 import Footer from 'components/Footer/Footer';
 
 import { randomIntFromInterval, timeToRead } from 'utils/functions';
@@ -135,7 +131,7 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
                     <Badge
                       key={cat.name}
                       title={cat.name as BadgeTitles}
-                      // url={`https://www.justinwallace.dev/blog?category=${cat.slug}`}
+                      // url={`https://www.justinwallace.dev/blog?category=${cat.slug}`} to be added when categories are created
                     />
                   ))}
                 </Flex>

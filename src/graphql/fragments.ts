@@ -59,6 +59,7 @@ export const switchBackFrag = gql`
     internalName
     reverse
     heading
+    headingAs
     body {
       value
     }
@@ -169,11 +170,10 @@ export const blogCardFrag = gql`
 export const blogPageFrag = gql`
   fragment blogPageFrag on BlogPageRecord {
     __typename
-    id
-    title
-    subtitle
-    body {
-      value
+    switchback {
+      ...switchBackFrag
     }
   }
+  ${buttonFrag}
+  ${switchBackFrag}
 `;

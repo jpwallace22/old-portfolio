@@ -22,7 +22,7 @@ interface ComponentPaginationProps {
   /**
    * The number of dots to generate.
    */
-  dotsCount?: number;
+  dotsCount: number;
   /**
    * Callback to set active dot.
    * @param dot number
@@ -36,6 +36,7 @@ interface ComponentPaginationProps {
    * Callback fired when right arrow is clicked.
    */
   onRightArrowClick: () => void;
+  disableOnEnd?: boolean;
 }
 
 const dotsColors = {
@@ -51,6 +52,7 @@ const ComponentPagination: FC<ComponentPaginationProps> = ({
   onSetActiveDot,
   onLeftArrowClick,
   onRightArrowClick,
+  disableOnEnd,
 }) => {
   const color = dotsColors[variant];
 
@@ -63,10 +65,11 @@ const ComponentPagination: FC<ComponentPaginationProps> = ({
       {isWithArrow && (
         <Button
           boxShadow="none"
-          textColor="gray-900"
+          textColor={disableOnEnd && activeDot === 0 ? 'transparent' : 'gray-900'}
           aria-label="left"
           hover={{ textColor: 'primary-600', backgroundColor: 'transparent' }}
           onClick={handleLeftArrowClick}
+          disabled={disableOnEnd && activeDot === 0}
         >
           <TiChevronLeft />
         </Button>
@@ -88,10 +91,11 @@ const ComponentPagination: FC<ComponentPaginationProps> = ({
       {isWithArrow && (
         <Button
           boxShadow="none"
-          textColor="gray-900"
+          textColor={disableOnEnd && activeDot === dotsCount - 1 ? 'transparent' : 'gray-900'}
           aria-label="right"
           hover={{ textColor: 'purple-500', backgroundColor: 'transparent' }}
           onClick={handleRightArrowClick}
+          disabled={disableOnEnd && activeDot === dotsCount - 1}
         >
           <TiChevronRight />
         </Button>
