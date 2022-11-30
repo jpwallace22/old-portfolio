@@ -13,6 +13,15 @@ export const imageFrag = gql`
   }
 `;
 
+export const structuredTextImage = gql`
+  fragment structuredTextImage on ImageRecord {
+    id
+    media {
+      ...imageFrag
+    }
+  }
+`;
+
 export const buttonFrag = gql`
   fragment buttonFrag on ButtonRecord {
     __typename
@@ -131,12 +140,15 @@ export const blogPostFrag = gql`
     }
     body {
       value
-      blocks
+      blocks {
+        ...structuredTextImage
+      }
     }
     featuredImage {
       ...imageFrag
     }
   }
+  ${structuredTextImage}
   ${categoryFrag}
   ${imageFrag}
 `;
@@ -154,7 +166,6 @@ export const blogCardFrag = gql`
     }
     body {
       value
-      blocks
     }
     featuredImage {
       ...imageFrag

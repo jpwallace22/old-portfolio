@@ -1,9 +1,7 @@
-/* eslint-disable arrow-body-style */
 import { isCode, isHeading, isLink, isList, isParagraph } from 'datocms-structured-text-utils';
 import { ButtonRecord } from 'graphql/generatedTypes';
 import { Text } from 'quarks';
 import { StructuredText, renderMarkRule, renderNodeRule } from 'react-datocms';
-import SyntaxHighlighter from 'react-syntax-highlighter';
 
 import { GetColorDefinition } from 'atoms/colors/colors';
 
@@ -14,6 +12,8 @@ import Image from 'quarks/Image';
 import Link from 'quarks/Link';
 import List from 'quarks/List';
 import Paragraph from 'quarks/Paragraph';
+
+import CodeBlock from 'molecules/CodeBlock/CodeBlock';
 
 import type { Record as NodeType } from 'datocms-structured-text-utils';
 import type { ReactElement } from 'react';
@@ -110,23 +110,7 @@ const structuredTextParser = (data?: StructuredData, textColor?: false | GetColo
               </Container>
             );
           }),
-          renderNodeRule(isCode, ({ node, key }) => (
-            <SyntaxHighlighter
-              key={key}
-              language={node.language}
-              showLineNumbers
-              wrapLines
-              useInlineStyles={false}
-              customStyle={{
-                fontSize: '16px',
-                background: 'rgb(240, 240, 240)',
-                color: 'rgb(68, 68, 68)',
-                padding: '0.5em',
-              }}
-            >
-              {node.code}
-            </SyntaxHighlighter>
-          )),
+          renderNodeRule(isCode, ({ node, key }) => <CodeBlock node={node} key={key} />),
         ]}
         customMarkRules={[
           renderMarkRule('strong', ({ children, key }) => (
@@ -142,7 +126,7 @@ const structuredTextParser = (data?: StructuredData, textColor?: false | GetColo
               return (
                 <Flex marginY={48} flexDirection="column" alignItems="center" gap="16px">
                   <>
-                    <Image src={record.src as string} alt={(record.alt as string) || ''} width="100%" height="auto" />
+                    <Image src={record.url as string} alt={(record.alt as string) || ''} width="100%" height="100%" />
                     {record?.title && (
                       <Paragraph fontSize={16} fontWeight="regular" textAlign="center">
                         {(record?.title as string) || ''}

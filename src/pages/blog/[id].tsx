@@ -190,14 +190,14 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
       <Container>
         <Flex
           justifyContent="space-between"
+          alignItems="center"
           paddingTop={48}
           paddingBottom={96}
           gap="60px"
           flexDirection="column-reverse"
           paddingX={24}
           marginX="auto"
-          lg={{ flexDirection: 'row' }}
-          xl={{ maxWidth: '1256px' }}
+          xl={{ maxWidth: '1256px', flexDirection: 'row', alignItems: 'unset' }}
         >
           <Flex
             flex="1 0 250px"
@@ -216,7 +216,7 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
               display="none"
               lg={{ display: 'block' }}
             />
-            <Container display="none" lg={{ display: 'block' }}>
+            <Container display="none" xl={{ display: 'block' }}>
               <Paragraph textStyle="xl" fontWeight="bold" marginBottom={8}>
                 In this article
               </Paragraph>

@@ -10,12 +10,12 @@ export const navbar = {
       url: 'https://www.justinwallace.dev/#works',
     },
     {
-      text: 'contact',
-      url: 'https://www.justinwallace.dev/#footer',
+      text: 'blog',
+      url: 'https://www.justinwallace.dev/blog',
     },
     {
-      text: 'resume',
-      url: '/Resume.pdf',
+      text: 'contact',
+      url: 'https://www.justinwallace.dev/#footer',
     },
     {
       text: 'home',

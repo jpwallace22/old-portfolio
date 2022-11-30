@@ -31,7 +31,7 @@ const Socials: FC<SocialsProps> = ({ socials, size, ...props }) => (
       socials.map(link => (
         <Flex as="li" key={link.platform} textAlign="center" alignItems="center" justifyContent="center">
           <Link href={link.url} aria-label={link.platform}>
-            <Text textStyle="xl" fontSize={size} fontWeight="bold">
+            <Text textStyle="xl" fontSize={size} fontWeight="bold" hover={{ textColor: 'primary-600' }}>
               {iconMap[link.platform]}
             </Text>
           </Link>

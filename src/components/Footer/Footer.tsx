@@ -1,6 +1,6 @@
 import { navbar } from 'data/data';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { Link } from 'quarks';
 import { ForwardedRef, forwardRef } from 'react';
 
 import { ReactComponent as LogoMark } from 'assets/svg/logomark-grad.svg';
@@ -97,11 +97,20 @@ const Footer = forwardRef(({ size = 100, ...props }: FooterProps, ref?: Forwarde
         >
           <Container width="33%" display="none" lg={{ display: 'block' }}>
             <Link href="https://www.justinwallace.dev">
-              <LogoMark width={50} cursor="pointer" />
+              <LogoMark width={50} />
             </Link>
           </Container>
-          <Text as="small" textColor="gray-900" verticalAlign="bottom" textAlign="right" lg={{ width: '33%' }}>
-            ©JW Development {date.getFullYear()}
+          <Text
+            as="small"
+            textColor={{ dark: 'gray-900', light: 'purple-300' }}
+            verticalAlign="bottom"
+            textAlign="right"
+            lg={{ width: '33%' }}
+          >
+            ©JW Development {date.getFullYear()} •{' '}
+            <Link href="/Resume">
+              <Text textColor={{ dark: 'gray-200', light: 'common-black' }}>Resume</Text>
+            </Link>
           </Text>
         </Flex>
       </Container>
