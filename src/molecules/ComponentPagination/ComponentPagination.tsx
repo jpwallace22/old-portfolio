@@ -70,6 +70,7 @@ const ComponentPagination: FC<ComponentPaginationProps> = ({
           hover={{ textColor: 'primary-600', backgroundColor: 'transparent' }}
           onClick={handleLeftArrowClick}
           disabled={disableOnEnd && activeDot === 0}
+          cursor="pointer"
         >
           <TiChevronLeft />
         </Button>
@@ -96,6 +97,7 @@ const ComponentPagination: FC<ComponentPaginationProps> = ({
           hover={{ textColor: 'purple-500', backgroundColor: 'transparent' }}
           onClick={handleRightArrowClick}
           disabled={disableOnEnd && activeDot === dotsCount - 1}
+          cursor="pointer"
         >
           <TiChevronRight />
         </Button>
