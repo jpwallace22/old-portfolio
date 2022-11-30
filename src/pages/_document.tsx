@@ -1,5 +1,4 @@
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
-import Script from 'next/script';
 import { Fragment } from 'react';
 import { ServerStyleSheet } from 'styled-components';
 
@@ -33,7 +32,6 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          {/* <link rel="preload" as="image" href="assets/images/dots.webp" /> */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
           <link
@@ -50,16 +48,6 @@ class MyDocument extends Document {
           <meta name="theme-color" content="#ffffff" />
           <meta property="og:image" content="assets/images/jwdev.webp" />
         </Head>
-        <Script strategy="lazyOnload" async src="https://www.googletagmanager.com/gtag/js?id=G-R2S5FWZ8HX"></Script>
-        <Script strategy="lazyOnload" id="g-analytics">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-          
-            gtag('config', '${process.env.GOOGLE_TAG_ID}');
-          `}
-        </Script>
         <body>
           <Main />
           <NextScript />
