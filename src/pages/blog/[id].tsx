@@ -197,6 +197,7 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
           flexDirection="column-reverse"
           paddingX={24}
           marginX="auto"
+          maxWidth="924px"
           xl={{ maxWidth: '1256px', flexDirection: 'row', alignItems: 'unset' }}
         >
           <Flex
@@ -207,6 +208,7 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
             height="100%"
             flexDirection="column"
             gap="32px"
+            alignSelf="flex-start"
           >
             <LargeCircle
               position="absolute"
@@ -250,13 +252,13 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
               </Container>
             </Container>
             <Container>
-              <Text textStyle="xl" fontWeight="bold" textAlign="center">
+              <Text textStyle="xl" fontWeight="bold">
                 Share
               </Text>
               <Socials socials={socials} size={24} marginTop={16} justifyContent="flex-start" lg={{ marginLeft: 8 }} />
             </Container>
           </Flex>
-          <Container lg={{ maxWidth: '1024px' }}>
+          <Container maxWidth="100vw" paddingX={24} lg={{ maxWidth: '1024px' }}>
             <Dots position="absolute" bottom={circleY + 'px'} right={circleX + 'px'} />
             {body?.value && (
               <StructuredTextParser text={body} textStyle="lg" textColor={{ dark: 'gray-500', light: 'purple-900' }} />

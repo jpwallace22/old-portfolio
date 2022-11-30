@@ -107,8 +107,8 @@ const Navbar: FC<NavbarProps> = ({ links, socials, currentSection, ...props }) =
           lg={{ display: 'none' }}
           zIndex={99}
         />
-        <Link href={home}>
-          <LogoMark width={45} cursor="pointer" />
+        <Link href={home} lineHeight={0}>
+          <LogoMark width={45} />
         </Link>
         <Flex
           {...swipeHandler}
