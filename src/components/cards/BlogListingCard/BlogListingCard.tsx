@@ -18,6 +18,7 @@ const BlogListingCard: FC<IBlogCard> = ({ title, featuredImage, excerpt, index, 
     flexDirection="column"
     width="100%"
     maxWidth="600px"
+    height="550px"
     borderRadius="8px"
     overflowY="hidden"
     backgroundColor={{ dark: 'purple-800', light: 'gray-50' }}
@@ -27,8 +28,23 @@ const BlogListingCard: FC<IBlogCard> = ({ title, featuredImage, excerpt, index, 
     hover={{ boxShadow: 'xs', transform: 'translateY(-8px)' }}
   >
     {featuredImage && (
-      <Container width="100%" position="relative" aspectRatio={[featuredImage.width, featuredImage.height]}>
-        <Image src={featuredImage.url} alt={featuredImage?.alt || ''} layout="fill" />
+      <Container
+        width="100%"
+        height="300px"
+        position="relative"
+        after={{
+          content: '',
+          position: 'absolute',
+          bottom: '-12px',
+          height: '12px',
+          backgroundImage: index !== undefined && index % 2 === 0 ? 'gradient-purpleLeft' : 'gradient-purpleRight',
+          left: 0,
+          right: 0,
+          marginX: 'auto',
+          width: '100%',
+        }}
+      >
+        <Image src={featuredImage.url} alt={featuredImage?.alt || ''} layout="fill" objectFit="cover" />
         {/* <Badge zIndex={3} position="absolute" boxShadow="lg" top="16px" left="16px" title="typescript" /> */}
       </Container>
     )}
@@ -39,17 +55,7 @@ const BlogListingCard: FC<IBlogCard> = ({ title, featuredImage, excerpt, index, 
       paddingX={16}
       gap="16px"
       position="relative"
-      after={{
-        content: '',
-        position: 'absolute',
-        top: 0,
-        height: '12px',
-        backgroundImage: index !== undefined && index % 2 === 0 ? 'gradient-purpleLeft' : 'gradient-purpleRight',
-        left: 0,
-        right: 0,
-        marginX: 'auto',
-        width: '100%',
-      }}
+      minHeight="250px"
     >
       {title && (
         <Paragraph textStyle="lg" fontWeight="bold">
@@ -70,7 +76,7 @@ const BlogListingCard: FC<IBlogCard> = ({ title, featuredImage, excerpt, index, 
         `}
       />
 
-      <Flex justifyContent="space-between" alignItems="flex-end">
+      <Flex justifyContent="space-between" alignItems="flex-end" marginTop="auto">
         <Button
           fontSize={20}
           fontWeight="bold"
