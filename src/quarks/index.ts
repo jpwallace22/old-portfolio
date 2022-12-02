@@ -7,3 +7,4 @@ export { default as Text } from 'quarks/Text';
 export { default as Paragraph } from 'quarks/Paragraph';
 export { default as Flex } from 'quarks/Flex';
 export { default as Logo } from 'quarks/Logo';
+export { Dots, LargeCircle, SmallCircle } from 'quarks/DesignElements';
