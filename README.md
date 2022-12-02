@@ -29,3 +29,4 @@
 - create testimonial component
 - lazy import all components
 - create components generator styled paradigm
+- add recent || featured blogs to homepage
