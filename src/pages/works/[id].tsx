@@ -10,15 +10,12 @@ import { FC } from 'react';
 import Container from 'quarks/Container';
 import { Dots, LargeCircle, SmallCircle } from 'quarks/DesignElements';
 import Flex from 'quarks/Flex';
-// import Grid from 'quarks/Grid';
 import Heading from 'quarks/Heading';
 import Image from 'quarks/Image';
 
-// Components
 import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 import StructuredTextParser from 'molecules/StructuredTextParser/StructuredTextParser';
 
-// import Carousel from 'components/Carousel/Carousel';
 import Footer from 'components/Footer/Footer';
 import Slider from 'components/Slider/Slider';
 import TechStack, { TechStackProps } from 'components/TechStack/TechStack';

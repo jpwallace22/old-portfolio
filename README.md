@@ -28,3 +28,4 @@
   - use the same component for related blogs?
 - create testimonial component
 - lazy import all components
+- create components generator styled paradigm
