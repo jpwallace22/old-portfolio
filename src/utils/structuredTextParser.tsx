@@ -158,6 +158,21 @@ const structuredTextParser = (data?: StructuredData, textColor?: false | GetColo
               {children}
             </Text>
           )),
+          renderMarkRule('code', ({ children, key }) => (
+            <Text
+              key={key}
+              textColor={{ dark: 'primary-300', light: 'purple-600' }}
+              backgroundColor={{ dark: 'purple-900', light: 'gray-300' }}
+              fontWeight="semiBold"
+              css={`
+                border-radius: 4px;
+                padding: 2px 4px;
+                font-family: 'Courier New', Courier, monospace;
+              `}
+            >
+              {children}
+            </Text>
+          )),
         ]}
         renderBlock={({ record }) => {
           record = record.media as NodeType;

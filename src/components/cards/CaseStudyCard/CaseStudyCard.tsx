@@ -29,7 +29,6 @@ const OffsetGridCard: FC<CaseStudyCardProps> = ({ image }) => (
       objectFit="cover"
       md={{ width: 'unset', maxWidth: '550px' }}
       xl={{ maxWidth: '800px' }}
-      // objectPosition="top"
     />
   </Container>
 );

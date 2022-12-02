@@ -16,7 +16,15 @@
 
 ## TODO
 
-- Add clearfix to basic quarks
-- create data-map for socials
+- ~~create data-map for socials~~
 - add shutter animation to TechStack
-- add Contentful and GraphQL
+- ~~add CMS and query with GraphQL~~
+- ~~add blog page listing and blog post pages~~
+- ~~refactor ugly carousel into something better~~
+- implement category taxonomy into the blog (after writing more blogs)
+- add global nav to DatoCMS
+  - maybe restyle the nav
+- create featured blog component
+  - use the same component for related blogs?
+- create testimonial component
+- lazy import all components

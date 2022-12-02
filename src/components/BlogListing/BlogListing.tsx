@@ -22,7 +22,6 @@ interface BlogListingProps extends BasicProps {
 
 const BlogListing: FC<BlogListingProps> = ({ blogs, ...props }) => {
   const [currentPosts, setCurrentPosts] = useState<BlogPostRecord[]>([]);
-  // currentPage count starts at 0 (uses index in pagination)
   const [currentPage, setCurrentPage] = useState(0);
   const [amountOfPages, setAmountOfPages] = useState(0);
   const [postsPerPage, setPostsPerPage] = useState(9);

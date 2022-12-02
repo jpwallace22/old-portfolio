@@ -155,6 +155,7 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
                   textStyle="md"
                   fontWeight={isDark ? 'light' : 'regular'}
                   textColor={{ light: 'gray-900', dark: 'gray-500' }}
+                  marginTop={16}
                 >
                   {subtitle}
                 </Heading>
@@ -261,7 +262,13 @@ const BlogDetail: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle, 
           <Container maxWidth="100vw" paddingX={24} lg={{ maxWidth: '1024px' }}>
             <Dots position="absolute" bottom={circleY + 'px'} right={circleX + 'px'} />
             {body?.value && (
-              <StructuredTextParser text={body} textStyle="lg" textColor={{ dark: 'gray-500', light: 'purple-900' }} />
+              <StructuredTextParser
+                text={body}
+                textStyle="lg"
+                textColor={{ dark: 'gray-300', light: 'purple-900' }}
+                fontSize={20}
+                lineHeight={32}
+              />
             )}
           </Container>
         </Flex>
