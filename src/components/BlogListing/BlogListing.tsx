@@ -1,20 +1,16 @@
 import { useMediaQuery } from '@mui/material';
 import { BlogPostRecord } from 'graphql/generatedTypes';
-import { useEffect, useState } from 'react';
+import { Container, Dots, Grid, Link, SmallCircle } from 'quarks';
+import { lazy, useEffect, useState } from 'react';
 
 import { media } from 'atoms/breakpoints/breakpoints';
 
-import Container from 'quarks/Container';
-import { Dots, SmallCircle } from 'quarks/DesignElements';
-import Grid from 'quarks/Grid';
-import Link from 'quarks/Link';
 import { BasicProps } from 'quarks/interpolations/basic';
 
-import Pagination from 'molecules/ComponentPagination/ComponentPagination';
-
-import { BlogListingCard } from 'components/cards';
-
 import type { FC } from 'react';
+
+const BlogListingCard = lazy(() => import('components/cards/BlogListingCard/BlogListingCard'));
+const Pagination = lazy(() => import('molecules/ComponentPagination/ComponentPagination'));
 
 interface BlogListingProps extends BasicProps {
   blogs: BlogPostRecord[];

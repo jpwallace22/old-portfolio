@@ -29,3 +29,5 @@
 - create testimonial component
 - lazy import all components
 - create components generator styled paradigm
+- refactor nav (gets hung up)
+- move blog progress to top for desktop

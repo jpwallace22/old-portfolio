@@ -1,20 +1,19 @@
 import { BlogPostRecord } from 'graphql/generatedTypes';
 import Head from 'next/head';
 import { Container, Flex, Text } from 'quarks';
-import { FC, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { FC, lazy, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useWindowScroll } from 'react-use';
-import BlogPostHero from 'templates/Blog/BlogPostHero';
-import BlogToc from 'templates/Blog/BlogToc';
 
 import { Dots, LargeCircle } from 'quarks/DesignElements';
 
-import LinearProgress from 'molecules/LinearProgress/LinearProgress';
-import Socials from 'molecules/Socials/Socials';
-import StructuredTextParser from 'molecules/StructuredTextParser/StructuredTextParser';
-
-import Footer from 'components/Footer/Footer';
-
 import { randomIntFromInterval } from 'utils/functions';
+
+const BlogPostHero = lazy(() => import('templates/Blog/BlogPostHero'));
+const BlogToc = lazy(() => import('templates/Blog/BlogToc'));
+const LinearProgress = lazy(() => import('molecules/LinearProgress/LinearProgress'));
+const Socials = lazy(() => import('molecules/Socials/Socials'));
+const Footer = lazy(() => import('components/Footer/Footer'));
+const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/StructuredTextParser'));
 
 const BlogPostPage: FC<BlogPostRecord> = props => {
   const { title, body, slug } = props;

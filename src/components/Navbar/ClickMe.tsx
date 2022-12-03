@@ -1,8 +1,6 @@
+import { Container, Text } from 'quarks';
 import React, { useEffect, useState } from 'react';
 import { BsArrowUp } from 'react-icons/bs';
-
-import Container from 'quarks/Container';
-import Text from 'quarks/Text';
 
 const ClickMe = () => {
   const [height, setHeight] = useState(0);
