@@ -1,7 +1,7 @@
 import { useMediaQuery } from '@mui/material';
-import request from 'datocms';
 import { LazyMotion, domAnimation, m as motion } from 'framer-motion';
 import { gql } from 'graphql-request';
+import request from 'graphql/datocms';
 import { buttonFrag, imageFrag, switchBackFrag } from 'graphql/fragments';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
