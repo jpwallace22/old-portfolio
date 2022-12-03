@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 
 import { navbar } from 'data/data';
+import { LazyMotion, domAnimation } from 'framer-motion';
 import Script from 'next/script';
 
 import Navbar from 'components/Navbar/Navbar';
@@ -22,8 +23,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
               gtag('config', 'G-R2S5FWZ8HX');
             `}
       </Script>
-      <Navbar links={navbar.links} socials={navbar.socials} zIndex={99} />
-      <Component {...pageProps} />
+      <LazyMotion features={domAnimation} strict>
+        <Navbar links={navbar.links} socials={navbar.socials} zIndex={99} />
+        <Component {...pageProps} />
+      </LazyMotion>
     </Suspense>
   </ThemeProvider>
 );
