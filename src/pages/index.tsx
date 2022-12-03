@@ -1,12 +1,12 @@
 import { useMediaQuery } from '@mui/material';
-import { gql } from 'graphql-request';
 import request from 'graphql/datocms';
 import { buttonFrag, imageFrag, switchBackFrag } from 'graphql/fragments';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { HomepageRecord } from 'graphql/generatedTypes';
+import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Container, Dots, Heading, Image, LargeCircle, SmallCircle } from 'quarks';
-import { lazy, useEffect, useRef, useState } from 'react';
+import { FC, lazy, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import dots from 'assets/images/dots.webp';
@@ -29,7 +29,11 @@ const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/S
 const HeroLine = styled(Line)``;
 const AboutLine = styled(Line2)``;
 
-const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
+type IHomePage = {
+  data: HomepageRecord;
+};
+
+const Home: FC<IHomePage> = ({ data }) => {
   const { worksHeading, worksIntro, aboutMe, works } = data;
   const isDesktop = useMediaQuery(media.lg);
   const [drawHero, setDrawHero] = useState(0);
@@ -37,12 +41,13 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   const aboutRef = useRef<HTMLElement | null>(null);
   const worksRef = useRef<HTMLElement | null>(null);
+
   const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
-      const worksSection = document.getElementById('works')?.getBoundingClientRect();
-      const aboutSection = document.getElementById('about')?.getBoundingClientRect();
+      const worksSection = worksRef.current?.getBoundingClientRect();
+      const aboutSection = aboutRef.current?.getBoundingClientRect();
 
       if (worksSection && aboutSection) {
         const heroPercentage =
@@ -167,7 +172,7 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const QUERY = gql`
+  const QUERY = `
     query {
       homepage {
         __typename
