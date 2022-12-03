@@ -1,12 +1,12 @@
-import { FC } from 'react';
 import { FiFacebook, FiGithub, FiInstagram, FiLinkedin, FiMail, FiTwitter } from 'react-icons/fi';
-
-import { FontSizeDefinition } from 'atoms/typography/typography';
 
 import Flex from 'quarks/Flex';
 import Link from 'quarks/Link';
 import Text from 'quarks/Text';
-import { FlexProps } from 'quarks/interpolations/flex';
+
+import type { FontSizeDefinition } from 'atoms/typography/typography';
+import type { FlexProps } from 'quarks/interpolations/flex';
+import type { FC } from 'react';
 
 const iconMap = {
   instagram: <FiInstagram />,

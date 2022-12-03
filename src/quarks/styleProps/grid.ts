@@ -1,5 +1,6 @@
-import { Properties } from 'csstype';
 import { css } from 'styled-components';
+
+import type { Properties } from 'csstype';
 
 const gridCSS = {
   /**

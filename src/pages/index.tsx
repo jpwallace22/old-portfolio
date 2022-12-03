@@ -1,68 +1,56 @@
-/* eslint-disable no-inline-styles/no-inline-styles */
+import { lazy, useEffect, useRef, useState } from 'react';
+
 import { useMediaQuery } from '@mui/material';
-import { LazyMotion, domAnimation, m as motion } from 'framer-motion';
-import { gql } from 'graphql-request';
 import request from 'graphql/datocms';
 import { buttonFrag, imageFrag, switchBackFrag } from 'graphql/fragments';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { Grid, Logo } from 'quarks';
-import { lazy, useEffect, useRef, useState } from 'react';
+import { Container, Dots, Heading, Image, LargeCircle, SmallCircle } from 'quarks';
 import styled from 'styled-components';
 
-// Assets
 import dots from 'assets/images/dots.webp';
 import { ReactComponent as Line2 } from 'assets/svg/about-line.svg';
 import { ReactComponent as Line } from 'assets/svg/hero-line.svg';
 
-// Atoms
 import { media } from 'atoms/breakpoints/breakpoints';
-
-// Quarks
-import Container from 'quarks/Container';
-import { Dots, LargeCircle, SmallCircle } from 'quarks/DesignElements';
-import Heading from 'quarks/Heading';
-import Image from 'quarks/Image';
 
 import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 
-import AlternatingSwitchbacks from 'components/AlternatingSwitchbacks/AlternatingSwitchbacks';
-import Footer from 'components/Footer/Footer';
 import Hero from 'components/Hero/Hero';
-import Switchback from 'components/Switchback/Switchback';
 
 import { emailObfuscator } from 'utils/functions';
 
-import { useIntroState } from 'contexts/ThemeProvider';
+import type { HomepageRecord } from 'graphql/generatedTypes';
+import type { GetStaticProps } from 'next';
+import type { FC } from 'react';
 
+const AlternatingSwitchbacks = lazy(() => import('components/AlternatingSwitchbacks/AlternatingSwitchbacks'));
+const Footer = lazy(() => import('components/Footer/Footer'));
+const Switchback = lazy(() => import('components/Switchback/Switchback'));
 const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/StructuredTextParser'));
 
 const HeroLine = styled(Line)``;
 const AboutLine = styled(Line2)``;
 
-const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
+type IHomePage = {
+  data: HomepageRecord;
+};
+
+const Home: FC<IHomePage> = ({ data }) => {
   const { worksHeading, worksIntro, aboutMe, works } = data;
   const isDesktop = useMediaQuery(media.lg);
   const [drawHero, setDrawHero] = useState(0);
   const [drawAbout, setDrawAbout] = useState(0);
 
-  const [introState, setIntroState] = useIntroState();
-
-  useEffect(() => {
-    const bannerTimer = setTimeout(() => setIntroState(false), 5000);
-
-    return () => clearTimeout(bannerTimer);
-  }, []);
-
   const aboutRef = useRef<HTMLElement | null>(null);
   const worksRef = useRef<HTMLElement | null>(null);
+
   const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
-      const worksSection = document.getElementById('works')?.getBoundingClientRect();
-      const aboutSection = document.getElementById('about')?.getBoundingClientRect();
+      const worksSection = worksRef.current?.getBoundingClientRect();
+      const aboutSection = aboutRef.current?.getBoundingClientRect();
 
       if (worksSection && aboutSection) {
         const heroPercentage =
@@ -86,7 +74,7 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   }, []);
 
   return (
-    <LazyMotion features={domAnimation}>
+    <>
       <Head>
         <title>Justin Wallace | Home</title>
         <link
@@ -95,51 +83,6 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
           href="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27635%27%20height=%27629%27/%3e"
         />
       </Head>
-      {/* INTRO */}
-      {introState && (
-        <motion.div
-          animate={{
-            opacity: 0,
-          }}
-          transition={{ duration: 1.5, delay: 2.8 }}
-          initial={{ opacity: 1 }}
-        >
-          <Grid
-            position="fixed"
-            zIndex={99999}
-            right={0}
-            left={0}
-            width="100vw"
-            top={0}
-            bottom={0}
-            backgroundColor="common-black"
-            placeItems="center"
-          >
-            <motion.div
-              animate={{
-                scale: [1, 1.5, 1.5, 1.2, 1, 1, 1, 0],
-                rotate: [0, 0, 360, 360, 0, 0, 0, 180],
-                borderRadius: ['0%', '20%', '50%', '30%', '0%', '0%', '0%', '0%'],
-              }}
-              transition={{
-                // scale: { type: 'ease', duration: 3 },
-                // rotate: { type: 'ease', duration: 3 },
-                type: 'ease',
-                duration: 3,
-              }}
-              style={{
-                position: 'relative',
-                width: '320px',
-                height: '320px',
-                overflowY: 'hidden',
-                overflowX: 'hidden',
-              }}
-            >
-              <Logo width="320px" position="relative" top={0} left={0} />
-            </motion.div>
-          </Grid>
-        </motion.div>
-      )}
       <Container as="main" maxWidth="1440px" marginX="auto" paddingX={16} lg={{ paddingX: 32 }}>
         <Container
           className="heroSection"
@@ -149,31 +92,19 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
           position="relative"
           lg={{ minHeight: '100vh' }}
         >
-          <motion.div
-            animate={{ y: 500, x: 0 }}
-            transition={{ y: { type: 'spring', stiffness: 100 }, duration: 1 }}
-            initial={{ opacity: 0.8 }}
-          >
-            <LargeCircle position="absolute" right="40%" bottom="50%" zIndex={-1} opacity={1} lg={{ right: '50%' }} />
-          </motion.div>
-          <motion.div
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ ease: 'easeInOut', duration: 2.2 }}
-            initial={{ opacity: 0, scale: 2 }}
-          >
-            <Image
-              src={dots}
-              width={635}
-              height={629}
-              alt=""
-              position="absolute"
-              left="50%"
-              top="0"
-              zIndex={-1}
-              loading="eager"
-              lg={{ left: '58%' }}
-            />
-          </motion.div>
+          <LargeCircle position="absolute" right="40%" bottom="50%" zIndex={-1} opacity={1} lg={{ right: '50%' }} />
+          <Image
+            src={dots}
+            width={635}
+            height={629}
+            alt=""
+            position="absolute"
+            left="50%"
+            top="0"
+            zIndex={-1}
+            loading="eager"
+            lg={{ left: '58%' }}
+          />
 
           <Container
             position="absolute"
@@ -192,19 +123,9 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
               `}
             />
           </Container>
-
-          <motion.div
-            animate={{ y: 60, x: -20, opacity: 1 }}
-            transition={{ x: { type: 'spring', stiffness: 300 }, y: { type: 'spring', stiffness: 300 }, duration: 1.5 }}
-            initial={{ opacity: 0, x: -400 }}
-          >
-            <SmallCircle position="absolute" left="80%" top="10%" zIndex={-1} lg={{ left: '75%' }} />
-          </motion.div>
-          <motion.div animate={{ opacity: 1 }} transition={{ duration: 0.3 }} initial={{ opacity: 0.1 }}>
-            <Hero position="absolute" top="5%" lg={{ top: '40%' }} />
-          </motion.div>
+          <SmallCircle position="absolute" left="80%" top="10%" zIndex={-1} lg={{ left: '75%' }} />
+          <Hero position="absolute" top="5%" lg={{ top: '40%' }} />
         </Container>
-
         <StandardFadeIn>
           <Container
             as="section"
@@ -220,7 +141,6 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
             <Dots position="absolute" bottom="0" left="45%" lg={{ top: '110px', left: '50%' }} />
           </Container>
         </StandardFadeIn>
-
         <Container id="works" ref={worksRef} as="section" position="relative" contain="layout" paddingY={64}>
           {isDesktop && (
             <Container position="absolute" left="380px" top="-60px">
@@ -249,12 +169,12 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
         </Container>
       </Container>
       <Footer />
-    </LazyMotion>
+    </>
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const QUERY = gql`
+  const QUERY = `
     query {
       homepage {
         __typename

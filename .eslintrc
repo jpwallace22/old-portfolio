@@ -71,18 +71,23 @@
     "@typescript-eslint/no-use-before-define": ["error"],
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/member-delimiter-style": "warn",
+    "@typescript-eslint/consistent-type-imports": "warn",
     "@typescript-eslint/no-duplicate-imports": "error",
     "import/first": "error",
     "import/default": "error",
     "import/prefer-default-export": "warn",
     "import/no-named-as-default-member": "warn",
     "import/no-named-default": "error",
-    "import/newline-after-import": "warn",
     "import/order": [
       "error",
       {
-        "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
+        "groups": ["builtin", "external", "internal", "type"],
         "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          },
           {
             "pattern": "assets/**",
             "group": "internal",
@@ -124,10 +129,11 @@
             "position": "after"
           }
         ],
-        "pathGroupsExcludedImportTypes": ["builtin"],
+        "pathGroupsExcludedImportTypes": ["react", "builtin", "type"],
         "newlines-between": "always",
         "alphabetize": {
-          "order": "asc"
+          "order": "asc",
+          "caseInsensitive": true
         }
       }
     ],

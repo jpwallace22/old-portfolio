@@ -1,9 +1,8 @@
 import { isBlockquote, isCode, isHeading, isLink, isList, isParagraph } from 'datocms-structured-text-utils';
-import { ButtonRecord } from 'graphql/generatedTypes';
 import { Text } from 'quarks';
 import { StructuredText, renderMarkRule, renderNodeRule } from 'react-datocms';
 
-import { GetColorDefinition, gradient } from 'atoms/colors/colors';
+import { gradient } from 'atoms/colors/colors';
 
 import Container from 'quarks/Container';
 import Flex from 'quarks/Flex';
@@ -15,7 +14,9 @@ import Paragraph from 'quarks/Paragraph';
 
 import CodeBlock from 'molecules/CodeBlock/CodeBlock';
 
+import type { GetColorDefinition } from 'atoms/colors/colors';
 import type { Record as NodeType } from 'datocms-structured-text-utils';
+import type { ButtonRecord } from 'graphql/generatedTypes';
 import type { ReactElement } from 'react';
 import type { StructuredTextGraphQlResponse } from 'react-datocms';
 

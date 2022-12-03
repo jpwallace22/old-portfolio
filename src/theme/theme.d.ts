@@ -1,6 +1,5 @@
-import { CSSProp } from 'styled-components';
-
-import { AppTheme } from 'theme/getAppTheme';
+import type { CSSProp } from 'styled-components';
+import type { AppTheme } from 'theme/getAppTheme';
 
 declare module 'styled-components' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface

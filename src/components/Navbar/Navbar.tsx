@@ -1,26 +1,26 @@
+import { lazy, useRef, useState } from 'react';
+
 import { useMediaQuery } from '@mui/material';
 import { Container, Flex, Grid, Image, Link, Text } from 'quarks';
-import { FC, lazy, useRef, useState } from 'react';
 import { BsLightbulbFill as LightBulb, BsFillLightbulbOffFill as LightBulbOff } from 'react-icons/bs';
 import { useSwipeable } from 'react-swipeable';
-import { css } from 'styled-components';
 
 import logoPath from 'assets/svg/logo-gradient.svg';
 import { ReactComponent as LogoMark } from 'assets/svg/logomark-grad.svg';
 
 import { media } from 'atoms/breakpoints/breakpoints';
 
-import { BasicProps } from 'quarks/interpolations/basic';
-
-import { SocialsProps } from 'molecules/Socials/Socials';
+import StyledHamburger from 'components/Navbar/Hamburger';
 
 import useDarkMode from 'contexts/ThemeProvider';
 
-import { CSSProps } from 'theme/getAppTheme';
+import type { SocialsProps } from 'molecules/Socials/Socials';
+import type { BasicProps } from 'quarks/interpolations/basic';
+import type { FC } from 'react';
+import type { CSSProps } from 'theme/getAppTheme';
 
 const Socials = lazy(() => import('molecules/Socials/Socials'));
 const ClickMe = lazy(() => import('components/Navbar/ClickMe'));
-const Hamburger = lazy(() => import('components/Navbar/Hamburger'));
 
 type NavbarProps = BasicProps & {
   links: {
@@ -34,7 +34,7 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
   const [active, setActive] = useState(false);
 
   const [isDark, setIsDark] = useDarkMode();
-  const isDesktop = useMediaQuery(media.lg);
+  const isDesktop = useMediaQuery(media.lg, { defaultMatches: true });
 
   const swipeHandler = useSwipeable({
     onSwipedLeft: () => setActive(false),
@@ -85,7 +85,7 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
         {...props}
       >
         <ClickMe />
-        <Hamburger
+        <StyledHamburger
           navRef={mobileNav}
           className={active ? 'close-menu' : undefined}
           position="relative"
@@ -110,7 +110,7 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
           top="0"
           right={active ? '10%' : '100%'}
           backdropFilter="sm"
-          css={css`
+          css={`
             background-color: ${!isDesktop
               ? (cssProps: CSSProps) =>
                   cssProps.theme.palette.mode === 'dark' ? 'rgba(26,22,49,.90)' : 'rgba(255,255,255,.85)'
@@ -126,7 +126,7 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
             height: '50px',
           }}
         >
-          {!isDesktop && active && (
+          {!isDesktop && (
             <>
               <Grid cursor="pointer" position="relative" top="24px" left="32px">
                 {LightSwitch(32)}

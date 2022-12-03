@@ -1,14 +1,14 @@
 import { useMediaQuery } from '@mui/material';
-import { motion } from 'framer-motion';
-import { WorkRecord } from 'graphql/generatedTypes';
+import { m } from 'framer-motion';
 import { Container, Flex, Heading, Image, Link } from 'quarks';
-import { FC } from 'react';
 
 import { media } from 'atoms/breakpoints/breakpoints';
 
-import { BasicProps } from 'quarks/interpolations/basic';
-
 import useDarkMode from 'contexts/ThemeProvider';
+
+import type { WorkRecord } from 'graphql/generatedTypes';
+import type { BasicProps } from 'quarks/interpolations/basic';
+import type { FC } from 'react';
 
 type AlternatingSwitchbacksProps = BasicProps & {
   works: WorkRecord[];
@@ -24,7 +24,7 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({ works, ...pro
         const isEven = i % 2 === 0;
 
         return (
-          <motion.div
+          <m.div
             whileInView={{ x: 0, opacity: 1 }}
             initial={{ x: isEven ? -100 : 100, opacity: 0 }}
             transition={{ x: { type: 'spring', duration: 2, bounce: 0.6 }, opacity: { duration: 1 } }}
@@ -88,7 +88,7 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({ works, ...pro
                 </Container>
               </Flex>
             </Link>
-          </motion.div>
+          </m.div>
         );
       })}
     </Flex>

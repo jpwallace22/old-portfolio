@@ -1,18 +1,20 @@
 import MUILinearProgress from '@mui/material/LinearProgress';
-import { FC } from 'react';
 import styled, { css } from 'styled-components';
 
-import { ColorList, colorParser } from 'atoms/colors/colors';
+import { colorParser } from 'atoms/colors/colors';
 import shadow from 'atoms/shadows/shadows';
 import { padding } from 'atoms/spacing/spacing';
 import { font, fontWeight } from 'atoms/typography/typography';
 
 import Flex from 'quarks/Flex';
-import Text from 'quarks/Text';
-import { BasicProps, basic } from 'quarks/interpolations/basic';
+import { basic } from 'quarks/interpolations/basic';
 import { allCSSWithPseudos } from 'quarks/styleProps/all';
+import Text from 'quarks/Text';
 
-import { CSSProps } from 'theme/getAppTheme';
+import type { ColorList } from 'atoms/colors/colors';
+import type { BasicProps } from 'quarks/interpolations/basic';
+import type { FC } from 'react';
+import type { CSSProps } from 'theme/getAppTheme';
 
 const StyledLinearProgress = styled(MUILinearProgress).withConfig({
   shouldForwardProp: prop => ![...Object.keys(allCSSWithPseudos), 'labelPosition', 'hasLabel'].includes(prop),

@@ -1,10 +1,12 @@
 import NextLink from 'next/link';
-import { AnchorHTMLAttributes, FC, ReactNode } from 'react';
 import styled from 'styled-components';
 
-import { BasicProps, basic } from 'quarks/interpolations/basic';
+import { basic } from 'quarks/interpolations/basic';
 
 import parseUrl from 'utils/parseUrl';
+
+import type { BasicProps } from 'quarks/interpolations/basic';
+import type { AnchorHTMLAttributes, FC, ReactNode } from 'react';
 
 const StyledLink = styled.a`
   cursor: pointer;

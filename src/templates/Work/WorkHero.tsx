@@ -1,6 +1,6 @@
-import { LazyMotion, domAnimation, m as motion } from 'framer-motion';
-import { WorkRecord } from 'graphql/generatedTypes';
-import { FC } from 'react';
+import { lazy } from 'react';
+
+import { m } from 'framer-motion';
 
 import { LargeCircle, SmallCircle } from 'quarks/DesignElements';
 import Flex from 'quarks/Flex';
@@ -9,20 +9,24 @@ import Image from 'quarks/Image';
 
 import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 
-import TechStack, { TechStackProps } from 'components/TechStack/TechStack';
-
 import useDarkMode from 'contexts/ThemeProvider';
+
+import type { TechStackProps } from 'components/TechStack/TechStack';
+import type { WorkRecord } from 'graphql/generatedTypes';
+import type { FC } from 'react';
+
+const TechStack = lazy(() => import('components/TechStack/TechStack'));
 
 const WorkHero: FC<WorkRecord> = ({ title, subtitle, bannerImage, techStack }) => {
   const [isDark] = useDarkMode();
   const tempTechStack = techStack.map(tech => tech.title);
 
   return (
-    <LazyMotion features={domAnimation}>
+    <>
       <StandardFadeIn>
         <LargeCircle position="absolute" right="20%" top="-800px" />
       </StandardFadeIn>
-      <motion.div
+      <m.div
         whileInView={{ x: 0, opacity: 1 }}
         initial={{ x: -100, opacity: 0 }}
         transition={{ x: { type: 'spring', duration: 2, bounce: 0.6 }, opacity: { duration: 1 } }}
@@ -51,7 +55,7 @@ const WorkHero: FC<WorkRecord> = ({ title, subtitle, bannerImage, techStack }) =
             {subtitle}
           </Heading>
         )}
-      </motion.div>
+      </m.div>
       <Flex
         as="section"
         flexDirection="column"
@@ -74,7 +78,7 @@ const WorkHero: FC<WorkRecord> = ({ title, subtitle, bannerImage, techStack }) =
         {techStack && <TechStack icons={tempTechStack as TechStackProps['icons']} />}
       </Flex>
       <SmallCircle position="absolute" right="-400px" top="450px" opacity={0.3} />
-    </LazyMotion>
+    </>
   );
 };
 

@@ -1,12 +1,15 @@
-import { BlogPostRecord } from 'graphql/generatedTypes';
+import { lazy, useLayoutEffect, useMemo, useRef, useState } from 'react';
+
 import Head from 'next/head';
 import { Container, Flex, Text } from 'quarks';
-import { FC, lazy, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useWindowScroll } from 'react-use';
 
 import { Dots, LargeCircle } from 'quarks/DesignElements';
 
 import { randomIntFromInterval } from 'utils/functions';
+
+import type { BlogPostRecord } from 'graphql/generatedTypes';
+import type { FC } from 'react';
 
 const BlogPostHero = lazy(() => import('templates/Blog/BlogPostHero'));
 const BlogToc = lazy(() => import('templates/Blog/BlogToc'));

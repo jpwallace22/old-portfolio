@@ -1,23 +1,25 @@
-import { Properties } from 'csstype';
-import { DefaultTheme, css } from 'styled-components';
+import { css } from 'styled-components';
 
-import blur, { BlurSizes } from 'atoms/blurs/blurs';
-import { GetColorDefinition, GradientList, getColor, parseBackgroundGradient } from 'atoms/colors/colors';
-import { ShadowDefinition, parseShadow } from 'atoms/shadows/shadows';
-import { ContainerValues } from 'atoms/spacing/containers';
-import { MarginDefinition, PaddingDefinition, margin, padding } from 'atoms/spacing/spacing';
-import {
+import blur from 'atoms/blurs/blurs';
+import { getColor, parseBackgroundGradient } from 'atoms/colors/colors';
+import { parseShadow } from 'atoms/shadows/shadows';
+import { margin, padding } from 'atoms/spacing/spacing';
+import { fontFamily, fontSize, fontWeight, letterSpacing, lineHeight } from 'atoms/typography/typography';
+
+import type { BlurSizes } from 'atoms/blurs/blurs';
+import type { GetColorDefinition, GradientList } from 'atoms/colors/colors';
+import type { ShadowDefinition } from 'atoms/shadows/shadows';
+import type { ContainerValues } from 'atoms/spacing/containers';
+import type { MarginDefinition, PaddingDefinition } from 'atoms/spacing/spacing';
+import type {
   FontFamilyDefinition,
   FontSizeDefinition,
   FontWeightDefinition,
   LetterSpacingDefinition,
   LineHeightDefinition,
-  fontFamily,
-  fontSize,
-  fontWeight,
-  letterSpacing,
-  lineHeight,
 } from 'atoms/typography/typography';
+import type { Properties } from 'csstype';
+import type { DefaultTheme } from 'styled-components';
 
 const basicCSS = {
   /**

@@ -1,11 +1,12 @@
 import React from 'react';
+
 import { TiChevronRight } from 'react-icons/ti';
 
 import Flex from 'quarks/Flex';
 import Link from 'quarks/Link';
 import Text from 'quarks/Text';
-import type { BasicProps } from 'quarks/interpolations/basic';
 
+import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC } from 'react';
 
 interface BreadcrumbsProps extends BasicProps {

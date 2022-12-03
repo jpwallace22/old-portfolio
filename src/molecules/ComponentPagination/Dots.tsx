@@ -1,9 +1,10 @@
-import { FC, KeyboardEventHandler, MouseEventHandler, forwardRef } from 'react';
-
-import { GetColorDefinition } from 'atoms/colors/colors';
+import { forwardRef } from 'react';
 
 import Container from 'quarks/Container';
-import { BasicProps } from 'quarks/interpolations/basic';
+
+import type { GetColorDefinition } from 'atoms/colors/colors';
+import type { BasicProps } from 'quarks/interpolations/basic';
+import type { FC, KeyboardEventHandler, MouseEventHandler } from 'react';
 
 interface DotsProps extends BasicProps {
   /**

@@ -1,10 +1,14 @@
+import { lazy } from 'react';
+
 import { gql } from 'graphql-request';
 import request from 'graphql/datocms';
 import { blogPostFrag } from 'graphql/fragments';
-import { BlogPostRecord } from 'graphql/generatedTypes';
-import { GetStaticPaths, GetStaticProps } from 'next';
-import { FC } from 'react';
-import BlogPostPage from 'templates/Blog/BlogPostPage';
+
+import type { BlogPostRecord } from 'graphql/generatedTypes';
+import type { GetStaticPaths, GetStaticProps } from 'next';
+import type { FC } from 'react';
+
+const BlogPostPage = lazy(() => import('templates/Blog/BlogPostPage'));
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const SLUG_QUERY = gql`

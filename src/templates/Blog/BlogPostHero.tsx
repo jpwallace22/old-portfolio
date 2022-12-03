@@ -1,12 +1,14 @@
-import { BlogPostRecord } from 'graphql/generatedTypes';
-import { Container, Flex, Heading, Image, Paragraph, Text } from 'quarks';
-import { FC, lazy } from 'react';
+import { lazy } from 'react';
 
-import { BadgeTitles } from 'molecules/Badge/Badge';
+import { Container, Flex, Heading, Image, Paragraph, Text } from 'quarks';
 
 import { timeToRead } from 'utils/functions';
 
 import useDarkMode from 'contexts/ThemeProvider';
+
+import type { BlogPostRecord } from 'graphql/generatedTypes';
+import type { BadgeTitles } from 'molecules/Badge/Badge';
+import type { FC } from 'react';
 
 const Breadcrumbs = lazy(() => import('molecules/Breadcrumbs/Breadcrumbs'));
 const Badge = lazy(() => import('molecules/Badge/Badge'));
@@ -105,7 +107,7 @@ const BlogPostHero: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle
               borderRadius="8px"
               overflowY="hidden"
             >
-              <Image src={featuredImage.url} alt={featuredImage?.alt || ''} layout="fill" />
+              <Image src={featuredImage.url} alt={featuredImage?.alt || ''} loading="eager" layout="fill" />
             </Container>
           )}
         </Flex>
