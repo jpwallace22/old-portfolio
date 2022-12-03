@@ -50,7 +50,7 @@ const Image: FunctionComponent<CustomImageProps> = props => {
 
   return (
     <Container width="fit-content" height="fit-content" {...quarkProps}>
-      <NextImage src={src} {...nextProps} />
+      <NextImage src={src} loading="lazy" {...nextProps} />
     </Container>
   );
 };

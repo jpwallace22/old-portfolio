@@ -93,7 +93,6 @@ const Home: FC<IHomePage> = ({ data }) => {
           lg={{ minHeight: '100vh' }}
         >
           <LargeCircle position="absolute" right="40%" bottom="50%" zIndex={-1} opacity={1} lg={{ right: '50%' }} />
-
           <Image
             src={dots}
             width={635}

@@ -13,8 +13,8 @@ import type { AppProps } from 'next/app';
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <ThemeProvider>
     <Suspense fallback={<div></div>}>
-      <Script strategy="afterInteractive" async src="https://www.googletagmanager.com/gtag/js?id=G-R2S5FWZ8HX" />
-      <Script strategy="afterInteractive" id="g-analytics">
+      <Script strategy="lazyOnload" async src="https://www.googletagmanager.com/gtag/js?id=G-R2S5FWZ8HX" />
+      <Script strategy="lazyOnload" id="g-analytics">
         {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
