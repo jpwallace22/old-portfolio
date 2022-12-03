@@ -1,21 +1,14 @@
 import { useMediaQuery } from '@mui/material';
+import { Container, Heading, Logo, Text } from 'quarks';
 import { FC } from 'react';
 import styled, { css } from 'styled-components';
 
-// Assets
 import { ReactComponent as Arrow } from 'assets/svg/drawn-arrow.svg';
 
-// Atoms
 import { media } from 'atoms/breakpoints/breakpoints';
 
-// Quarks
-import Container from 'quarks/Container';
-import Heading from 'quarks/Heading';
-import Logo from 'quarks/Logo';
-import Text from 'quarks/Text';
 import { BasicProps, basic } from 'quarks/interpolations/basic';
 
-// Contexts
 import useDarkMode from 'contexts/ThemeProvider';
 
 const DrawnArrow = styled(Arrow)`

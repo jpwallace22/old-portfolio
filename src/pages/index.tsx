@@ -1,12 +1,12 @@
 import { useMediaQuery } from '@mui/material';
-import request from 'datocms';
 import { LazyMotion, domAnimation, m as motion } from 'framer-motion';
 import { gql } from 'graphql-request';
+import request from 'graphql/datocms';
 import { buttonFrag, imageFrag, switchBackFrag } from 'graphql/fragments';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useEffect, useRef, useState } from 'react';
+import { lazy, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 // Assets
@@ -24,7 +24,6 @@ import Heading from 'quarks/Heading';
 import Image from 'quarks/Image';
 
 import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
-import StructuredTextParser from 'molecules/StructuredTextParser/StructuredTextParser';
 
 import AlternatingSwitchbacks from 'components/AlternatingSwitchbacks/AlternatingSwitchbacks';
 import Footer from 'components/Footer/Footer';
@@ -32,6 +31,8 @@ import Hero from 'components/Hero/Hero';
 import Switchback from 'components/Switchback/Switchback';
 
 import { emailObfuscator } from 'utils/functions';
+
+const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/StructuredTextParser'));
 
 const HeroLine = styled(Line)``;
 const AboutLine = styled(Line2)``;
@@ -76,6 +77,11 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
     <LazyMotion features={domAnimation}>
       <Head>
         <title>Justin Wallace | Home</title>
+        <link
+          rel="preload"
+          as="image"
+          href="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27635%27%20height=%27629%27/%3e"
+        />
       </Head>
       <Container as="main" maxWidth="1440px" marginX="auto" paddingX={16} lg={{ paddingX: 32 }}>
         <Container

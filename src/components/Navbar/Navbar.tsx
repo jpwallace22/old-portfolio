@@ -1,36 +1,28 @@
 import { useMediaQuery } from '@mui/material';
-import { FC, useRef, useState } from 'react';
+import { Container, Flex, Grid, Image, Link, Text } from 'quarks';
+import { FC, lazy, useRef, useState } from 'react';
 import { BsLightbulbFill as LightBulb, BsFillLightbulbOffFill as LightBulbOff } from 'react-icons/bs';
 import { useSwipeable } from 'react-swipeable';
 import { css } from 'styled-components';
 
-// Assets
 import logoPath from 'assets/svg/logo-gradient.svg';
 import { ReactComponent as LogoMark } from 'assets/svg/logomark-grad.svg';
 
-// Quarks
 import { media } from 'atoms/breakpoints/breakpoints';
 
-import Container from 'quarks/Container';
-import Flex from 'quarks/Flex';
-import Grid from 'quarks/Grid';
-import Image from 'quarks/Image';
-import Link from 'quarks/Link';
-import Text from 'quarks/Text';
 import { BasicProps } from 'quarks/interpolations/basic';
 
-// Molecules
-import Socials, { SocialsProps } from 'molecules/Socials/Socials';
-
-// Components
-import ClickMe from 'components/Navbar/ClickMe';
-import Hamburger from 'components/Navbar/Hamburger';
+import { SocialsProps } from 'molecules/Socials/Socials';
 
 import { underlineOnHover } from 'utils/css';
 
 import useDarkMode from 'contexts/ThemeProvider';
 
 import { CSSProps } from 'theme/getAppTheme';
+
+const Socials = lazy(() => import('molecules/Socials/Socials'));
+const ClickMe = lazy(() => import('components/Navbar/ClickMe'));
+const Hamburger = lazy(() => import('components/Navbar/Hamburger'));
 
 type NavbarProps = BasicProps & {
   links: {
@@ -137,7 +129,7 @@ const Navbar: FC<NavbarProps> = ({ links, socials, currentSection, ...props }) =
             height: '50px',
           }}
         >
-          {!isDesktop && (
+          {!isDesktop && active && (
             <>
               <Grid cursor="pointer" position="relative" top="24px" left="32px">
                 {LightSwitch(32)}
@@ -208,7 +200,7 @@ const Navbar: FC<NavbarProps> = ({ links, socials, currentSection, ...props }) =
               {LightSwitch(24)}
             </Grid>
           )}
-          {!isDesktop && socials && (
+          {!isDesktop && socials && active && (
             <Flex justifyContent="center">
               <Socials {...socials} size={36} marginTop={32} />
             </Flex>

@@ -1,24 +1,16 @@
 import { navbar } from 'data/data';
 import { useRouter } from 'next/router';
-import { Link } from 'quarks';
-import { ForwardedRef, forwardRef } from 'react';
+import { Container, Flex, Grid, Heading, Link, Logo, Paragraph, Text } from 'quarks';
+import { ForwardedRef, forwardRef, lazy } from 'react';
 
 import { ReactComponent as LogoMark } from 'assets/svg/logomark-grad.svg';
 
-// Quarks
-import Container from 'quarks/Container';
-import Flex from 'quarks/Flex';
-import Grid from 'quarks/Grid';
-import Heading from 'quarks/Heading';
-import Logo from 'quarks/Logo';
-import Paragraph from 'quarks/Paragraph';
-import Text from 'quarks/Text';
 import { BasicProps } from 'quarks/interpolations/basic';
-
-import Socials from 'molecules/Socials/Socials';
 
 import { underlineOnHover } from 'utils/css';
 import { emailObfuscator } from 'utils/functions';
+
+const Socials = lazy(() => import('molecules/Socials/Socials'));
 
 type FooterProps = BasicProps & {
   size?: number;

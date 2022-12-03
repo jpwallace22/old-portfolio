@@ -1,12 +1,10 @@
+import { Grid, Link, Text } from 'quarks';
 import { FaNpm } from 'react-icons/fa';
 import { FiGithub } from 'react-icons/fi';
 import { GoBrowser } from 'react-icons/go';
 import { SiStorybook } from 'react-icons/si';
 
 // Quarks
-import Grid from 'quarks/Grid';
-import Link from 'quarks/Link';
-import Text from 'quarks/Text';
 import { BasicProps } from 'quarks/interpolations/basic';
 
 import type { FC } from 'react';

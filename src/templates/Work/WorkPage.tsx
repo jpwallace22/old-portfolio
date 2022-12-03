@@ -1,15 +1,16 @@
 import { WorkRecord } from 'graphql/generatedTypes';
 import Head from 'next/head';
 import { Container, Dots, Flex, Heading } from 'quarks';
-import { FC } from 'react';
+import { FC, lazy } from 'react';
 import WorkHero from 'templates/Work/WorkHero';
 
 import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
-import StructuredTextParser from 'molecules/StructuredTextParser/StructuredTextParser';
 
 import Footer from 'components/Footer/Footer';
 import Slider from 'components/Slider/Slider';
 import SmallCard from 'components/cards/SmallCard/SmallCard';
+
+const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/StructuredTextParser'));
 
 const WorkPageTemplate: FC<WorkRecord> = props => {
   const { title, heading, ctas, body, information, slider } = props;

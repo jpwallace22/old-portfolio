@@ -1,5 +1,5 @@
-import request from 'datocms';
 import { gql } from 'graphql-request';
+import request from 'graphql/datocms';
 import { blogCardFrag, blogPageFrag } from 'graphql/fragments';
 import { BlogPageRecord, BlogPostRecord } from 'graphql/generatedTypes';
 import { GetStaticProps } from 'next';

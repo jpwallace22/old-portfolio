@@ -30,3 +30,5 @@
 - lazy import all components
 - create components generator styled paradigm
 - add recent || featured blogs to homepage
+- refactor nav (gets hung up)
+- move blog progress to top for desktop
