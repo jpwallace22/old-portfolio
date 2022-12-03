@@ -77,6 +77,11 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
     <LazyMotion features={domAnimation}>
       <Head>
         <title>Justin Wallace | Home</title>
+        <link
+          rel="preload"
+          as="image"
+          href="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27635%27%20height=%27629%27/%3e"
+        />
       </Head>
       <Container as="main" maxWidth="1440px" marginX="auto" paddingX={16} lg={{ paddingX: 32 }}>
         <Container

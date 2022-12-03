@@ -47,6 +47,7 @@ class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#00aba9" />
           <meta name="theme-color" content="#ffffff" />
           <meta property="og:image" content="assets/images/jwdev.webp" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
         <body>
           <Main />
