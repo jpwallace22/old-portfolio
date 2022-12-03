@@ -29,11 +29,9 @@ interface ThemeProviderProps {
 }
 
 const ThemeContext = createContext<[boolean, Dispatch<SetStateAction<boolean>>]>([false, () => null]);
-const IntroContext = createContext<[boolean, Dispatch<SetStateAction<boolean>>]>([false, () => null]);
 
 export const ThemeProvider: FC<ThemeProviderProps> = ({ children, storybookIsDarkMode }) => {
   const [isDarkMode, setIsDarkMode] = useState(true);
-  const [isIntroVis, setIsIntroVis] = useState(true);
 
   useEffect(() => {
     if (typeof storybookIsDarkMode === 'boolean') {
@@ -52,20 +50,17 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({ children, storybookIsDar
 
   return (
     <ThemeContext.Provider value={[isDarkMode, setIsDarkMode]}>
-      <IntroContext.Provider value={[isIntroVis, setIsIntroVis]}>
-        <StyledThemeProvider theme={themes.styled}>
-          <MuiThemeProvider theme={themes.mui}>
-            <CssBaseline />
-            <GlobalStyle />
-            {children}
-          </MuiThemeProvider>
-        </StyledThemeProvider>
-      </IntroContext.Provider>
+      <StyledThemeProvider theme={themes.styled}>
+        <MuiThemeProvider theme={themes.mui}>
+          <CssBaseline />
+          <GlobalStyle />
+          {children}
+        </MuiThemeProvider>
+      </StyledThemeProvider>
     </ThemeContext.Provider>
   );
 };
 
-export const useIntroState = () => useContext(IntroContext);
 const useDarkMode = () => useContext(ThemeContext);
 
 export default useDarkMode;
