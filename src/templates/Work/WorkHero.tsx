@@ -1,6 +1,4 @@
 import { LazyMotion, domAnimation, m as motion } from 'framer-motion';
-import { WorkRecord } from 'graphql/generatedTypes';
-import { FC } from 'react';
 
 import { LargeCircle, SmallCircle } from 'quarks/DesignElements';
 import Flex from 'quarks/Flex';
@@ -9,9 +7,13 @@ import Image from 'quarks/Image';
 
 import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 
-import TechStack, { TechStackProps } from 'components/TechStack/TechStack';
+import type { TechStackProps } from 'components/TechStack/TechStack';
+import TechStack from 'components/TechStack/TechStack';
 
 import useDarkMode from 'contexts/ThemeProvider';
+
+import type { WorkRecord } from 'graphql/generatedTypes';
+import type { FC } from 'react';
 
 const WorkHero: FC<WorkRecord> = ({ title, subtitle, bannerImage, techStack }) => {
   const [isDark] = useDarkMode();

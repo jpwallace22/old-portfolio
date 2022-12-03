@@ -1,10 +1,11 @@
 import { gql } from 'graphql-request';
 import request from 'graphql/datocms';
 import { workFrag } from 'graphql/fragments';
-import { WorkRecord } from 'graphql/generatedTypes';
-import { GetStaticPaths, GetStaticProps } from 'next';
-import { FC } from 'react';
 import WorkPageTemplate from 'templates/Work/WorkPage';
+
+import type { WorkRecord } from 'graphql/generatedTypes';
+import type { GetStaticPaths, GetStaticProps } from 'next';
+import type { FC } from 'react';
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const SLUG_QUERY = gql`

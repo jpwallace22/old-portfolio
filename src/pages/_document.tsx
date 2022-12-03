@@ -1,6 +1,9 @@
-import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
+/* eslint-disable @next/next/google-font-display */
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 import { Fragment } from 'react';
 import { ServerStyleSheet } from 'styled-components';
+
+import type { DocumentContext } from 'next/document';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {

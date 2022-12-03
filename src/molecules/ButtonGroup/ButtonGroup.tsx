@@ -1,9 +1,12 @@
 import MUIButtonGroup from '@mui/material/ButtonGroup';
-import { Children, FC, ReactNode, cloneElement, isValidElement } from 'react';
+import { Children, cloneElement, isValidElement } from 'react';
 import styled from 'styled-components';
 
-import { BasicProps, basic } from 'quarks/interpolations/basic';
+import type { BasicProps } from 'quarks/interpolations/basic';
+import { basic } from 'quarks/interpolations/basic';
 import { allCSSWithPseudos } from 'quarks/styleProps/all';
+
+import type { FC, ReactNode } from 'react';
 
 const StyledButtonGroup = styled(MUIButtonGroup).withConfig({
   shouldForwardProp: prop => !Object.keys(allCSSWithPseudos).includes(prop),

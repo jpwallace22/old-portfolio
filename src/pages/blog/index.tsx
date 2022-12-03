@@ -1,10 +1,7 @@
 import { gql } from 'graphql-request';
 import request from 'graphql/datocms';
 import { blogCardFrag, blogPageFrag } from 'graphql/fragments';
-import { BlogPageRecord, BlogPostRecord } from 'graphql/generatedTypes';
-import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import { FC } from 'react';
 
 import Container from 'quarks/Container';
 import Flex from 'quarks/Flex';
@@ -14,6 +11,10 @@ import Breadcrumbs from 'molecules/Breadcrumbs/Breadcrumbs';
 import BlogListing from 'components/BlogListing/BlogListing';
 import Footer from 'components/Footer/Footer';
 import Switchback from 'components/Switchback/Switchback';
+
+import type { BlogPageRecord, BlogPostRecord } from 'graphql/generatedTypes';
+import type { GetStaticProps } from 'next';
+import type { FC } from 'react';
 
 interface IBlogPage extends BlogPageRecord {
   blogs: BlogPostRecord[];

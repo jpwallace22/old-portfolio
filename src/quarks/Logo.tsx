@@ -1,7 +1,7 @@
-import { FC } from 'react';
-
 import Container from 'quarks/Container';
 import type { BasicProps } from 'quarks/interpolations/basic';
+
+import type { FC } from 'react';
 
 const StyledLogo: FC<BasicProps> = ({ ...props }) => {
   // const [angle, setAngle] = useState(0);

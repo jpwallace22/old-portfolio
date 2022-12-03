@@ -1,5 +1,4 @@
 import { Flex, Image } from 'quarks';
-import { FC } from 'react';
 
 import jquery from 'assets/images/jquery.png';
 import mui from 'assets/images/mui.png';
@@ -15,7 +14,9 @@ import react from 'assets/svg/react.svg';
 import storybook from 'assets/svg/storybook.svg';
 import typescript from 'assets/svg/typescript.svg';
 
-import { FlexProps } from 'quarks/interpolations/flex';
+import type { FlexProps } from 'quarks/interpolations/flex';
+
+import type { FC } from 'react';
 
 export type TechStackProps = FlexProps & {
   icons: (

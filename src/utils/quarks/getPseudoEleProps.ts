@@ -1,10 +1,12 @@
-import { Properties } from 'csstype';
-import { DefaultTheme, ThemedStyledProps, css } from 'styled-components';
+import { css } from 'styled-components';
 
 import allDirect from 'quarks/styleProps/allDirect';
 
 import { getDirectProps } from 'utils/quarks/getDirectProps';
 import { objectKeys } from 'utils/typeUtils';
+
+import type { Properties } from 'csstype';
+import type { DefaultTheme, ThemedStyledProps } from 'styled-components';
 
 const validCSSContent = (value: string) => {
   if (typeof value !== 'string') {

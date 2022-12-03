@@ -1,15 +1,18 @@
-import NextImage, { ImageProps, StaticImageData } from 'next/image';
-import { FunctionComponent } from 'react';
+import NextImage from 'next/image';
 
 import { breakpoints } from 'atoms/breakpoints/breakpoints';
 
 import Container from 'quarks/Container';
-import { BasicProps } from 'quarks/interpolations/basic';
+import type { BasicProps } from 'quarks/interpolations/basic';
 import basicCSS from 'quarks/styleProps/basic';
 
 import { pseudos } from 'utils/quarks/getPseudoClassProps';
 import { pseudoElements } from 'utils/quarks/getPseudoEleProps';
-import { objectEntries, valueof } from 'utils/typeUtils';
+import type { valueof } from 'utils/typeUtils';
+import { objectEntries } from 'utils/typeUtils';
+
+import type { ImageProps, StaticImageData } from 'next/image';
+import type { FunctionComponent } from 'react';
 
 type ModifiedBasicProps = Omit<BasicProps, 'height' | 'width' | 'objectPosition' | 'objectFit'>;
 

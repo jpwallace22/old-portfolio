@@ -1,8 +1,8 @@
 import { isHeading } from 'datocms-structured-text-utils';
 import { Container, Link, Text } from 'quarks';
-import { ReactElement } from 'react';
 import { StructuredText, renderNodeRule } from 'react-datocms';
 
+import type { ReactElement } from 'react';
 import type { StructuredTextGraphQlResponse } from 'react-datocms';
 
 export type StructuredData = StructuredTextGraphQlResponse | null;

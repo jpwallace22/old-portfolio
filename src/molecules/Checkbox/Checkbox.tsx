@@ -2,12 +2,14 @@ import CheckBoxTwoTone from '@mui/icons-material/CheckBoxTwoTone';
 import IndeterminateCheckBoxTwoTone from '@mui/icons-material/IndeterminateCheckBoxTwoTone';
 import MUICheckbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { FC, SyntheticEvent } from 'react';
 import styled from 'styled-components';
 
 import Text from 'quarks/Text';
-import { BasicProps, basic } from 'quarks/interpolations/basic';
+import type { BasicProps } from 'quarks/interpolations/basic';
+import { basic } from 'quarks/interpolations/basic';
 import { allCSSWithPseudos } from 'quarks/styleProps/all';
+
+import type { FC, SyntheticEvent } from 'react';
 
 const StyledFormControl = styled(FormControlLabel).withConfig({
   shouldForwardProp: prop => !Object.keys(allCSSWithPseudos).includes(prop),

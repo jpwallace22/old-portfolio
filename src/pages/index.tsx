@@ -1,12 +1,10 @@
 import { useMediaQuery } from '@mui/material';
 import request from 'graphql/datocms';
 import { buttonFrag, imageFrag, switchBackFrag } from 'graphql/fragments';
-import { HomepageRecord } from 'graphql/generatedTypes';
-import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Container, Dots, Heading, Image, LargeCircle, SmallCircle } from 'quarks';
-import { FC, lazy, useEffect, useRef, useState } from 'react';
+import { lazy, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import dots from 'assets/images/dots.webp';
@@ -20,6 +18,10 @@ import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 import Hero from 'components/Hero/Hero';
 
 import { emailObfuscator } from 'utils/functions';
+
+import type { HomepageRecord } from 'graphql/generatedTypes';
+import type { GetStaticProps } from 'next';
+import type { FC } from 'react';
 
 const AlternatingSwitchbacks = lazy(() => import('components/AlternatingSwitchbacks/AlternatingSwitchbacks'));
 const Footer = lazy(() => import('components/Footer/Footer'));

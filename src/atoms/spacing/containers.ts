@@ -1,4 +1,4 @@
-import { valueof } from 'utils/typeUtils';
+import type { valueof } from 'utils/typeUtils';
 
 const container = {
   sm: '640px',

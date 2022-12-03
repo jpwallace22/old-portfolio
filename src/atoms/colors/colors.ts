@@ -1,6 +1,7 @@
-import { DefaultTheme } from 'styled-components';
+import type { valueof } from 'utils/typeUtils';
+import { objectEntries } from 'utils/typeUtils';
 
-import { objectEntries, valueof } from 'utils/typeUtils';
+import type { DefaultTheme } from 'styled-components';
 
 const color = {
   common: { white: '#fff', black: '#110e2d' },

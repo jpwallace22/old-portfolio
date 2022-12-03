@@ -1,14 +1,16 @@
 import { useMediaQuery } from '@mui/material';
-import { ButtonRecord, SwitchbackRecord } from 'graphql/generatedTypes';
 import { Container, Flex, Heading, Image } from 'quarks';
-import { FC, MouseEvent, lazy } from 'react';
+import { lazy } from 'react';
 
 import { media } from 'atoms/breakpoints/breakpoints';
 
 import type { FlexProps } from 'quarks/interpolations/flex';
 import type { HeadingTypes } from 'quarks/styleProps/heading';
 
-import { CleanDato } from 'utils/typeUtils';
+import type { CleanDato } from 'utils/typeUtils';
+
+import type { ButtonRecord, SwitchbackRecord } from 'graphql/generatedTypes';
+import type { FC, MouseEvent } from 'react';
 
 const Button = lazy(() => import('molecules/Button/Button'));
 const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/StructuredTextParser'));

@@ -1,4 +1,6 @@
-import { MutableRefObject, useEffect } from 'react';
+import { useEffect } from 'react';
+
+import type { MutableRefObject } from 'react';
 
 const useResizeObserver = <E extends HTMLElement>(
   callback: (observerEntry: ResizeObserverEntry) => void,

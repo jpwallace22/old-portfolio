@@ -1,9 +1,10 @@
 import { render } from 'datocms-structured-text-to-plain-text';
-import { MutableRefObject, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { StructuredData } from 'utils/structuredTextParser';
+import type { StructuredData } from 'utils/structuredTextParser';
 
 import type { NextRouter } from 'next/router';
+import type { MutableRefObject } from 'react';
 import type { StructuredTextGraphQlResponse } from 'react-datocms';
 
 /**

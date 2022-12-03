@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import styled from 'styled-components';
 
 import dots from 'assets/images/dots.webp';
@@ -6,11 +5,15 @@ import { ReactComponent as Circle } from 'assets/svg/circle.svg';
 
 import { colorParser } from 'atoms/colors/colors';
 
-import Image, { CustomImageProps } from 'quarks/Image';
-import { BasicProps, basic } from 'quarks/interpolations/basic';
+import type { CustomImageProps } from 'quarks/Image';
+import Image from 'quarks/Image';
+import type { BasicProps } from 'quarks/interpolations/basic';
+import { basic } from 'quarks/interpolations/basic';
 import { allCSSWithPseudos } from 'quarks/styleProps/all';
 
 import useDarkMode from 'contexts/ThemeProvider';
+
+import type { FC } from 'react';
 
 const StyledCircle = styled(Circle).withConfig({
   shouldForwardProp: prop => !Object.keys(allCSSWithPseudos).includes(prop),

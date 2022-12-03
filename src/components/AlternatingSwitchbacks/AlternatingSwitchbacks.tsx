@@ -1,14 +1,15 @@
 import { useMediaQuery } from '@mui/material';
 import { motion } from 'framer-motion';
-import { WorkRecord } from 'graphql/generatedTypes';
 import { Container, Flex, Heading, Image, Link } from 'quarks';
-import { FC } from 'react';
 
 import { media } from 'atoms/breakpoints/breakpoints';
 
-import { BasicProps } from 'quarks/interpolations/basic';
+import type { BasicProps } from 'quarks/interpolations/basic';
 
 import useDarkMode from 'contexts/ThemeProvider';
+
+import type { WorkRecord } from 'graphql/generatedTypes';
+import type { FC } from 'react';
 
 type AlternatingSwitchbacksProps = BasicProps & {
   works: WorkRecord[];

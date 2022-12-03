@@ -1,11 +1,14 @@
 import InputAdornment from '@mui/material/InputAdornment';
 import MuiTextField from '@mui/material/TextField';
-import { ChangeEventHandler, FC, MouseEventHandler, ReactElement } from 'react';
 import styled from 'styled-components';
 
-import { BasicProps, basic } from 'quarks/interpolations/basic';
+import type { BasicProps } from 'quarks/interpolations/basic';
+import { basic } from 'quarks/interpolations/basic';
 
-import Tooltip, { TooltipProps } from 'molecules/Tooltip/Tooltip';
+import type { TooltipProps } from 'molecules/Tooltip/Tooltip';
+import Tooltip from 'molecules/Tooltip/Tooltip';
+
+import type { ChangeEventHandler, FC, MouseEventHandler, ReactElement } from 'react';
 
 const StyledField = styled(MuiTextField)`
   && {

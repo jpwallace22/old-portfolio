@@ -1,12 +1,12 @@
 import { useMediaQuery } from '@mui/material';
-import { BlogPostRecord } from 'graphql/generatedTypes';
 import { Container, Dots, Grid, Link, SmallCircle } from 'quarks';
 import { lazy, useEffect, useState } from 'react';
 
 import { media } from 'atoms/breakpoints/breakpoints';
 
-import { BasicProps } from 'quarks/interpolations/basic';
+import type { BasicProps } from 'quarks/interpolations/basic';
 
+import type { BlogPostRecord } from 'graphql/generatedTypes';
 import type { FC } from 'react';
 
 const BlogListingCard = lazy(() => import('components/cards/BlogListingCard/BlogListingCard'));

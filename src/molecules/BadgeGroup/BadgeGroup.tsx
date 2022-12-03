@@ -1,7 +1,7 @@
-import { FC, ReactNode } from 'react';
-
 import Flex from 'quarks/Flex';
-import { FlexProps } from 'quarks/interpolations/flex';
+import type { FlexProps } from 'quarks/interpolations/flex';
+
+import type { FC, ReactNode } from 'react';
 
 interface BadgeGroupProps extends FlexProps {
   /**

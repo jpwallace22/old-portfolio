@@ -1,10 +1,12 @@
-import { FC, useCallback } from 'react';
+import { useCallback } from 'react';
 import { TiChevronLeft, TiChevronRight } from 'react-icons/ti';
 
 import Flex from 'quarks/Flex';
 
 import Button from 'molecules/Button/Button';
 import Dots from 'molecules/ComponentPagination/Dots';
+
+import type { FC } from 'react';
 
 interface ComponentPaginationProps {
   /**

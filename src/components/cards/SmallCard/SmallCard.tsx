@@ -5,7 +5,7 @@ import { GoBrowser } from 'react-icons/go';
 import { SiStorybook } from 'react-icons/si';
 
 // Quarks
-import { BasicProps } from 'quarks/interpolations/basic';
+import type { BasicProps } from 'quarks/interpolations/basic';
 
 import type { FC } from 'react';
 

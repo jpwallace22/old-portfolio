@@ -1,10 +1,12 @@
-import { BlogPostRecord } from 'graphql/generatedTypes';
 import { Container, Flex, Image, Paragraph, Text } from 'quarks';
-import { FC, lazy, useRef, useState } from 'react';
+import { lazy, useRef, useState } from 'react';
 import { TiArrowRightThick } from 'react-icons/ti';
 
 import { timeToRead } from 'utils/functions';
 import useResizeObserver from 'utils/useResizeObserver';
+
+import type { BlogPostRecord } from 'graphql/generatedTypes';
+import type { FC } from 'react';
 
 const Button = lazy(() => import('molecules/Button/Button'));
 const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/StructuredTextParser'));

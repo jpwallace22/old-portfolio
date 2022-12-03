@@ -3,7 +3,8 @@ import { css } from 'styled-components';
 import basicCSS from 'quarks/styleProps/basic';
 import gridCSS from 'quarks/styleProps/grid';
 
-import { GetAllPropTypes, getPropsFromObjectCSS } from 'utils/quarks/getAllProps';
+import type { GetAllPropTypes } from 'utils/quarks/getAllProps';
+import { getPropsFromObjectCSS } from 'utils/quarks/getAllProps';
 
 const gridStyles = {
   ...gridCSS,

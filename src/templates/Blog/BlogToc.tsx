@@ -1,12 +1,14 @@
-import { BlogPostRecord } from 'graphql/generatedTypes';
 import { Container, Flex, Paragraph, Text } from 'quarks';
-import { FC } from 'react';
 
 import { colorParser } from 'atoms/colors/colors';
 
-import tocParser, { StructuredData } from 'utils/tocParser';
+import type { StructuredData } from 'utils/tocParser';
+import tocParser from 'utils/tocParser';
 
 import useDarkMode from 'contexts/ThemeProvider';
+
+import type { BlogPostRecord } from 'graphql/generatedTypes';
+import type { FC } from 'react';
 
 const BlogToc: FC<BlogPostRecord> = ({ body, slug }) => {
   const [isDark] = useDarkMode();

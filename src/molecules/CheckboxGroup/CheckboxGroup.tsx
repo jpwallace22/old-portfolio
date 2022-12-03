@@ -3,15 +3,17 @@ import IndeterminateCheckBoxTwoTone from '@mui/icons-material/IndeterminateCheck
 import MUICheckbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import MuiRadio from '@mui/material/Radio';
-import { FC, ReactNode, SyntheticEvent } from 'react';
 import styled from 'styled-components';
 
 import color from 'atoms/colors/colors';
 
 import Flex from 'quarks/Flex';
 import Text from 'quarks/Text';
-import { BasicProps, basic } from 'quarks/interpolations/basic';
+import type { BasicProps } from 'quarks/interpolations/basic';
+import { basic } from 'quarks/interpolations/basic';
 import { allCSSWithPseudos } from 'quarks/styleProps/all';
+
+import type { FC, ReactNode, SyntheticEvent } from 'react';
 
 const StyledFormControlLabel = styled(FormControlLabel).withConfig({
   shouldForwardProp: prop => !Object.keys(allCSSWithPseudos).includes(prop),

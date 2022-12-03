@@ -1,9 +1,11 @@
-import { CaseStudyCardRecord } from 'graphql/generatedTypes';
 import { Container, Flex } from 'quarks';
-import { FC, lazy, useEffect, useState } from 'react';
+import { lazy, useEffect, useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
 
 import type { BasicProps } from 'quarks/interpolations/basic';
+
+import type { CaseStudyCardRecord } from 'graphql/generatedTypes';
+import type { FC } from 'react';
 
 const CaseStudyCard = lazy(() => import('components/cards/CaseStudyCard/CaseStudyCard'));
 const ComponentPagination = lazy(() => import('molecules/ComponentPagination/ComponentPagination'));

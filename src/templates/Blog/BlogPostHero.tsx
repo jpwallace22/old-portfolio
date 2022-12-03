@@ -1,12 +1,14 @@
-import { BlogPostRecord } from 'graphql/generatedTypes';
 import { Container, Flex, Heading, Image, Paragraph, Text } from 'quarks';
-import { FC, lazy } from 'react';
+import { lazy } from 'react';
 
-import { BadgeTitles } from 'molecules/Badge/Badge';
+import type { BadgeTitles } from 'molecules/Badge/Badge';
 
 import { timeToRead } from 'utils/functions';
 
 import useDarkMode from 'contexts/ThemeProvider';
+
+import type { BlogPostRecord } from 'graphql/generatedTypes';
+import type { FC } from 'react';
 
 const Breadcrumbs = lazy(() => import('molecules/Breadcrumbs/Breadcrumbs'));
 const Badge = lazy(() => import('molecules/Badge/Badge'));
