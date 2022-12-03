@@ -3,8 +3,9 @@ import { css } from 'styled-components';
 import basicCSS from 'quarks/styleProps/basic';
 import headingCSS from 'quarks/styleProps/heading';
 
-import type { GetAllPropTypes } from 'utils/quarks/getAllProps';
 import { getPropsFromObjectCSS } from 'utils/quarks/getAllProps';
+
+import type { GetAllPropTypes } from 'utils/quarks/getAllProps';
 
 const headingStyles = {
   ...headingCSS,

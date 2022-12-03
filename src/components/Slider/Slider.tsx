@@ -1,10 +1,10 @@
-import { Container, Flex } from 'quarks';
 import { lazy, useEffect, useState } from 'react';
+
+import { Container, Flex } from 'quarks';
 import { useSwipeable } from 'react-swipeable';
 
-import type { BasicProps } from 'quarks/interpolations/basic';
-
 import type { CaseStudyCardRecord } from 'graphql/generatedTypes';
+import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC } from 'react';
 
 const CaseStudyCard = lazy(() => import('components/cards/CaseStudyCard/CaseStudyCard'));

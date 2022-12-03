@@ -1,5 +1,6 @@
-import { Container, Text } from 'quarks';
 import React, { useEffect, useState } from 'react';
+
+import { Container, Text } from 'quarks';
 import { BsArrowUp } from 'react-icons/bs';
 
 const ClickMe = () => {

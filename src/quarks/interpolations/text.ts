@@ -3,8 +3,9 @@ import { css } from 'styled-components';
 import basicCSS from 'quarks/styleProps/basic';
 import textCSS from 'quarks/styleProps/text';
 
-import type { GetAllPropTypes } from 'utils/quarks/getAllProps';
 import { getPropsFromObjectCSS } from 'utils/quarks/getAllProps';
+
+import type { GetAllPropTypes } from 'utils/quarks/getAllProps';
 
 const textStyles = {
   ...textCSS,

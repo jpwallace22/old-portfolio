@@ -1,8 +1,8 @@
 import { Link } from 'quarks';
 
 import Flex from 'quarks/Flex';
-import type { FlexProps } from 'quarks/interpolations/flex';
 
+import type { FlexProps } from 'quarks/interpolations/flex';
 import type { FC, ReactNode } from 'react';
 
 const badgeSizes = {

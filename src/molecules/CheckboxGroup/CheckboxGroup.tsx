@@ -8,11 +8,11 @@ import styled from 'styled-components';
 import color from 'atoms/colors/colors';
 
 import Flex from 'quarks/Flex';
-import Text from 'quarks/Text';
-import type { BasicProps } from 'quarks/interpolations/basic';
 import { basic } from 'quarks/interpolations/basic';
 import { allCSSWithPseudos } from 'quarks/styleProps/all';
+import Text from 'quarks/Text';
 
+import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC, ReactNode, SyntheticEvent } from 'react';
 
 const StyledFormControlLabel = styled(FormControlLabel).withConfig({

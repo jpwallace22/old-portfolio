@@ -3,12 +3,12 @@ import NextLink from 'next/link';
 import styled from 'styled-components';
 
 import Flex from 'quarks/Flex';
-import type { FlexProps } from 'quarks/interpolations/flex';
 import { flex } from 'quarks/interpolations/flex';
 import { allCSSWithPseudos } from 'quarks/styleProps/all';
 
 import parseUrl from 'utils/parseUrl';
 
+import type { FlexProps } from 'quarks/interpolations/flex';
 import type { FC, MouseEvent, ReactNode } from 'react';
 
 const StyledButton = styled(MUIButton).withConfig({

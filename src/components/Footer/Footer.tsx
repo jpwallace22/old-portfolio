@@ -1,15 +1,15 @@
+import { forwardRef, lazy } from 'react';
+
 import { navbar } from 'data/data';
 import { useRouter } from 'next/router';
 import { Container, Flex, Grid, Heading, Link, Logo, Paragraph, Text } from 'quarks';
-import { forwardRef, lazy } from 'react';
 
 import { ReactComponent as LogoMark } from 'assets/svg/logomark-grad.svg';
-
-import type { BasicProps } from 'quarks/interpolations/basic';
 
 import { underlineOnHover } from 'utils/css';
 import { emailObfuscator } from 'utils/functions';
 
+import type { BasicProps } from 'quarks/interpolations/basic';
 import type { ForwardedRef } from 'react';
 
 const Socials = lazy(() => import('molecules/Socials/Socials'));

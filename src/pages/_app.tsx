@@ -1,6 +1,7 @@
+import { Suspense } from 'react';
+
 import { navbar } from 'data/data';
 import Script from 'next/script';
-import { Suspense } from 'react';
 
 import Navbar from 'components/Navbar/Navbar';
 

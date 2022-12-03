@@ -1,6 +1,7 @@
+import { lazy, useLayoutEffect, useMemo, useRef, useState } from 'react';
+
 import Head from 'next/head';
 import { Container, Flex, Text } from 'quarks';
-import { lazy, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useWindowScroll } from 'react-use';
 
 import { Dots, LargeCircle } from 'quarks/DesignElements';

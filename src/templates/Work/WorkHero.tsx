@@ -7,11 +7,11 @@ import Image from 'quarks/Image';
 
 import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 
-import type { TechStackProps } from 'components/TechStack/TechStack';
 import TechStack from 'components/TechStack/TechStack';
 
 import useDarkMode from 'contexts/ThemeProvider';
 
+import type { TechStackProps } from 'components/TechStack/TechStack';
 import type { WorkRecord } from 'graphql/generatedTypes';
 import type { FC } from 'react';
 

@@ -4,11 +4,10 @@ import { Container, Flex, Heading, Image, Link } from 'quarks';
 
 import { media } from 'atoms/breakpoints/breakpoints';
 
-import type { BasicProps } from 'quarks/interpolations/basic';
-
 import useDarkMode from 'contexts/ThemeProvider';
 
 import type { WorkRecord } from 'graphql/generatedTypes';
+import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC } from 'react';
 
 type AlternatingSwitchbacksProps = BasicProps & {

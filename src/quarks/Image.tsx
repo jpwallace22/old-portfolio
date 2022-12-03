@@ -3,16 +3,16 @@ import NextImage from 'next/image';
 import { breakpoints } from 'atoms/breakpoints/breakpoints';
 
 import Container from 'quarks/Container';
-import type { BasicProps } from 'quarks/interpolations/basic';
 import basicCSS from 'quarks/styleProps/basic';
 
 import { pseudos } from 'utils/quarks/getPseudoClassProps';
 import { pseudoElements } from 'utils/quarks/getPseudoEleProps';
-import type { valueof } from 'utils/typeUtils';
 import { objectEntries } from 'utils/typeUtils';
 
 import type { ImageProps, StaticImageData } from 'next/image';
+import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FunctionComponent } from 'react';
+import type { valueof } from 'utils/typeUtils';
 
 type ModifiedBasicProps = Omit<BasicProps, 'height' | 'width' | 'objectPosition' | 'objectFit'>;
 

@@ -1,6 +1,6 @@
 import Container from 'quarks/Container';
-import type { BasicProps } from 'quarks/interpolations/basic';
 
+import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC } from 'react';
 
 const StyledLogo: FC<BasicProps> = ({ ...props }) => {

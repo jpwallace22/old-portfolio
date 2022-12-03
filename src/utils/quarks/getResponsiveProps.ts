@@ -2,11 +2,11 @@ import { css } from 'styled-components';
 
 import { media } from 'atoms/breakpoints/breakpoints';
 
-import type { DirectProps, ObjectCSS } from 'utils/quarks/getDirectProps';
 import { getDirectProps } from 'utils/quarks/getDirectProps';
 import { objectKeys } from 'utils/typeUtils';
 
 import type { DefaultTheme, ThemedStyledProps } from 'styled-components';
+import type { DirectProps, ObjectCSS } from 'utils/quarks/getDirectProps';
 
 const breakpointArray = objectKeys(media);
 

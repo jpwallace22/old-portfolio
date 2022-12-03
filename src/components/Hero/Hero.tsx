@@ -6,11 +6,11 @@ import { ReactComponent as Arrow } from 'assets/svg/drawn-arrow.svg';
 
 import { media } from 'atoms/breakpoints/breakpoints';
 
-import type { BasicProps } from 'quarks/interpolations/basic';
 import { basic } from 'quarks/interpolations/basic';
 
 import useDarkMode from 'contexts/ThemeProvider';
 
+import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC } from 'react';
 
 const DrawnArrow = styled(Arrow)`

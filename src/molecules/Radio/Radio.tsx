@@ -2,11 +2,11 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import MuiRadio from '@mui/material/Radio';
 import styled from 'styled-components';
 
-import Text from 'quarks/Text';
-import type { BasicProps } from 'quarks/interpolations/basic';
 import { basic } from 'quarks/interpolations/basic';
 import { allCSSWithPseudos } from 'quarks/styleProps/all';
+import Text from 'quarks/Text';
 
+import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC, SyntheticEvent } from 'react';
 
 const StyledFormControl = styled(FormControlLabel).withConfig({

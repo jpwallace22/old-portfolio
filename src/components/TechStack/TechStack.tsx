@@ -15,7 +15,6 @@ import storybook from 'assets/svg/storybook.svg';
 import typescript from 'assets/svg/typescript.svg';
 
 import type { FlexProps } from 'quarks/interpolations/flex';
-
 import type { FC } from 'react';
 
 export type TechStackProps = FlexProps & {

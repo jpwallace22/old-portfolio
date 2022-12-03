@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/google-font-display */
-import Document, { Head, Html, Main, NextScript } from 'next/document';
 import { Fragment } from 'react';
+
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
 import type { DocumentContext } from 'next/document';

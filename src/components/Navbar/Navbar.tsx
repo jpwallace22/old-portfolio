@@ -1,6 +1,7 @@
+import { lazy, useRef, useState } from 'react';
+
 import { useMediaQuery } from '@mui/material';
 import { Container, Flex, Grid, Image, Link, Text } from 'quarks';
-import { lazy, useRef, useState } from 'react';
 import { BsLightbulbFill as LightBulb, BsFillLightbulbOffFill as LightBulbOff } from 'react-icons/bs';
 import { useSwipeable } from 'react-swipeable';
 
@@ -9,17 +10,14 @@ import { ReactComponent as LogoMark } from 'assets/svg/logomark-grad.svg';
 
 import { media } from 'atoms/breakpoints/breakpoints';
 
-import type { BasicProps } from 'quarks/interpolations/basic';
-
-import type { SocialsProps } from 'molecules/Socials/Socials';
-
 import StyledHamburger from 'components/Navbar/Hamburger';
 
 import useDarkMode from 'contexts/ThemeProvider';
 
-import type { CSSProps } from 'theme/getAppTheme';
-
+import type { SocialsProps } from 'molecules/Socials/Socials';
+import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC } from 'react';
+import type { CSSProps } from 'theme/getAppTheme';
 
 const Socials = lazy(() => import('molecules/Socials/Socials'));
 const ClickMe = lazy(() => import('components/Navbar/ClickMe'));

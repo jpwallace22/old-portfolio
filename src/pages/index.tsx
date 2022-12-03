@@ -1,10 +1,11 @@
+import { lazy, useEffect, useRef, useState } from 'react';
+
 import { useMediaQuery } from '@mui/material';
 import request from 'graphql/datocms';
 import { buttonFrag, imageFrag, switchBackFrag } from 'graphql/fragments';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Container, Dots, Heading, Image, LargeCircle, SmallCircle } from 'quarks';
-import { lazy, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import dots from 'assets/images/dots.webp';

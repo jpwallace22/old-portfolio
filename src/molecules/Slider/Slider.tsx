@@ -1,10 +1,10 @@
 import MUISlider from '@mui/material/Slider';
 import styled from 'styled-components';
 
-import type { BasicProps } from 'quarks/interpolations/basic';
 import { basic } from 'quarks/interpolations/basic';
 import { allCSSWithPseudos } from 'quarks/styleProps/all';
 
+import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC, ReactNode } from 'react';
 
 const StyledSlider = styled(MUISlider).withConfig({

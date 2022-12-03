@@ -1,5 +1,6 @@
-import { Container, Flex, Image, Paragraph, Text } from 'quarks';
 import { lazy, useRef, useState } from 'react';
+
+import { Container, Flex, Image, Paragraph, Text } from 'quarks';
 import { TiArrowRightThick } from 'react-icons/ti';
 
 import { timeToRead } from 'utils/functions';

@@ -2,11 +2,12 @@ import styled from 'styled-components';
 
 import check from 'assets/svg/check.svg';
 
-import type { ColorList } from 'atoms/colors/colors';
 import { colorParser } from 'atoms/colors/colors';
 
-import type { BasicProps } from 'quarks/interpolations/basic';
 import { basic } from 'quarks/interpolations/basic';
+
+import type { ColorList } from 'atoms/colors/colors';
+import type { BasicProps } from 'quarks/interpolations/basic';
 
 interface ListProps extends BasicProps {
   discColor: ColorList;

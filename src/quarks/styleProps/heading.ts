@@ -1,10 +1,11 @@
 import { css } from 'styled-components';
 
-import type { GradientStyles } from 'atoms/colors/colors';
 import { gradient } from 'atoms/colors/colors';
 import { font } from 'atoms/typography/typography';
 
 import typography from 'theme/typography';
+
+import type { GradientStyles } from 'atoms/colors/colors';
 
 export type HeadingTypes = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 

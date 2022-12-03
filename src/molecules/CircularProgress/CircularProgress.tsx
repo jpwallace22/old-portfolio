@@ -3,14 +3,13 @@ import styled from 'styled-components';
 
 import Container from 'quarks/Container';
 import Flex from 'quarks/Flex';
-import Text from 'quarks/Text';
-import type { BasicProps } from 'quarks/interpolations/basic';
 import { basic } from 'quarks/interpolations/basic';
 import { allCSSWithPseudos } from 'quarks/styleProps/all';
+import Text from 'quarks/Text';
 
-import type { CSSProps } from 'theme/getAppTheme';
-
+import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC } from 'react';
+import type { CSSProps } from 'theme/getAppTheme';
 
 const StyledCircularProgress = styled(MUICircularProgress).withConfig({
   shouldForwardProp: prop => !Object.keys(allCSSWithPseudos).includes(prop),

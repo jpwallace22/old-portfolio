@@ -1,19 +1,20 @@
+import { useState } from 'react';
+
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import MUISelect from '@mui/material/Select';
-import { useState } from 'react';
 import { MdExpandMore } from 'react-icons/md';
 import styled from 'styled-components';
 
 import Flex from 'quarks/Flex';
-import Text from 'quarks/Text';
-import type { BasicProps } from 'quarks/interpolations/basic';
 import { basic } from 'quarks/interpolations/basic';
 import { allCSSWithPseudos } from 'quarks/styleProps/all';
+import Text from 'quarks/Text';
 
 import { menuProps } from 'molecules/Select/Select.theme';
 
 import type { SelectChangeEvent } from '@mui/material/Select';
+import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC, ReactNode } from 'react';
 
 const StyledFormControl = styled(FormControl).withConfig({

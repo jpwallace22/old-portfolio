@@ -2,13 +2,13 @@ import { Container, Flex, Paragraph, Text } from 'quarks';
 
 import { colorParser } from 'atoms/colors/colors';
 
-import type { StructuredData } from 'utils/tocParser';
 import tocParser from 'utils/tocParser';
 
 import useDarkMode from 'contexts/ThemeProvider';
 
 import type { BlogPostRecord } from 'graphql/generatedTypes';
 import type { FC } from 'react';
+import type { StructuredData } from 'utils/tocParser';
 
 const BlogToc: FC<BlogPostRecord> = ({ body, slug }) => {
   const [isDark] = useDarkMode();

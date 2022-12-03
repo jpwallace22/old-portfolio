@@ -2,11 +2,11 @@ import { TextareaAutosize } from '@mui/base';
 import styled from 'styled-components';
 
 import Flex from 'quarks/Flex';
-import Text from 'quarks/Text';
-import type { BasicProps } from 'quarks/interpolations/basic';
 import { basic } from 'quarks/interpolations/basic';
 import { allCSSWithPseudos } from 'quarks/styleProps/all';
+import Text from 'quarks/Text';
 
+import type { BasicProps } from 'quarks/interpolations/basic';
 import type { ChangeEventHandler, FC } from 'react';
 
 const StyledTextArea = styled(TextareaAutosize).withConfig({

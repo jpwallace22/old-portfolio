@@ -1,14 +1,12 @@
 import { useEffect, useRef } from 'react';
+
 import styled from 'styled-components';
 
-// Quarks
 import Container from 'quarks/Container';
+
 import type { BasicProps } from 'quarks/interpolations/basic';
-
-// Theme
-import type { CSSProps } from 'theme/getAppTheme';
-
 import type { FC, MouseEventHandler, MutableRefObject, SetStateAction } from 'react';
+import type { CSSProps } from 'theme/getAppTheme';
 
 type HamburgerProps = BasicProps & {
   onClick?: MouseEventHandler<HTMLDivElement>;

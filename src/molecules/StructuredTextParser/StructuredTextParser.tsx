@@ -1,10 +1,10 @@
 import Flex from 'quarks/Flex';
 import Paragraph from 'quarks/Paragraph';
-import type { FlexProps } from 'quarks/interpolations/flex';
-import type { TextProps } from 'quarks/interpolations/text';
 
 import structuredTextParser from 'utils/structuredTextParser';
 
+import type { FlexProps } from 'quarks/interpolations/flex';
+import type { TextProps } from 'quarks/interpolations/text';
 import type { FC } from 'react';
 import type { StructuredTextGraphQlResponse } from 'react-datocms';
 

@@ -1,11 +1,11 @@
 import MUITooltip from '@mui/material/Tooltip';
 import styled from 'styled-components';
 
-import Paragraph from 'quarks/Paragraph';
-import type { BasicProps } from 'quarks/interpolations/basic';
 import { basic } from 'quarks/interpolations/basic';
+import Paragraph from 'quarks/Paragraph';
 import { allCSSWithPseudos } from 'quarks/styleProps/all';
 
+import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC, ReactElement, SyntheticEvent } from 'react';
 
 const StyledTooltip = styled(MUITooltip).withConfig({
