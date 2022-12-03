@@ -6,13 +6,12 @@ import WorkHero from 'templates/Work/WorkHero';
 
 import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 
-import SmallCard from 'components/cards/SmallCard/SmallCard';
-import Footer from 'components/Footer/Footer';
-import Slider from 'components/Slider/Slider';
-
 import type { WorkRecord } from 'graphql/generatedTypes';
 import type { FC } from 'react';
 
+const SmallCard = lazy(() => import('components/cards/SmallCard/SmallCard'));
+const Footer = lazy(() => import('components/Footer/Footer'));
+const Slider = lazy(() => import('components/Slider/Slider'));
 const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/StructuredTextParser'));
 
 const WorkPageTemplate: FC<WorkRecord> = props => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy } from 'react';
 
 import { ReactComponent as Arrow } from 'assets/svg/drawn-arrow.svg';
 
@@ -8,9 +8,9 @@ import Link from 'quarks/Link';
 import Paragraph from 'quarks/Paragraph';
 import Text from 'quarks/Text';
 
-import Footer from 'components/Footer/Footer';
-
 import { underlineOnHover } from 'utils/css';
+
+const Footer = lazy(() => import('components/Footer/Footer'));
 
 const fourOhFour = () => (
   <>

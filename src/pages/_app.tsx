@@ -12,17 +12,17 @@ import type { AppProps } from 'next/app';
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <ThemeProvider>
-    <Suspense fallback={<div></div>}>
-      <Script strategy="lazyOnload" async src="https://www.googletagmanager.com/gtag/js?id=G-R2S5FWZ8HX" />
-      <Script strategy="lazyOnload" id="g-analytics">
-        {`
+    <Script strategy="lazyOnload" async src="https://www.googletagmanager.com/gtag/js?id=G-R2S5FWZ8HX" />
+    <Script strategy="lazyOnload" id="g-analytics">
+      {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-        
+              
               gtag('config', 'G-R2S5FWZ8HX');
-            `}
-      </Script>
+              `}
+    </Script>
+    <Suspense fallback={<div></div>}>
       <LazyMotion features={domAnimation} strict>
         <Navbar links={navbar.links} socials={navbar.socials} zIndex={99} />
         <Component {...pageProps} />
