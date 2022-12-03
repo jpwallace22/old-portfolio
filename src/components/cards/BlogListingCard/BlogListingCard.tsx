@@ -1,13 +1,13 @@
 import { BlogPostRecord } from 'graphql/generatedTypes';
 import { Container, Flex, Image, Paragraph, Text } from 'quarks';
-import { FC, useRef, useState } from 'react';
+import { FC, lazy, useRef, useState } from 'react';
 import { TiArrowRightThick } from 'react-icons/ti';
-
-import Button from 'molecules/Button/Button';
-import StructuredTextParser from 'molecules/StructuredTextParser/StructuredTextParser';
 
 import { timeToRead } from 'utils/functions';
 import useResizeObserver from 'utils/useResizeObserver';
+
+const Button = lazy(() => import('molecules/Button/Button'));
+const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/StructuredTextParser'));
 
 interface IBlogCard extends BlogPostRecord {
   index?: number;

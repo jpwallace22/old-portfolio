@@ -1,21 +1,17 @@
 import { useMediaQuery } from '@mui/material';
 import { ButtonRecord, SwitchbackRecord } from 'graphql/generatedTypes';
-import { FC, MouseEvent } from 'react';
+import { Container, Flex, Heading, Image } from 'quarks';
+import { FC, MouseEvent, lazy } from 'react';
 
-// Quarks
 import { media } from 'atoms/breakpoints/breakpoints';
 
-import Container from 'quarks/Container';
-import Flex from 'quarks/Flex';
-import Heading from 'quarks/Heading';
-import Image from 'quarks/Image';
-import { FlexProps } from 'quarks/interpolations/flex';
-import { HeadingTypes } from 'quarks/styleProps/heading';
-
-import Button from 'molecules/Button/Button';
-import StructuredTextParser from 'molecules/StructuredTextParser/StructuredTextParser';
+import type { FlexProps } from 'quarks/interpolations/flex';
+import type { HeadingTypes } from 'quarks/styleProps/heading';
 
 import { CleanDato } from 'utils/typeUtils';
+
+const Button = lazy(() => import('molecules/Button/Button'));
+const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/StructuredTextParser'));
 
 interface SwitchbackProps extends FlexProps, Omit<CleanDato<SwitchbackRecord>, 'buttons'> {
   buttons?: ButtonRecord[] | null;

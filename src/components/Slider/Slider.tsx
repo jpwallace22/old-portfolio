@@ -1,15 +1,13 @@
 import { CaseStudyCardRecord } from 'graphql/generatedTypes';
-import { FC, useEffect, useState } from 'react';
+import { Container, Flex } from 'quarks';
+import { FC, lazy, useEffect, useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
 
-import Container from 'quarks/Container';
-import Flex from 'quarks/Flex';
 import type { BasicProps } from 'quarks/interpolations/basic';
 
-import ComponentPagination from 'molecules/ComponentPagination/ComponentPagination';
-import StructuredTextParser from 'molecules/StructuredTextParser/StructuredTextParser';
-
-import { CaseStudyCard } from 'components/cards';
+const CaseStudyCard = lazy(() => import('components/cards/CaseStudyCard/CaseStudyCard'));
+const ComponentPagination = lazy(() => import('molecules/ComponentPagination/ComponentPagination'));
+const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/StructuredTextParser'));
 
 type SliderCardProps = BasicProps & {
   cards: CaseStudyCardRecord[];
