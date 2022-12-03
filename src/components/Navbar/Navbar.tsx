@@ -14,8 +14,6 @@ import { BasicProps } from 'quarks/interpolations/basic';
 
 import { SocialsProps } from 'molecules/Socials/Socials';
 
-import { underlineOnHover } from 'utils/css';
-
 import useDarkMode from 'contexts/ThemeProvider';
 
 import { CSSProps } from 'theme/getAppTheme';
@@ -30,10 +28,9 @@ type NavbarProps = BasicProps & {
     url: string;
   }[];
   socials?: SocialsProps;
-  currentSection: string;
 };
 
-const Navbar: FC<NavbarProps> = ({ links, socials, currentSection, ...props }) => {
+const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
   const [active, setActive] = useState(false);
 
   const [isDark, setIsDark] = useDarkMode();
@@ -187,7 +184,6 @@ const Navbar: FC<NavbarProps> = ({ links, socials, currentSection, ...props }) =
                     position="relative"
                     fontWeight="bold"
                     lg={{ textStyle: 'xl', fontWeight: 'light' }}
-                    css={isDesktop && underlineOnHover(-10, currentSection === link.text)}
                   >
                     {link.text}
                   </Text>
