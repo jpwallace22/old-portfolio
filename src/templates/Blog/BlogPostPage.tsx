@@ -64,13 +64,12 @@ const BlogPostPage: FC<BlogPostRecord> = props => {
         justifyContent="space-between"
         alignItems="center"
         paddingTop={48}
-        paddingBottom={96}
         gap="60px"
         flexDirection="column-reverse"
         paddingX={24}
         marginX="auto"
         maxWidth="924px"
-        xl={{ maxWidth: '1256px', flexDirection: 'row', alignItems: 'unset' }}
+        xl={{ maxWidth: '1256px', flexDirection: 'row', alignItems: 'unset', paddingBottom: 96 }}
       >
         <Flex
           flex="1 0 250px"
@@ -113,11 +112,13 @@ const BlogPostPage: FC<BlogPostRecord> = props => {
       </Flex>
       <LinearProgress
         value={scrollPercentage > 0 ? scrollPercentage : 0}
+        aria-label="progress bar"
         position="fixed"
         top="70px"
         width="100%"
         bottomBarColor="transparent"
-        lg={{ position: 'sticky', top: 'unset', bottom: 0 }}
+        zIndex={9999}
+        lg={{ top: '82px' }}
       />
       <Footer size={50} marginTop={0} ref={footerRef} />
     </>

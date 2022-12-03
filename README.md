@@ -22,13 +22,13 @@
 - ~~add blog page listing and blog post pages~~
 - ~~refactor ugly carousel into something better~~
 - implement category taxonomy into the blog (after writing more blogs)
-- add global nav to DatoCMS
-  - maybe restyle the nav
+- add global nav to DatoCMS (added, need to query)
 - create featured blog component
   - use the same component for related blogs?
 - create testimonial component
-- lazy import all components
+- ~~lazy import all components~~
 - create components generator styled paradigm
 - add recent || featured blogs to homepage
-- refactor nav (gets hung up)
-- move blog progress to top for desktop
+- ~~refactor nav (gets hung up)~~
+- ~~move blog progress to top for desktop~~
+- ~~aria label on ProgressBar~~
