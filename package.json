@@ -105,5 +105,10 @@
       "eslint --fix",
       "prettier --write --loglevel silent"
     ]
+  },
+  "nextBundleAnalysis": {
+    "budget": null,
+    "budgetPercentIncreaseRed": 20,
+    "showDetails": true
   }
 }
