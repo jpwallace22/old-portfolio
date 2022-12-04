@@ -61,3 +61,10 @@ export const timeToRead = (structuredText?: StructuredData) => {
 };
 
 export const randomIntFromInterval = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1) + min);
+
+export const stringToKebabCase = (str?: string) =>
+  str &&
+  str
+    .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+    ?.join('-')
+    .toLowerCase();

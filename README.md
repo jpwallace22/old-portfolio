@@ -33,3 +33,4 @@
   - ~~query images from cms~~
 - create components generator styled paradigm
 - add recent || featured blogs to homepage
+- add jest

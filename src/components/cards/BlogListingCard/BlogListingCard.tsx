@@ -30,7 +30,6 @@ const BlogListingCard: FC<IBlogCard> = ({ title, featuredImage, excerpt, index, 
       height="550px"
       borderRadius="8px"
       overflowY="hidden"
-      backgroundColor={{ dark: 'purple-800', light: 'gray-50' }}
       boxShadow="sm"
       transition="box-shadow .4s, transform .4s"
       md={{ maxWidth: 'unset' }}
@@ -59,6 +58,7 @@ const BlogListingCard: FC<IBlogCard> = ({ title, featuredImage, excerpt, index, 
       )}
       <Flex
         flexDirection="column"
+        backgroundColor={{ dark: 'purple-800', light: 'gray-50' }}
         paddingTop={32}
         paddingBottom={24}
         paddingX={16}

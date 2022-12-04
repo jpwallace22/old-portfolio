@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "yarn && next dev -p 3030",
     "build": "next build",
+    "analyze": "ANALYZE=true yarn build",
     "start": "next start -p 3090",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx,mdx}\" --fix",
     "format": "prettier --write  --loglevel silent \"src/**/*.{js,jsx,ts,tsx,mdx}\"",
