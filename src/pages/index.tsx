@@ -105,7 +105,6 @@ const Home: FC<IHomePage> = ({ data }) => {
             loading="eager"
             lg={{ left: '58%' }}
           />
-
           <Container
             position="absolute"
             width="200px"

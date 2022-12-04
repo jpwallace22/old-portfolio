@@ -18,8 +18,8 @@ type ModifiedBasicProps = Omit<BasicProps, 'height' | 'width' | 'objectPosition'
 
 export interface CustomImageProps extends ModifiedBasicProps, Omit<ImageProps, 'objectFit'> {
   src: string | StaticImageData;
-  height?: number | string;
-  width?: number | string;
+  height?: number;
+  width?: number;
   alt: string;
   objectPosition?: string;
   objectFit?: BasicProps['objectFit'];
@@ -46,11 +46,11 @@ const Image: FunctionComponent<CustomImageProps> = props => {
     },
   );
   const quarkProps = Object.fromEntries(filteredQuarkProps);
-  const { src, ...nextProps } = Object.fromEntries(filteredNextProps);
+  const { src, alt, ...nextProps } = Object.fromEntries(filteredNextProps);
 
   return (
     <Container width="fit-content" height="fit-content" {...quarkProps}>
-      <NextImage src={src} loading="lazy" {...nextProps} />
+      <NextImage src={src} loading="lazy" alt={alt} {...nextProps} />
     </Container>
   );
 };

@@ -1,8 +1,8 @@
 export type valueof<T> = T[keyof T];
 
 type ObjectEntriesReturn<T> = [keyof T, valueof<T>][];
-type ObjectEntries = <T>(object: T) => ObjectEntriesReturn<T>;
-type ObjectKeys = <T>(object: T) => (keyof T)[];
+type ObjectEntries = <T extends object>(object: T) => ObjectEntriesReturn<T>;
+type ObjectKeys = <T extends object>(object: T) => (keyof T)[];
 
 export type CleanDato<T> = Omit<
   T,

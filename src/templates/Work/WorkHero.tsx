@@ -1,17 +1,12 @@
 import { lazy } from 'react';
 
 import { m } from 'framer-motion';
-
-import { LargeCircle, SmallCircle } from 'quarks/DesignElements';
-import Flex from 'quarks/Flex';
-import Heading from 'quarks/Heading';
-import Image from 'quarks/Image';
+import { Flex, Heading, Image, LargeCircle, SmallCircle } from 'quarks';
 
 import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 
 import useDarkMode from 'contexts/ThemeProvider';
 
-import type { TechStackProps } from 'components/TechStack/TechStack';
 import type { WorkRecord } from 'graphql/generatedTypes';
 import type { FC } from 'react';
 
@@ -19,7 +14,6 @@ const TechStack = lazy(() => import('components/TechStack/TechStack'));
 
 const WorkHero: FC<WorkRecord> = ({ title, subtitle, bannerImage, techStack }) => {
   const [isDark] = useDarkMode();
-  const tempTechStack = techStack.map(tech => tech.title);
 
   return (
     <>
@@ -75,7 +69,7 @@ const WorkHero: FC<WorkRecord> = ({ title, subtitle, bannerImage, techStack }) =
             lg={{ marginAll: 0 }}
           />
         )}
-        {techStack && <TechStack icons={tempTechStack as TechStackProps['icons']} />}
+        {techStack && <TechStack techs={techStack} />}
       </Flex>
       <SmallCircle position="absolute" right="-400px" top="450px" opacity={0.3} />
     </>
