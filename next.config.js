@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-// const withBundleAnalyzer = require('@next/bundle-analyzer')({
-//   enabled: process.env.ANALYZE === 'true',
-// });
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
 
-// module.exports = withBundleAnalyzer({});
-module.exports = {
+module.exports = withBundleAnalyzer({
   images: {
     domains: ['localhost', 'justinwallace.dev', 'www.datocms-assets.com'],
   },
@@ -26,4 +25,4 @@ module.exports = {
       permanent: true,
     },
   ],
-};
+});
