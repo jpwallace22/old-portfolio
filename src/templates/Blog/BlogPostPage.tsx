@@ -1,4 +1,4 @@
-import { lazy, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { lazy, useEffect, useMemo, useRef, useState } from 'react';
 
 import Head from 'next/head';
 import { Container, Flex, Text } from 'quarks';
@@ -39,7 +39,7 @@ const BlogPostPage: FC<BlogPostRecord> = props => {
     { platform: 'mail', url: `mailto:?subject=${title}&body=https://justinwallace.dev/blog/${slug}` } as const,
   ];
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (window === undefined || !footerRef.current?.offsetHeight) {
       return;
     }
@@ -57,7 +57,7 @@ const BlogPostPage: FC<BlogPostRecord> = props => {
   return (
     <>
       <Head>
-        <title>Justin Wallace | {title}</title>
+        <title>{`Justin Wallace | ${title}`}</title>
       </Head>
       <BlogPostHero {...props} />
       <Flex

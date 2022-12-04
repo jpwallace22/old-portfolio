@@ -1,13 +1,5 @@
 import React, { useEffect } from 'react';
 
-import Prism from 'prismjs';
-
-import 'prismjs/components/prism-javascript.min';
-import 'prismjs/components/prism-typescript.min';
-import 'prismjs/components/prism-css.min';
-import 'prismjs/components/prism-bash.min';
-import 'prismjs/themes/prism-tomorrow.min.css';
-
 import { StyledCode, StyledPre } from 'molecules/CodeBlock/codeBlock.styles';
 
 import type { Code } from 'datocms-structured-text-utils';
@@ -19,7 +11,11 @@ interface ICodeBlock {
 
 const CodeBlock: FC<ICodeBlock> = ({ node }) => {
   useEffect(() => {
-    Prism.highlightAll();
+    import('prismjs').then(Prism => {
+      // @ts-expect-error test
+      import('prismjs/themes/prism-tomorrow.min.css');
+      Prism.highlightAll();
+    });
   }, []);
 
   return (

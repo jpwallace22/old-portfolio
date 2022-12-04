@@ -24,6 +24,7 @@
 - ~~refactor nav (gets hung up)~~
 - ~~move blog progress to top for desktop~~
 - ~~aria label on ProgressBar~~
+- ~~reduce bundle size from PrismJS~~
 - implement category taxonomy into the blog (after writing more blogs)
 - add global nav to DatoCMS q(added, need to query)
 - create featured blog component
@@ -34,3 +35,4 @@
 - create components generator styled paradigm
 - add recent || featured blogs to homepage
 - add jest
+- Create an SEO component

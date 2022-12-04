@@ -39,7 +39,7 @@
     "mdx/code-blocks": false,
     "mdx/language-mapper": {}
   },
-  "ignorePatterns": ["!.storybook", "src/graphql/generatedTypes.ts"],
+  "ignorePatterns": ["!.storybook", "src/graphql/generatedTypes.ts", "prism.js"],
   "rules": {
     "curly": "error",
     "eqeqeq": ["error", "smart"],

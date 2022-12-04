@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": "./src",
     "strict": true,
     "allowJs": false,
@@ -22,12 +18,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": [
-    "**/*.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["**/*.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "prism.js"]
 }
