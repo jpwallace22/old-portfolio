@@ -3,7 +3,7 @@
 ## Features
 
 1. **Atoms**: These are a code implementation of a design system. Values can be replaced easily and used across the
-   project via quarks.
+   project via quarks
 2. **Quarks**: These are essentially fully-featured [styled-components](https://styled-components.com/) that implement
    atom values via React props.
 3. **Molecules**: These are small React components mostly built using [Material-UI](https://mui.com/) but heavily
