@@ -13,13 +13,14 @@ const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/S
 
 type SliderCardProps = BasicProps & {
   cards: CaseStudyCardRecord[];
+  detailsVariant?: boolean;
 };
 
-const Slider: FC<SliderCardProps> = ({ cards }) => {
+const Slider: FC<SliderCardProps> = ({ cards, detailsVariant }) => {
   const [activeIndex, setActive] = useState(0);
   const [cardWidths, setCardWidths] = useState<number[]>([]);
 
-  const gapBetweenCards = 64;
+  const gapBetweenCards = detailsVariant ? 64 : 32;
   const cardCount = cards?.length;
 
   const handleLeft = () => (activeIndex === 0 ? setActive(cardCount - 1) : setActive(activeIndex - 1));
@@ -62,28 +63,32 @@ const Slider: FC<SliderCardProps> = ({ cards }) => {
       {...swipeHandler}
       ref={refPassthrough}
     >
-      <StructuredTextParser
-        text={cards[activeIndex]?.body}
-        textColor={{ dark: 'gray-500', light: 'purple-900' }}
-        paddingX={24}
-        justifyContent="flex-end"
-        width="100%"
-        minHeight="150px"
-        lg={{ display: 'none' }}
-      />
-      <Flex width={`calc(${cardCount}00% + 300px)`} flexDirection="column" lg={{ flexDirection: 'row' }}>
+      {detailsVariant && (
         <StructuredTextParser
           text={cards[activeIndex]?.body}
           textColor={{ dark: 'gray-500', light: 'purple-900' }}
-          marginLeft={24}
-          marginRight={24}
-          textStyle="xl"
-          justifyContent="center"
-          width="300px"
-          lg={{ display: 'flex' }}
-          display="none"
+          paddingX={24}
+          justifyContent="flex-end"
+          width="100%"
+          minHeight="150px"
+          lg={{ display: 'none' }}
         />
-        <Container overflowX="hidden">
+      )}
+      <Flex width={`calc(${cardCount}00% + 300px)`} flexDirection="column" lg={{ flexDirection: 'row' }}>
+        {detailsVariant && (
+          <StructuredTextParser
+            text={cards[activeIndex]?.body}
+            textColor={{ dark: 'gray-500', light: 'purple-900' }}
+            marginLeft={24}
+            marginRight={24}
+            textStyle="xl"
+            justifyContent="center"
+            width="300px"
+            lg={{ display: 'flex' }}
+            display="none"
+          />
+        )}
+        <Container overflowX={detailsVariant && 'hidden'}>
           <Flex
             gap={`${gapBetweenCards}px`}
             marginLeft={24}
