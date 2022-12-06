@@ -21,11 +21,12 @@ const TestimonialCard: FC<TestimonialCardRecord> = ({ quote, person, ...props })
     gap="32px"
     width="94vw"
     maxWidth="1440px"
-    borderRadius="8px"
+    borderRadius="24px"
     backgroundColor={{ dark: 'purple-800', light: 'gray-50' }}
     paddingX={24}
     paddingTop={48}
     paddingBottom={24}
+    lg={{ paddingX: 48, paddingTop: 64, paddingBottom: 48 }}
     {...props}
   >
     <Quotes size={120} fill={color.primary[500]} />

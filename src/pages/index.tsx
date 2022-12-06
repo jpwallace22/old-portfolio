@@ -5,7 +5,7 @@ import request from 'graphql/datocms';
 import { buttonFrag, companyFrag, imageFrag, personFrag, switchBackFrag, testimonialCardFrag } from 'graphql/fragments';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { Container, Dots, Heading, Image, LargeCircle, SmallCircle } from 'quarks';
+import { Container, Dots, Heading, Image, LargeCircle, Paragraph, SmallCircle } from 'quarks';
 import styled from 'styled-components';
 
 import dots from 'assets/images/dots.webp';
@@ -17,7 +17,6 @@ import { media } from 'atoms/breakpoints/breakpoints';
 import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 
 import Hero from 'components/Hero/Hero';
-import Slider from 'components/Slider/Slider';
 
 import { emailObfuscator } from 'utils/functions';
 
@@ -29,6 +28,7 @@ const AlternatingSwitchbacks = lazy(() => import('components/AlternatingSwitchba
 const Footer = lazy(() => import('components/Footer/Footer'));
 const Switchback = lazy(() => import('components/Switchback/Switchback'));
 const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/StructuredTextParser'));
+const Slider = lazy(() => import('components/Slider/Slider'));
 
 const HeroLine = styled(Line)``;
 const AboutLine = styled(Line2)``;
@@ -84,6 +84,7 @@ const Home: FC<IHomePage> = ({ data }) => {
           href="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27635%27%20height=%27629%27/%3e"
         />
       </Head>
+
       <Container as="main" contain="layout" maxWidth="1440px" marginX="auto" paddingX={16} lg={{ paddingX: 32 }}>
         <Container
           className="heroSection"
@@ -126,6 +127,7 @@ const Home: FC<IHomePage> = ({ data }) => {
           <SmallCircle position="absolute" left="80%" top="10%" zIndex={-1} lg={{ left: '75%' }} />
           <Hero position="absolute" top="5%" lg={{ top: '40%' }} />
         </Container>
+
         <StandardFadeIn>
           <Container
             as="section"
@@ -141,7 +143,34 @@ const Home: FC<IHomePage> = ({ data }) => {
             <Dots position="absolute" bottom="0" left="45%" lg={{ top: '110px', left: '50%' }} />
           </Container>
         </StandardFadeIn>
-        <Slider cards={testimonials} />
+
+        <Container as="section" paddingBottom={64} paddingTop={80} position="relative">
+          {/* <Container
+            backgroundColor={{ dark: 'purple-600', light: 'gray-50' }}
+            position="absolute"
+            opacity={0.5}
+            top={0}
+            bottom={0}
+            left="-1200px"
+            right="-1200px"
+            zIndex={-10}
+          /> */}
+          <Heading as="h3" textStyle="lg" marginBottom={24} textAlign="center" lg={{ textStyle: 'xl' }}>
+            What the people are saying
+          </Heading>
+          <Paragraph
+            maxWidth="730px"
+            textAlign="center"
+            marginX="auto"
+            textColor={{ dark: 'gray-500', light: 'purple-900' }}
+            marginBottom={32}
+            lg={{ marginBottom: 0 }}
+          >
+            From co-workers to clients, people seam to say some pretty good things. They can&apos;`t all be wrong!
+          </Paragraph>
+          <Slider cards={testimonials} />
+        </Container>
+
         <Container id="works" ref={worksRef} as="section" position="relative" contain="layout" paddingY={64}>
           {isDesktop && (
             <Container position="absolute" left="380px" top="-60px">
