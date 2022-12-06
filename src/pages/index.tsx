@@ -2,7 +2,7 @@ import { lazy, useEffect, useRef, useState } from 'react';
 
 import { useMediaQuery } from '@mui/material';
 import request from 'graphql/datocms';
-import { buttonFrag, imageFrag, switchBackFrag } from 'graphql/fragments';
+import { buttonFrag, companyFrag, imageFrag, personFrag, switchBackFrag, testimonialCardFrag } from 'graphql/fragments';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Container, Dots, Heading, Image, LargeCircle, SmallCircle } from 'quarks';
@@ -17,6 +17,7 @@ import { media } from 'atoms/breakpoints/breakpoints';
 import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 
 import Hero from 'components/Hero/Hero';
+import Slider from 'components/Slider/Slider';
 
 import { emailObfuscator } from 'utils/functions';
 
@@ -37,7 +38,7 @@ type IHomePage = {
 };
 
 const Home: FC<IHomePage> = ({ data }) => {
-  const { worksHeading, worksIntro, aboutMe, works } = data;
+  const { worksHeading, worksIntro, aboutMe, works, testimonials } = data;
   const isDesktop = useMediaQuery(media.lg);
   const [drawHero, setDrawHero] = useState(0);
   const [drawAbout, setDrawAbout] = useState(0);
@@ -83,7 +84,7 @@ const Home: FC<IHomePage> = ({ data }) => {
           href="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27635%27%20height=%27629%27/%3e"
         />
       </Head>
-      <Container as="main" maxWidth="1440px" marginX="auto" paddingX={16} lg={{ paddingX: 32 }}>
+      <Container as="main" contain="layout" maxWidth="1440px" marginX="auto" paddingX={16} lg={{ paddingX: 32 }}>
         <Container
           className="heroSection"
           as="section"
@@ -140,6 +141,7 @@ const Home: FC<IHomePage> = ({ data }) => {
             <Dots position="absolute" bottom="0" left="45%" lg={{ top: '110px', left: '50%' }} />
           </Container>
         </StandardFadeIn>
+        <Slider cards={testimonials} />
         <Container id="works" ref={worksRef} as="section" position="relative" contain="layout" paddingY={64}>
           {isDesktop && (
             <Container position="absolute" left="380px" top="-60px">
@@ -191,8 +193,14 @@ export const getStaticProps: GetStaticProps = async () => {
             ...imageFrag
           }
         }
+        testimonials {
+          ...testimonialCardFrag
+        }
       }
     }
+    ${testimonialCardFrag}
+    ${personFrag}
+    ${companyFrag}
     ${buttonFrag}
     ${imageFrag}
     ${switchBackFrag}

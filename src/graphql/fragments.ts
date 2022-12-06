@@ -50,6 +50,49 @@ export const caseStudyCardFrag = gql`
   }
 `;
 
+export const testimonialCardFrag = gql`
+  fragment testimonialCardFrag on TestimonialCardRecord {
+    __typename
+    id
+    internalName
+    quote {
+      value
+    }
+    person {
+      ...personFrag
+    }
+  }
+`;
+
+export const personFrag = gql`
+  fragment personFrag on PersonRecord {
+    __typename
+    id
+    internalName
+    firstName
+    lastName
+    company {
+      ...companyFrag
+    }
+    role
+    thumbnail {
+      ...imageFrag
+    }
+  }
+`;
+
+export const companyFrag = gql`
+  fragment companyFrag on CompanyRecord {
+    __typename
+    id
+    internalName
+    name
+    logo {
+      ...imageFrag
+    }
+  }
+`;
+
 export const techFrag = gql`
   fragment techFrag on TechStackRecord {
     __typename

@@ -3,22 +3,26 @@ import { lazy, useEffect, useState } from 'react';
 import { Container, Flex } from 'quarks';
 import { useSwipeable } from 'react-swipeable';
 
-import type { CaseStudyCardRecord } from 'graphql/generatedTypes';
+import type { CaseStudyCardRecord, TestimonialCardRecord } from 'graphql/generatedTypes';
 import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC } from 'react';
 
 const CaseStudyCard = lazy(() => import('components/cards/CaseStudyCard/CaseStudyCard'));
+const TestimonialCard = lazy(() => import('components/cards/TestimonialCard/TestimonialCard'));
 const ComponentPagination = lazy(() => import('molecules/ComponentPagination/ComponentPagination'));
 const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/StructuredTextParser'));
 
 type SliderCardProps = BasicProps & {
-  cards: CaseStudyCardRecord[];
+  cards: CaseStudyCardRecord[] | TestimonialCardRecord[];
   detailsVariant?: boolean;
 };
 
 const Slider: FC<SliderCardProps> = ({ cards, detailsVariant }) => {
   const [activeIndex, setActive] = useState(0);
   const [cardWidths, setCardWidths] = useState<number[]>([]);
+
+  const isCaseStudy = (arr: SliderCardProps['cards']): arr is CaseStudyCardRecord[] =>
+    arr[0].__typename === 'CaseStudyCardRecord';
 
   const gapBetweenCards = detailsVariant ? 64 : 32;
   const cardCount = cards?.length;
@@ -63,7 +67,7 @@ const Slider: FC<SliderCardProps> = ({ cards, detailsVariant }) => {
       {...swipeHandler}
       ref={refPassthrough}
     >
-      {detailsVariant && (
+      {detailsVariant && isCaseStudy(cards) && (
         <StructuredTextParser
           text={cards[activeIndex]?.body}
           textColor={{ dark: 'gray-500', light: 'purple-900' }}
@@ -75,7 +79,7 @@ const Slider: FC<SliderCardProps> = ({ cards, detailsVariant }) => {
         />
       )}
       <Flex width={`calc(${cardCount}00% + 300px)`} flexDirection="column" lg={{ flexDirection: 'row' }}>
-        {detailsVariant && (
+        {detailsVariant && isCaseStudy(cards) && (
           <StructuredTextParser
             text={cards[activeIndex]?.body}
             textColor={{ dark: 'gray-500', light: 'purple-900' }}
@@ -91,19 +95,25 @@ const Slider: FC<SliderCardProps> = ({ cards, detailsVariant }) => {
         <Container overflowX={detailsVariant && 'hidden'}>
           <Flex
             gap={`${gapBetweenCards}px`}
-            marginLeft={24}
-            md={{ marginLeft: 32 }}
-            xl={{ marginLeft: 40 }}
+            marginLeft={detailsVariant && 24}
+            md={{ marginLeft: detailsVariant && 32 }}
+            xl={{ marginLeft: detailsVariant && 40 }}
             transform={`translateX(-${calculateSlide(cardWidths.slice(0, activeIndex), gapBetweenCards)}px)`}
             transition="transform 0.5s"
             flexWrap="nowrap"
             alignItems="stretch"
           >
-            {cards?.map(card => (
-              <Flex alignItems="center" key={card?.internalName} className="card-deck-items">
-                <CaseStudyCard {...card} />
-              </Flex>
-            ))}
+            {isCaseStudy(cards)
+              ? cards?.map(card => (
+                  <Flex alignItems="center" key={card?.internalName} className="card-deck-items">
+                    <CaseStudyCard {...card} />
+                  </Flex>
+                ))
+              : cards?.map(card => (
+                  <Flex alignItems="center" key={card?.internalName} className="card-deck-items">
+                    <TestimonialCard {...card} />
+                  </Flex>
+                ))}
           </Flex>
         </Container>
       </Flex>
