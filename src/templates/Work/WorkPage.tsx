@@ -54,7 +54,7 @@ const WorkPageTemplate: FC<WorkRecord> = props => {
           )}
         </Container>
         <Dots position="absolute" transform="rotate(45deg)" top="1000px" left="-270px" md={{ left: '-400px' }} />
-        <Slider cards={slider} detailsVariant />
+        <Slider cards={slider} detailsVariant infinite />
         <Container maxWidth="1100px" paddingX={16} lg={{ marginX: 'auto', paddingX: 32 }}>
           {information && (
             <Container as="section">

@@ -168,7 +168,7 @@ const Home: FC<IHomePage> = ({ data }) => {
           >
             From co-workers to clients, people seam to say some pretty good things. They can&apos;`t all be wrong!
           </Paragraph>
-          <Slider cards={testimonials} />
+          <Slider cards={testimonials} infinite />
         </Container>
 
         <Container id="works" ref={worksRef} as="section" position="relative" contain="layout" paddingY={64}>
