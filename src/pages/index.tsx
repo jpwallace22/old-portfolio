@@ -5,11 +5,11 @@ import request from 'graphql/datocms';
 import { buttonFrag, companyFrag, imageFrag, personFrag, switchBackFrag, testimonialCardFrag } from 'graphql/fragments';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { Container, Dots, Heading, Image, LargeCircle, Paragraph, SmallCircle } from 'quarks';
+import { Container, Dots, Heading, Image, LargeCircle, SmallCircle } from 'quarks';
 import styled from 'styled-components';
 
 import dots from 'assets/images/dots.webp';
-import { ReactComponent as Line2 } from 'assets/svg/about-line.svg';
+// import { ReactComponent as Line2 } from 'assets/svg/about-line.svg';
 import { ReactComponent as Line } from 'assets/svg/hero-line.svg';
 
 import { media } from 'atoms/breakpoints/breakpoints';
@@ -31,7 +31,7 @@ const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/S
 const Slider = lazy(() => import('components/Slider/Slider'));
 
 const HeroLine = styled(Line)``;
-const AboutLine = styled(Line2)``;
+// const AboutLine = styled(Line2)``;
 
 type IHomePage = {
   data: HomepageRecord;
@@ -41,7 +41,7 @@ const Home: FC<IHomePage> = ({ data }) => {
   const { worksHeading, worksIntro, aboutMe, works, testimonials } = data;
   const isDesktop = useMediaQuery(media.lg);
   const [drawHero, setDrawHero] = useState(0);
-  const [drawAbout, setDrawAbout] = useState(0);
+  // const [drawAbout, setDrawAbout] = useState(0);
 
   const aboutRef = useRef<HTMLElement | null>(null);
   const worksRef = useRef<HTMLElement | null>(null);
@@ -57,15 +57,15 @@ const Home: FC<IHomePage> = ({ data }) => {
         const heroPercentage =
           document.documentElement.scrollTop / (aboutSection.top + document.documentElement.scrollTop);
 
-        const aboutPercentage =
-          (document.documentElement.scrollTop - (aboutSection.top + document.documentElement.scrollTop) + 250) /
-          (worksSection.top +
-            document.documentElement.scrollTop +
-            250 -
-            (aboutSection.top + document.documentElement.scrollTop));
+        // const aboutPercentage =
+        //   (document.documentElement.scrollTop - (aboutSection.top + document.documentElement.scrollTop) + 250) /
+        //   (worksSection.top +
+        //     document.documentElement.scrollTop +
+        //     250 -
+        //     (aboutSection.top + document.documentElement.scrollTop));
 
         setDrawHero(250 * heroPercentage);
-        setDrawAbout(aboutPercentage > 0 ? 800 * aboutPercentage : 0);
+        // setDrawAbout(aboutPercentage > 0 ? 800 * aboutPercentage : 0);
       }
     };
 
@@ -144,9 +144,9 @@ const Home: FC<IHomePage> = ({ data }) => {
           </Container>
         </StandardFadeIn>
 
-        <Container as="section" paddingBottom={64} paddingTop={80} position="relative">
-          {/* <Container
-            backgroundColor={{ dark: 'purple-600', light: 'gray-50' }}
+        <Container as="section" paddingBottom={64} paddingTop={80} marginY={64} position="relative">
+          <Container
+            backgroundColor={{ dark: 'purple-700', light: 'purple-100' }}
             position="absolute"
             opacity={0.5}
             top={0}
@@ -154,25 +154,12 @@ const Home: FC<IHomePage> = ({ data }) => {
             left="-1200px"
             right="-1200px"
             zIndex={-10}
-          /> */}
-          <Heading as="h3" textStyle="lg" marginBottom={24} textAlign="center" lg={{ textStyle: 'xl' }}>
-            What the people are saying
-          </Heading>
-          <Paragraph
-            maxWidth="730px"
-            textAlign="center"
-            marginX="auto"
-            textColor={{ dark: 'gray-500', light: 'purple-900' }}
-            marginBottom={32}
-            lg={{ marginBottom: 0 }}
-          >
-            From co-workers to clients, people seam to say some pretty good things. They can&apos;`t all be wrong!
-          </Paragraph>
+          />
           <Slider cards={testimonials} infinite />
         </Container>
 
         <Container id="works" ref={worksRef} as="section" position="relative" contain="layout" paddingY={64}>
-          {isDesktop && (
+          {/* {isDesktop && (
             <Container position="absolute" left="380px" top="-60px">
               <AboutLine
                 width={400}
@@ -183,7 +170,7 @@ const Home: FC<IHomePage> = ({ data }) => {
                 `}
               />
             </Container>
-          )}
+          )} */}
           <LargeCircle position="absolute" left="-900px" top="90px" zIndex={-10} lg={{ bottom: '-200px' }} />
           <StandardFadeIn>
             <Heading as="h3" textStyle="lg" marginBottom={24} lg={{ textStyle: 'xl' }}>

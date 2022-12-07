@@ -2,7 +2,7 @@ import { Container, Flex, Image, Paragraph } from 'quarks';
 import { IoIosQuote } from 'react-icons/io';
 import styled from 'styled-components';
 
-import color from 'atoms/colors/colors';
+import color, { gradient } from 'atoms/colors/colors';
 
 import StructuredTextParser from 'molecules/StructuredTextParser/StructuredTextParser';
 
@@ -18,25 +18,46 @@ const Quotes = styled(IoIosQuote)`
 const TestimonialCard: FC<TestimonialCardRecord> = ({ quote, person, ...props }) => (
   <Flex
     flexDirection="column"
+    position="relative"
     gap="32px"
-    width="94vw"
-    maxWidth="1440px"
-    borderRadius="24px"
+    width="93.3vw"
+    maxWidth="1376px"
+    borderRadius="32px"
+    boxShadow="lg"
     backgroundColor={{ dark: 'purple-800', light: 'gray-50' }}
     paddingX={24}
     paddingTop={48}
     paddingBottom={24}
-    lg={{ paddingX: 48, paddingTop: 64, paddingBottom: 48 }}
+    sm={{ width: '95.5vw' }}
+    lg={{ paddingAll: 64, width: '94vw' }}
+    xl={{ width: '95vw' }}
+    css={`
+      background-clip: padding-box;
+      border: solid 5px transparent;
+      border-radius: 32px;
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        margin: -3px;
+        border-radius: inherit;
+        background: ${gradient.purpleLeft};
+      }
+    `}
     {...props}
   >
     <Quotes size={120} fill={color.primary[500]} />
     {quote && (
       <StructuredTextParser
         text={quote}
-        fontSize={20}
-        lineHeight={32}
-        lg={{ fontSize: 24, lineHeight: 32 }}
-        xl={{ fontSize: 30, lineHeight: 38 }}
+        fontSize={24}
+        lineHeight={38}
+        lg={{ fontSize: 30, lineHeight: 38 }}
+        xl={{ fontSize: 36, lineHeight: 44 }}
         textColor={{ dark: 'gray-400', light: 'purple-800' }}
       />
     )}
