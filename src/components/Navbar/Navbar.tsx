@@ -12,6 +12,8 @@ import { media } from 'atoms/breakpoints/breakpoints';
 
 import StyledHamburger from 'components/Navbar/Hamburger';
 
+import { underlineOnHover } from 'utils/css';
+
 import useDarkMode from 'contexts/ThemeProvider';
 
 import type { SocialsProps } from 'molecules/Socials/Socials';
@@ -87,7 +89,7 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
         <ClickMe />
         <StyledHamburger
           navRef={mobileNav}
-          className={active ? 'close-menu' : undefined}
+          className={active ? 'close-`menu`' : undefined}
           position="relative"
           right={active ? '-70%' : '0'}
           transition={slideTransition}
@@ -184,6 +186,9 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
                     position="relative"
                     fontWeight="bold"
                     lg={{ textStyle: 'xl', fontWeight: 'light' }}
+                    css={`
+                      ${underlineOnHover(-8)}
+                    `}
                   >
                     {link.text}
                   </Text>
