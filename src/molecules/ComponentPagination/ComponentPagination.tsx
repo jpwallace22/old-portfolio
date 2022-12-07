@@ -41,7 +41,14 @@ interface ComponentPaginationProps {
    * Callback fired when right arrow is clicked.
    */
   onRightArrowClick: () => void;
+  /**
+   * If true, button will disable at end of list
+   */
   disableOnEnd?: boolean;
+  /**
+   * If true, buttons will be disabled
+   */
+  disable?: boolean;
 }
 
 const dotsColors = {
@@ -58,6 +65,7 @@ const ComponentPagination: FC<ComponentPaginationProps> = ({
   onLeftArrowClick,
   onRightArrowClick,
   disableOnEnd,
+  disable,
 }) => {
   const color = dotsColors[variant];
 
@@ -74,7 +82,7 @@ const ComponentPagination: FC<ComponentPaginationProps> = ({
           aria-label="left"
           hover={{ textColor: 'primary-600', backgroundColor: 'transparent' }}
           onClick={handleLeftArrowClick}
-          disabled={disableOnEnd && activeDot === 0}
+          disabled={disable || (disableOnEnd && activeDot === 0)}
           cursor="pointer"
         >
           <TiChevronLeft />
@@ -102,7 +110,7 @@ const ComponentPagination: FC<ComponentPaginationProps> = ({
           aria-label="right"
           hover={{ textColor: 'purple-500', backgroundColor: 'transparent' }}
           onClick={handleRightArrowClick}
-          disabled={disableOnEnd && activeDot === dotsCount - 1}
+          disabled={disable || (disableOnEnd && activeDot === dotsCount - 1)}
           cursor="pointer"
         >
           <TiChevronRight />

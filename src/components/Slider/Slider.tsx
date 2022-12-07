@@ -24,30 +24,29 @@ const Slider: FC<SliderCardProps> = ({ cards, detailsVariant, infinite }) => {
   const [activeIndex, setActive] = useState(2);
   const [cardWidths, setCardWidths] = useState<number[]>([]);
   const [shouldAnimate, setShouldAnimate] = useState(true);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const isCaseStudy = (arr: SliderCardProps['cards']): arr is CaseStudyCardRecord[] =>
     arr[0].__typename === 'CaseStudyCardRecord';
 
-  const createDuplicates = (arr: SliderCardProps['cards']) => {
+  const cardsWithDuplicates = ((arr: SliderCardProps['cards']) => {
     if (isCaseStudy(arr)) {
       return [arr[arr.length - 2], arr[arr.length - 1], ...arr, arr[0], arr[1]];
     }
 
     return [arr[arr.length - 2], arr[arr.length - 1], ...arr, arr[0], arr[1]];
-  };
-
-  const cardsWithDuplicates = createDuplicates(cards);
+  })(cards);
 
   const gapBetweenCards = detailsVariant ? 64 : 32;
   const allCards = infinite ? cardsWithDuplicates : cards;
   const cardCount = allCards?.length;
 
-  const handleLeft = () => (activeIndex === 0 ? setActive(cardCount - 1) : setActive(activeIndex - 1));
-  const handleRight = () => (activeIndex === cardCount - 1 ? setActive(0) : setActive(activeIndex + 1));
+  const leftClick = () => (activeIndex === 0 ? setActive(cardCount - 1) : setActive(activeIndex - 1));
+  const rightClick = () => (activeIndex === cardCount - 1 ? setActive(0) : setActive(activeIndex + 1));
 
   const swipeHandler = useSwipeable({
-    onSwipedRight: handleLeft,
-    onSwipedLeft: handleRight,
+    onSwipedRight: leftClick,
+    onSwipedLeft: rightClick,
     preventScrollOnSwipe: true,
   });
 
@@ -57,13 +56,16 @@ const Slider: FC<SliderCardProps> = ({ cards, detailsVariant, infinite }) => {
 
   const handleArrowClick = (direction: string) => {
     if (direction === 'Right' && cardCount) {
-      handleRight();
+      rightClick();
+      setIsButtonDisabled(true);
     } else if (direction === 'Left' && cardCount) {
-      handleLeft();
+      leftClick();
+      setIsButtonDisabled(true);
     }
   };
 
   const handleTransitionEnd = () => {
+    setIsButtonDisabled(false);
     if (activeIndex === 1) {
       setShouldAnimate(false);
       setActive(cardCount - 3);
@@ -88,7 +90,7 @@ const Slider: FC<SliderCardProps> = ({ cards, detailsVariant, infinite }) => {
     }
   }, [activeIndex, cardCount, infinite]);
 
-  const calculateSlide = (arr: number[], gap: number) => arr.reduce((a, b) => a + b + gap, 0);
+  const calculateSlideAnimation = (arr: number[], gap: number) => arr.reduce((a, b) => a + b + gap, 0);
 
   return cards?.length > 0 ? (
     <Flex
@@ -133,7 +135,7 @@ const Slider: FC<SliderCardProps> = ({ cards, detailsVariant, infinite }) => {
             marginLeft={detailsVariant && 24}
             md={{ marginLeft: detailsVariant && 32 }}
             xl={{ marginLeft: detailsVariant && 40 }}
-            transform={`translateX(-${calculateSlide(cardWidths.slice(0, activeIndex), gapBetweenCards)}px)`}
+            transform={`translateX(-${calculateSlideAnimation(cardWidths.slice(0, activeIndex), gapBetweenCards)}px)`}
             transition={shouldAnimate && 'transform 0.5s'}
             flexWrap="nowrap"
             alignItems="stretch"
@@ -154,6 +156,7 @@ const Slider: FC<SliderCardProps> = ({ cards, detailsVariant, infinite }) => {
         </Container>
       </Flex>
       <ComponentPagination
+        disable={isButtonDisabled}
         dotsCount={!infinite ? cardCount : 0}
         activeDot={activeIndex}
         onLeftArrowClick={() => handleArrowClick('Left')}
