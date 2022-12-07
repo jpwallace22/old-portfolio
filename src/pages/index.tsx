@@ -28,7 +28,7 @@ const AlternatingSwitchbacks = lazy(() => import('components/AlternatingSwitchba
 const Footer = lazy(() => import('components/Footer/Footer'));
 const Switchback = lazy(() => import('components/Switchback/Switchback'));
 const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/StructuredTextParser'));
-const Slider = lazy(() => import('components/Slider/Slider'));
+const Carousel = lazy(() => import('components/Carousel/Carousel'));
 
 const HeroLine = styled(Line)``;
 // const AboutLine = styled(Line2)``;
@@ -155,7 +155,7 @@ const Home: FC<IHomePage> = ({ data }) => {
             right="-1200px"
             zIndex={-10}
           />
-          <Slider cards={testimonials} infinite />
+          <Carousel cards={testimonials} />
         </Container>
 
         <Container id="works" ref={worksRef} as="section" position="relative" contain="layout" paddingY={64}>

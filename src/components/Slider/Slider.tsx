@@ -21,7 +21,7 @@ type SliderCardProps = BasicProps & {
 };
 
 const Slider: FC<SliderCardProps> = ({ cards, detailsVariant, infinite }) => {
-  const [activeIndex, setActive] = useState(2);
+  const [activeIndex, setActive] = useState(infinite ? 2 : 0);
   const [cardWidths, setCardWidths] = useState<number[]>([]);
   const [shouldAnimate, setShouldAnimate] = useState(true);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
@@ -66,12 +66,14 @@ const Slider: FC<SliderCardProps> = ({ cards, detailsVariant, infinite }) => {
 
   const handleTransitionEnd = () => {
     setIsButtonDisabled(false);
-    if (activeIndex === 1) {
-      setShouldAnimate(false);
-      setActive(cardCount - 3);
-    } else if (activeIndex === cardCount - 2) {
-      setShouldAnimate(false);
-      setActive(2);
+    if (infinite) {
+      if (activeIndex === 1) {
+        setShouldAnimate(false);
+        setActive(cardCount - 3);
+      } else if (activeIndex === cardCount - 2) {
+        setShouldAnimate(false);
+        setActive(2);
+      }
     }
   };
 
@@ -141,13 +143,13 @@ const Slider: FC<SliderCardProps> = ({ cards, detailsVariant, infinite }) => {
             alignItems="stretch"
             onTransitionEnd={() => handleTransitionEnd()}
           >
-            {isCaseStudy(cardsWithDuplicates)
-              ? cardsWithDuplicates?.map(card => (
+            {isCaseStudy(allCards)
+              ? allCards?.map(card => (
                   <Flex alignItems="center" key={getSemiRandomString()} className="card-deck-items">
                     <CaseStudyCard {...card} />
                   </Flex>
                 ))
-              : cardsWithDuplicates?.map(card => (
+              : allCards?.map(card => (
                   <Flex alignItems="center" key={getSemiRandomString()} className="card-deck-items">
                     <TestimonialCard {...card} />
                   </Flex>
