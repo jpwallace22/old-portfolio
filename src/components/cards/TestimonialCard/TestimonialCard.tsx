@@ -61,7 +61,7 @@ const TestimonialCard: FC<TestimonialCardRecord> = ({ quote, person, ...props })
         textColor={{ dark: 'gray-400', light: 'purple-800' }}
       />
     )}
-    <Flex position="relative" width="100%" flexDirection="row" alignItems="center" gap="50px 40px">
+    <Flex position="relative" width="100%" flexDirection="row" alignItems="center" gap="50px 20px">
       {person && (
         <Container
           borderRadius="100px"
@@ -74,9 +74,9 @@ const TestimonialCard: FC<TestimonialCardRecord> = ({ quote, person, ...props })
           <Image layout="fill" src={person.company?.logo?.url || ''} alt="" objectFit="cover" />
         </Container>
       )}
-      <Flex flexDirection="column" alignItems="start">
+      <Flex flexDirection="column" alignItems="start" gap="4px">
         {person?.firstName && person?.lastName && (
-          <Paragraph textStyle="lg" fontWeight="bold" fontSize={14} lineHeight={18}>
+          <Paragraph textStyle="lg" fontWeight="bold" fontSize={16} lineHeight={18}>
             {`${person?.firstName} ${person?.lastName}`}
           </Paragraph>
         )}

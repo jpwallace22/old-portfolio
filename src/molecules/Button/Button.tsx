@@ -57,6 +57,8 @@ export interface ButtonProps extends FlexProps {
    * event: The event source of the callback. You can pull out the new value by accessing `event.target.value` (string).
    */
   onClick?: (event: MouseEvent) => void;
+  onMouseEnter?: (event: MouseEvent) => void;
+  onMouseLeave?: (event: MouseEvent) => void;
 }
 
 const Button: FC<ButtonProps> = ({ children, endIcon, startIcon, href, iconSize, ...props }) => {

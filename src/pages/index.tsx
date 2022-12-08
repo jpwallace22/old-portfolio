@@ -144,8 +144,8 @@ const Home: FC<IHomePage> = ({ data }) => {
           </Container>
         </StandardFadeIn>
 
-        <Container as="section" paddingBottom={64} paddingTop={80} marginY={64} position="relative">
-          <Container
+        <Container as="section" paddingBottom={64} paddingTop={80} position="relative">
+          {/* <Container
             backgroundColor={{ dark: 'purple-700', light: 'purple-100' }}
             position="absolute"
             opacity={0.5}
@@ -154,7 +154,7 @@ const Home: FC<IHomePage> = ({ data }) => {
             left="-1200px"
             right="-1200px"
             zIndex={-10}
-          />
+          /> */}
           <Carousel cards={testimonials} />
         </Container>
 
