@@ -444,6 +444,7 @@ export type CompanyModelFilter = {
   logo?: InputMaybe<FileFilter>;
   name?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<UpdatedAtFilter>;
+  website?: InputMaybe<StringFilter>;
 };
 
 export enum CompanyModelOrderBy {
@@ -472,7 +473,9 @@ export enum CompanyModelOrderBy {
   Name_ASC = 'name_ASC',
   Name_DESC = 'name_DESC',
   UpdatedAt_ASC = 'updatedAt_ASC',
-  UpdatedAt_DESC = 'updatedAt_DESC'
+  UpdatedAt_DESC = 'updatedAt_DESC',
+  Website_ASC = 'website_ASC',
+  Website_DESC = 'website_DESC'
 }
 
 /** Record of type Company (company) */
@@ -495,6 +498,7 @@ export type CompanyRecord = RecordInterface & {
   logo?: Maybe<FileField>;
   name?: Maybe<Scalars['String']>;
   updatedAt: Scalars['DateTime'];
+  website?: Maybe<Scalars['String']>;
 };
 
 
@@ -2259,6 +2263,7 @@ export type PersonModelFilter = {
   role?: InputMaybe<StringFilter>;
   thumbnail?: InputMaybe<FileFilter>;
   updatedAt?: InputMaybe<UpdatedAtFilter>;
+  website?: InputMaybe<StringFilter>;
 };
 
 export enum PersonModelOrderBy {
@@ -2291,7 +2296,9 @@ export enum PersonModelOrderBy {
   Role_ASC = 'role_ASC',
   Role_DESC = 'role_DESC',
   UpdatedAt_ASC = 'updatedAt_ASC',
-  UpdatedAt_DESC = 'updatedAt_DESC'
+  UpdatedAt_DESC = 'updatedAt_DESC',
+  Website_ASC = 'website_ASC',
+  Website_DESC = 'website_DESC'
 }
 
 /** Record of type Person (person) */
@@ -2317,6 +2324,7 @@ export type PersonRecord = RecordInterface & {
   role?: Maybe<Scalars['String']>;
   thumbnail?: Maybe<FileField>;
   updatedAt: Scalars['DateTime'];
+  website?: Maybe<Scalars['String']>;
 };
 
 

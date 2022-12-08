@@ -71,6 +71,7 @@ export const personFrag = gql`
     internalName
     firstName
     lastName
+    website
     company {
       ...companyFrag
     }
@@ -87,6 +88,7 @@ export const companyFrag = gql`
     id
     internalName
     name
+    website
     logo {
       ...imageFrag
     }

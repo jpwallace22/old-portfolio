@@ -1,4 +1,4 @@
-import { Container, Flex, Image, Paragraph } from 'quarks';
+import { Container, Flex, Image, Link, Paragraph } from 'quarks';
 import { IoIosQuote } from 'react-icons/io';
 import styled from 'styled-components';
 
@@ -61,6 +61,7 @@ const TestimonialCard: FC<TestimonialCardRecord> = ({ quote, person, ...props })
         textColor={{ dark: 'gray-400', light: 'purple-800' }}
       />
     )}
+
     <Flex position="relative" width="100%" flexDirection="row" alignItems="center" gap="50px 20px">
       {person && (
         <Container
@@ -71,22 +72,29 @@ const TestimonialCard: FC<TestimonialCardRecord> = ({ quote, person, ...props })
           position="relative"
           flex="0 0 80px"
         >
-          <Image layout="fill" src={person.company?.logo?.url || ''} alt="" objectFit="cover" />
+          <Image
+            layout="fill"
+            src={person?.thumbnail?.url || person.company?.logo?.url || ''}
+            alt=""
+            objectFit="cover"
+          />
         </Container>
       )}
-      <Flex flexDirection="column" alignItems="start" gap="4px">
-        {person?.firstName && person?.lastName && (
-          <Paragraph textStyle="lg" fontWeight="bold" fontSize={16} lineHeight={18}>
-            {`${person?.firstName} ${person?.lastName}`}
-          </Paragraph>
-        )}
-        {(person?.role || person?.company?.name) && (
-          <Paragraph textStyle="lg" fontWeight="regular">
-            {person?.role ? `${person?.role} • ` : ''}
-            {person?.company?.name}
-          </Paragraph>
-        )}
-      </Flex>
+      <Link href={person?.website || ''}>
+        <Flex flexDirection="column" alignItems="start" gap="4px">
+          {person?.firstName && person?.lastName && (
+            <Paragraph textStyle="lg" fontWeight="bold" fontSize={16} lineHeight={18}>
+              {`${person?.firstName} ${person?.lastName}`}
+            </Paragraph>
+          )}
+          {(person?.role || person?.company?.name) && (
+            <Paragraph textStyle="lg" fontWeight="regular">
+              {person?.role ? `${person?.role} • ` : ''}
+              {person?.company?.name}
+            </Paragraph>
+          )}
+        </Flex>
+      </Link>
     </Flex>
   </Flex>
 );
