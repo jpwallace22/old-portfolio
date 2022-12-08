@@ -86,10 +86,9 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
       justifyContent="center"
       md={{ paddingY: 64 }}
       lg={{ paddingY: 96, gap: '48px' }}
-      {...swipeHandler}
       ref={refPassthrough}
     >
-      <Flex width={`calc(${cardCount}00% + 300px)`} flexDirection="column" lg={{ flexDirection: 'row' }}>
+      <Flex width={`${cardCount}00%`} flexDirection="column" lg={{ flexDirection: 'row' }}>
         <Container>
           <Flex
             gap={`${gapBetweenCards}px`}
@@ -110,27 +109,19 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
       <Flex justifyContent="space-around" gap="32px">
         <Button
           flex="0 0 30%"
-          backgroundColor="purple-700"
-          opacity={0.4}
-          transition="opacity .2s"
           hover={{ opacity: 1 }}
           height="82px"
-          onClick={() => handleArrowClick('Left')}
+          onClick={() => !isButtonDisabled && handleArrowClick('Left')}
           cursor="pointer"
-          disabled={isButtonDisabled}
         >
           <TiChevronLeft size={40} />
         </Button>
         <Button
           flex="0 0 30%"
-          height="82px"
-          backgroundColor="purple-700"
-          opacity={0.4}
           transition="opacity .2s"
           hover={{ opacity: 1 }}
-          onClick={() => handleArrowClick('Right')}
+          onClick={() => !isButtonDisabled && handleArrowClick('Right')}
           cursor="pointer"
-          disabled={isButtonDisabled}
         >
           <TiChevronRight size={40} />
         </Button>

@@ -24,13 +24,13 @@ const TestimonialCard: FC<TestimonialCardRecord> = ({ quote, person, ...props })
     maxWidth="1376px"
     borderRadius="32px"
     boxShadow="lg"
-    backgroundColor={{ dark: 'purple-800', light: 'gray-50' }}
+    backgroundColor={{ dark: 'common-black', light: 'common-white' }}
     paddingX={24}
     paddingTop={48}
     paddingBottom={24}
     sm={{ width: '95.5vw' }}
     lg={{ paddingAll: 64, width: '94vw' }}
-    xl={{ width: '95vw' }}
+    xl={{ width: '95vw', paddingAll: 80 }}
     css={`
       background-clip: padding-box;
       border: solid 5px transparent;
@@ -57,7 +57,7 @@ const TestimonialCard: FC<TestimonialCardRecord> = ({ quote, person, ...props })
         fontSize={24}
         lineHeight={38}
         lg={{ fontSize: 30, lineHeight: 38 }}
-        xl={{ fontSize: 36, lineHeight: 44 }}
+        xl={{ fontSize: 48, lineHeight: 56 }}
         textColor={{ dark: 'gray-400', light: 'purple-800' }}
       />
     )}
