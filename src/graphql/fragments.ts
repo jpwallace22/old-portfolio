@@ -1,7 +1,4 @@
-/* eslint-disable import/prefer-default-export */
-import { gql } from 'graphql-request';
-
-export const imageFrag = gql`
+export const imageFrag = `
   fragment imageFrag on FileField {
     __typename
     id
@@ -13,7 +10,7 @@ export const imageFrag = gql`
   }
 `;
 
-export const structuredTextImage = gql`
+export const structuredTextImage = `
   fragment structuredTextImage on ImageRecord {
     id
     media {
@@ -23,7 +20,7 @@ export const structuredTextImage = gql`
   }
 `;
 
-export const buttonFrag = gql`
+export const buttonFrag = `
   fragment buttonFrag on ButtonRecord {
     __typename
     id
@@ -36,7 +33,7 @@ export const buttonFrag = gql`
   }
 `;
 
-export const caseStudyCardFrag = gql`
+export const caseStudyCardFrag = `
   fragment caseStudyCardFrag on CaseStudyCardRecord {
     __typename
     id
@@ -50,7 +47,52 @@ export const caseStudyCardFrag = gql`
   }
 `;
 
-export const techFrag = gql`
+export const testimonialCardFrag = `
+  fragment testimonialCardFrag on TestimonialCardRecord {
+    __typename
+    id
+    internalName
+    quote {
+      value
+    }
+    person {
+      ...personFrag
+    }
+  }
+`;
+
+export const personFrag = `
+  fragment personFrag on PersonRecord {
+    __typename
+    id
+    internalName
+    firstName
+    lastName
+    website
+    company {
+      ...companyFrag
+    }
+    role
+    thumbnail {
+      ...imageFrag
+    }
+  }
+`;
+
+export const companyFrag = `
+  fragment companyFrag on CompanyRecord {
+    __typename
+    id
+    internalName
+    name
+    website
+    logo {
+      ...imageFrag
+    }
+  }
+`;
+
+export const techFrag = `
   fragment techFrag on TechStackRecord {
     __typename
     id
@@ -62,7 +104,7 @@ export const techFrag = gql`
   }
 `;
 
-export const switchBackFrag = gql`
+export const switchBackFrag = `
   fragment switchBackFrag on SwitchbackRecord {
     __typename
     id
@@ -82,7 +124,7 @@ export const switchBackFrag = gql`
   }
 `;
 
-export const categoryFrag = gql`
+export const categoryFrag = `
   fragment categoryFrag on CategoryRecord {
     __typename
     id
@@ -92,7 +134,7 @@ export const categoryFrag = gql`
   }
 `;
 
-export const workFrag = gql`
+export const workFrag = `
   fragment workFrag on WorkRecord {
     __typename
     id
@@ -127,7 +169,7 @@ export const workFrag = gql`
   ${imageFrag}
 `;
 
-export const blogPostFrag = gql`
+export const blogPostFrag = `
   fragment blogPostFrag on BlogPostRecord {
     __typename
     id
@@ -154,7 +196,7 @@ export const blogPostFrag = gql`
   ${imageFrag}
 `;
 
-export const blogCardFrag = gql`
+export const blogCardFrag = `
   fragment blogCardFrag on BlogPostRecord {
     __typename
     id
@@ -179,7 +221,7 @@ export const blogCardFrag = gql`
   ${imageFrag}
 `;
 
-export const blogPageFrag = gql`
+export const blogPageFrag = `
   fragment blogPageFrag on BlogPageRecord {
     __typename
     switchback {

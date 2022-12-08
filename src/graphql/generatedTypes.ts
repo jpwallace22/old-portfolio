@@ -428,6 +428,85 @@ export type ColorField = {
   red: Scalars['IntType'];
 };
 
+export type CompanyModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<CompanyModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  createdAt?: InputMaybe<CreatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  internalName?: InputMaybe<StringFilter>;
+  logo?: InputMaybe<FileFilter>;
+  name?: InputMaybe<StringFilter>;
+  updatedAt?: InputMaybe<UpdatedAtFilter>;
+  website?: InputMaybe<StringFilter>;
+};
+
+export enum CompanyModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  CreatedAt_ASC = 'createdAt_ASC',
+  CreatedAt_DESC = 'createdAt_DESC',
+  Id_ASC = 'id_ASC',
+  Id_DESC = 'id_DESC',
+  InternalName_ASC = 'internalName_ASC',
+  InternalName_DESC = 'internalName_DESC',
+  Name_ASC = 'name_ASC',
+  Name_DESC = 'name_DESC',
+  UpdatedAt_ASC = 'updatedAt_ASC',
+  UpdatedAt_DESC = 'updatedAt_DESC',
+  Website_ASC = 'website_ASC',
+  Website_DESC = 'website_DESC'
+}
+
+/** Record of type Company (company) */
+export type CompanyRecord = RecordInterface & {
+  __typename?: 'CompanyRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  internalName?: Maybe<Scalars['String']>;
+  logo?: Maybe<FileField>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['DateTime'];
+  website?: Maybe<Scalars['String']>;
+};
+
+
+/** Record of type Company (company) */
+export type CompanyRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Specifies how to filter by creation datetime */
 export type CreatedAtFilter = {
   /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
@@ -635,6 +714,33 @@ export type FileFilter = {
   notIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>;
 };
 
+/** Record of type Global Nav (global_nav) */
+export type GlobalNavRecord = RecordInterface & {
+  __typename?: 'GlobalNavRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  internalName?: Maybe<Scalars['String']>;
+  links: Array<ButtonRecord>;
+  updatedAt: Scalars['DateTime'];
+};
+
+
+/** Record of type Global Nav (global_nav) */
+export type GlobalNavRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 export type GlobalSeoField = {
   __typename?: 'GlobalSeoField';
   facebookPageUrl?: Maybe<Scalars['String']>;
@@ -669,6 +775,7 @@ export type HomepageRecord = RecordInterface & {
   createdAt: Scalars['DateTime'];
   id: Scalars['ItemId'];
   internalName?: Maybe<Scalars['String']>;
+  testimonials: Array<TestimonialCardRecord>;
   updatedAt: Scalars['DateTime'];
   works: Array<WorkRecord>;
   worksHeading?: Maybe<Scalars['String']>;
@@ -2095,6 +2202,20 @@ export enum ItemStatus {
   Updated = 'updated'
 }
 
+/** Specifies how to filter Single-link fields */
+export type LinkFilter = {
+  /** Search for records with an exact match. The specified value must be a Record ID */
+  eq?: InputMaybe<Scalars['ItemId']>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars['BooleanType']>;
+  /** Filter records linked to one of the specified records */
+  in?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>;
+  /** Exclude records with an exact match. The specified value must be a Record ID */
+  neq?: InputMaybe<Scalars['ItemId']>;
+  /** Filter records not linked to one of the specified records */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>;
+};
+
 /** Specifies how to filter Multiple-links fields */
 export type LinksFilter = {
   /** Filter records linked to all of the specified records. The specified values must be Record IDs */
@@ -2121,6 +2242,95 @@ export type OrientationFilter = {
   eq?: InputMaybe<UploadOrientation>;
   /** Exclude uploads with the specified orientation */
   neq?: InputMaybe<UploadOrientation>;
+};
+
+export type PersonModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<PersonModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  company?: InputMaybe<LinkFilter>;
+  createdAt?: InputMaybe<CreatedAtFilter>;
+  firstName?: InputMaybe<StringFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  internalName?: InputMaybe<StringFilter>;
+  lastName?: InputMaybe<StringFilter>;
+  role?: InputMaybe<StringFilter>;
+  thumbnail?: InputMaybe<FileFilter>;
+  updatedAt?: InputMaybe<UpdatedAtFilter>;
+  website?: InputMaybe<StringFilter>;
+};
+
+export enum PersonModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  CreatedAt_ASC = 'createdAt_ASC',
+  CreatedAt_DESC = 'createdAt_DESC',
+  FirstName_ASC = 'firstName_ASC',
+  FirstName_DESC = 'firstName_DESC',
+  Id_ASC = 'id_ASC',
+  Id_DESC = 'id_DESC',
+  InternalName_ASC = 'internalName_ASC',
+  InternalName_DESC = 'internalName_DESC',
+  LastName_ASC = 'lastName_ASC',
+  LastName_DESC = 'lastName_DESC',
+  Role_ASC = 'role_ASC',
+  Role_DESC = 'role_DESC',
+  UpdatedAt_ASC = 'updatedAt_ASC',
+  UpdatedAt_DESC = 'updatedAt_DESC',
+  Website_ASC = 'website_ASC',
+  Website_DESC = 'website_DESC'
+}
+
+/** Record of type Person (person) */
+export type PersonRecord = RecordInterface & {
+  __typename?: 'PersonRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  company?: Maybe<CompanyRecord>;
+  createdAt: Scalars['DateTime'];
+  firstName?: Maybe<Scalars['String']>;
+  id: Scalars['ItemId'];
+  internalName?: Maybe<Scalars['String']>;
+  lastName?: Maybe<Scalars['String']>;
+  role?: Maybe<Scalars['String']>;
+  thumbnail?: Maybe<FileField>;
+  updatedAt: Scalars['DateTime'];
+  website?: Maybe<Scalars['String']>;
+};
+
+
+/** Record of type Person (person) */
+export type PersonRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
 };
 
 /** Specifies how to filter by publication datetime */
@@ -2153,9 +2363,15 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allCategoriesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allCompaniesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allPeopleMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allSwitchbacksMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allTechStacksMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allTestimonialCardsMeta: CollectionMetadata;
   /** Returns meta information regarding an assets collection */
   _allUploadsMeta?: Maybe<CollectionMetadata>;
   /** Returns meta information regarding a record collection */
@@ -2171,9 +2387,15 @@ export type Query = {
   /** Returns a collection of records */
   allCategories: Array<CategoryRecord>;
   /** Returns a collection of records */
+  allCompanies: Array<CompanyRecord>;
+  /** Returns a collection of records */
+  allPeople: Array<PersonRecord>;
+  /** Returns a collection of records */
   allSwitchbacks: Array<SwitchbackRecord>;
   /** Returns a collection of records */
   allTechStacks: Array<TechStackRecord>;
+  /** Returns a collection of records */
+  allTestimonialCards: Array<TestimonialCardRecord>;
   /** Returns a collection of assets */
   allUploads: Array<FileField>;
   /** Returns a collection of records */
@@ -2188,12 +2410,20 @@ export type Query = {
   caseStudyCard?: Maybe<CaseStudyCardRecord>;
   /** Returns a specific record */
   category?: Maybe<CategoryRecord>;
+  /** Returns a specific record */
+  company?: Maybe<CompanyRecord>;
+  /** Returns the single instance record */
+  globalNav?: Maybe<GlobalNavRecord>;
   /** Returns the single instance record */
   homepage?: Maybe<HomepageRecord>;
+  /** Returns a specific record */
+  person?: Maybe<PersonRecord>;
   /** Returns a specific record */
   switchback?: Maybe<SwitchbackRecord>;
   /** Returns a specific record */
   techStack?: Maybe<TechStackRecord>;
+  /** Returns a specific record */
+  testimonialCard?: Maybe<TestimonialCardRecord>;
   /** Returns a specific asset */
   upload?: Maybe<FileField>;
   /** Returns a specific record */
@@ -2234,6 +2464,22 @@ export type Query_AllCategoriesMetaArgs = {
 
 
 /** The query root for this schema */
+export type Query_AllCompaniesMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<CompanyModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type Query_AllPeopleMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<PersonModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
 export type Query_AllSwitchbacksMetaArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<SwitchbackModelFilter>;
@@ -2245,6 +2491,14 @@ export type Query_AllSwitchbacksMetaArgs = {
 export type Query_AllTechStacksMetaArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<TechStackModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type Query_AllTestimonialCardsMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<TestimonialCardModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2316,6 +2570,28 @@ export type QueryAllCategoriesArgs = {
 
 
 /** The query root for this schema */
+export type QueryAllCompaniesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<CompanyModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<CompanyModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
+
+/** The query root for this schema */
+export type QueryAllPeopleArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<PersonModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<PersonModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
+
+/** The query root for this schema */
 export type QueryAllSwitchbacksArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<SwitchbackModelFilter>;
@@ -2333,6 +2609,17 @@ export type QueryAllTechStacksArgs = {
   first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<TechStackModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
+
+/** The query root for this schema */
+export type QueryAllTestimonialCardsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<TestimonialCardModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<TestimonialCardModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']>;
 };
 
@@ -2403,9 +2690,34 @@ export type QueryCategoryArgs = {
 
 
 /** The query root for this schema */
+export type QueryCompanyArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<CompanyModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<CompanyModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+export type QueryGlobalNavArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
 export type QueryHomepageArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type QueryPersonArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<PersonModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<PersonModelOrderBy>>>;
 };
 
 
@@ -2424,6 +2736,15 @@ export type QueryTechStackArgs = {
   filter?: InputMaybe<TechStackModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<TechStackModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+export type QueryTestimonialCardArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<TestimonialCardModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<TestimonialCardModelOrderBy>>>;
 };
 
 
@@ -2764,6 +3085,86 @@ export type TechStackRecord = RecordInterface & {
 
 /** Record of type Tech Stack (tech_stack) */
 export type TechStackRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+export type TestimonialCardModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<TestimonialCardModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  createdAt?: InputMaybe<CreatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  internalName?: InputMaybe<StringFilter>;
+  person?: InputMaybe<LinkFilter>;
+  quote?: InputMaybe<StructuredTextFilter>;
+  updatedAt?: InputMaybe<UpdatedAtFilter>;
+};
+
+export enum TestimonialCardModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  CreatedAt_ASC = 'createdAt_ASC',
+  CreatedAt_DESC = 'createdAt_DESC',
+  Id_ASC = 'id_ASC',
+  Id_DESC = 'id_DESC',
+  InternalName_ASC = 'internalName_ASC',
+  InternalName_DESC = 'internalName_DESC',
+  UpdatedAt_ASC = 'updatedAt_ASC',
+  UpdatedAt_DESC = 'updatedAt_DESC'
+}
+
+export type TestimonialCardModelQuoteField = {
+  __typename?: 'TestimonialCardModelQuoteField';
+  blocks: Array<Scalars['String']>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+};
+
+/** Record of type Testimonial Card (testimonial_card) */
+export type TestimonialCardRecord = RecordInterface & {
+  __typename?: 'TestimonialCardRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  internalName?: Maybe<Scalars['String']>;
+  person?: Maybe<PersonRecord>;
+  quote?: Maybe<TestimonialCardModelQuoteField>;
+  updatedAt: Scalars['DateTime'];
+};
+
+
+/** Record of type Testimonial Card (testimonial_card) */
+export type TestimonialCardRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 

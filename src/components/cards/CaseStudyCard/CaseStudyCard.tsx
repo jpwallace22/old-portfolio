@@ -6,7 +6,7 @@ import type { FC } from 'react';
 
 type CaseStudyCardProps = BasicProps & CaseStudyCardRecord;
 
-const OffsetGridCard: FC<CaseStudyCardProps> = ({ image }) => (
+const OffsetGridCard: FC<CaseStudyCardProps> = ({ image, ...props }) => (
   <Container
     backgroundColor={{ dark: 'purple-800', light: 'common-white' }}
     borderRadius="8px"
@@ -19,6 +19,7 @@ const OffsetGridCard: FC<CaseStudyCardProps> = ({ image }) => (
     lg={{ width: '60vw', marginBottom: 32 }}
     aspectRatio={[image?.width, image?.height]}
     position="relative"
+    {...props}
   >
     <Image
       src={image?.url || ''}

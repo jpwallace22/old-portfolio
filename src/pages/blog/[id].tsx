@@ -1,6 +1,5 @@
 import { lazy } from 'react';
 
-import { gql } from 'graphql-request';
 import request from 'graphql/datocms';
 import { blogPostFrag } from 'graphql/fragments';
 
@@ -11,7 +10,7 @@ import type { FC } from 'react';
 const BlogPostPage = lazy(() => import('templates/Blog/BlogPostPage'));
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const SLUG_QUERY = gql`
+  const SLUG_QUERY = `
     query {
       allBlogPosts {
         slug
@@ -35,7 +34,7 @@ const BlogDetail: FC<BlogPostRecord> = props => <BlogPostPage {...props} />;
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params?.id;
 
-  const QUERY = gql`
+  const QUERY = `
     query blogQuery($slug: String) {
       blogPost(filter: { slug: { eq: $slug } }) {
         ...blogPostFrag

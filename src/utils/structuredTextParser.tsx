@@ -206,7 +206,12 @@ const structuredTextParser = (data?: StructuredData, textColor?: false | GetColo
                       width="100%"
                       aspectRatio={[record.width as number, record.height as number]}
                     >
-                      <Image src={record.url as string} alt={(record.alt as string) || ''} layout="fill" />
+                      <Image
+                        src={record.url as string}
+                        alt={(record.alt as string) || ''}
+                        loading="lazy"
+                        layout="fill"
+                      />
                     </Container>
                     {record?.title && (
                       <Paragraph fontSize={16} fontWeight="regular" textAlign="center" textColor={textColor}>

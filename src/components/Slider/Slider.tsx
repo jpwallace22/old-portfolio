@@ -3,6 +3,8 @@ import { lazy, useEffect, useState } from 'react';
 import { Container, Flex } from 'quarks';
 import { useSwipeable } from 'react-swipeable';
 
+import { getSemiRandomString } from 'utils/functions';
+
 import type { CaseStudyCardRecord } from 'graphql/generatedTypes';
 import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC } from 'react';
@@ -18,16 +20,17 @@ type SliderCardProps = BasicProps & {
 const Slider: FC<SliderCardProps> = ({ cards }) => {
   const [activeIndex, setActive] = useState(0);
   const [cardWidths, setCardWidths] = useState<number[]>([]);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const gapBetweenCards = 64;
   const cardCount = cards?.length;
 
-  const handleLeft = () => (activeIndex === 0 ? setActive(cardCount - 1) : setActive(activeIndex - 1));
-  const handleRight = () => (activeIndex === cardCount - 1 ? setActive(0) : setActive(activeIndex + 1));
+  const leftClick = () => (activeIndex === 0 ? setActive(cardCount - 1) : setActive(activeIndex - 1));
+  const rightClick = () => (activeIndex === cardCount - 1 ? setActive(0) : setActive(activeIndex + 1));
 
   const swipeHandler = useSwipeable({
-    onSwipedRight: handleLeft,
-    onSwipedLeft: handleRight,
+    onSwipedRight: leftClick,
+    onSwipedLeft: rightClick,
     preventScrollOnSwipe: true,
   });
 
@@ -37,18 +40,24 @@ const Slider: FC<SliderCardProps> = ({ cards }) => {
 
   const handleArrowClick = (direction: string) => {
     if (direction === 'Right' && cardCount) {
-      handleRight();
+      rightClick();
+      setIsButtonDisabled(true);
     } else if (direction === 'Left' && cardCount) {
-      handleLeft();
+      leftClick();
+      setIsButtonDisabled(true);
     }
   };
 
+  const handleTransitionEnd = () => {
+    setIsButtonDisabled(false);
+  };
+
   useEffect(() => {
-    const allCards = [...document.querySelectorAll('.card-deck-items')];
-    setCardWidths(allCards.map(card => card.getBoundingClientRect().width));
+    const getCards = [...document.querySelectorAll('.card-deck-items')];
+    setCardWidths(getCards.map(card => card.getBoundingClientRect().width));
   }, [activeIndex]);
 
-  const calculateSlide = (arr: number[], gap: number) => arr.reduce((a, b) => a + b + gap, 0);
+  const calculateSlideAnimation = (arr: number[], gap: number) => arr.reduce((a, b) => a + b + gap, 0);
 
   return cards?.length > 0 ? (
     <Flex
@@ -73,13 +82,13 @@ const Slider: FC<SliderCardProps> = ({ cards }) => {
       />
       <Flex width={`calc(${cardCount}00% + 300px)`} flexDirection="column" lg={{ flexDirection: 'row' }}>
         <StructuredTextParser
+          flex="0 0 300px"
           text={cards[activeIndex]?.body}
           textColor={{ dark: 'gray-500', light: 'purple-900' }}
           marginLeft={24}
           marginRight={24}
           textStyle="xl"
           justifyContent="center"
-          width="300px"
           lg={{ display: 'flex' }}
           display="none"
         />
@@ -89,13 +98,14 @@ const Slider: FC<SliderCardProps> = ({ cards }) => {
             marginLeft={24}
             md={{ marginLeft: 32 }}
             xl={{ marginLeft: 40 }}
-            transform={`translateX(-${calculateSlide(cardWidths.slice(0, activeIndex), gapBetweenCards)}px)`}
+            transform={`translateX(-${calculateSlideAnimation(cardWidths.slice(0, activeIndex), gapBetweenCards)}px)`}
             transition="transform 0.5s"
             flexWrap="nowrap"
             alignItems="stretch"
+            onTransitionEnd={() => handleTransitionEnd()}
           >
-            {cards?.map(card => (
-              <Flex alignItems="center" key={card?.internalName} className="card-deck-items">
+            {cards.map(card => (
+              <Flex alignItems="center" key={getSemiRandomString()} className="card-deck-items">
                 <CaseStudyCard {...card} />
               </Flex>
             ))}
@@ -103,6 +113,7 @@ const Slider: FC<SliderCardProps> = ({ cards }) => {
         </Container>
       </Flex>
       <ComponentPagination
+        disable={isButtonDisabled}
         dotsCount={cardCount}
         activeDot={activeIndex}
         onLeftArrowClick={() => handleArrowClick('Left')}

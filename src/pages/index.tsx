@@ -2,14 +2,13 @@ import { lazy, useEffect, useRef, useState } from 'react';
 
 import { useMediaQuery } from '@mui/material';
 import request from 'graphql/datocms';
-import { buttonFrag, imageFrag, switchBackFrag } from 'graphql/fragments';
+import { buttonFrag, companyFrag, imageFrag, personFrag, switchBackFrag, testimonialCardFrag } from 'graphql/fragments';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Container, Dots, Heading, Image, LargeCircle, SmallCircle } from 'quarks';
 import styled from 'styled-components';
 
 import dots from 'assets/images/dots.webp';
-import { ReactComponent as Line2 } from 'assets/svg/about-line.svg';
 import { ReactComponent as Line } from 'assets/svg/hero-line.svg';
 
 import { media } from 'atoms/breakpoints/breakpoints';
@@ -28,19 +27,18 @@ const AlternatingSwitchbacks = lazy(() => import('components/AlternatingSwitchba
 const Footer = lazy(() => import('components/Footer/Footer'));
 const Switchback = lazy(() => import('components/Switchback/Switchback'));
 const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/StructuredTextParser'));
+const Carousel = lazy(() => import('components/Carousel/Carousel'));
 
 const HeroLine = styled(Line)``;
-const AboutLine = styled(Line2)``;
 
 type IHomePage = {
   data: HomepageRecord;
 };
 
 const Home: FC<IHomePage> = ({ data }) => {
-  const { worksHeading, worksIntro, aboutMe, works } = data;
+  const { worksHeading, worksIntro, aboutMe, works, testimonials } = data;
   const isDesktop = useMediaQuery(media.lg);
   const [drawHero, setDrawHero] = useState(0);
-  const [drawAbout, setDrawAbout] = useState(0);
 
   const aboutRef = useRef<HTMLElement | null>(null);
   const worksRef = useRef<HTMLElement | null>(null);
@@ -56,15 +54,7 @@ const Home: FC<IHomePage> = ({ data }) => {
         const heroPercentage =
           document.documentElement.scrollTop / (aboutSection.top + document.documentElement.scrollTop);
 
-        const aboutPercentage =
-          (document.documentElement.scrollTop - (aboutSection.top + document.documentElement.scrollTop) + 250) /
-          (worksSection.top +
-            document.documentElement.scrollTop +
-            250 -
-            (aboutSection.top + document.documentElement.scrollTop));
-
         setDrawHero(250 * heroPercentage);
-        setDrawAbout(aboutPercentage > 0 ? 800 * aboutPercentage : 0);
       }
     };
 
@@ -83,7 +73,8 @@ const Home: FC<IHomePage> = ({ data }) => {
           href="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27635%27%20height=%27629%27/%3e"
         />
       </Head>
-      <Container as="main" maxWidth="1440px" marginX="auto" paddingX={16} lg={{ paddingX: 32 }}>
+
+      <Container as="main" contain="layout" maxWidth="1440px" marginX="auto" paddingX={16} lg={{ paddingX: 32 }}>
         <Container
           className="heroSection"
           as="section"
@@ -125,6 +116,7 @@ const Home: FC<IHomePage> = ({ data }) => {
           <SmallCircle position="absolute" left="80%" top="10%" zIndex={-1} lg={{ left: '75%' }} />
           <Hero position="absolute" top="5%" lg={{ top: '40%' }} />
         </Container>
+
         <StandardFadeIn>
           <Container
             as="section"
@@ -140,19 +132,12 @@ const Home: FC<IHomePage> = ({ data }) => {
             <Dots position="absolute" bottom="0" left="45%" lg={{ top: '110px', left: '50%' }} />
           </Container>
         </StandardFadeIn>
+
+        <Container as="section" paddingBottom={64} paddingTop={80} position="relative">
+          <Carousel cards={testimonials} />
+        </Container>
+
         <Container id="works" ref={worksRef} as="section" position="relative" contain="layout" paddingY={64}>
-          {isDesktop && (
-            <Container position="absolute" left="380px" top="-60px">
-              <AboutLine
-                width={400}
-                css={`
-                  stroke-dasharray: 640;
-                  stroke-dashoffset: ${drawAbout > 640 ? 0 : 640 - drawAbout};
-                  stroke-width: 7;
-                `}
-              />
-            </Container>
-          )}
           <LargeCircle position="absolute" left="-900px" top="90px" zIndex={-10} lg={{ bottom: '-200px' }} />
           <StandardFadeIn>
             <Heading as="h3" textStyle="lg" marginBottom={24} lg={{ textStyle: 'xl' }}>
@@ -191,8 +176,14 @@ export const getStaticProps: GetStaticProps = async () => {
             ...imageFrag
           }
         }
+        testimonials {
+          ...testimonialCardFrag
+        }
       }
     }
+    ${testimonialCardFrag}
+    ${personFrag}
+    ${companyFrag}
     ${buttonFrag}
     ${imageFrag}
     ${switchBackFrag}

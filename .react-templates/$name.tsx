@@ -1,8 +1,7 @@
-import { FC } from 'react';
+import { Container } from 'quarks';
 
-// Quarks
-import Container from 'quarks/Container';
-import { BasicProps } from 'quarks/interpolations/basic';
+import type { BasicProps } from 'quarks/interpolations/basic';
+import type { FC } from 'react';
 
 type $nameProps = BasicProps;
 
