@@ -5,41 +5,25 @@ import { useSwipeable } from 'react-swipeable';
 
 import { getSemiRandomString } from 'utils/functions';
 
-import type { CaseStudyCardRecord, TestimonialCardRecord } from 'graphql/generatedTypes';
+import type { CaseStudyCardRecord } from 'graphql/generatedTypes';
 import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC } from 'react';
 
 const CaseStudyCard = lazy(() => import('components/cards/CaseStudyCard/CaseStudyCard'));
-const TestimonialCard = lazy(() => import('components/cards/TestimonialCard/TestimonialCard'));
 const ComponentPagination = lazy(() => import('molecules/ComponentPagination/ComponentPagination'));
 const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/StructuredTextParser'));
 
 type SliderCardProps = BasicProps & {
-  cards: CaseStudyCardRecord[] | TestimonialCardRecord[];
-  detailsVariant?: boolean;
-  infinite?: boolean;
+  cards: CaseStudyCardRecord[];
 };
 
-const Slider: FC<SliderCardProps> = ({ cards, detailsVariant, infinite }) => {
-  const [activeIndex, setActive] = useState(infinite ? 2 : 0);
+const Slider: FC<SliderCardProps> = ({ cards }) => {
+  const [activeIndex, setActive] = useState(0);
   const [cardWidths, setCardWidths] = useState<number[]>([]);
-  const [shouldAnimate, setShouldAnimate] = useState(true);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
-  const isCaseStudy = (arr: SliderCardProps['cards']): arr is CaseStudyCardRecord[] =>
-    arr[0].__typename === 'CaseStudyCardRecord';
-
-  const cardsWithDuplicates = ((arr: SliderCardProps['cards']) => {
-    if (isCaseStudy(arr)) {
-      return [arr[arr.length - 2], arr[arr.length - 1], ...arr, arr[0], arr[1]];
-    }
-
-    return [arr[arr.length - 2], arr[arr.length - 1], ...arr, arr[0], arr[1]];
-  })(cards);
-
-  const gapBetweenCards = detailsVariant ? 64 : 32;
-  const allCards = infinite ? cardsWithDuplicates : cards;
-  const cardCount = allCards?.length;
+  const gapBetweenCards = 64;
+  const cardCount = cards?.length;
 
   const leftClick = () => (activeIndex === 0 ? setActive(cardCount - 1) : setActive(activeIndex - 1));
   const rightClick = () => (activeIndex === cardCount - 1 ? setActive(0) : setActive(activeIndex + 1));
@@ -66,31 +50,12 @@ const Slider: FC<SliderCardProps> = ({ cards, detailsVariant, infinite }) => {
 
   const handleTransitionEnd = () => {
     setIsButtonDisabled(false);
-    if (infinite) {
-      if (activeIndex === 1) {
-        setShouldAnimate(false);
-        setActive(cardCount - 3);
-      } else if (activeIndex === cardCount - 2) {
-        setShouldAnimate(false);
-        setActive(2);
-      }
-    }
   };
 
   useEffect(() => {
     const getCards = [...document.querySelectorAll('.card-deck-items')];
     setCardWidths(getCards.map(card => card.getBoundingClientRect().width));
   }, [activeIndex]);
-
-  useEffect(() => {
-    if (infinite) {
-      if (activeIndex === cardCount - 3) {
-        setShouldAnimate(true);
-      } else if (activeIndex === 2) {
-        setShouldAnimate(true);
-      }
-    }
-  }, [activeIndex, cardCount, infinite]);
 
   const calculateSlideAnimation = (arr: number[], gap: number) => arr.reduce((a, b) => a + b + gap, 0);
 
@@ -106,60 +71,50 @@ const Slider: FC<SliderCardProps> = ({ cards, detailsVariant, infinite }) => {
       {...swipeHandler}
       ref={refPassthrough}
     >
-      {detailsVariant && isCaseStudy(allCards) && (
-        <StructuredTextParser
-          text={allCards[activeIndex]?.body}
-          textColor={{ dark: 'gray-500', light: 'purple-900' }}
-          paddingX={24}
-          justifyContent="flex-end"
-          width="100%"
-          minHeight="150px"
-          lg={{ display: 'none' }}
-        />
-      )}
+      <StructuredTextParser
+        text={cards[activeIndex]?.body}
+        textColor={{ dark: 'gray-500', light: 'purple-900' }}
+        paddingX={24}
+        justifyContent="flex-end"
+        width="100%"
+        minHeight="150px"
+        lg={{ display: 'none' }}
+      />
       <Flex width={`calc(${cardCount}00% + 300px)`} flexDirection="column" lg={{ flexDirection: 'row' }}>
-        {detailsVariant && isCaseStudy(allCards) && (
-          <StructuredTextParser
-            flex="0 0 300px"
-            text={allCards[activeIndex]?.body}
-            textColor={{ dark: 'gray-500', light: 'purple-900' }}
-            marginLeft={24}
-            marginRight={24}
-            textStyle="xl"
-            justifyContent="center"
-            lg={{ display: 'flex' }}
-            display="none"
-          />
-        )}
-        <Container overflowX={detailsVariant && 'hidden'}>
+        <StructuredTextParser
+          flex="0 0 300px"
+          text={cards[activeIndex]?.body}
+          textColor={{ dark: 'gray-500', light: 'purple-900' }}
+          marginLeft={24}
+          marginRight={24}
+          textStyle="xl"
+          justifyContent="center"
+          lg={{ display: 'flex' }}
+          display="none"
+        />
+        <Container overflowX="hidden">
           <Flex
             gap={`${gapBetweenCards}px`}
-            marginLeft={detailsVariant && 24}
-            md={{ marginLeft: detailsVariant && 32 }}
-            xl={{ marginLeft: detailsVariant && 40 }}
+            marginLeft={24}
+            md={{ marginLeft: 32 }}
+            xl={{ marginLeft: 40 }}
             transform={`translateX(-${calculateSlideAnimation(cardWidths.slice(0, activeIndex), gapBetweenCards)}px)`}
-            transition={shouldAnimate && 'transform 0.5s'}
+            transition="transform 0.5s"
             flexWrap="nowrap"
             alignItems="stretch"
             onTransitionEnd={() => handleTransitionEnd()}
           >
-            {isCaseStudy(allCards)
-              ? allCards?.map(card => (
-                  <Flex alignItems="center" key={getSemiRandomString()} className="card-deck-items">
-                    <CaseStudyCard {...card} />
-                  </Flex>
-                ))
-              : allCards?.map(card => (
-                  <Flex alignItems="center" key={getSemiRandomString()} className="card-deck-items">
-                    <TestimonialCard {...card} />
-                  </Flex>
-                ))}
+            {cards.map(card => (
+              <Flex alignItems="center" key={getSemiRandomString()} className="card-deck-items">
+                <CaseStudyCard {...card} />
+              </Flex>
+            ))}
           </Flex>
         </Container>
       </Flex>
       <ComponentPagination
         disable={isButtonDisabled}
-        dotsCount={!infinite ? cardCount : 0}
+        dotsCount={cardCount}
         activeDot={activeIndex}
         onLeftArrowClick={() => handleArrowClick('Left')}
         onRightArrowClick={() => handleArrowClick('Right')}
