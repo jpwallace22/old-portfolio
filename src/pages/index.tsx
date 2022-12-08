@@ -9,7 +9,6 @@ import { Container, Dots, Heading, Image, LargeCircle, SmallCircle } from 'quark
 import styled from 'styled-components';
 
 import dots from 'assets/images/dots.webp';
-// import { ReactComponent as Line2 } from 'assets/svg/about-line.svg';
 import { ReactComponent as Line } from 'assets/svg/hero-line.svg';
 
 import { media } from 'atoms/breakpoints/breakpoints';
@@ -31,7 +30,6 @@ const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/S
 const Carousel = lazy(() => import('components/Carousel/Carousel'));
 
 const HeroLine = styled(Line)``;
-// const AboutLine = styled(Line2)``;
 
 type IHomePage = {
   data: HomepageRecord;
@@ -41,7 +39,6 @@ const Home: FC<IHomePage> = ({ data }) => {
   const { worksHeading, worksIntro, aboutMe, works, testimonials } = data;
   const isDesktop = useMediaQuery(media.lg);
   const [drawHero, setDrawHero] = useState(0);
-  // const [drawAbout, setDrawAbout] = useState(0);
 
   const aboutRef = useRef<HTMLElement | null>(null);
   const worksRef = useRef<HTMLElement | null>(null);
@@ -57,15 +54,7 @@ const Home: FC<IHomePage> = ({ data }) => {
         const heroPercentage =
           document.documentElement.scrollTop / (aboutSection.top + document.documentElement.scrollTop);
 
-        // const aboutPercentage =
-        //   (document.documentElement.scrollTop - (aboutSection.top + document.documentElement.scrollTop) + 250) /
-        //   (worksSection.top +
-        //     document.documentElement.scrollTop +
-        //     250 -
-        //     (aboutSection.top + document.documentElement.scrollTop));
-
         setDrawHero(250 * heroPercentage);
-        // setDrawAbout(aboutPercentage > 0 ? 800 * aboutPercentage : 0);
       }
     };
 
@@ -145,32 +134,10 @@ const Home: FC<IHomePage> = ({ data }) => {
         </StandardFadeIn>
 
         <Container as="section" paddingBottom={64} paddingTop={80} position="relative">
-          {/* <Container
-            backgroundColor={{ dark: 'purple-700', light: 'purple-100' }}
-            position="absolute"
-            opacity={0.5}
-            top={0}
-            bottom={0}
-            left="-1200px"
-            right="-1200px"
-            zIndex={-10}
-          /> */}
           <Carousel cards={testimonials} />
         </Container>
 
         <Container id="works" ref={worksRef} as="section" position="relative" contain="layout" paddingY={64}>
-          {/* {isDesktop && (
-            <Container position="absolute" left="380px" top="-60px">
-              <AboutLine
-                width={400}
-                css={`
-                  stroke-dasharray: 640;
-                  stroke-dashoffset: ${drawAbout > 640 ? 0 : 640 - drawAbout};
-                  stroke-width: 7;
-                `}
-              />
-            </Container>
-          )} */}
           <LargeCircle position="absolute" left="-900px" top="90px" zIndex={-10} lg={{ bottom: '-200px' }} />
           <StandardFadeIn>
             <Heading as="h3" textStyle="lg" marginBottom={24} lg={{ textStyle: 'xl' }}>

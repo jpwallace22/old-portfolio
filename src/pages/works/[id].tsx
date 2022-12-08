@@ -1,6 +1,5 @@
 import { lazy } from 'react';
 
-import { gql } from 'graphql-request';
 import request from 'graphql/datocms';
 import { workFrag } from 'graphql/fragments';
 
@@ -11,7 +10,7 @@ import type { FC } from 'react';
 const WorkPageTemplate = lazy(() => import('templates/Work/WorkPage'));
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const SLUG_QUERY = gql`
+  const SLUG_QUERY = `
     query {
       allWorks {
         slug
@@ -35,7 +34,7 @@ const Work: FC<WorkRecord> = props => <WorkPageTemplate {...props} />;
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params?.id;
 
-  const QUERY = gql`
+  const QUERY = `
     query workQuery($slug: String) {
       work(filter: { slug: { eq: $slug } }) {
         ...workFrag

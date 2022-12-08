@@ -1,6 +1,5 @@
 import { lazy } from 'react';
 
-import { gql } from 'graphql-request';
 import request from 'graphql/datocms';
 import { blogCardFrag, blogPageFrag } from 'graphql/fragments';
 import Head from 'next/head';
@@ -59,7 +58,7 @@ const BlogPage: FC<IBlogPage> = ({ switchback, blogs }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const QUERY = gql`
+  const QUERY = `
     query blogPageQuery {
       blogPage {
         ...blogPageFrag
