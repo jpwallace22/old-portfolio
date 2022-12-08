@@ -23,11 +23,10 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
   const [cardWidths, setCardWidths] = useState<number[]>([]);
   const [shouldAnimate, setShouldAnimate] = useState(true);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-  const [hover, setHover] = useState(0);
 
   const allCards = [cards[cards.length - 2], cards[cards.length - 1], ...cards, cards[0], cards[1]];
   const cardCount = allCards?.length;
-  const gapBetweenCards = 64;
+  const gapBetweenCards = 80;
 
   const leftClick = () => (activeIndex === 0 ? setActive(cardCount - 1) : setActive(activeIndex - 1));
   const rightClick = () => (activeIndex === cardCount - 1 ? setActive(0) : setActive(activeIndex + 1));
@@ -43,7 +42,6 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
   };
 
   const handleArrowClick = (direction: string) => {
-    setHover(0);
     if (direction === 'Right' && cardCount) {
       rightClick();
       setIsButtonDisabled(true);
@@ -77,8 +75,7 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
     }
   }, [activeIndex, cardCount]);
 
-  const calculateSlideAnimation = (arr: number[], gap: number, hvr: number) =>
-    arr.reduce((a, b) => a + b + gap + hvr, 0);
+  const calculateSlideAnimation = (arr: number[], gap: number) => arr.reduce((a, b) => a + b + gap, 0);
 
   return cards?.length > 0 ? (
     <Flex
@@ -96,11 +93,7 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
         <Container>
           <Flex
             gap={`${gapBetweenCards}px`}
-            transform={`translateX(-${calculateSlideAnimation(
-              cardWidths.slice(0, activeIndex),
-              gapBetweenCards,
-              hover,
-            )}px)`}
+            transform={`translateX(-${calculateSlideAnimation(cardWidths.slice(0, activeIndex), gapBetweenCards)}px)`}
             transition={shouldAnimate && 'transform 0.5s'}
             flexWrap="nowrap"
             alignItems="stretch"
@@ -122,8 +115,6 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
           transition="opacity .2s"
           hover={{ opacity: 1 }}
           height="82px"
-          onMouseEnter={() => setHover(-10)}
-          onMouseLeave={() => setHover(0)}
           onClick={() => handleArrowClick('Left')}
           cursor="pointer"
           disabled={isButtonDisabled}
@@ -137,8 +128,6 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
           opacity={0.4}
           transition="opacity .2s"
           hover={{ opacity: 1 }}
-          onMouseEnter={() => setHover(10)}
-          onMouseLeave={() => setHover(0)}
           onClick={() => handleArrowClick('Right')}
           cursor="pointer"
           disabled={isButtonDisabled}
