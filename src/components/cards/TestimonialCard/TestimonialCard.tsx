@@ -1,13 +1,15 @@
+import { lazy } from 'react';
+
 import { Container, Flex, Image, Link, Paragraph } from 'quarks';
 import { IoIosQuote } from 'react-icons/io';
 import styled from 'styled-components';
 
 import color, { gradient } from 'atoms/colors/colors';
 
-import StructuredTextParser from 'molecules/StructuredTextParser/StructuredTextParser';
-
 import type { TestimonialCardRecord } from 'graphql/generatedTypes';
 import type { FC } from 'react';
+
+const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/StructuredTextParser'));
 
 const Quotes = styled(IoIosQuote)`
   transform: scaleX(-1);
