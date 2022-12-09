@@ -37,3 +37,4 @@
 - add jest
 - Create an SEO component
 - refactor Button molecule (reduce size)
+- text clip for animation?
