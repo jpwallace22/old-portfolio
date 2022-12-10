@@ -66,7 +66,7 @@ const WorkHero: FC<WorkRecord> = ({ title, subtitle, bannerImage, techStack }) =
             aspectRatio={[1, 1]}
             lg={{ marginAll: 0 }}
           >
-            <Image src={bannerImage?.url} alt={bannerImage?.alt || ''} loading="eager" layout="fill" />
+            <Image src={bannerImage?.url} alt={bannerImage?.alt || ''} loading="eager" fill />
           </Container>
         )}
         {techStack && <TechStack techs={techStack} />}

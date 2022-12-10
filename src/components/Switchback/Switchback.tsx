@@ -106,7 +106,7 @@ const Switchback: FC<SwitchbackProps> = ({
       </Container>
       {image && (
         <Container position="relative" width="100%" flex="1 1 50%" maxWidth="550px" marginX="auto" aspectRatio={[1, 1]}>
-          <Image src={image.url} alt={image.alt || ''} layout="fill" lg={{ marginX: 0 }} objectFit="contain" />
+          <Image src={image.url} alt={image.alt || ''} fill lg={{ marginX: 0 }} objectFit="contain" />
         </Container>
       )}
       {!isDesktop && renderButtons()}

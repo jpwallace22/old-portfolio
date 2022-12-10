@@ -107,7 +107,7 @@ const BlogPostHero: FC<BlogPostRecord> = ({ title, featuredImage, body, subtitle
               borderRadius="8px"
               overflowY="hidden"
             >
-              <Image src={featuredImage.url} alt={featuredImage?.alt || ''} loading="eager" layout="fill" />
+              <Image src={featuredImage.url} alt={featuredImage?.alt || ''} loading="eager" fill />
             </Container>
           )}
         </Flex>

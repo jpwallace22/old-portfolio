@@ -52,7 +52,7 @@ const BlogListingCard: FC<IBlogCard> = ({ title, featuredImage, excerpt, index, 
             width: '100%',
           }}
         >
-          <Image src={featuredImage.url} alt={featuredImage?.alt || ''} layout="fill" objectFit="cover" />
+          <Image src={featuredImage.url} alt={featuredImage?.alt || ''} fill objectFit="cover" />
           {/* <Badge zIndex={3} position="absolute" boxShadow="lg" top="16px" left="16px" title="typescript" /> */}
         </Container>
       )}
