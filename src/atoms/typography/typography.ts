@@ -3,13 +3,13 @@ import { Darker_Grotesque, IBM_Plex_Sans } from '@next/font/google';
 const darkerGrotesque = Darker_Grotesque({
   weight: ['700', '900'],
   subsets: ['latin'],
-  display: 'fallback',
+  display: 'swap',
   preload: true,
 });
 const ibmPlex = IBM_Plex_Sans({
   weight: ['200', '300', '400', '600', '700'],
   subsets: ['latin'],
-  display: 'fallback',
+  display: 'swap',
   preload: true,
 });
 
