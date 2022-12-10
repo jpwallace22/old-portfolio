@@ -93,7 +93,7 @@ const Home: FC<IHomePage> = ({ data }) => {
             left="50%"
             top="0"
             zIndex={-1}
-            loading="eager"
+            priority
             lg={{ left: '58%' }}
           />
           <Container

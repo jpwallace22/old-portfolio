@@ -16,25 +16,16 @@
 
 ## TODO
 
-- ~~create data-map for socials~~
-- ~~add CMS and query with GraphQL~~
-- ~~add blog page listing and blog post pages~~
-- ~~refactor ugly carousel into something better~~
-- ~~lazy import all components~~
-- ~~refactor nav (gets hung up)~~
-- ~~move blog progress to top for desktop~~
-- ~~aria label on ProgressBar~~
-- ~~reduce bundle size from PrismJS~~
 - implement category taxonomy into the blog (after writing more blogs)
 - add global nav to DatoCMS q(added, need to query)
 - create featured blog component
   - use the same component for related blogs?
 - create testimonial component
 - add shutter animation to TechStack
-  - ~~query images from cms~~
 - create components generator styled paradigm
 - add recent || featured blogs to homepage
 - add jest
 - Create an SEO component
 - refactor Button molecule (reduce size)
 - text clip for animation?
+- Refactor link quark to no longer

@@ -11,7 +11,7 @@ interface ITechStack extends FlexProps {
 const TechStack: FC<ITechStack> = ({ techs, ...props }) => (
   <Flex justifyContent="center" gap="32px" flexWrap="wrap" lg={{ flexDirection: 'column' }} {...props}>
     {techs.map(({ title, thumbnail }) => (
-      <Image src={thumbnail?.url || ''} width={50} height={50} alt={title || ''} key={title} loading="eager" />
+      <Image src={thumbnail?.url || ''} width={50} height={50} alt={title || ''} key={title} priority />
     ))}
   </Flex>
 );
