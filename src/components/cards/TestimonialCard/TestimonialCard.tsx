@@ -76,7 +76,7 @@ const TestimonialCard: FC<TestimonialCardRecord> = ({ quote, person, ...props })
         >
           <Image
             fill
-            priority
+            loading="eager"
             alt={`${person?.firstName} ${person?.lastName}`}
             src={person?.thumbnail?.url || person.company?.logo?.url || ''}
             sizes="10vw"
