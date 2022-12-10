@@ -63,7 +63,7 @@ const WorkHero: FC<WorkRecord> = ({ title, subtitle, bannerImage, techStack }) =
             position="relative"
             width="100%"
             maxWidth="650px"
-            aspectRatio={[1, 1]}
+            aspectRatio={[bannerImage?.width, bannerImage?.height]}
             lg={{ marginAll: 0 }}
           >
             <Image src={bannerImage?.url} alt={bannerImage?.alt || ''} priority fill />
