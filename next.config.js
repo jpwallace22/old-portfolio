@@ -9,6 +9,7 @@ module.exports = withBundleAnalyzer({
   },
   compiler: {
     styledComponents: true,
+    removeConsole: true,
   },
   webpack(config) {
     config.module.rules.push({
