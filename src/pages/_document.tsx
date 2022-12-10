@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/google-font-display */
 import { Fragment } from 'react';
 
 import Document, { Head, Html, Main, NextScript } from 'next/document';
@@ -36,12 +35,12 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
           <link
             href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@700;900&family=IBM+Plex+Sans:wght@200;300;400;600;700&display=fallback"
             rel="stylesheet"
-          />
+          /> */}
           <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
           <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
@@ -50,7 +49,8 @@ class MyDocument extends Document {
           <meta name="description" content="Personal portfolio of the frontend engineer, Justin Wallace" />
           <meta name="msapplication-TileColor" content="#00aba9" />
           <meta name="theme-color" content="#ffffff" />
-          <meta property="og:image" content="assets/images/jwdev.webp" />
+          <meta property="og:image" content="https://www.datocms-assets.com/85391/1670693320-jwdev.webp" />
+          <meta property="og:title" content="Justin Wallace Development" />
         </Head>
         <body>
           <Main />
