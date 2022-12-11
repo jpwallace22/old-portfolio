@@ -1,5 +1,4 @@
 import MUIButton from '@mui/material/Button';
-import NextLink from 'next/link';
 import styled from 'styled-components';
 
 import Flex from 'quarks/Flex';
@@ -62,11 +61,12 @@ export interface ButtonProps extends FlexProps {
 }
 
 const Button: FC<ButtonProps> = ({ children, endIcon, startIcon, href, iconSize, ...props }) => {
-  const { isInternal, ...urlProps } = parseUrl(href || '');
+  const { as, ...urlProps } = href ? parseUrl(href) : ({ as: undefined } as const);
 
-  const renderButton = () => (
+  return (
     <StyledButton
       {...urlProps}
+      forwardedAs={as}
       disableRipple
       textDecoration="none"
       startIcon={
@@ -87,14 +87,6 @@ const Button: FC<ButtonProps> = ({ children, endIcon, startIcon, href, iconSize,
     >
       {children}
     </StyledButton>
-  );
-
-  return isInternal ? (
-    <NextLink href={href || ''} passHref>
-      {renderButton()}
-    </NextLink>
-  ) : (
-    renderButton()
   );
 };
 
