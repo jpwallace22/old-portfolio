@@ -81,8 +81,8 @@ const ComponentPagination: FC<ComponentPaginationProps> = ({
           textColor={disableOnEnd && activeDot === 0 ? 'transparent' : 'gray-900'}
           aria-label="left"
           hover={{ textColor: 'primary-600', backgroundColor: 'transparent' }}
-          onClick={handleLeftArrowClick}
-          disabled={disable || (disableOnEnd && activeDot === 0)}
+          onClick={!disable ? handleLeftArrowClick : undefined}
+          disabled={disableOnEnd && activeDot === 0}
           cursor="pointer"
         >
           <TiChevronLeft />
@@ -109,8 +109,8 @@ const ComponentPagination: FC<ComponentPaginationProps> = ({
           textColor={disableOnEnd && activeDot === dotsCount - 1 ? 'transparent' : 'gray-900'}
           aria-label="right"
           hover={{ textColor: 'purple-500', backgroundColor: 'transparent' }}
-          onClick={handleRightArrowClick}
-          disabled={disable || (disableOnEnd && activeDot === dotsCount - 1)}
+          onClick={!disable ? handleRightArrowClick : undefined}
+          disabled={disableOnEnd && activeDot === dotsCount - 1}
           cursor="pointer"
         >
           <TiChevronRight />

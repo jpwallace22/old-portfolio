@@ -28,7 +28,7 @@ const Link: FC<LinkProps> = ({ children, href, ...props }) => {
   const { isInternal, href: url, ...rest } = parseUrl(href);
 
   return isInternal ? (
-    <NextLink href={url || ''} passHref>
+    <NextLink href={url || ''} passHref legacyBehavior>
       <StyledLink {...props} aria-label={href}>
         {children}
       </StyledLink>

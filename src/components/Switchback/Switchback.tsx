@@ -41,15 +41,15 @@ const Switchback: FC<SwitchbackProps> = ({
         gap="24px"
         justifyContent="center"
         flexDirection="column"
-        sm={{ flexDirection: 'row' }}
-        lg={{ justifyContent: 'flex-start' }}
+        lg={{ flexDirection: 'row', justifyContent: 'flex-start' }}
       >
         {buttons[0] && (
           <Button
             variant="contained"
+            cursor="pointer"
             size="large"
             width="100%"
-            sm={{ width: 'unset' }}
+            md={{ width: 'unset' }}
             href={buttons[0]?.url || ''}
             onClick={cta1Action}
           >
@@ -60,8 +60,9 @@ const Switchback: FC<SwitchbackProps> = ({
           <Button
             variant="outlined"
             size="large"
+            cursor="pointer"
             width="100%"
-            sm={{ width: 'unset' }}
+            md={{ width: 'unset' }}
             href={buttons[1]?.url || ''}
             onClick={cta2Action}
           >
@@ -104,15 +105,16 @@ const Switchback: FC<SwitchbackProps> = ({
         {isDesktop && renderButtons()}
       </Container>
       {image && (
-        <Image
-          maxWidth="70%"
+        <Container
+          position="relative"
+          width="100%"
+          flex="1 1 50%"
+          maxWidth="550px"
           marginX="auto"
-          src={image.url}
-          alt={image.alt || ''}
-          width={500}
-          height={500}
-          lg={{ marginX: 0 }}
-        />
+          aspectRatio={[image.width, image.height]}
+        >
+          <Image src={image.url} alt={image.alt || ''} fill objectFit="contain" sizes="50vw" lg={{ marginX: 0 }} />
+        </Container>
       )}
       {!isDesktop && renderButtons()}
     </Flex>

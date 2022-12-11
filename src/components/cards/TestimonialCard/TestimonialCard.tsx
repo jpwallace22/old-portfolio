@@ -75,10 +75,12 @@ const TestimonialCard: FC<TestimonialCardRecord> = ({ quote, person, ...props })
           flex="0 0 80px"
         >
           <Image
-            layout="fill"
+            fill
+            loading="eager"
+            alt={`${person?.firstName} ${person?.lastName}`}
             src={person?.thumbnail?.url || person.company?.logo?.url || ''}
-            alt=""
-            objectFit="cover"
+            sizes="10vw"
+            objectFit="contain"
           />
         </Container>
       )}

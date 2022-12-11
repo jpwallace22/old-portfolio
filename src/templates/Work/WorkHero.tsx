@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 
 import { m } from 'framer-motion';
-import { Flex, Heading, Image, LargeCircle, SmallCircle } from 'quarks';
+import { Container, Flex, Heading, Image, LargeCircle, SmallCircle } from 'quarks';
 
 import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 
@@ -58,16 +58,16 @@ const WorkHero: FC<WorkRecord> = ({ title, subtitle, bannerImage, techStack }) =
         marginY={48}
       >
         {bannerImage && (
-          <Image
-            src={bannerImage?.url}
-            alt={bannerImage?.alt || ''}
-            height={650}
-            width={650}
+          <Container
             marginX="auto"
-            maxWidth="80%"
-            loading="eager"
+            position="relative"
+            width="100%"
+            maxWidth="650px"
+            aspectRatio={[bannerImage?.width, bannerImage?.height]}
             lg={{ marginAll: 0 }}
-          />
+          >
+            <Image src={bannerImage?.url} alt={bannerImage?.alt || ''} priority fill />
+          </Container>
         )}
         {techStack && <TechStack techs={techStack} />}
       </Flex>

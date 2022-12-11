@@ -26,7 +26,7 @@ export interface CustomImageProps extends ModifiedBasicProps, Omit<ImageProps, '
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const { height, width, objectPosition, objectFit, ...remainingProps } = basicCSS;
+const { height, width, objectFit: removed, ...remainingProps } = basicCSS;
 
 const customCSS = { ...remainingProps, ...breakpoints, ...pseudos, ...pseudoElements };
 const allCSSKeys = Object.keys(customCSS);
@@ -46,11 +46,11 @@ const Image: FunctionComponent<CustomImageProps> = props => {
     },
   );
   const quarkProps = Object.fromEntries(filteredQuarkProps);
-  const { src, alt, ...nextProps } = Object.fromEntries(filteredNextProps);
+  const { src, alt, objectFit, ...nextProps } = Object.fromEntries(filteredNextProps);
 
   return (
     <Container width="fit-content" height="fit-content" {...quarkProps}>
-      <NextImage src={src} alt={alt} {...nextProps} />
+      <NextImage src={src} alt={alt} {...nextProps} style={{ objectFit }} />
     </Container>
   );
 };

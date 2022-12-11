@@ -77,13 +77,20 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({ works, ...pro
                     {work.title}
                   </Heading>
                 </Container>
-                <Container width="40%" className="image-wrapper" transition="all 1s ease">
+                <Container
+                  width="40vw"
+                  maxWidth="500px"
+                  className="image-wrapper"
+                  transition="all 1s ease"
+                  position="relative"
+                  aspectRatio={[work?.bannerImage?.width, work?.bannerImage?.height]}
+                >
                   <Image
                     src={work?.bannerImage?.url || ''}
-                    height={500}
-                    width={500}
+                    fill
                     marginX="auto"
                     alt={work?.bannerImage?.alt || ''}
+                    sizes="50vw"
                   />
                 </Container>
               </Flex>
