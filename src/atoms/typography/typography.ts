@@ -13,7 +13,6 @@ const ibmPlex = IBM_Plex_Sans({
   preload: true,
 });
 
-// const secondaryFont = '"IBM Plex Sans", sans-serif;';
 const secondaryFont = darkerGrotesque.style.fontFamily;
 const primaryFont = ibmPlex.style.fontFamily;
 
