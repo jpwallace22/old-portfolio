@@ -6,10 +6,11 @@ import type { FC } from 'react';
 interface ISeo {
   title: string;
   description: string;
+  slug: string;
   image: FileField;
 }
 
-const SEO: FC<ISeo> = ({ description, title, image }) => {
+const SEO: FC<ISeo> = ({ description, title, image, slug }) => {
   const metaDesc =
     description ||
     'This is the personal site and portfolio of Justin Wallace. Here I showcase some works and the progress of my career. I also write about dev-related experiences.';
@@ -21,7 +22,7 @@ const SEO: FC<ISeo> = ({ description, title, image }) => {
       <meta name="description" content={metaDesc} />
       <meta property="og:image" content={metaImage} />
       <meta property="og:title" content={metaTitle} />
-      <meta name="og:url" content="http://www.imdb.com/title/tt0117500/" />
+      <meta name="og:url" content={`https://www.justinwallace.dev/${slug}`} />
     </>
   );
 };

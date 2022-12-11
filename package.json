@@ -35,7 +35,7 @@
     "graphql": "^16.6.0",
     "graphql-request": "^5.0.0",
     "image-size": "^1.0.1",
-    "next": "^13.0.6",
+    "next": "^13.0.7-canary.4",
     "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-datocms": "^4.0.6",
