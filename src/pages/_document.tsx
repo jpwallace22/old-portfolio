@@ -46,11 +46,8 @@ class MyDocument extends Document {
           <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
           <link rel="manifest" href="/favicons/site.webmanifest" />
           <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#5bbad5" />
-          <meta name="description" content="Personal portfolio of the frontend engineer, Justin Wallace" />
           <meta name="msapplication-TileColor" content="#00aba9" />
           <meta name="theme-color" content="#ffffff" />
-          <meta property="og:image" content="https://www.datocms-assets.com/85391/1670693320-jwdev.webp" />
-          <meta property="og:title" content="Justin Wallace Development" />
         </Head>
         <body>
           <Main />
