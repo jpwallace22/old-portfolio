@@ -1,4 +1,3 @@
-import NextLink from 'next/link';
 import styled from 'styled-components';
 
 import { basic } from 'quarks/interpolations/basic';
@@ -24,20 +23,10 @@ interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement>, BasicProps 
   children: ReactNode;
 }
 
-const Link: FC<LinkProps> = ({ children, href, ...props }) => {
-  const { isInternal, href: url, ...rest } = parseUrl(href);
-
-  return isInternal ? (
-    <NextLink href={url || ''} passHref legacyBehavior>
-      <StyledLink {...props} aria-label={href}>
-        {children}
-      </StyledLink>
-    </NextLink>
-  ) : (
-    <StyledLink href={url} {...rest} {...props}>
-      {children}
-    </StyledLink>
-  );
-};
+const Link: FC<LinkProps> = ({ children, href, ...props }) => (
+  <StyledLink {...parseUrl(href)} {...props}>
+    {children}
+  </StyledLink>
+);
 
 export default Link;
