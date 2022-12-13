@@ -139,6 +139,13 @@ export const workFrag = `
     __typename
     id
     internalName
+    seo {
+      description
+      title
+      image {
+        ...imageFrag
+      }
+    }
     title
     subtitle
     heading
@@ -174,6 +181,13 @@ export const blogPostFrag = `
     __typename
     id
     internalName
+    seo {
+      description
+      title
+      image {
+        ...imageFrag
+      }
+    }
     title
     subtitle
     publishDate
@@ -224,6 +238,14 @@ export const blogCardFrag = `
 export const blogPageFrag = `
   fragment blogPageFrag on BlogPageRecord {
     __typename
+    id
+    seo {
+      description
+      title
+      image {
+        ...imageFrag
+      }
+    }
     switchback {
       ...switchBackFrag
     }

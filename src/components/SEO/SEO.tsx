@@ -1,12 +1,31 @@
 import type { FileField } from 'graphql/generatedTypes';
+import type { Maybe } from 'graphql/jsutils/Maybe';
 import type { FC } from 'react';
 
 interface ISeo {
-  title?: string;
-  description?: string;
-  slug?: string;
-  image?: FileField;
-  type?: string;
+  /**
+   * acts as `title` tag and `og:title`
+   */
+  title?: Maybe<string>;
+  /**
+   * acts as `description` tag and `og:description`
+   */
+  description?: Maybe<string>;
+  /**
+   * used to create the `og:url`
+   */
+  slug?: Maybe<string>;
+  /**
+   * `og:image`
+   */
+  image?: Maybe<FileField>;
+  /**
+   * `og:type` defaults to `website` use `article` for blog posts
+   */
+  type?: Maybe<string>;
+  /**
+   * to add extra meta tags not included in base SEO
+   */
   children?: JSX.IntrinsicElements['meta'];
 }
 
@@ -21,13 +40,13 @@ const SEO: FC<ISeo> = ({ description, title, image, slug, type, children }) => {
 
   return (
     <>
-      <title>{title}</title>
       <meta name="description" content={metaDesc} />
+      <meta property="og:title" content={metaTitle} />
+      <meta property="og:description" content={metaDesc} />
       <meta property="og:type" content={metaType} />
       <meta property="og:image" content={metaImage} />
       <meta property="og:image:type" content="image/webp" />
       <meta property="og:image:alt" content={metaImageAlt} />
-      <meta property="og:title" content={metaTitle} />
       <meta name="og:url" content={`https://www.justinwallace.dev/${slug}`} />
       {children}
     </>
