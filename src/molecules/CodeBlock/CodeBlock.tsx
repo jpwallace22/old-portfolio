@@ -12,10 +12,15 @@ interface ICodeBlock {
 const CodeBlock: FC<ICodeBlock> = ({ node }) => {
   useEffect(() => {
     import('prismjs').then(Prism => {
-      // @ts-expect-error test
-      import('prismjs/themes/prism-tomorrow.min.css');
+      require('prismjs/themes/prism-tomorrow.min.css');
+      require('prismjs/components/prism-javascript.min.js');
+      require('prismjs/components/prism-typescript.min.js');
+      require('prismjs/components/prism-jsx.min.js');
+      require('prismjs/components/prism-tsx.min.js');
+
       Prism.highlightAll();
     });
+    // Prism.highlightAll();
   }, []);
 
   return (
