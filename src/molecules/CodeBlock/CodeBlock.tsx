@@ -17,10 +17,10 @@ const CodeBlock: FC<ICodeBlock> = ({ node }) => {
       require('prismjs/components/prism-typescript.min.js');
       require('prismjs/components/prism-jsx.min.js');
       require('prismjs/components/prism-tsx.min.js');
+      require('prismjs/components/prism-shell-session.min.js');
 
       Prism.highlightAll();
     });
-    // Prism.highlightAll();
   }, []);
 
   return (
