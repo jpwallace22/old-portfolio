@@ -16,6 +16,7 @@ import { media } from 'atoms/breakpoints/breakpoints';
 import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 
 import Hero from 'components/Hero/Hero';
+import SEO from 'components/SEO/SEO';
 
 import { emailObfuscator } from 'utils/functions';
 
@@ -65,8 +66,8 @@ const Home: FC<IHomePage> = ({ data }) => {
 
   return (
     <>
+      <SEO />
       <Head>
-        <title>Justin Wallace | Home</title>
         <link
           rel="preload"
           as="image"

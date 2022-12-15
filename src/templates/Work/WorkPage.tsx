@@ -1,6 +1,5 @@
 import { lazy } from 'react';
 
-import Head from 'next/head';
 import { Container, Dots, Flex, Heading } from 'quarks';
 import WorkHero from 'templates/Work/WorkHero';
 
@@ -17,14 +16,11 @@ const Slider = lazy(() => import('components/Slider/Slider'));
 const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/StructuredTextParser'));
 
 const WorkPageTemplate: FC<WorkRecord> = props => {
-  const { heading, ctas, body, information, slider, seo, slug } = props;
+  const { heading, ctas, body, information, slider, seo, slug, bannerImage } = props;
 
   return (
     <>
-      <Head>
-        <title>JW Dev{seo?.title && ` | ${seo.title}`}</title>
-        <SEO {...seo} slug={slug} />
-      </Head>
+      <SEO {...seo} image={seo?.image || bannerImage} slug={slug} />
       <Container
         as="main"
         maxWidth="1440px"

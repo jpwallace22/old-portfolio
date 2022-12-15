@@ -2,10 +2,11 @@ import { lazy } from 'react';
 
 import request from 'graphql/datocms';
 import { blogCardFrag, blogPageFrag } from 'graphql/fragments';
-import Head from 'next/head';
 
 import Container from 'quarks/Container';
 import Flex from 'quarks/Flex';
+
+import SEO from 'components/SEO/SEO';
 
 import type { BlogPageRecord, BlogPostRecord } from 'graphql/generatedTypes';
 import type { GetStaticProps } from 'next';
@@ -20,14 +21,12 @@ interface IBlogPage extends BlogPageRecord {
   blogs: BlogPostRecord[];
 }
 
-const BlogPage: FC<IBlogPage> = ({ switchback, blogs }) => {
+const BlogPage: FC<IBlogPage> = ({ switchback, blogs, seo }) => {
   const breadcrumbs = [{ label: 'Home', link: 'https://www.justinwallace.dev' }, { label: 'All Blogs' }];
 
   return (
     <>
-      <Head>
-        <title>Justin Wallace | Blog</title>
-      </Head>
+      <SEO {...seo} slug="/blog" />
       <Container
         backgroundColor={{ dark: 'purple-800', light: 'gray-50' }}
         position="relative"
@@ -63,7 +62,7 @@ export const getStaticProps: GetStaticProps = async () => {
       blogPage {
         ...blogPageFrag
       }
-      allBlogPosts {
+      allBlogPosts(orderBy: publishDate_DESC) {
         ...blogCardFrag
       }
     }

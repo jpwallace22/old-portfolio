@@ -3,8 +3,6 @@ import { Fragment } from 'react';
 import Document, { Head, Html, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
-import SEO from 'components/SEO/SEO';
-
 import type { DocumentContext } from 'next/document';
 
 class MyDocument extends Document {
@@ -45,7 +43,6 @@ class MyDocument extends Document {
           <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#5bbad5" />
           <meta name="msapplication-TileColor" content="#00aba9" />
           <meta name="theme-color" content="#ffffff" />
-          <SEO />
         </Head>
         <body>
           <Main />
