@@ -16,6 +16,7 @@ import { media } from 'atoms/breakpoints/breakpoints';
 import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 
 import Hero from 'components/Hero/Hero';
+import SEO from 'components/SEO/SEO';
 
 import { emailObfuscator } from 'utils/functions';
 
@@ -65,15 +66,14 @@ const Home: FC<IHomePage> = ({ data }) => {
 
   return (
     <>
+      <SEO />
       <Head>
-        <title>Justin Wallace | Home</title>
         <link
           rel="preload"
           as="image"
           href="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27635%27%20height=%27629%27/%3e"
         />
       </Head>
-
       <Container as="main" contain="layout" maxWidth="1440px" marginX="auto" paddingX={16} lg={{ paddingX: 32 }}>
         <Container
           className="heroSection"

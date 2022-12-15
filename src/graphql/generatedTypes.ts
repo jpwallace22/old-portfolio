@@ -38,6 +38,7 @@ export type BlogPageRecord = RecordInterface & {
   _updatedAt: Scalars['DateTime'];
   createdAt: Scalars['DateTime'];
   id: Scalars['ItemId'];
+  seo?: Maybe<SeoField>;
   switchback?: Maybe<SwitchbackRecord>;
   updatedAt: Scalars['DateTime'];
 };
@@ -80,6 +81,7 @@ export type BlogPostModelFilter = {
   id?: InputMaybe<ItemIdFilter>;
   internalName?: InputMaybe<StringFilter>;
   publishDate?: InputMaybe<DateFilter>;
+  seo?: InputMaybe<SeoFilter>;
   slug?: InputMaybe<SlugFilter>;
   subtitle?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
@@ -141,6 +143,7 @@ export type BlogPostRecord = RecordInterface & {
   id: Scalars['ItemId'];
   internalName?: Maybe<Scalars['String']>;
   publishDate?: Maybe<Scalars['Date']>;
+  seo?: Maybe<SeoField>;
   slug?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
@@ -775,6 +778,7 @@ export type HomepageRecord = RecordInterface & {
   createdAt: Scalars['DateTime'];
   id: Scalars['ItemId'];
   internalName?: Maybe<Scalars['String']>;
+  seo?: Maybe<SeoField>;
   testimonials: Array<TestimonialCardRecord>;
   updatedAt: Scalars['DateTime'];
   works: Array<WorkRecord>;
@@ -2827,6 +2831,12 @@ export type SeoField = {
   twitterCard?: Maybe<Scalars['String']>;
 };
 
+/** Specifies how to filter SEO meta tags fields */
+export type SeoFilter = {
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars['BooleanType']>;
+};
+
 export type Site = {
   __typename?: 'Site';
   favicon?: Maybe<FileField>;
@@ -3558,6 +3568,7 @@ export type WorkModelFilter = {
   id?: InputMaybe<ItemIdFilter>;
   information?: InputMaybe<StructuredTextFilter>;
   internalName?: InputMaybe<StringFilter>;
+  seo?: InputMaybe<SeoFilter>;
   slider?: InputMaybe<LinksFilter>;
   slug?: InputMaybe<SlugFilter>;
   subtitle?: InputMaybe<StringFilter>;
@@ -3628,6 +3639,7 @@ export type WorkRecord = RecordInterface & {
   id: Scalars['ItemId'];
   information?: Maybe<WorkModelInformationField>;
   internalName?: Maybe<Scalars['String']>;
+  seo?: Maybe<SeoField>;
   slider: Array<CaseStudyCardRecord>;
   slug?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;

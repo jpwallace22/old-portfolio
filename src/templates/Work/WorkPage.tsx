@@ -1,10 +1,11 @@
 import { lazy } from 'react';
 
-import Head from 'next/head';
 import { Container, Dots, Flex, Heading } from 'quarks';
 import WorkHero from 'templates/Work/WorkHero';
 
 import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
+
+import SEO from 'components/SEO/SEO';
 
 import type { WorkRecord } from 'graphql/generatedTypes';
 import type { FC } from 'react';
@@ -15,13 +16,11 @@ const Slider = lazy(() => import('components/Slider/Slider'));
 const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/StructuredTextParser'));
 
 const WorkPageTemplate: FC<WorkRecord> = props => {
-  const { title, heading, ctas, body, information, slider } = props;
+  const { heading, ctas, body, information, slider, seo, slug, bannerImage } = props;
 
   return (
     <>
-      <Head>
-        <title>{`Justin Wallace | ${title}`}</title>
-      </Head>
+      <SEO {...seo} image={seo?.image || bannerImage} slug={slug} />
       <Container
         as="main"
         maxWidth="1440px"

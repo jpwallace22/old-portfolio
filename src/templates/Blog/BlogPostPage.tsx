@@ -1,10 +1,11 @@
 import { lazy, useEffect, useMemo, useRef, useState } from 'react';
 
-import Head from 'next/head';
 import { Container, Flex, Text } from 'quarks';
 import { useWindowScroll } from 'react-use';
 
 import { Dots, LargeCircle } from 'quarks/DesignElements';
+
+import SEO from 'components/SEO/SEO';
 
 import { randomIntFromInterval } from 'utils/functions';
 
@@ -19,7 +20,7 @@ const Footer = lazy(() => import('components/Footer/Footer'));
 const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/StructuredTextParser'));
 
 const BlogPostPage: FC<BlogPostRecord> = props => {
-  const { title, body, slug } = props;
+  const { title, body, slug, seo, featuredImage } = props;
   const footerRef = useRef<HTMLElement | null>(null);
   const [scrollPercentage, setScrollPercentage] = useState(0);
   const [circleX, setCircleX] = useState(0);
@@ -56,9 +57,7 @@ const BlogPostPage: FC<BlogPostRecord> = props => {
 
   return (
     <>
-      <Head>
-        <title>{`Justin Wallace | ${title}`}</title>
-      </Head>
+      <SEO {...seo} image={seo?.image || featuredImage} type="article" slug={slug} />
       <BlogPostHero {...props} />
       <Flex
         justifyContent="space-between"
