@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import color, { gradient } from 'atoms/colors/colors';
 
 import type { TestimonialCardRecord } from 'graphql/generatedTypes';
+import type { FlexProps } from 'quarks/interpolations/flex';
 import type { FC } from 'react';
 
 const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/StructuredTextParser'));
@@ -17,27 +18,31 @@ const Quotes = styled(IoIosQuote)`
   top: -70px;
 `;
 
-const TestimonialCard: FC<TestimonialCardRecord> = ({ quote, person, ...props }) => (
+type TestimonialCardProps = TestimonialCardRecord & FlexProps;
+
+const TestimonialCard: FC<TestimonialCardProps> = ({ quote, person, ...props }) => (
   <Flex
     flexDirection="column"
     position="relative"
     gap="32px"
-    width="93.3vw"
+    width="100%"
     maxWidth="1376px"
     borderRadius="32px"
     boxShadow="lg"
-    backgroundColor={{ dark: 'common-black', light: 'common-white' }}
+    backgroundColor={{ dark: 'purple-800', light: 'gray-50' }}
     paddingX={24}
     paddingTop={48}
     paddingBottom={24}
-    sm={{ width: '95.5vw' }}
-    lg={{ paddingAll: 64, width: '94vw' }}
-    xl={{ width: '95vw', paddingAll: 80 }}
+    marginTop={48}
+    justifyContent="center"
+    lg={{ paddingAll: 64 }}
+    xl={{ paddingAll: 80 }}
     css={`
-      background-clip: padding-box;
-      border: solid 5px transparent;
+      /* background-clip: padding-box;
+      border: solid 5px transparent; */
       border-radius: 32px;
-      &:before {
+      scroll-snap-align: center;
+      /* &:before {
         content: '';
         position: absolute;
         top: 0;
@@ -48,21 +53,11 @@ const TestimonialCard: FC<TestimonialCardRecord> = ({ quote, person, ...props })
         margin: -3px;
         border-radius: inherit;
         background: ${gradient.purpleLeft};
-      }
+      } */
     `}
     {...props}
   >
     <Quotes size={120} fill={color.primary[500]} />
-    {quote && (
-      <StructuredTextParser
-        text={quote}
-        fontSize={24}
-        lineHeight={38}
-        lg={{ fontSize: 30, lineHeight: 38 }}
-        xl={{ fontSize: 48, lineHeight: 56 }}
-        textColor={{ dark: 'gray-400', light: 'purple-800' }}
-      />
-    )}
 
     <Flex position="relative" width="100%" flexDirection="row" alignItems="center" gap="50px 20px">
       {person && (
@@ -100,6 +95,16 @@ const TestimonialCard: FC<TestimonialCardRecord> = ({ quote, person, ...props })
         </Flex>
       </Link>
     </Flex>
+    {quote && (
+      <StructuredTextParser
+        text={quote}
+        fontSize={24}
+        lineHeight={38}
+        lg={{ fontSize: 30, lineHeight: 38 }}
+        xl={{ fontSize: 48, lineHeight: 56 }}
+        textColor={{ dark: 'gray-400', light: 'purple-800' }}
+      />
+    )}
   </Flex>
 );
 

@@ -1,8 +1,7 @@
-import { lazy, useEffect, useState } from 'react';
+import { lazy, useRef } from 'react';
 
 import { Container, Flex } from 'quarks';
 import { TiChevronLeft, TiChevronRight } from 'react-icons/ti';
-import { useSwipeable } from 'react-swipeable';
 
 import Button from 'molecules/Button/Button';
 
@@ -19,63 +18,8 @@ type CarouselCardProps = BasicProps & {
 };
 
 const Carousel: FC<CarouselCardProps> = ({ cards }) => {
-  const [activeIndex, setActive] = useState(2);
-  const [cardWidths, setCardWidths] = useState<number[]>([]);
-  const [shouldAnimate, setShouldAnimate] = useState(true);
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-
-  const allCards = [cards[cards.length - 2], cards[cards.length - 1], ...cards, cards[0], cards[1]];
-  const cardCount = allCards?.length;
+  const scrollBoxRef = useRef<HTMLDivElement | null>(null);
   const gapBetweenCards = 80;
-
-  const leftClick = () => (activeIndex === 0 ? setActive(cardCount - 1) : setActive(activeIndex - 1));
-  const rightClick = () => (activeIndex === cardCount - 1 ? setActive(0) : setActive(activeIndex + 1));
-
-  const swipeHandler = useSwipeable({
-    onSwipedRight: leftClick,
-    onSwipedLeft: rightClick,
-    preventScrollOnSwipe: true,
-  });
-
-  const refPassthrough = (el: HTMLDivElement) => {
-    swipeHandler.ref(el);
-  };
-
-  const handleArrowClick = (direction: string) => {
-    if (direction === 'Right' && cardCount) {
-      rightClick();
-      setIsButtonDisabled(true);
-    } else if (direction === 'Left' && cardCount) {
-      leftClick();
-      setIsButtonDisabled(true);
-    }
-  };
-
-  const handleTransitionEnd = () => {
-    setIsButtonDisabled(false);
-    if (activeIndex === 1) {
-      setShouldAnimate(false);
-      setActive(cardCount - 3);
-    } else if (activeIndex === cardCount - 2) {
-      setShouldAnimate(false);
-      setActive(2);
-    }
-  };
-
-  useEffect(() => {
-    const getCards = [...document.querySelectorAll('.carousel-cards')];
-    setCardWidths(getCards.map(card => card.getBoundingClientRect().width));
-  }, [activeIndex]);
-
-  useEffect(() => {
-    if (activeIndex === cardCount - 3) {
-      setShouldAnimate(true);
-    } else if (activeIndex === 2) {
-      setShouldAnimate(true);
-    }
-  }, [activeIndex, cardCount]);
-
-  const calculateSlideAnimation = (arr: number[], gap: number) => arr.reduce((a, b) => a + b + gap, 0);
 
   return cards?.length > 0 ? (
     <Flex
@@ -86,32 +30,42 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
       justifyContent="center"
       md={{ paddingY: 64 }}
       lg={{ paddingY: 96, gap: '48px' }}
-      ref={refPassthrough}
+      position="relative"
     >
-      <Flex width={`${cardCount}00%`} flexDirection="column" lg={{ flexDirection: 'row' }}>
-        <Container>
-          <Flex
-            gap={`${gapBetweenCards}px`}
-            transform={`translateX(-${calculateSlideAnimation(cardWidths.slice(0, activeIndex), gapBetweenCards)}px)`}
-            transition={shouldAnimate && 'transform 0.5s'}
-            flexWrap="nowrap"
-            alignItems="stretch"
-            onTransitionEnd={() => handleTransitionEnd()}
-          >
-            {allCards?.map(card => (
-              <Flex alignItems="center" key={getSemiRandomString()} className="carousel-cards">
-                <TestimonialCard {...card} />
-              </Flex>
-            ))}
-          </Flex>
-        </Container>
+      <Container
+        position="absolute"
+        top="0"
+        bottom="0"
+        left="-16px"
+        right="-16px"
+        zIndex={2}
+        css="background: linear-gradient(90deg, rgba(17,14,45,1) 0%, rgba(17,14,45,0) 7%, rgba(17,14,45,0) 93%, rgba(17,14,45,1) 100%); pointer-events: none;"
+      />
+      <Flex
+        gap={`${gapBetweenCards}px`}
+        flexWrap="nowrap"
+        alignItems="stretch"
+        overflowX="scroll"
+        ref={scrollBoxRef}
+        css={`
+          scroll-behavior: smooth;
+          scroll-snap-type: x mandatory;
+          scrollbar-width: none;
+          ::-webkit-scrollbar {
+            display: none;
+          }
+        `}
+      >
+        {cards?.map(card => (
+          <TestimonialCard key={getSemiRandomString()} flex="1 0 100%" {...card} />
+        ))}
       </Flex>
       <Flex justifyContent="space-around" gap="32px">
         <Button
           flex="0 0 30%"
           hover={{ opacity: 1 }}
           height="82px"
-          onClick={() => !isButtonDisabled && handleArrowClick('Left')}
+          onClick={() => scrollBoxRef.current?.scrollBy(-50, 0)}
           cursor="pointer"
         >
           <TiChevronLeft size={40} />
@@ -120,7 +74,7 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
           flex="0 0 30%"
           transition="opacity .2s"
           hover={{ opacity: 1 }}
-          onClick={() => !isButtonDisabled && handleArrowClick('Right')}
+          onClick={() => scrollBoxRef.current?.scrollBy(50, 0)}
           cursor="pointer"
         >
           <TiChevronRight size={40} />
