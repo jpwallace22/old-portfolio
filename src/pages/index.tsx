@@ -40,17 +40,13 @@ const Home: FC<IHomePage> = ({ data }) => {
   const { worksHeading, worksIntro, aboutMe, works, testimonials } = data;
   const isDesktop = useMediaQuery(media.lg);
   const [drawHero, setDrawHero] = useState(0);
-
   const aboutRef = useRef<HTMLElement | null>(null);
   const worksRef = useRef<HTMLElement | null>(null);
-
   const router = useRouter();
-
   useEffect(() => {
+    const worksSection = worksRef.current?.getBoundingClientRect();
+    const aboutSection = aboutRef.current?.getBoundingClientRect();
     const handleScroll = () => {
-      const worksSection = worksRef.current?.getBoundingClientRect();
-      const aboutSection = aboutRef.current?.getBoundingClientRect();
-
       if (worksSection && aboutSection) {
         const heroPercentage =
           document.documentElement.scrollTop / (aboutSection.top + document.documentElement.scrollTop);

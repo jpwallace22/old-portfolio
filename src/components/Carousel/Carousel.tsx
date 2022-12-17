@@ -18,8 +18,20 @@ type CarouselCardProps = BasicProps & {
 };
 
 const Carousel: FC<CarouselCardProps> = ({ cards }) => {
+  // const [scrollingPosition, setScrollingPosition] = useState<'start' | 'middle' | 'end'>('start');
   const scrollBoxRef = useRef<HTMLDivElement | null>(null);
+  // const cardCount = cards.length;
   const gapBetweenCards = 80;
+  // const paneWidth = scrollBoxRef.current?.scrollWidth / cardCount;
+
+  const handleClick = (dir: 'left' | 'right') => {
+    if (dir === 'left') {
+      scrollBoxRef.current?.scrollBy(-50, 0);
+    } else {
+      scrollBoxRef.current?.scrollBy(50, 0);
+    }
+    // const scrollPos = scrollBoxRef.current?.scrollLeft;
+  };
 
   return cards?.length > 0 ? (
     <Flex
@@ -65,7 +77,7 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
           flex="0 0 30%"
           hover={{ opacity: 1 }}
           height="82px"
-          onClick={() => scrollBoxRef.current?.scrollBy(-50, 0)}
+          onClick={() => handleClick('left')}
           cursor="pointer"
         >
           <TiChevronLeft size={40} />
@@ -74,7 +86,7 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
           flex="0 0 30%"
           transition="opacity .2s"
           hover={{ opacity: 1 }}
-          onClick={() => scrollBoxRef.current?.scrollBy(50, 0)}
+          onClick={() => handleClick('right')}
           cursor="pointer"
         >
           <TiChevronRight size={40} />
