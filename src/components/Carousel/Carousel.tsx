@@ -18,19 +18,15 @@ type CarouselCardProps = BasicProps & {
 };
 
 const Carousel: FC<CarouselCardProps> = ({ cards }) => {
-  // const [scrollingPosition, setScrollingPosition] = useState<'start' | 'middle' | 'end'>('start');
   const scrollBoxRef = useRef<HTMLDivElement | null>(null);
-  // const cardCount = cards.length;
-  const gapBetweenCards = 80;
-  // const paneWidth = scrollBoxRef.current?.scrollWidth / cardCount;
+  const gapBetweenCards = 32;
 
   const handleClick = (dir: 'left' | 'right') => {
     if (dir === 'left') {
-      scrollBoxRef.current?.scrollBy(-50, 0);
+      scrollBoxRef.current?.scrollBy(-100, 0);
     } else {
-      scrollBoxRef.current?.scrollBy(50, 0);
+      scrollBoxRef.current?.scrollBy(100, 0);
     }
-    // const scrollPos = scrollBoxRef.current?.scrollLeft;
   };
 
   return cards?.length > 0 ? (
@@ -51,12 +47,22 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
         left="-16px"
         right="-16px"
         zIndex={2}
-        css="background: linear-gradient(90deg, rgba(17,14,45,1) 0%, rgba(17,14,45,0) 7%, rgba(17,14,45,0) 93%, rgba(17,14,45,1) 100%); pointer-events: none;"
+        transition="background .5s ease"
+        css={`
+          background: linear-gradient(
+            90deg,
+            rgba(17, 14, 45, 1) 0%,
+            rgba(17, 14, 45, 0) 10%,
+            rgba(17, 14, 45, 0) 90%,
+            rgba(17, 14, 45, 1) 100%
+          );
+          pointer-events: none;
+        `}
       />
       <Flex
         gap={`${gapBetweenCards}px`}
         flexWrap="nowrap"
-        alignItems="stretch"
+        alignItems="center"
         overflowX="scroll"
         ref={scrollBoxRef}
         css={`

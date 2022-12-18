@@ -34,15 +34,16 @@ const TestimonialCard: FC<TestimonialCardProps> = ({ quote, person, ...props }) 
     paddingTop={48}
     paddingBottom={24}
     marginTop={48}
+    height="100%"
     justifyContent="center"
     lg={{ paddingAll: 64 }}
     xl={{ paddingAll: 80 }}
     css={`
-      /* background-clip: padding-box;
-      border: solid 5px transparent; */
+      background-clip: padding-box;
+      border: solid 5px transparent;
       border-radius: 32px;
       scroll-snap-align: center;
-      /* &:before {
+      &:before {
         content: '';
         position: absolute;
         top: 0;
@@ -53,7 +54,7 @@ const TestimonialCard: FC<TestimonialCardProps> = ({ quote, person, ...props }) 
         margin: -3px;
         border-radius: inherit;
         background: ${gradient.purpleLeft};
-      } */
+      }
     `}
     {...props}
   >
@@ -98,8 +99,8 @@ const TestimonialCard: FC<TestimonialCardProps> = ({ quote, person, ...props }) 
     {quote && (
       <StructuredTextParser
         text={quote}
-        fontSize={24}
-        lineHeight={38}
+        fontSize={20}
+        lineHeight={32}
         lg={{ fontSize: 30, lineHeight: 38 }}
         xl={{ fontSize: 48, lineHeight: 56 }}
         textColor={{ dark: 'gray-400', light: 'purple-800' }}

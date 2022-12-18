@@ -12,7 +12,7 @@ import type { StructuredData } from 'utils/structuredTextParser';
  *
  * routes to personal email, but robots cant read it
  */
-export const emailObfuscator = (router: NextRouter) => {
+export const emailObfuscator = async (router: NextRouter) => {
   const dot = '.';
   const at = '@';
   router.push(`${['m', 'a', 'i', 'l', 't', 'o'].join('')}:hello${at}justinwallace${dot}dev`);
@@ -68,3 +68,15 @@ export const stringToKebabCase = (str?: string) =>
     .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
     ?.join('-')
     .toLowerCase();
+
+// eslint-disable-next-line @typescript-eslint/ban-types
+export const throttle = (fn: Function, delay: number) => {
+  let time = Date.now();
+
+  return () => {
+    if (time + delay - Date.now() <= 0) {
+      fn();
+      time = Date.now();
+    }
+  };
+};

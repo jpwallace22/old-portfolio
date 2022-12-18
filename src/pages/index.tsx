@@ -3,7 +3,6 @@ import { lazy, useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from '@mui/material';
 import request from 'graphql/datocms';
 import { buttonFrag, companyFrag, imageFrag, personFrag, switchBackFrag, testimonialCardFrag } from 'graphql/fragments';
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Container, Dots, Heading, Image, LargeCircle, SmallCircle } from 'quarks';
 import styled from 'styled-components';
@@ -18,7 +17,7 @@ import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 import Hero from 'components/Hero/Hero';
 import SEO from 'components/SEO/SEO';
 
-import { emailObfuscator } from 'utils/functions';
+import { emailObfuscator, throttle } from 'utils/functions';
 
 import type { HomepageRecord } from 'graphql/generatedTypes';
 import type { GetStaticProps } from 'next';
@@ -43,33 +42,31 @@ const Home: FC<IHomePage> = ({ data }) => {
   const aboutRef = useRef<HTMLElement | null>(null);
   const worksRef = useRef<HTMLElement | null>(null);
   const router = useRouter();
-  useEffect(() => {
+
+  // Dray line
+  const handleScroll = throttle(() => {
     const worksSection = worksRef.current?.getBoundingClientRect();
     const aboutSection = aboutRef.current?.getBoundingClientRect();
-    const handleScroll = () => {
-      if (worksSection && aboutSection) {
-        const heroPercentage =
-          document.documentElement.scrollTop / (aboutSection.top + document.documentElement.scrollTop);
+    if (worksSection && aboutSection) {
+      const heroPercentage =
+        document.documentElement.scrollTop / (aboutSection.top + document.documentElement.scrollTop);
 
-        setDrawHero(250 * heroPercentage);
-      }
-    };
+      setDrawHero(250 * heroPercentage);
+    }
+  }, 10);
 
-    window.addEventListener('scroll', handleScroll);
+  useEffect(() => {
+    // Draw the line, then stop, remove the eventListener and leave line drawn
+    if (drawHero < 200) {
+      window.addEventListener('scroll', handleScroll, { passive: true });
+    }
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [drawHero]);
 
   return (
     <>
       <SEO />
-      <Head>
-        <link
-          rel="preload"
-          as="image"
-          href="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27635%27%20height=%27629%27/%3e"
-        />
-      </Head>
       <Container as="main" contain="layout" maxWidth="1440px" marginX="auto" paddingX={16} lg={{ paddingX: 32 }}>
         <Container
           className="heroSection"
