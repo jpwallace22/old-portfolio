@@ -133,8 +133,6 @@ export const colorParser = (colorString?: ColorList) => {
 };
 
 export const parseBackgroundGradient = (value: string) =>
-  Object.keys(gradient).includes(value.split('-')[1])
-    ? gradient[value.split('-')[1] as GradientStyles]
-    : `url(${value})`;
+  Object.keys(gradient).includes(value.split('-')[1]) ? gradient[value.split('-')[1] as GradientStyles] : value;
 
 export default color;

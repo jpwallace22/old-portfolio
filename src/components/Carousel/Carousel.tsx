@@ -1,15 +1,14 @@
-import { lazy, useRef } from 'react';
+import { lazy, useRef, useState } from 'react';
 
-import { Container, Flex } from 'quarks';
-import { TiChevronLeft, TiChevronRight } from 'react-icons/ti';
+import { Flex } from 'quarks';
 
-import Button from 'molecules/Button/Button';
+import ComponentPagination from 'molecules/ComponentPagination/ComponentPagination';
 
 import { getSemiRandomString } from 'utils/functions';
 
 import type { TestimonialCardRecord } from 'graphql/generatedTypes';
 import type { BasicProps } from 'quarks/interpolations/basic';
-import type { FC } from 'react';
+import type { FC, MutableRefObject } from 'react';
 
 const TestimonialCard = lazy(() => import('components/cards/TestimonialCard/TestimonialCard'));
 
@@ -18,15 +17,22 @@ type CarouselCardProps = BasicProps & {
 };
 
 const Carousel: FC<CarouselCardProps> = ({ cards }) => {
+  const [active, setActive] = useState(0);
   const scrollBoxRef = useRef<HTMLDivElement | null>(null);
+  const cardCount = cards.length;
   const gapBetweenCards = 32;
 
-  const handleClick = (dir: 'left' | 'right') => {
+  const doScrolling = (targetRef: MutableRefObject<HTMLDivElement | null>, dir: 'left' | 'right') => {
+    const target = targetRef.current;
     if (dir === 'left') {
-      scrollBoxRef.current?.scrollBy(-100, 0);
+      target?.scrollBy(-100, 0);
     } else {
-      scrollBoxRef.current?.scrollBy(100, 0);
+      target?.scrollBy(100, 0);
     }
+  };
+
+  const handleClick = (dir: 'left' | 'right') => {
+    setTimeout(() => doScrolling(scrollBoxRef, dir), 1);
   };
 
   return cards?.length > 0 ? (
@@ -40,25 +46,6 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
       lg={{ paddingY: 96, gap: '48px' }}
       position="relative"
     >
-      <Container
-        position="absolute"
-        top="0"
-        bottom="0"
-        left="-16px"
-        right="-16px"
-        zIndex={2}
-        transition="background .5s ease"
-        css={`
-          background: linear-gradient(
-            90deg,
-            rgba(17, 14, 45, 1) 0%,
-            rgba(17, 14, 45, 0) 10%,
-            rgba(17, 14, 45, 0) 90%,
-            rgba(17, 14, 45, 1) 100%
-          );
-          pointer-events: none;
-        `}
-      />
       <Flex
         gap={`${gapBetweenCards}px`}
         flexWrap="nowrap"
@@ -66,38 +53,26 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
         overflowX="scroll"
         ref={scrollBoxRef}
         css={`
-          scroll-behavior: smooth;
+          overflow-anchor: none !important;
           scroll-snap-type: x mandatory;
+          scroll-behavior: smooth;
           scrollbar-width: none;
           ::-webkit-scrollbar {
             display: none;
           }
         `}
       >
-        {cards?.map(card => (
-          <TestimonialCard key={getSemiRandomString()} flex="1 0 100%" {...card} />
+        {cards?.map((card, i) => (
+          <TestimonialCard flex="1 0 100%" key={getSemiRandomString()} {...card} index={i} setActive={setActive} />
         ))}
       </Flex>
-      <Flex justifyContent="space-around" gap="32px">
-        <Button
-          flex="0 0 30%"
-          hover={{ opacity: 1 }}
-          height="82px"
-          onClick={() => handleClick('left')}
-          cursor="pointer"
-        >
-          <TiChevronLeft size={40} />
-        </Button>
-        <Button
-          flex="0 0 30%"
-          transition="opacity .2s"
-          hover={{ opacity: 1 }}
-          onClick={() => handleClick('right')}
-          cursor="pointer"
-        >
-          <TiChevronRight size={40} />
-        </Button>
-      </Flex>
+      <ComponentPagination
+        dotsCount={cardCount}
+        onLeftArrowClick={() => handleClick('left')}
+        onRightArrowClick={() => handleClick('right')}
+        onSetActiveDot={i => setActive(i)}
+        activeDot={active}
+      />
     </Flex>
   ) : null;
 };
