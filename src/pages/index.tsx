@@ -126,9 +126,7 @@ const Home: FC<IHomePage> = ({ data }) => {
           </Container>
         </StandardFadeIn>
 
-        <Container as="section" paddingBottom={64} paddingTop={80} position="relative">
-          <Carousel cards={testimonials} />
-        </Container>
+        <Carousel cards={testimonials} />
 
         <Container id="works" ref={worksRef} as="section" position="relative" contain="layout" paddingY={64}>
           <LargeCircle position="absolute" left="-900px" top="90px" zIndex={-10} lg={{ bottom: '-200px' }} />
