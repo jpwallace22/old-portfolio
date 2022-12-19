@@ -7,8 +7,6 @@ import Flex from 'quarks/Flex';
 import Button from 'molecules/Button/Button';
 import Dots from 'molecules/ComponentPagination/Dots';
 
-import { getSemiRandomString } from 'utils/functions';
-
 import type { FC } from 'react';
 
 interface ComponentPaginationProps {
@@ -89,19 +87,21 @@ const ComponentPagination: FC<ComponentPaginationProps> = ({
         </Button>
       )}
       <Flex gap="16px">
-        {[...Array(dotsCount).keys()]?.map((_, index: number) =>
-          index === activeDot ? (
-            <Dots isActive color="gray-900" key={getSemiRandomString()} onClick={() => handleActiveDot(index)} />
+        {[...Array(dotsCount).keys()]?.map((_, index: number) => {
+          const id = `Dot ${index + 1}`;
+
+          return index === activeDot ? (
+            <Dots isActive color="gray-900" key={id} onClick={() => handleActiveDot(index)} />
           ) : (
             <Dots
-              key={getSemiRandomString()}
+              key={id}
               color={color}
               onKeyDown={e => e.key === 'Enter' && handleActiveDot(index)}
               onClick={() => handleActiveDot(index)}
               hover={{ backgroundColor: activeDot && index < activeDot ? 'primary-600' : 'purple-500' }}
             />
-          ),
-        )}
+          );
+        })}
       </Flex>
       {isWithArrow && (
         <Button

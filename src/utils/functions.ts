@@ -49,6 +49,7 @@ export const useOnScreen = <T extends Element | null>(ref: MutableRefObject<T>, 
 
 /**
  * @returns a semi-random 10 char string. Should NOT be used for cases where true randomness is needed
+ * **NEVER USE THIS FOR A KEY**
  */
 export const getSemiRandomString = () => Math.random().toString(36).slice(2, 12);
 

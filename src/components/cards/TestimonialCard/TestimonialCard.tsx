@@ -29,7 +29,7 @@ const TestimonialCard: FC<TestimonialCardProps> = ({ quote, person, index, setAc
   const intersection = useIntersection(ref, {
     root: null,
     rootMargin: '0px',
-    threshold: 1,
+    threshold: 0.6,
   });
 
   useLayoutEffect(() => {
