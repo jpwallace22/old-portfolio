@@ -29,7 +29,7 @@ const TestimonialCard: FC<TestimonialCardProps> = ({ quote, person, index, setAc
   const intersection = useIntersection(ref, {
     root: null,
     rootMargin: '0px',
-    threshold: 0.6,
+    threshold: [0.6, 1],
   });
 
   useLayoutEffect(() => {
@@ -43,15 +43,14 @@ const TestimonialCard: FC<TestimonialCardProps> = ({ quote, person, index, setAc
       position="relative"
       gap="32px"
       width="100%"
-      maxWidth="1376px"
       borderRadius="32px"
       boxShadow="lg"
-      backgroundColor={{ dark: 'purple-700', light: 'gray-50' }}
+      backgroundColor={{ dark: 'purple-800', light: 'gray-50' }}
       paddingX={24}
       paddingTop={48}
       paddingBottom={24}
       marginTop={48}
-      height="100%"
+      // height="100%"
       justifyContent="center"
       lg={{ paddingAll: 64 }}
       xl={{ paddingAll: 80 }}
@@ -119,7 +118,7 @@ const TestimonialCard: FC<TestimonialCardProps> = ({ quote, person, index, setAc
           fontSize={20}
           lineHeight={32}
           lg={{ fontSize: 30, lineHeight: 38 }}
-          xl={{ fontSize: 48, lineHeight: 56 }}
+          xl={{ fontSize: 36, lineHeight: 44 }}
           textColor={{ dark: 'gray-400', light: 'purple-800' }}
         />
       )}

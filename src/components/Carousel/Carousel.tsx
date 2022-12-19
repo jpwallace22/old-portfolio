@@ -1,6 +1,9 @@
 import { lazy, useRef, useState } from 'react';
 
+import { useMediaQuery } from '@mui/material';
 import { Container, Flex } from 'quarks';
+
+import { media } from 'atoms/breakpoints/breakpoints';
 
 import ComponentPagination from 'molecules/ComponentPagination/ComponentPagination';
 
@@ -19,6 +22,7 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
   const [active, setActive] = useState(0);
   const scrollBoxRef = useRef<HTMLDivElement | null>(null);
   const cardCount = cards.length;
+  const isDesktop = useMediaQuery(media.lg);
 
   const doScrolling = (targetRef: MutableRefObject<HTMLDivElement | null>, dir: 'left' | 'right') => {
     const target = targetRef.current;
@@ -87,7 +91,8 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
       <Flex
         gap="32px"
         flexWrap="nowrap"
-        alignItems="center"
+        // alignItems="center"
+        alignItems="stretch"
         overflowX="scroll"
         ref={scrollBoxRef}
         onScroll={e => handleScroll(e)}
@@ -102,7 +107,14 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
         `}
       >
         {cards?.map((card, i) => (
-          <TestimonialCard key={card.id} flex="1 0 100%" index={i} setActive={setActive} {...card} />
+          <TestimonialCard
+            key={card.id}
+            flex="1 0 100%"
+            lg={{ flex: '1 0 80%' }}
+            index={i}
+            setActive={setActive}
+            {...card}
+          />
         ))}
       </Flex>
       <ComponentPagination
@@ -111,6 +123,8 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
         onRightArrowClick={() => handleButtonClick('right')}
         onSetActiveDot={i => handleDotClick(i)}
         activeDot={active}
+        disableOnEnd
+        showArrows={isDesktop}
       />
     </Flex>
   ) : null;

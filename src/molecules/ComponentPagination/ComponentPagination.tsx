@@ -13,7 +13,7 @@ interface ComponentPaginationProps {
   /**
    * if `true`, arrows will show up.
    */
-  isWithArrow?: boolean;
+  showArrows?: boolean;
   /**
    * Determines between light or dark style dots.
    */
@@ -55,7 +55,7 @@ const dotsColors = {
 } as const;
 
 const ComponentPagination: FC<ComponentPaginationProps> = ({
-  isWithArrow = true,
+  showArrows = true,
   variant = 'light',
   activeDot,
   dotsCount,
@@ -73,7 +73,7 @@ const ComponentPagination: FC<ComponentPaginationProps> = ({
 
   return (
     <Flex gap="32px" justifyContent="center" alignItems="center">
-      {isWithArrow && (
+      {showArrows && (
         <Button
           boxShadow="none"
           textColor={disableOnEnd && activeDot === 0 ? 'transparent' : 'gray-900'}
@@ -103,7 +103,7 @@ const ComponentPagination: FC<ComponentPaginationProps> = ({
           );
         })}
       </Flex>
-      {isWithArrow && (
+      {showArrows && (
         <Button
           boxShadow="none"
           textColor={disableOnEnd && activeDot === dotsCount - 1 ? 'transparent' : 'gray-900'}
