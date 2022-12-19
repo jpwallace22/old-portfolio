@@ -3,8 +3,6 @@ import { lazy, useEffect, useState } from 'react';
 import { Container, Flex } from 'quarks';
 import { useSwipeable } from 'react-swipeable';
 
-import { getSemiRandomString } from 'utils/functions';
-
 import type { CaseStudyCardRecord } from 'graphql/generatedTypes';
 import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC } from 'react';
@@ -105,7 +103,7 @@ const Slider: FC<SliderCardProps> = ({ cards }) => {
             onTransitionEnd={() => handleTransitionEnd()}
           >
             {cards.map(card => (
-              <Flex alignItems="center" key={getSemiRandomString()} className="card-deck-items">
+              <Flex alignItems="center" key={card.id} className="card-deck-items">
                 <CaseStudyCard {...card} />
               </Flex>
             ))}

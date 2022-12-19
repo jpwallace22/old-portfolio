@@ -41,7 +41,7 @@
   },
   "ignorePatterns": ["!.storybook", "src/graphql/generatedTypes.ts", "prism.js"],
   "rules": {
-    "curly": "error",
+    "curly": ["error", "multi-line"],
     "eqeqeq": ["error", "smart"],
     "no-lonely-if": "error",
     "no-var": "error",

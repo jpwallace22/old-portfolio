@@ -7,15 +7,13 @@ import Flex from 'quarks/Flex';
 import Button from 'molecules/Button/Button';
 import Dots from 'molecules/ComponentPagination/Dots';
 
-import { getSemiRandomString } from 'utils/functions';
-
 import type { FC } from 'react';
 
 interface ComponentPaginationProps {
   /**
    * if `true`, arrows will show up.
    */
-  isWithArrow?: boolean;
+  showArrows?: boolean;
   /**
    * Determines between light or dark style dots.
    */
@@ -57,7 +55,7 @@ const dotsColors = {
 } as const;
 
 const ComponentPagination: FC<ComponentPaginationProps> = ({
-  isWithArrow = true,
+  showArrows = true,
   variant = 'light',
   activeDot,
   dotsCount,
@@ -75,7 +73,7 @@ const ComponentPagination: FC<ComponentPaginationProps> = ({
 
   return (
     <Flex gap="32px" justifyContent="center" alignItems="center">
-      {isWithArrow && (
+      {showArrows && (
         <Button
           boxShadow="none"
           textColor={disableOnEnd && activeDot === 0 ? 'transparent' : 'gray-900'}
@@ -89,21 +87,23 @@ const ComponentPagination: FC<ComponentPaginationProps> = ({
         </Button>
       )}
       <Flex gap="16px">
-        {[...Array(dotsCount).keys()]?.map((_, index: number) =>
-          index === activeDot ? (
-            <Dots isActive color="gray-900" key={getSemiRandomString()} onClick={() => handleActiveDot(index)} />
+        {[...Array(dotsCount).keys()]?.map((_, index: number) => {
+          const id = `Dot ${index + 1}`;
+
+          return index === activeDot ? (
+            <Dots isActive color="gray-900" key={id} onClick={() => handleActiveDot(index)} />
           ) : (
             <Dots
-              key={getSemiRandomString()}
+              key={id}
               color={color}
               onKeyDown={e => e.key === 'Enter' && handleActiveDot(index)}
               onClick={() => handleActiveDot(index)}
               hover={{ backgroundColor: activeDot && index < activeDot ? 'primary-600' : 'purple-500' }}
             />
-          ),
-        )}
+          );
+        })}
       </Flex>
-      {isWithArrow && (
+      {showArrows && (
         <Button
           boxShadow="none"
           textColor={disableOnEnd && activeDot === dotsCount - 1 ? 'transparent' : 'gray-900'}

@@ -3,7 +3,6 @@ import { lazy, useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from '@mui/material';
 import request from 'graphql/datocms';
 import { buttonFrag, companyFrag, imageFrag, personFrag, switchBackFrag, testimonialCardFrag } from 'graphql/fragments';
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Container, Dots, Heading, Image, LargeCircle, SmallCircle } from 'quarks';
 import styled from 'styled-components';
@@ -18,7 +17,7 @@ import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 import Hero from 'components/Hero/Hero';
 import SEO from 'components/SEO/SEO';
 
-import { emailObfuscator } from 'utils/functions';
+import { emailObfuscator, throttle } from 'utils/functions';
 
 import type { HomepageRecord } from 'graphql/generatedTypes';
 import type { GetStaticProps } from 'next';
@@ -40,40 +39,34 @@ const Home: FC<IHomePage> = ({ data }) => {
   const { worksHeading, worksIntro, aboutMe, works, testimonials } = data;
   const isDesktop = useMediaQuery(media.lg);
   const [drawHero, setDrawHero] = useState(0);
-
   const aboutRef = useRef<HTMLElement | null>(null);
   const worksRef = useRef<HTMLElement | null>(null);
-
   const router = useRouter();
 
+  // Dray line
+  const handleScroll = throttle(() => {
+    const worksSection = worksRef.current?.getBoundingClientRect();
+    const aboutSection = aboutRef.current?.getBoundingClientRect();
+    if (worksSection && aboutSection) {
+      const heroPercentage =
+        document.documentElement.scrollTop / (aboutSection.top + document.documentElement.scrollTop);
+
+      setDrawHero(250 * heroPercentage);
+    }
+  }, 10);
+
   useEffect(() => {
-    const handleScroll = () => {
-      const worksSection = worksRef.current?.getBoundingClientRect();
-      const aboutSection = aboutRef.current?.getBoundingClientRect();
-
-      if (worksSection && aboutSection) {
-        const heroPercentage =
-          document.documentElement.scrollTop / (aboutSection.top + document.documentElement.scrollTop);
-
-        setDrawHero(250 * heroPercentage);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
+    // Draw the line, then stop, remove the eventListener and leave line drawn
+    if (drawHero < 200) {
+      window.addEventListener('scroll', handleScroll, { passive: true });
+    }
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [drawHero]);
 
   return (
     <>
       <SEO />
-      <Head>
-        <link
-          rel="preload"
-          as="image"
-          href="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27635%27%20height=%27629%27/%3e"
-        />
-      </Head>
       <Container as="main" contain="layout" maxWidth="1440px" marginX="auto" paddingX={16} lg={{ paddingX: 32 }}>
         <Container
           className="heroSection"
@@ -133,9 +126,7 @@ const Home: FC<IHomePage> = ({ data }) => {
           </Container>
         </StandardFadeIn>
 
-        <Container as="section" paddingBottom={64} paddingTop={80} position="relative">
-          <Carousel cards={testimonials} />
-        </Container>
+        <Carousel cards={testimonials} />
 
         <Container id="works" ref={worksRef} as="section" position="relative" contain="layout" paddingY={64}>
           <LargeCircle position="absolute" left="-900px" top="90px" zIndex={-10} lg={{ bottom: '-200px' }} />
