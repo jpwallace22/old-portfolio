@@ -6,6 +6,7 @@ import { Container, Flex } from 'quarks';
 import { media } from 'atoms/breakpoints/breakpoints';
 
 import ComponentPagination from 'molecules/ComponentPagination/ComponentPagination';
+import Section from 'molecules/Section/Section';
 
 import type { TestimonialCardRecord } from 'graphql/generatedTypes';
 import type { BasicProps } from 'quarks/interpolations/basic';
@@ -64,69 +65,68 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
   };
 
   return cards?.length > 0 ? (
-    <Flex
-      as="section"
-      gap="32px"
-      flexDirection="column"
-      paddingY={48}
-      justifyContent="center"
-      md={{ paddingY: 64 }}
-      lg={{ paddingY: 96, gap: '48px' }}
-      position="relative"
-    >
-      <Container
-        position="absolute"
-        top="0"
-        bottom="0"
-        left="-2px"
-        right="-2px"
-        zIndex={2}
-        transition="background .5s ease"
-        css={`
-          background: ${scrollPos !== 'start' &&
-            'linear-gradient(90deg, rgba(17, 14, 45, 1) 0%, rgba(17, 14, 45, 0) 8%)'}${!scrollPos && ','} ${scrollPos !== 'end' && 'linear-gradient(90deg, rgba(17, 14, 45, 0) 92%, rgba(17, 14, 45, 1) 100%)'};
-          pointer-events: none;
-        `}
-      />
+    <Section>
       <Flex
+        width="100%"
         gap="32px"
-        flexWrap="nowrap"
-        // alignItems="center"
-        alignItems="stretch"
-        overflowX="scroll"
-        ref={scrollBoxRef}
-        onScroll={e => handleScroll(e)}
-        css={`
-          overflow-anchor: none;
-          scroll-snap-type: x mandatory;
-          scroll-behavior: smooth;
-          scrollbar-width: none;
-          ::-webkit-scrollbar {
-            display: none;
-          }
-        `}
+        flexDirection="column"
+        justifyContent="center"
+        lg={{ gap: '48px' }}
+        position="relative"
       >
-        {cards?.map((card, i) => (
-          <TestimonialCard
-            key={card.id}
-            flex="1 0 100%"
-            lg={{ flex: '1 0 80%' }}
-            index={i}
-            setActive={setActive}
-            {...card}
-          />
-        ))}
+        <Container
+          position="absolute"
+          top="0"
+          bottom="0"
+          left="-2px"
+          right="-2px"
+          zIndex={2}
+          transition="background .5s ease"
+          css={`
+            background: ${scrollPos !== 'start' &&
+              'linear-gradient(90deg, rgba(17, 14, 45, 1) 0%, rgba(17, 14, 45, 0) 8%)'}${!scrollPos && ','} ${scrollPos !== 'end' && 'linear-gradient(90deg, rgba(17, 14, 45, 0) 92%, rgba(17, 14, 45, 1) 100%)'};
+            pointer-events: none;
+          `}
+        />
+        <Flex
+          gap="32px"
+          flexWrap="nowrap"
+          alignItems="stretch"
+          overflowX="scroll"
+          ref={scrollBoxRef}
+          onScroll={e => handleScroll(e)}
+          css={`
+            overflow-anchor: none;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            ::-webkit-scrollbar {
+              display: none;
+            }
+          `}
+        >
+          {cards?.map((card, i) => (
+            <TestimonialCard
+              key={card.id}
+              flex="1 0 100%"
+              lg={{ flex: '1 0 80%' }}
+              index={i}
+              setActive={setActive}
+              {...card}
+            />
+          ))}
+        </Flex>
+        <ComponentPagination
+          dotsCount={cardCount}
+          onLeftArrowClick={() => handleButtonClick('left')}
+          onRightArrowClick={() => handleButtonClick('right')}
+          onSetActiveDot={i => handleDotClick(i)}
+          activeDot={active}
+          disableOnEnd
+          showArrows={isDesktop}
+        />
       </Flex>
-      <ComponentPagination
-        dotsCount={cardCount}
-        onLeftArrowClick={() => handleButtonClick('left')}
-        onRightArrowClick={() => handleButtonClick('right')}
-        onSetActiveDot={i => handleDotClick(i)}
-        activeDot={active}
-        disableOnEnd
-        showArrows={isDesktop}
-      />
-    </Flex>
+    </Section>
   ) : null;
 };
 
