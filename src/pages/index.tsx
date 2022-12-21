@@ -1,10 +1,10 @@
-import { lazy, useEffect, useRef, useState } from 'react';
+import { lazy, useEffect, useState } from 'react';
 
 import { useMediaQuery } from '@mui/material';
 import request from 'graphql/datocms';
 import { buttonFrag, companyFrag, imageFrag, personFrag, switchBackFrag, testimonialCardFrag } from 'graphql/fragments';
 import { useRouter } from 'next/router';
-import { Container, Dots, Heading, Image, LargeCircle, SmallCircle } from 'quarks';
+import { Container, Heading, Image, LargeCircle, SmallCircle } from 'quarks';
 import styled from 'styled-components';
 
 import dots from 'assets/images/dots.webp';
@@ -39,15 +39,12 @@ const Home: FC<IHomePage> = ({ data }) => {
   const { worksHeading, worksIntro, aboutMe, works, testimonials } = data;
   const isDesktop = useMediaQuery(media.lg);
   const [drawHero, setDrawHero] = useState(0);
-  const aboutRef = useRef<HTMLElement | null>(null);
-  const worksRef = useRef<HTMLElement | null>(null);
   const router = useRouter();
 
   // Dray line
   const handleScroll = throttle(() => {
-    const worksSection = worksRef.current?.getBoundingClientRect();
-    const aboutSection = aboutRef.current?.getBoundingClientRect();
-    if (worksSection && aboutSection) {
+    const aboutSection = document.querySelector('.switchBack')?.getBoundingClientRect();
+    if (aboutSection) {
       const heroPercentage =
         document.documentElement.scrollTop / (aboutSection.top + document.documentElement.scrollTop);
 
@@ -67,7 +64,8 @@ const Home: FC<IHomePage> = ({ data }) => {
   return (
     <>
       <SEO />
-      <Container as="main" contain="layout" maxWidth="1440px" marginX="auto" paddingX={16} lg={{ paddingX: 32 }}>
+      {/* // contain="layout" marginX="auto" maxWidth="1440px" paddingX={16} lg={{ paddingX: 32 }} */}
+      <Container as="main">
         <Container
           className="heroSection"
           as="section"
@@ -109,26 +107,9 @@ const Home: FC<IHomePage> = ({ data }) => {
           <SmallCircle position="absolute" left="80%" top="10%" zIndex={-1} lg={{ left: '75%' }} />
           <Hero position="absolute" top="5%" lg={{ top: '40%' }} />
         </Container>
-
-        <StandardFadeIn>
-          <Container
-            as="section"
-            ref={aboutRef}
-            position="relative"
-            paddingBottom={64}
-            contain="layout"
-            zIndex={1}
-            id="about"
-            lg={{ paddingY: 64, paddingBottom: 80 }}
-          >
-            <Switchback cta1Action={() => emailObfuscator(router)} {...aboutMe} />
-            <Dots position="absolute" bottom="0" left="45%" lg={{ top: '110px', left: '50%' }} />
-          </Container>
-        </StandardFadeIn>
-
+        <Switchback cta1Action={() => emailObfuscator(router)} showDots {...aboutMe} />
         <Carousel cards={testimonials} />
-
-        <Container id="works" ref={worksRef} as="section" position="relative" contain="layout" paddingY={64}>
+        <Container id="works" as="section" position="relative" contain="layout" paddingY={64}>
           <LargeCircle position="absolute" left="-900px" top="90px" zIndex={-10} lg={{ bottom: '-200px' }} />
           <StandardFadeIn>
             <Heading as="h3" textStyle="lg" marginBottom={24} lg={{ textStyle: 'xl' }}>

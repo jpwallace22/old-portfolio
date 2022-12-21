@@ -15,7 +15,7 @@ interface SectionProps extends BasicProps {
 
 export const sectionSizing = {
   maxWidth: '1440px',
-  width: '100vw',
+  width: '100%',
   paddingX: 16,
   paddingY: 48,
   lg: {
@@ -24,16 +24,18 @@ export const sectionSizing = {
   },
   xl: {
     paddingX: 32,
-    paddingY: 96,
+    paddingY: 80,
   },
 } as const;
 
 const Section: FC<SectionProps> = ({ children, as, ...props }) => (
   <Flex
     as={as || 'section'}
-    contain="content"
+    contain="layout"
     position="relative"
     justifyContent="center"
+    alignItems="center"
+    flexDirection="column"
     marginX="auto"
     {...sectionSizing}
     {...props}
