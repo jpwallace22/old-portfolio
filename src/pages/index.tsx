@@ -4,15 +4,13 @@ import { useMediaQuery } from '@mui/material';
 import request from 'graphql/datocms';
 import { buttonFrag, companyFrag, imageFrag, personFrag, switchBackFrag, testimonialCardFrag } from 'graphql/fragments';
 import { useRouter } from 'next/router';
-import { Container, Heading, Image, LargeCircle, SmallCircle } from 'quarks';
+import { Container, Image, LargeCircle, SmallCircle } from 'quarks';
 import styled from 'styled-components';
 
 import dots from 'assets/images/dots.webp';
 import { ReactComponent as Line } from 'assets/svg/hero-line.svg';
 
 import { media } from 'atoms/breakpoints/breakpoints';
-
-import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 
 import Hero from 'components/Hero/Hero';
 import SEO from 'components/SEO/SEO';
@@ -26,7 +24,7 @@ import type { FC } from 'react';
 const AlternatingSwitchbacks = lazy(() => import('components/AlternatingSwitchbacks/AlternatingSwitchbacks'));
 const Footer = lazy(() => import('components/Footer/Footer'));
 const Switchback = lazy(() => import('components/Switchback/Switchback'));
-const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/StructuredTextParser'));
+
 const Carousel = lazy(() => import('components/Carousel/Carousel'));
 
 const HeroLine = styled(Line)``;
@@ -41,7 +39,6 @@ const Home: FC<IHomePage> = ({ data }) => {
   const [drawHero, setDrawHero] = useState(0);
   const router = useRouter();
 
-  // Dray line
   const handleScroll = throttle(() => {
     const aboutSection = document.querySelector('.switchBack')?.getBoundingClientRect();
     if (aboutSection) {
@@ -53,7 +50,7 @@ const Home: FC<IHomePage> = ({ data }) => {
   }, 10);
 
   useEffect(() => {
-    // Draw the line, then stop, remove the eventListener and leave line drawn
+    // Draw line, stop, remove eventListener and leave line drawn
     if (drawHero < 200) {
       window.addEventListener('scroll', handleScroll, { passive: true });
     }
@@ -109,20 +106,7 @@ const Home: FC<IHomePage> = ({ data }) => {
         </Container>
         <Switchback cta1Action={() => emailObfuscator(router)} showDots {...aboutMe} />
         <Carousel cards={testimonials} />
-        <Container id="works" as="section" position="relative" contain="layout" paddingY={64}>
-          <LargeCircle position="absolute" left="-900px" top="90px" zIndex={-10} lg={{ bottom: '-200px' }} />
-          <StandardFadeIn>
-            <Heading as="h3" textStyle="lg" marginBottom={24} lg={{ textStyle: 'xl' }}>
-              {worksHeading}
-            </Heading>
-            <StructuredTextParser
-              text={worksIntro}
-              maxWidth="730px"
-              textColor={{ dark: 'gray-500', light: 'purple-900' }}
-            />
-          </StandardFadeIn>
-          <AlternatingSwitchbacks works={works} />
-        </Container>
+        <AlternatingSwitchbacks works={works} worksHeading={worksHeading} worksIntro={worksIntro} />
       </Container>
       <Footer />
     </>
