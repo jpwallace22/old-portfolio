@@ -1,12 +1,20 @@
+import { useEffect, useState } from 'react';
+
 import { useMediaQuery } from '@mui/material';
-import { Container, Heading, Logo, Text } from 'quarks';
+import { Container, Heading, Image, LargeCircle, Logo, SmallCircle, Text } from 'quarks';
 import styled, { css } from 'styled-components';
 
+import dots from 'assets/images/dots.webp';
 import { ReactComponent as Arrow } from 'assets/svg/drawn-arrow.svg';
+import { ReactComponent as Line } from 'assets/svg/hero-line.svg';
 
 import { media } from 'atoms/breakpoints/breakpoints';
 
 import { basic } from 'quarks/interpolations/basic';
+
+import { sectionSizing } from 'molecules/Section/Section';
+
+import { throttle } from 'utils/functions';
 
 import useDarkMode from 'contexts/ThemeProvider';
 
@@ -16,20 +24,83 @@ import type { FC } from 'react';
 const DrawnArrow = styled(Arrow)`
   ${basic}
 `;
+const HeroLine = styled(Line)``;
 
 const Hero: FC<BasicProps> = ({ ...props }) => {
   const [isDarkMode] = useDarkMode();
   const isDesktop = useMediaQuery(media.lg);
+  const [drawHero, setDrawHero] = useState(0);
+
+  const handleScroll = throttle(() => {
+    const aboutSection = document.querySelector('.switchBack')?.getBoundingClientRect();
+    if (aboutSection) {
+      const heroPercentage =
+        document.documentElement.scrollTop / (aboutSection.top + document.documentElement.scrollTop);
+
+      setDrawHero(250 * heroPercentage);
+    }
+  }, 10);
+
+  useEffect(() => {
+    // Draw line, stop, remove eventListener and leave line drawn
+    if (drawHero < 200) {
+      window.addEventListener('scroll', handleScroll, { passive: true });
+    }
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [drawHero]);
 
   return (
-    <Container fontFamily="secondaryFont" {...props}>
+    <Container
+      className="heroSection"
+      marginX="auto"
+      as="section"
+      minHeight="85vh"
+      contain="layout"
+      position="relative"
+      {...sectionSizing}
+      lg={{ minHeight: '100vh', ...sectionSizing.lg }}
+    >
+      <LargeCircle position="absolute" right="40%" bottom="50%" zIndex={-1} opacity={1} lg={{ right: '50%' }} />
+      <Image
+        src={dots}
+        width={635}
+        height={629}
+        alt=""
+        position="absolute"
+        left="50%"
+        top="0"
+        zIndex={-1}
+        priority
+        lg={{ left: '58%' }}
+      />
       <Container
-        as="section"
+        position="absolute"
+        width="200px"
+        right="30%"
+        top="70%"
+        md={{ right: '10%' }}
+        lg={{ width: '350px', right: '30%' }}
+      >
+        <HeroLine
+          id="hero-line"
+          css={`
+            stroke-width: ${isDesktop ? 1 : 1.75};
+            stroke-dasharray: 190;
+            stroke-dashoffset: ${drawHero > 190 ? 0 : 190 - drawHero};
+          `}
+        />
+      </Container>
+      <SmallCircle position="absolute" left="80%" top="10%" zIndex={-1} lg={{ left: '75%' }} />
+      <Container
+        fontFamily="secondaryFont"
+        position="absolute"
+        top="5%"
         maxWidth="390px"
-        position="relative"
         paddingRight={64}
         sm={{ maxWidth: '580px' }}
-        lg={{ maxWidth: '896px', paddingRight: 48 }}
+        lg={{ maxWidth: '896px', paddingRight: 48, top: '40%' }}
+        {...props}
       >
         {isDesktop && (
           <DrawnArrow
