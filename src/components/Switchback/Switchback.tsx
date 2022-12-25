@@ -21,7 +21,7 @@ interface SwitchbackProps extends FlexProps, Omit<CleanDato<SwitchbackRecord>, '
   buttons?: ButtonRecord[] | null;
   cta1Action?: (e?: MouseEvent<Element, globalThis.MouseEvent>) => void;
   cta2Action?: (e?: MouseEvent<Element, globalThis.MouseEvent>) => void;
-  showDots: boolean;
+  showDots?: boolean;
 }
 
 const buttonStyles = {

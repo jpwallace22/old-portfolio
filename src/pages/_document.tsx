@@ -6,6 +6,7 @@ import { ServerStyleSheet } from 'styled-components';
 import type { DocumentContext } from 'next/document';
 
 class MyDocument extends Document {
+  // SSR render styled-components
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
