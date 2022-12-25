@@ -8,6 +8,8 @@ import { media } from 'atoms/breakpoints/breakpoints';
 import ComponentPagination from 'molecules/ComponentPagination/ComponentPagination';
 import Section from 'molecules/Section/Section';
 
+import useDarkMode from 'contexts/ThemeProvider';
+
 import type { TestimonialCardRecord } from 'graphql/generatedTypes';
 import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC, MutableRefObject, UIEvent } from 'react';
@@ -18,12 +20,27 @@ type CarouselCardProps = BasicProps & {
   cards: TestimonialCardRecord[];
 };
 
+type ScrollPosition = 'start' | 'end' | null;
+
+const getEdgeGradient = (scrollPos: ScrollPosition, rgb: [number, number, number]): string => {
+  const rgbValues = `${rgb[0] + ',' + rgb[1] + ',' + rgb[2]}`;
+  if (scrollPos) {
+    return scrollPos !== 'start'
+      ? `linear-gradient(90deg, rgb(${rgbValues}) 0%, rgba(${rgbValues}, 0) 8%)`
+      : ` linear-gradient(90deg, rgba(${rgbValues}, 0) 92%, rgb(${rgbValues}) 100%)`;
+  }
+
+  return `linear-gradient(90deg, rgb(${rgbValues}) 0%, rgba(${rgbValues}, 0) 8%), linear-gradient(90deg, rgba(${rgbValues}, 0) 92%, rgb(${rgbValues}) 100%)`;
+};
+
 const Carousel: FC<CarouselCardProps> = ({ cards }) => {
-  const [scrollPos, setScrollPos] = useState<'start' | 'end' | null>('start');
+  const [scrollPos, setScrollPos] = useState<ScrollPosition>('start');
   const [active, setActive] = useState(0);
   const scrollBoxRef = useRef<HTMLDivElement | null>(null);
   const cardCount = cards.length;
   const isDesktop = useMediaQuery(media.lg);
+
+  const [isDark] = useDarkMode();
 
   const doScrolling = (targetRef: MutableRefObject<HTMLDivElement | null>, dir: 'left' | 'right') => {
     const target = targetRef.current;
@@ -45,18 +62,19 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
   };
 
   const handleScroll = ({ target }: UIEvent<HTMLDivElement, globalThis.UIEvent>) => {
+    if (!scrollBoxRef.current?.scrollWidth) return;
     const element = target as HTMLDivElement;
     const leftScroll = element.scrollLeft;
-    const pane = window.innerWidth;
+    const pane = scrollBoxRef.current?.scrollWidth / cardCount;
 
     switch (true) {
       case leftScroll === 0:
         setScrollPos('start');
         break;
-      case leftScroll > 0 && leftScroll < pane * (cardCount - 2) + pane / 1.2:
+      case leftScroll > 0 && leftScroll <= pane * (cardCount - 2) + pane / 2:
         setScrollPos(null);
         break;
-      case leftScroll > pane * (cardCount - 2):
+      case leftScroll + pane > pane * (cardCount - 2):
         setScrollPos('end');
         break;
       default:
@@ -82,9 +100,8 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
           right="-2px"
           zIndex={2}
           transition="background .5s ease"
+          backgroundImage={getEdgeGradient(scrollPos, isDark ? [17, 14, 45] : [255, 255, 255])}
           css={`
-            background: ${scrollPos !== 'start' &&
-              'linear-gradient(90deg, rgba(17, 14, 45, 1) 0%, rgba(17, 14, 45, 0) 8%)'}${!scrollPos && ','} ${scrollPos !== 'end' && 'linear-gradient(90deg, rgba(17, 14, 45, 0) 92%, rgba(17, 14, 45, 1) 100%)'};
             pointer-events: none;
           `}
         />
