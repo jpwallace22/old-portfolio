@@ -775,6 +775,7 @@ export type HomepageRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
   aboutMe?: Maybe<SwitchbackRecord>;
+  components: Array<SwitchbackRecord>;
   createdAt: Scalars['DateTime'];
   id: Scalars['ItemId'];
   internalName?: Maybe<Scalars['String']>;
@@ -2948,6 +2949,7 @@ export type SwitchbackModelFilter = {
   image?: InputMaybe<FileFilter>;
   internalName?: InputMaybe<StringFilter>;
   reverse?: InputMaybe<BooleanFilter>;
+  showDots?: InputMaybe<BooleanFilter>;
   updatedAt?: InputMaybe<UpdatedAtFilter>;
 };
 
@@ -2980,6 +2982,8 @@ export enum SwitchbackModelOrderBy {
   InternalName_DESC = 'internalName_DESC',
   Reverse_ASC = 'reverse_ASC',
   Reverse_DESC = 'reverse_DESC',
+  ShowDots_ASC = 'showDots_ASC',
+  ShowDots_DESC = 'showDots_DESC',
   UpdatedAt_ASC = 'updatedAt_ASC',
   UpdatedAt_DESC = 'updatedAt_DESC'
 }
@@ -3007,6 +3011,7 @@ export type SwitchbackRecord = RecordInterface & {
   image?: Maybe<FileField>;
   internalName?: Maybe<Scalars['String']>;
   reverse?: Maybe<Scalars['BooleanType']>;
+  showDots?: Maybe<Scalars['BooleanType']>;
   updatedAt: Scalars['DateTime'];
 };
 

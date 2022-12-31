@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 
 import { useMediaQuery } from '@mui/material';
+import { useRouter } from 'next/router';
 import { Container, Dots, Flex, Heading, Image } from 'quarks';
 
 import { media } from 'atoms/breakpoints/breakpoints';
@@ -8,10 +9,12 @@ import container from 'atoms/spacing/containers';
 
 import Section from 'molecules/Section/Section';
 
+import { emailObfuscator } from 'utils/functions';
+
 import type { ButtonRecord, SwitchbackRecord } from 'graphql/generatedTypes';
 import type { FlexProps } from 'quarks/interpolations/flex';
 import type { HeadingTypes } from 'quarks/styleProps/heading';
-import type { FC, MouseEvent } from 'react';
+import type { FC } from 'react';
 import type { CleanDato } from 'utils/typeUtils';
 
 const Button = lazy(() => import('molecules/Button/Button'));
@@ -19,30 +22,12 @@ const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/S
 
 interface SwitchbackProps extends FlexProps, Omit<CleanDato<SwitchbackRecord>, 'buttons'> {
   buttons?: ButtonRecord[] | null;
-  cta1Action?: (e?: MouseEvent<Element, globalThis.MouseEvent>) => void;
-  cta2Action?: (e?: MouseEvent<Element, globalThis.MouseEvent>) => void;
   showDots?: boolean;
 }
 
-const buttonStyles = {
-  size: 'large',
-  width: '100%',
-  md: { width: 'unset' },
-} as const;
-
-const Switchback: FC<SwitchbackProps> = ({
-  headingAs,
-  image,
-  heading,
-  reverse,
-  body,
-  buttons,
-  cta1Action,
-  cta2Action,
-  showDots,
-  ...props
-}) => {
+const Switchback: FC<SwitchbackProps> = ({ headingAs, image, heading, reverse, body, buttons, showDots, ...props }) => {
   const isDesktop = useMediaQuery(media.lg);
+  const router = useRouter();
 
   const renderButtons = () =>
     buttons &&
@@ -53,16 +38,28 @@ const Switchback: FC<SwitchbackProps> = ({
         flexDirection="column"
         lg={{ flexDirection: 'row', justifyContent: 'flex-start' }}
       >
-        {buttons[0] && (
-          <Button {...buttonStyles} variant="contained" href={buttons[0]?.url || ''} onClick={cta1Action}>
-            {buttons[0]?.title}
-          </Button>
-        )}
-        {buttons[1] && (
-          <Button {...buttonStyles} variant="outlined" href={buttons[1]?.url || ''} onClick={cta2Action}>
-            {buttons[1]?.title}
-          </Button>
-        )}
+        {buttons.map((button, i) => {
+          const navigation =
+            button.url === 'https://contact'
+              ? ({
+                  href: '',
+                  onClick: () => emailObfuscator(router),
+                } as const)
+              : ({ href: button.url || '' } as const);
+
+          return (
+            <Button
+              key={button.internalName}
+              {...navigation}
+              variant={i === 0 ? 'contained' : 'outlined'}
+              size="large"
+              width="100%"
+              md={{ width: '100%' }}
+            >
+              {button.title}
+            </Button>
+          );
+        })}
       </Flex>
     );
 
@@ -77,7 +74,7 @@ const Switchback: FC<SwitchbackProps> = ({
         {...props}
       >
         <Flex flexDirection="column" gap="24px" lg={{ flex: '0 1 50%' }}>
-          <Heading as={headingAs as HeadingTypes} lg={{ textStyle: 'xl' }}>
+          <Heading as={(headingAs as HeadingTypes) || 'h3'} lg={{ textStyle: 'xl' }}>
             {heading}
           </Heading>
           <StructuredTextParser text={body} textColor={{ dark: 'gray-500', light: 'purple-900' }} />

@@ -2,13 +2,10 @@ import { lazy } from 'react';
 
 import request from 'graphql/datocms';
 import { buttonFrag, companyFrag, imageFrag, personFrag, switchBackFrag, testimonialCardFrag } from 'graphql/fragments';
-import { useRouter } from 'next/router';
 import { Container } from 'quarks';
 
 import Hero from 'components/Hero/Hero';
 import SEO from 'components/SEO/SEO';
-
-import { emailObfuscator } from 'utils/functions';
 
 import type { HomepageRecord } from 'graphql/generatedTypes';
 import type { GetStaticProps } from 'next';
@@ -25,15 +22,14 @@ type IHomePage = {
 };
 
 const Home: FC<IHomePage> = ({ data }) => {
-  const { worksHeading, worksIntro, aboutMe, works, testimonials } = data;
-  const router = useRouter();
+  const { worksHeading, worksIntro, works, testimonials, components } = data;
 
   return (
     <>
       <SEO />
       <Container as="main">
         <Hero />
-        <Switchback cta1Action={() => emailObfuscator(router)} showDots {...aboutMe} />
+        <Switchback {...components[0]} />
         <Carousel cards={testimonials} />
         <AlternatingSwitchbacks works={works} worksHeading={worksHeading} worksIntro={worksIntro} />
       </Container>
@@ -63,6 +59,9 @@ export const getStaticProps: GetStaticProps = async () => {
         }
         testimonials {
           ...testimonialCardFrag
+        }
+        components {
+          ...switchBackFrag
         }
       }
     }

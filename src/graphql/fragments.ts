@@ -112,6 +112,7 @@ export const switchBackFrag = `
     reverse
     heading
     headingAs
+    showDots
     body {
       value
     }
