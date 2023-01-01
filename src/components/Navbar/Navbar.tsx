@@ -10,7 +10,9 @@ import { ReactComponent as LogoMark } from 'assets/svg/logomark-grad.svg';
 
 import { media } from 'atoms/breakpoints/breakpoints';
 
-import StyledHamburger from 'components/Navbar/Hamburger';
+import Socials from 'molecules/Socials/Socials';
+
+import Hamburger from 'components/Navbar/Hamburger';
 
 import { underlineOnHover } from 'utils/css';
 
@@ -21,7 +23,6 @@ import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC } from 'react';
 import type { CSSProps } from 'theme/getAppTheme';
 
-const Socials = lazy(() => import('molecules/Socials/Socials'));
 const ClickMe = lazy(() => import('components/Navbar/ClickMe'));
 
 type NavbarProps = BasicProps & {
@@ -87,9 +88,8 @@ const Navbar: FC<NavbarProps> = ({ links, socials, ...props }) => {
         {...props}
       >
         <ClickMe />
-        <StyledHamburger
+        <Hamburger
           navRef={mobileNav}
-          className={active ? 'close-`menu`' : undefined}
           position="relative"
           right={active ? '-70%' : '0'}
           transition={slideTransition}
