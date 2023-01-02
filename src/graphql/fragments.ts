@@ -135,6 +135,18 @@ export const categoryFrag = `
   }
 `;
 
+export const carouselFrag = `
+  fragment carouselFrag on CarouselRecord {
+    __typename
+    id
+    internalName
+    cards {
+      ...testimonialCardFrag
+    }
+  }
+  ${testimonialCardFrag}
+`;
+
 export const workFrag = `
   fragment workFrag on WorkRecord {
     __typename

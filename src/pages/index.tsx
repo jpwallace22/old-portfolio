@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 
 import request from 'graphql/datocms';
-import { buttonFrag, companyFrag, imageFrag, personFrag, switchBackFrag, testimonialCardFrag } from 'graphql/fragments';
+import { buttonFrag, carouselFrag, companyFrag, imageFrag, personFrag, switchBackFrag } from 'graphql/fragments';
 import { Container } from 'quarks';
 
 import Hero from 'components/Hero/Hero';
@@ -22,7 +22,7 @@ type IHomePage = {
 };
 
 const Home: FC<IHomePage> = ({ data }) => {
-  const { worksHeading, worksIntro, works, testimonials, components } = data;
+  const { worksHeading, worksIntro, works, components } = data;
 
   return (
     <>
@@ -30,7 +30,8 @@ const Home: FC<IHomePage> = ({ data }) => {
       <Container as="main">
         <Hero />
         <Switchback {...components[0]} />
-        <Carousel cards={testimonials} />
+        {/* will remove cards */}
+        <Carousel cards={[]} {...components[1]} />
         <AlternatingSwitchbacks works={works} worksHeading={worksHeading} worksIntro={worksIntro} />
       </Container>
       <Footer />
@@ -62,15 +63,16 @@ export const getStaticProps: GetStaticProps = async () => {
         }
         components {
           ...switchBackFrag
+          ...carouselFrag
         }
       }
     }
-    ${testimonialCardFrag}
     ${personFrag}
     ${companyFrag}
     ${buttonFrag}
     ${imageFrag}
     ${switchBackFrag}
+    ${carouselFrag}
   `;
 
   const data = await request({
