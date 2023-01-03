@@ -4,10 +4,15 @@ import type { FC, ReactNode } from 'react';
 
 const Footer = lazy(() => import('components/Footer/Footer'));
 
-const Layout: FC<{ children: ReactNode }> = ({ children }) => (
+interface ILayout {
+  children: ReactNode;
+  fullHeightFooter?: boolean;
+}
+
+const Layout: FC<ILayout> = ({ children, fullHeightFooter }) => (
   <>
     <main>{children}</main>
-    <Footer />
+    <Footer fullHeight={fullHeightFooter || false} />
   </>
 );
 

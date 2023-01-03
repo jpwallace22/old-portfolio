@@ -119,7 +119,7 @@ const BlogPostPage: FC<BlogPostRecord> = props => {
         zIndex={9999}
         lg={{ top: '82px' }}
       />
-      <Footer size={50} marginTop={0} ref={footerRef} />
+      <Footer marginTop={0} ref={footerRef} />
     </>
   );
 };

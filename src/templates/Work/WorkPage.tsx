@@ -62,7 +62,7 @@ const WorkPageTemplate: FC<WorkRecord> = props => {
           )}
         </Container>
       </Container>
-      <Footer size={50} />
+      <Footer />
     </>
   );
 };

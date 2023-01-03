@@ -22,7 +22,7 @@ export const getStaticProps: GetStaticProps = async () => {
 const Home: FC<PageGeneratorRecord> = ({ components }) => (
   <>
     <SEO />
-    <Layout>
+    <Layout fullHeightFooter>
       <Hero />
       <ComponentGenerator components={components} />
     </Layout>

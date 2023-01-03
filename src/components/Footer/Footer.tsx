@@ -15,12 +15,12 @@ import type { ForwardedRef } from 'react';
 const Socials = lazy(() => import('molecules/Socials/Socials'));
 
 type FooterProps = BasicProps & {
-  size?: number;
+  fullHeight?: boolean;
 };
 const date = new Date();
-const Footer = forwardRef(({ size = 100, ...props }: FooterProps, ref?: ForwardedRef<HTMLElement>) => {
+const Footer = forwardRef(({ fullHeight, ...props }: FooterProps, ref?: ForwardedRef<HTMLElement>) => {
   const router = useRouter();
-  const height = `calc(${size}vh - 100px)`;
+  const height = `calc(${fullHeight ? 100 : 50}vh - 100px)`;
 
   return (
     <>
