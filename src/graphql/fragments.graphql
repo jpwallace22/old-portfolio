@@ -237,11 +237,16 @@ fragment BlogPage on BlogPageRecord {
   switchback {
     ...SwitchBack
   }
+  componentGenerator {
+    ...PageGen
+  }
 }
 
 fragment PageGen on PageGeneratorRecord {
+  internalName
   __typename
   id
+  slug
   seo {
     description
     title

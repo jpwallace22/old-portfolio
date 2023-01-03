@@ -124,6 +124,7 @@ export type BlogPageRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
+  componentGenerator?: Maybe<PageGeneratorRecord>;
   createdAt: Scalars['DateTime'];
   id: Scalars['ItemId'];
   seo?: Maybe<SeoField>;
@@ -2403,6 +2404,7 @@ export type PageGeneratorModelFilter = {
   id?: InputMaybe<ItemIdFilter>;
   internalName?: InputMaybe<StringFilter>;
   seo?: InputMaybe<SeoFilter>;
+  slug?: InputMaybe<SlugFilter>;
   updatedAt?: InputMaybe<UpdatedAtFilter>;
 };
 
@@ -2452,6 +2454,7 @@ export type PageGeneratorRecord = RecordInterface & {
   id: Scalars['ItemId'];
   internalName?: Maybe<Scalars['String']>;
   seo?: Maybe<SeoField>;
+  slug?: Maybe<Scalars['String']>;
   updatedAt: Scalars['DateTime'];
 };
 
@@ -4450,11 +4453,188 @@ declare global {
         url?: string | null;
       }>;
     } | null;
+    componentGenerator?: {
+      __typename: 'PageGeneratorRecord';
+      internalName?: string | null;
+      id: string;
+      slug?: string | null;
+      seo?: {
+        __typename?: 'SeoField';
+        description?: string | null;
+        title?: string | null;
+        image?: {
+          __typename: 'FileField';
+          id: string;
+          alt?: string | null;
+          blurhash?: string | null;
+          height?: number | null;
+          width?: number | null;
+          url: string;
+        } | null;
+      } | null;
+      components: Array<
+        | {
+            __typename: 'AlternatingSwitchbackRecord';
+            id: string;
+            internalName?: string | null;
+            heading?: string | null;
+            headingAs?: string | null;
+            body?: { __typename?: 'AlternatingSwitchbackModelBodyField'; value: unknown } | null;
+            cards: Array<{
+              __typename: 'WorkRecord';
+              id: string;
+              internalName?: string | null;
+              title?: string | null;
+              subtitle?: string | null;
+              heading?: string | null;
+              seo?: {
+                __typename?: 'SeoField';
+                description?: string | null;
+                title?: string | null;
+                image?: {
+                  __typename: 'FileField';
+                  id: string;
+                  alt?: string | null;
+                  blurhash?: string | null;
+                  height?: number | null;
+                  width?: number | null;
+                  url: string;
+                } | null;
+              } | null;
+              body?: { __typename?: 'WorkModelBodyField'; value: unknown; blocks: Array<string> } | null;
+              information?: { __typename?: 'WorkModelInformationField'; value: unknown; blocks: Array<string> } | null;
+              bannerImage?: {
+                __typename: 'FileField';
+                id: string;
+                alt?: string | null;
+                blurhash?: string | null;
+                height?: number | null;
+                width?: number | null;
+                url: string;
+              } | null;
+              ctas: Array<{
+                __typename: 'ButtonRecord';
+                id: string;
+                internalName?: string | null;
+                disabled?: boolean | null;
+                icon?: string | null;
+                title?: string | null;
+                url?: string | null;
+              }>;
+              techStack: Array<{
+                __typename: 'TechStackRecord';
+                id: string;
+                internalName?: string | null;
+                title?: string | null;
+                thumbnail?: {
+                  __typename: 'FileField';
+                  id: string;
+                  alt?: string | null;
+                  blurhash?: string | null;
+                  height?: number | null;
+                  width?: number | null;
+                  url: string;
+                } | null;
+              }>;
+              slider: Array<{
+                __typename: 'CaseStudyCardRecord';
+                id: string;
+                internalName?: string | null;
+                image?: {
+                  __typename: 'FileField';
+                  id: string;
+                  alt?: string | null;
+                  blurhash?: string | null;
+                  height?: number | null;
+                  width?: number | null;
+                  url: string;
+                } | null;
+                body?: { __typename?: 'CaseStudyCardModelBodyField'; value: unknown } | null;
+              }>;
+            }>;
+          }
+        | {
+            __typename: 'CarouselRecord';
+            id: string;
+            internalName?: string | null;
+            cards: Array<{
+              __typename: 'TestimonialCardRecord';
+              id: string;
+              internalName?: string | null;
+              quote?: { __typename?: 'TestimonialCardModelQuoteField'; value: unknown } | null;
+              person?: {
+                __typename: 'PersonRecord';
+                id: string;
+                internalName?: string | null;
+                firstName?: string | null;
+                lastName?: string | null;
+                website?: string | null;
+                role?: string | null;
+                company?: {
+                  __typename: 'CompanyRecord';
+                  id: string;
+                  internalName?: string | null;
+                  name?: string | null;
+                  website?: string | null;
+                  logo?: {
+                    __typename: 'FileField';
+                    id: string;
+                    alt?: string | null;
+                    blurhash?: string | null;
+                    height?: number | null;
+                    width?: number | null;
+                    url: string;
+                  } | null;
+                } | null;
+                thumbnail?: {
+                  __typename: 'FileField';
+                  id: string;
+                  alt?: string | null;
+                  blurhash?: string | null;
+                  height?: number | null;
+                  width?: number | null;
+                  url: string;
+                } | null;
+              } | null;
+            }>;
+          }
+        | {
+            __typename: 'SwitchbackRecord';
+            id: string;
+            internalName?: string | null;
+            reverse?: boolean | null;
+            heading?: string | null;
+            headingAs?: string | null;
+            showDots?: boolean | null;
+            body?: { __typename?: 'SwitchbackModelBodyField'; value: unknown } | null;
+            image?: {
+              __typename: 'FileField';
+              id: string;
+              alt?: string | null;
+              blurhash?: string | null;
+              height?: number | null;
+              width?: number | null;
+              url: string;
+            } | null;
+            buttons: Array<{
+              __typename: 'ButtonRecord';
+              id: string;
+              internalName?: string | null;
+              disabled?: boolean | null;
+              icon?: string | null;
+              title?: string | null;
+              url?: string | null;
+            }>;
+          }
+      >;
+    } | null;
   };
 
   export type PageGenFragment = {
     __typename: 'PageGeneratorRecord';
+    internalName?: string | null;
     id: string;
+    slug?: string | null;
     seo?: {
       __typename?: 'SeoField';
       description?: string | null;
@@ -4632,7 +4812,9 @@ declare global {
     __typename?: 'Query';
     pageGenerator?: {
       __typename: 'PageGeneratorRecord';
+      internalName?: string | null;
       id: string;
+      slug?: string | null;
       seo?: {
         __typename?: 'SeoField';
         description?: string | null;
@@ -4812,6 +4994,196 @@ declare global {
     allWorks: Array<{ __typename?: 'WorkRecord'; slug?: string | null }>;
   };
 
+  export type PageSlugsQueryVariables = Exact<{ [key: string]: never }>;
+
+  export type PageSlugsQuery = {
+    __typename?: 'Query';
+    allPageGenerators: Array<{ __typename?: 'PageGeneratorRecord'; slug?: string | null }>;
+  };
+
+  export type PageDataQueryVariables = Exact<{
+    slug?: InputMaybe<Scalars['String']>;
+  }>;
+
+  export type PageDataQuery = {
+    __typename?: 'Query';
+    pageGenerator?: {
+      __typename: 'PageGeneratorRecord';
+      internalName?: string | null;
+      id: string;
+      slug?: string | null;
+      seo?: {
+        __typename?: 'SeoField';
+        description?: string | null;
+        title?: string | null;
+        image?: {
+          __typename: 'FileField';
+          id: string;
+          alt?: string | null;
+          blurhash?: string | null;
+          height?: number | null;
+          width?: number | null;
+          url: string;
+        } | null;
+      } | null;
+      components: Array<
+        | {
+            __typename: 'AlternatingSwitchbackRecord';
+            id: string;
+            internalName?: string | null;
+            heading?: string | null;
+            headingAs?: string | null;
+            body?: { __typename?: 'AlternatingSwitchbackModelBodyField'; value: unknown } | null;
+            cards: Array<{
+              __typename: 'WorkRecord';
+              id: string;
+              internalName?: string | null;
+              title?: string | null;
+              subtitle?: string | null;
+              heading?: string | null;
+              seo?: {
+                __typename?: 'SeoField';
+                description?: string | null;
+                title?: string | null;
+                image?: {
+                  __typename: 'FileField';
+                  id: string;
+                  alt?: string | null;
+                  blurhash?: string | null;
+                  height?: number | null;
+                  width?: number | null;
+                  url: string;
+                } | null;
+              } | null;
+              body?: { __typename?: 'WorkModelBodyField'; value: unknown; blocks: Array<string> } | null;
+              information?: { __typename?: 'WorkModelInformationField'; value: unknown; blocks: Array<string> } | null;
+              bannerImage?: {
+                __typename: 'FileField';
+                id: string;
+                alt?: string | null;
+                blurhash?: string | null;
+                height?: number | null;
+                width?: number | null;
+                url: string;
+              } | null;
+              ctas: Array<{
+                __typename: 'ButtonRecord';
+                id: string;
+                internalName?: string | null;
+                disabled?: boolean | null;
+                icon?: string | null;
+                title?: string | null;
+                url?: string | null;
+              }>;
+              techStack: Array<{
+                __typename: 'TechStackRecord';
+                id: string;
+                internalName?: string | null;
+                title?: string | null;
+                thumbnail?: {
+                  __typename: 'FileField';
+                  id: string;
+                  alt?: string | null;
+                  blurhash?: string | null;
+                  height?: number | null;
+                  width?: number | null;
+                  url: string;
+                } | null;
+              }>;
+              slider: Array<{
+                __typename: 'CaseStudyCardRecord';
+                id: string;
+                internalName?: string | null;
+                image?: {
+                  __typename: 'FileField';
+                  id: string;
+                  alt?: string | null;
+                  blurhash?: string | null;
+                  height?: number | null;
+                  width?: number | null;
+                  url: string;
+                } | null;
+                body?: { __typename?: 'CaseStudyCardModelBodyField'; value: unknown } | null;
+              }>;
+            }>;
+          }
+        | {
+            __typename: 'CarouselRecord';
+            id: string;
+            internalName?: string | null;
+            cards: Array<{
+              __typename: 'TestimonialCardRecord';
+              id: string;
+              internalName?: string | null;
+              quote?: { __typename?: 'TestimonialCardModelQuoteField'; value: unknown } | null;
+              person?: {
+                __typename: 'PersonRecord';
+                id: string;
+                internalName?: string | null;
+                firstName?: string | null;
+                lastName?: string | null;
+                website?: string | null;
+                role?: string | null;
+                company?: {
+                  __typename: 'CompanyRecord';
+                  id: string;
+                  internalName?: string | null;
+                  name?: string | null;
+                  website?: string | null;
+                  logo?: {
+                    __typename: 'FileField';
+                    id: string;
+                    alt?: string | null;
+                    blurhash?: string | null;
+                    height?: number | null;
+                    width?: number | null;
+                    url: string;
+                  } | null;
+                } | null;
+                thumbnail?: {
+                  __typename: 'FileField';
+                  id: string;
+                  alt?: string | null;
+                  blurhash?: string | null;
+                  height?: number | null;
+                  width?: number | null;
+                  url: string;
+                } | null;
+              } | null;
+            }>;
+          }
+        | {
+            __typename: 'SwitchbackRecord';
+            id: string;
+            internalName?: string | null;
+            reverse?: boolean | null;
+            heading?: string | null;
+            headingAs?: string | null;
+            showDots?: boolean | null;
+            body?: { __typename?: 'SwitchbackModelBodyField'; value: unknown } | null;
+            image?: {
+              __typename: 'FileField';
+              id: string;
+              alt?: string | null;
+              blurhash?: string | null;
+              height?: number | null;
+              width?: number | null;
+              url: string;
+            } | null;
+            buttons: Array<{
+              __typename: 'ButtonRecord';
+              id: string;
+              internalName?: string | null;
+              disabled?: boolean | null;
+              icon?: string | null;
+              title?: string | null;
+              url?: string | null;
+            }>;
+          }
+      >;
+    } | null;
+  };
+
   export type WorkPageDataQueryVariables = Exact<{
     slug?: InputMaybe<Scalars['String']>;
   }>;
@@ -4940,6 +5312,185 @@ declare global {
           title?: string | null;
           url?: string | null;
         }>;
+      } | null;
+      componentGenerator?: {
+        __typename: 'PageGeneratorRecord';
+        internalName?: string | null;
+        id: string;
+        slug?: string | null;
+        seo?: {
+          __typename?: 'SeoField';
+          description?: string | null;
+          title?: string | null;
+          image?: {
+            __typename: 'FileField';
+            id: string;
+            alt?: string | null;
+            blurhash?: string | null;
+            height?: number | null;
+            width?: number | null;
+            url: string;
+          } | null;
+        } | null;
+        components: Array<
+          | {
+              __typename: 'AlternatingSwitchbackRecord';
+              id: string;
+              internalName?: string | null;
+              heading?: string | null;
+              headingAs?: string | null;
+              body?: { __typename?: 'AlternatingSwitchbackModelBodyField'; value: unknown } | null;
+              cards: Array<{
+                __typename: 'WorkRecord';
+                id: string;
+                internalName?: string | null;
+                title?: string | null;
+                subtitle?: string | null;
+                heading?: string | null;
+                seo?: {
+                  __typename?: 'SeoField';
+                  description?: string | null;
+                  title?: string | null;
+                  image?: {
+                    __typename: 'FileField';
+                    id: string;
+                    alt?: string | null;
+                    blurhash?: string | null;
+                    height?: number | null;
+                    width?: number | null;
+                    url: string;
+                  } | null;
+                } | null;
+                body?: { __typename?: 'WorkModelBodyField'; value: unknown; blocks: Array<string> } | null;
+                information?: {
+                  __typename?: 'WorkModelInformationField';
+                  value: unknown;
+                  blocks: Array<string>;
+                } | null;
+                bannerImage?: {
+                  __typename: 'FileField';
+                  id: string;
+                  alt?: string | null;
+                  blurhash?: string | null;
+                  height?: number | null;
+                  width?: number | null;
+                  url: string;
+                } | null;
+                ctas: Array<{
+                  __typename: 'ButtonRecord';
+                  id: string;
+                  internalName?: string | null;
+                  disabled?: boolean | null;
+                  icon?: string | null;
+                  title?: string | null;
+                  url?: string | null;
+                }>;
+                techStack: Array<{
+                  __typename: 'TechStackRecord';
+                  id: string;
+                  internalName?: string | null;
+                  title?: string | null;
+                  thumbnail?: {
+                    __typename: 'FileField';
+                    id: string;
+                    alt?: string | null;
+                    blurhash?: string | null;
+                    height?: number | null;
+                    width?: number | null;
+                    url: string;
+                  } | null;
+                }>;
+                slider: Array<{
+                  __typename: 'CaseStudyCardRecord';
+                  id: string;
+                  internalName?: string | null;
+                  image?: {
+                    __typename: 'FileField';
+                    id: string;
+                    alt?: string | null;
+                    blurhash?: string | null;
+                    height?: number | null;
+                    width?: number | null;
+                    url: string;
+                  } | null;
+                  body?: { __typename?: 'CaseStudyCardModelBodyField'; value: unknown } | null;
+                }>;
+              }>;
+            }
+          | {
+              __typename: 'CarouselRecord';
+              id: string;
+              internalName?: string | null;
+              cards: Array<{
+                __typename: 'TestimonialCardRecord';
+                id: string;
+                internalName?: string | null;
+                quote?: { __typename?: 'TestimonialCardModelQuoteField'; value: unknown } | null;
+                person?: {
+                  __typename: 'PersonRecord';
+                  id: string;
+                  internalName?: string | null;
+                  firstName?: string | null;
+                  lastName?: string | null;
+                  website?: string | null;
+                  role?: string | null;
+                  company?: {
+                    __typename: 'CompanyRecord';
+                    id: string;
+                    internalName?: string | null;
+                    name?: string | null;
+                    website?: string | null;
+                    logo?: {
+                      __typename: 'FileField';
+                      id: string;
+                      alt?: string | null;
+                      blurhash?: string | null;
+                      height?: number | null;
+                      width?: number | null;
+                      url: string;
+                    } | null;
+                  } | null;
+                  thumbnail?: {
+                    __typename: 'FileField';
+                    id: string;
+                    alt?: string | null;
+                    blurhash?: string | null;
+                    height?: number | null;
+                    width?: number | null;
+                    url: string;
+                  } | null;
+                } | null;
+              }>;
+            }
+          | {
+              __typename: 'SwitchbackRecord';
+              id: string;
+              internalName?: string | null;
+              reverse?: boolean | null;
+              heading?: string | null;
+              headingAs?: string | null;
+              showDots?: boolean | null;
+              body?: { __typename?: 'SwitchbackModelBodyField'; value: unknown } | null;
+              image?: {
+                __typename: 'FileField';
+                id: string;
+                alt?: string | null;
+                blurhash?: string | null;
+                height?: number | null;
+                width?: number | null;
+                url: string;
+              } | null;
+              buttons: Array<{
+                __typename: 'ButtonRecord';
+                id: string;
+                internalName?: string | null;
+                disabled?: boolean | null;
+                icon?: string | null;
+                title?: string | null;
+                url?: string | null;
+              }>;
+            }
+        >;
       } | null;
     } | null;
     allBlogPosts: Array<{
@@ -5316,52 +5867,6 @@ export const SwitchBackFragmentDoc = {
     ...ButtonFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<SwitchBackFragment, unknown>;
-export const BlogPageFragmentDoc = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'BlogPage' },
-      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'BlogPageRecord' } },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'seo' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'description' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'image' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Image' } }],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'switchback' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'SwitchBack' } }],
-            },
-          },
-        ],
-      },
-    },
-    ...ImageFragmentDoc.definitions,
-    ...SwitchBackFragmentDoc.definitions,
-  ],
-} as unknown as DocumentNode<BlogPageFragment, unknown>;
 export const CompanyFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -5701,8 +6206,10 @@ export const PageGenFragmentDoc = {
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'internalName' } },
           { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'seo' },
@@ -5743,6 +6250,61 @@ export const PageGenFragmentDoc = {
     ...AlternatingSwitchbackFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<PageGenFragment, unknown>;
+export const BlogPageFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'BlogPage' },
+      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'BlogPageRecord' } },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'seo' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'description' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'image' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Image' } }],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'switchback' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'SwitchBack' } }],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'componentGenerator' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'PageGen' } }],
+            },
+          },
+        ],
+      },
+    },
+    ...ImageFragmentDoc.definitions,
+    ...SwitchBackFragmentDoc.definitions,
+    ...PageGenFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<BlogPageFragment, unknown>;
 export const HomepageQueryDocument = {
   kind: 'Document',
   definitions: [
@@ -5815,6 +6377,85 @@ export const WorkPageSlugsDocument = {
     },
   ],
 } as unknown as DocumentNode<WorkPageSlugsQuery, WorkPageSlugsQueryVariables>;
+export const PageSlugsDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'PageSlugs' },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'allPageGenerators' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'slug' } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<PageSlugsQuery, PageSlugsQueryVariables>;
+export const PageDataDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'PageData' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'slug' } },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'pageGenerator' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'filter' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'slug' },
+                      value: {
+                        kind: 'ObjectValue',
+                        fields: [
+                          {
+                            kind: 'ObjectField',
+                            name: { kind: 'Name', value: 'eq' },
+                            value: { kind: 'Variable', name: { kind: 'Name', value: 'slug' } },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'PageGen' } }],
+            },
+          },
+        ],
+      },
+    },
+    ...PageGenFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<PageDataQuery, PageDataQueryVariables>;
 export const WorkPageDataDocument = {
   kind: 'Document',
   definitions: [

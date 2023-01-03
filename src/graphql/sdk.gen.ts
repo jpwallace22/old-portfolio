@@ -122,24 +122,6 @@ export const SwitchBackFragmentDoc = gql`
   ${ImageFragmentDoc}
   ${ButtonFragmentDoc}
 `;
-export const BlogPageFragmentDoc = gql`
-  fragment BlogPage on BlogPageRecord {
-    __typename
-    id
-    seo {
-      description
-      title
-      image {
-        ...Image
-      }
-    }
-    switchback {
-      ...SwitchBack
-    }
-  }
-  ${ImageFragmentDoc}
-  ${SwitchBackFragmentDoc}
-`;
 export const CompanyFragmentDoc = gql`
   fragment Company on CompanyRecord {
     __typename
@@ -282,8 +264,10 @@ export const AlternatingSwitchbackFragmentDoc = gql`
 `;
 export const PageGenFragmentDoc = gql`
   fragment PageGen on PageGeneratorRecord {
+    internalName
     __typename
     id
+    slug
     seo {
       description
       title
@@ -302,6 +286,28 @@ export const PageGenFragmentDoc = gql`
   ${CarouselFragmentDoc}
   ${AlternatingSwitchbackFragmentDoc}
 `;
+export const BlogPageFragmentDoc = gql`
+  fragment BlogPage on BlogPageRecord {
+    __typename
+    id
+    seo {
+      description
+      title
+      image {
+        ...Image
+      }
+    }
+    switchback {
+      ...SwitchBack
+    }
+    componentGenerator {
+      ...PageGen
+    }
+  }
+  ${ImageFragmentDoc}
+  ${SwitchBackFragmentDoc}
+  ${PageGenFragmentDoc}
+`;
 export const HomepageQueryDocument = gql`
   query HomepageQuery {
     pageGenerator(filter: { internalName: { eq: "Homepage" } }) {
@@ -316,6 +322,21 @@ export const WorkPageSlugsDocument = gql`
       slug
     }
   }
+`;
+export const PageSlugsDocument = gql`
+  query PageSlugs {
+    allPageGenerators {
+      slug
+    }
+  }
+`;
+export const PageDataDocument = gql`
+  query PageData($slug: String) {
+    pageGenerator(filter: { slug: { eq: $slug } }) {
+      ...PageGen
+    }
+  }
+  ${PageGenFragmentDoc}
 `;
 export const WorkPageDataDocument = gql`
   query WorkPageData($slug: String) {
@@ -388,6 +409,25 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
             ...wrappedRequestHeaders,
           }),
         'WorkPageSlugs',
+        'query',
+      );
+    },
+    PageSlugs(
+      variables?: PageSlugsQueryVariables,
+      requestHeaders?: Dom.RequestInit['headers'],
+    ): Promise<PageSlugsQuery> {
+      return withWrapper(
+        wrappedRequestHeaders =>
+          client.request<PageSlugsQuery>(PageSlugsDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }),
+        'PageSlugs',
+        'query',
+      );
+    },
+    PageData(variables?: PageDataQueryVariables, requestHeaders?: Dom.RequestInit['headers']): Promise<PageDataQuery> {
+      return withWrapper(
+        wrappedRequestHeaders =>
+          client.request<PageDataQuery>(PageDataDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }),
+        'PageData',
         'query',
       );
     },

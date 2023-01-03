@@ -12,6 +12,18 @@ query WorkPageSlugs {
   }
 }
 
+query PageSlugs {
+  allPageGenerators {
+    slug
+  }
+}
+
+query PageData($slug: String) {
+  pageGenerator(filter: { slug: { eq: $slug } }) {
+    ...PageGen
+  }
+}
+
 query WorkPageData($slug: String) {
   work(filter: { slug: { eq: $slug } }) {
     ...Work
