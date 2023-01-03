@@ -1,26 +1,8 @@
 #import "./fragments.graphql"
 
 query HomepageQuery {
-  homepage {
-    __typename
-    worksHeading
-    worksIntro {
-      value
-    }
-    aboutMe {
-      ...SwitchBack
-    }
-    works {
-      slug
-      title
-      bannerImage {
-        ...Image
-      }
-    }
-    components {
-      ...SwitchBack
-      ...Carousel
-    }
+  pageGenerator(filter: { internalName: { eq: "Homepage" } }) {
+    ...PageGen
   }
 }
 

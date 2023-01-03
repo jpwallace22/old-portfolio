@@ -124,6 +124,20 @@ fragment Carousel on CarouselRecord {
   }
 }
 
+fragment AlternatingSwitchback on AlternatingSwitchbackRecord {
+  __typename
+  id
+  internalName
+  heading
+  headingAs
+  body {
+    value
+  }
+  cards {
+    ...Work
+  }
+}
+
 fragment Work on WorkRecord {
   __typename
   id
@@ -222,5 +236,22 @@ fragment BlogPage on BlogPageRecord {
   }
   switchback {
     ...SwitchBack
+  }
+}
+
+fragment PageGen on PageGeneratorRecord {
+  __typename
+  id
+  seo {
+    description
+    title
+    image {
+      ...Image
+    }
+  }
+  components {
+    ...SwitchBack
+    ...Carousel
+    ...AlternatingSwitchback
   }
 }

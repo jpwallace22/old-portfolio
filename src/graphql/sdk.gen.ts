@@ -12,142 +12,6 @@ export const ImageFragmentDoc = gql`
     url
   }
 `;
-export const CompanyFragmentDoc = gql`
-  fragment Company on CompanyRecord {
-    __typename
-    id
-    internalName
-    name
-    website
-    logo {
-      ...Image
-    }
-  }
-  ${ImageFragmentDoc}
-`;
-export const PersonFragmentDoc = gql`
-  fragment Person on PersonRecord {
-    __typename
-    id
-    internalName
-    firstName
-    lastName
-    website
-    company {
-      ...Company
-    }
-    role
-    thumbnail {
-      ...Image
-    }
-  }
-  ${CompanyFragmentDoc}
-  ${ImageFragmentDoc}
-`;
-export const TestimonialCardFragmentDoc = gql`
-  fragment TestimonialCard on TestimonialCardRecord {
-    __typename
-    id
-    internalName
-    quote {
-      value
-    }
-    person {
-      ...Person
-    }
-  }
-  ${PersonFragmentDoc}
-`;
-export const CarouselFragmentDoc = gql`
-  fragment Carousel on CarouselRecord {
-    __typename
-    id
-    internalName
-    cards {
-      ...TestimonialCard
-    }
-  }
-  ${TestimonialCardFragmentDoc}
-`;
-export const ButtonFragmentDoc = gql`
-  fragment Button on ButtonRecord {
-    __typename
-    id
-    internalName
-    disabled
-    icon
-    id
-    title
-    url
-  }
-`;
-export const TechStackFragmentDoc = gql`
-  fragment TechStack on TechStackRecord {
-    __typename
-    id
-    internalName
-    title
-    thumbnail {
-      ...Image
-    }
-  }
-  ${ImageFragmentDoc}
-`;
-export const CaseStudyCardFragmentDoc = gql`
-  fragment CaseStudyCard on CaseStudyCardRecord {
-    __typename
-    id
-    internalName
-    image {
-      ...Image
-    }
-    body {
-      value
-    }
-  }
-  ${ImageFragmentDoc}
-`;
-export const WorkFragmentDoc = gql`
-  fragment Work on WorkRecord {
-    __typename
-    id
-    internalName
-    seo {
-      description
-      title
-      image {
-        ...Image
-      }
-    }
-    title
-    subtitle
-    heading
-    body {
-      value
-      blocks
-    }
-    information {
-      value
-      blocks
-    }
-    bannerImage {
-      ...Image
-    }
-    ctas {
-      ...Button
-    }
-    techStack {
-      ...TechStack
-    }
-    slider {
-      ...CaseStudyCard
-    }
-  }
-  ${ImageFragmentDoc}
-  ${ButtonFragmentDoc}
-  ${TechStackFragmentDoc}
-  ${CaseStudyCardFragmentDoc}
-`;
 export const CategoryFragmentDoc = gql`
   fragment Category on CategoryRecord {
     __typename
@@ -224,6 +88,18 @@ export const BlogCardFragmentDoc = gql`
   ${CategoryFragmentDoc}
   ${ImageFragmentDoc}
 `;
+export const ButtonFragmentDoc = gql`
+  fragment Button on ButtonRecord {
+    __typename
+    id
+    internalName
+    disabled
+    icon
+    id
+    title
+    url
+  }
+`;
 export const SwitchBackFragmentDoc = gql`
   fragment SwitchBack on SwitchbackRecord {
     __typename
@@ -264,33 +140,175 @@ export const BlogPageFragmentDoc = gql`
   ${ImageFragmentDoc}
   ${SwitchBackFragmentDoc}
 `;
-export const HomepageQueryDocument = gql`
-  query HomepageQuery {
-    homepage {
-      __typename
-      worksHeading
-      worksIntro {
-        value
-      }
-      aboutMe {
-        ...SwitchBack
-      }
-      works {
-        slug
-        title
-        bannerImage {
-          ...Image
-        }
-      }
-      components {
-        ...SwitchBack
-        ...Carousel
-      }
+export const CompanyFragmentDoc = gql`
+  fragment Company on CompanyRecord {
+    __typename
+    id
+    internalName
+    name
+    website
+    logo {
+      ...Image
     }
   }
-  ${SwitchBackFragmentDoc}
   ${ImageFragmentDoc}
+`;
+export const PersonFragmentDoc = gql`
+  fragment Person on PersonRecord {
+    __typename
+    id
+    internalName
+    firstName
+    lastName
+    website
+    company {
+      ...Company
+    }
+    role
+    thumbnail {
+      ...Image
+    }
+  }
+  ${CompanyFragmentDoc}
+  ${ImageFragmentDoc}
+`;
+export const TestimonialCardFragmentDoc = gql`
+  fragment TestimonialCard on TestimonialCardRecord {
+    __typename
+    id
+    internalName
+    quote {
+      value
+    }
+    person {
+      ...Person
+    }
+  }
+  ${PersonFragmentDoc}
+`;
+export const CarouselFragmentDoc = gql`
+  fragment Carousel on CarouselRecord {
+    __typename
+    id
+    internalName
+    cards {
+      ...TestimonialCard
+    }
+  }
+  ${TestimonialCardFragmentDoc}
+`;
+export const TechStackFragmentDoc = gql`
+  fragment TechStack on TechStackRecord {
+    __typename
+    id
+    internalName
+    title
+    thumbnail {
+      ...Image
+    }
+  }
+  ${ImageFragmentDoc}
+`;
+export const CaseStudyCardFragmentDoc = gql`
+  fragment CaseStudyCard on CaseStudyCardRecord {
+    __typename
+    id
+    internalName
+    image {
+      ...Image
+    }
+    body {
+      value
+    }
+  }
+  ${ImageFragmentDoc}
+`;
+export const WorkFragmentDoc = gql`
+  fragment Work on WorkRecord {
+    __typename
+    id
+    internalName
+    seo {
+      description
+      title
+      image {
+        ...Image
+      }
+    }
+    title
+    subtitle
+    heading
+    body {
+      value
+      blocks
+    }
+    information {
+      value
+      blocks
+    }
+    bannerImage {
+      ...Image
+    }
+    ctas {
+      ...Button
+    }
+    techStack {
+      ...TechStack
+    }
+    slider {
+      ...CaseStudyCard
+    }
+  }
+  ${ImageFragmentDoc}
+  ${ButtonFragmentDoc}
+  ${TechStackFragmentDoc}
+  ${CaseStudyCardFragmentDoc}
+`;
+export const AlternatingSwitchbackFragmentDoc = gql`
+  fragment AlternatingSwitchback on AlternatingSwitchbackRecord {
+    __typename
+    id
+    internalName
+    heading
+    headingAs
+    body {
+      value
+    }
+    cards {
+      ...Work
+    }
+  }
+  ${WorkFragmentDoc}
+`;
+export const PageGenFragmentDoc = gql`
+  fragment PageGen on PageGeneratorRecord {
+    __typename
+    id
+    seo {
+      description
+      title
+      image {
+        ...Image
+      }
+    }
+    components {
+      ...SwitchBack
+      ...Carousel
+      ...AlternatingSwitchback
+    }
+  }
+  ${ImageFragmentDoc}
+  ${SwitchBackFragmentDoc}
   ${CarouselFragmentDoc}
+  ${AlternatingSwitchbackFragmentDoc}
+`;
+export const HomepageQueryDocument = gql`
+  query HomepageQuery {
+    pageGenerator(filter: { internalName: { eq: "Homepage" } }) {
+      ...PageGen
+    }
+  }
+  ${PageGenFragmentDoc}
 `;
 export const WorkPageSlugsDocument = gql`
   query WorkPageSlugs {

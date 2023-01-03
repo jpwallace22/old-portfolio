@@ -11,24 +11,19 @@ import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 
 import useDarkMode from 'contexts/ThemeProvider';
 
-import type { HomepageModelWorksIntroField, WorkRecord } from 'graphql/types.gen';
+import type { AlternatingSwitchbackRecord } from 'graphql/types.gen';
 import type { BasicProps } from 'quarks/interpolations/basic';
 import type { HeadingTypes } from 'quarks/styleProps/heading';
 import type { FC } from 'react';
 
 const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/StructuredTextParser'));
 
-type AlternatingSwitchbacksProps = BasicProps & {
-  works: WorkRecord[];
-  headingAs?: HeadingTypes;
-  worksHeading?: string | null;
-  worksIntro?: HomepageModelWorksIntroField | null;
-};
+type AlternatingSwitchbacksProps = BasicProps & AlternatingSwitchbackRecord;
 
 const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({
-  works,
-  worksHeading,
-  worksIntro,
+  cards,
+  heading,
+  body,
   headingAs,
   ...props
 }): JSX.Element => {
@@ -40,15 +35,15 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({
       <LargeCircle position="absolute" left="-900px" top="90px" zIndex={-10} lg={{ bottom: '-200px' }} />
       <StandardFadeIn>
         <Flex gap="24px" flexDirection="column" lg={{ maxWidth: '66%' }}>
-          <Heading as={headingAs || 'h3'} textStyle="lg" lg={{ textStyle: 'xl' }}>
-            {worksHeading}
+          <Heading as={(headingAs as HeadingTypes) || 'h3'} textStyle="lg" lg={{ textStyle: 'xl' }}>
+            {heading}
           </Heading>
-          <StructuredTextParser text={worksIntro} textColor={{ dark: 'gray-500', light: 'purple-900' }} />
+          <StructuredTextParser text={body} textColor={{ dark: 'gray-500', light: 'purple-900' }} />
         </Flex>
       </StandardFadeIn>
 
       <Flex flexDirection="column" gap="48px" alignItems="center" {...props}>
-        {works.map((work, i) => {
+        {cards?.map((card, i) => {
           const isEven = i % 2 === 0;
 
           return (
@@ -57,9 +52,9 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({
               initial={{ x: isEven ? -100 : 100, opacity: 0 }}
               transition={{ x: { type: 'spring', duration: 2, bounce: 0.6 }, opacity: { duration: 1 } }}
               viewport={{ once: true }}
-              key={work.id}
+              key={card.id}
             >
-              <Link href={`https://www.justinwallace.dev/works/${work.slug}`}>
+              <Link href={`https://www.justinwallace.dev/works/${card.slug}`}>
                 <Flex
                   gap="32px"
                   justifyContent="center"
@@ -102,7 +97,7 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({
                         width: '80%',
                       }}
                     >
-                      {work.title}
+                      {card.title}
                     </Heading>
                   </Container>
                   <Container
@@ -111,13 +106,13 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({
                     className="image-wrapper"
                     transition="all 1s ease"
                     position="relative"
-                    aspectRatio={[work?.bannerImage?.width, work?.bannerImage?.height]}
+                    aspectRatio={[card?.bannerImage?.width, card?.bannerImage?.height]}
                   >
                     <Image
-                      src={work?.bannerImage?.url || ''}
+                      src={card?.bannerImage?.url || ''}
                       fill
                       marginX="auto"
-                      alt={work?.bannerImage?.alt || ''}
+                      alt={card?.bannerImage?.alt || ''}
                       sizes="50vw"
                     />
                   </Container>

@@ -23,6 +23,93 @@ export type Scalars = {
   UploadId: any;
 };
 
+export type AlternatingSwitchbackModelBodyField = {
+  __typename?: 'AlternatingSwitchbackModelBodyField';
+  blocks: Array<Scalars['String']>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+};
+
+export type AlternatingSwitchbackModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<AlternatingSwitchbackModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  body?: InputMaybe<StructuredTextFilter>;
+  cards?: InputMaybe<LinksFilter>;
+  createdAt?: InputMaybe<CreatedAtFilter>;
+  heading?: InputMaybe<StringFilter>;
+  headingAs?: InputMaybe<StringFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  internalName?: InputMaybe<StringFilter>;
+  updatedAt?: InputMaybe<UpdatedAtFilter>;
+};
+
+export enum AlternatingSwitchbackModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  CreatedAt_ASC = 'createdAt_ASC',
+  CreatedAt_DESC = 'createdAt_DESC',
+  HeadingAs_ASC = 'headingAs_ASC',
+  HeadingAs_DESC = 'headingAs_DESC',
+  Heading_ASC = 'heading_ASC',
+  Heading_DESC = 'heading_DESC',
+  Id_ASC = 'id_ASC',
+  Id_DESC = 'id_DESC',
+  InternalName_ASC = 'internalName_ASC',
+  InternalName_DESC = 'internalName_DESC',
+  UpdatedAt_ASC = 'updatedAt_ASC',
+  UpdatedAt_DESC = 'updatedAt_DESC',
+}
+
+/** Record of type Alternating Switchbacks (alternating_switchback) */
+export type AlternatingSwitchbackRecord = RecordInterface & {
+  __typename?: 'AlternatingSwitchbackRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  body?: Maybe<AlternatingSwitchbackModelBodyField>;
+  cards: Array<WorkRecord>;
+  createdAt: Scalars['DateTime'];
+  heading?: Maybe<Scalars['String']>;
+  headingAs?: Maybe<Scalars['String']>;
+  id: Scalars['ItemId'];
+  internalName?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['DateTime'];
+};
+
+/** Record of type Alternating Switchbacks (alternating_switchback) */
+export type AlternatingSwitchbackRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Record of type Blog Page (blog_page) */
 export type BlogPageRecord = RecordInterface & {
   __typename?: 'BlogPageRecord';
@@ -2299,6 +2386,80 @@ export type OrientationFilter = {
   neq?: InputMaybe<UploadOrientation>;
 };
 
+export type PageGeneratorModelComponentsField = AlternatingSwitchbackRecord | CarouselRecord | SwitchbackRecord;
+
+export type PageGeneratorModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<PageGeneratorModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  components?: InputMaybe<LinksFilter>;
+  createdAt?: InputMaybe<CreatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  internalName?: InputMaybe<StringFilter>;
+  seo?: InputMaybe<SeoFilter>;
+  updatedAt?: InputMaybe<UpdatedAtFilter>;
+};
+
+export enum PageGeneratorModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  CreatedAt_ASC = 'createdAt_ASC',
+  CreatedAt_DESC = 'createdAt_DESC',
+  Id_ASC = 'id_ASC',
+  Id_DESC = 'id_DESC',
+  InternalName_ASC = 'internalName_ASC',
+  InternalName_DESC = 'internalName_DESC',
+  UpdatedAt_ASC = 'updatedAt_ASC',
+  UpdatedAt_DESC = 'updatedAt_DESC',
+}
+
+/** Record of type Page Generator (page_generator) */
+export type PageGeneratorRecord = RecordInterface & {
+  __typename?: 'PageGeneratorRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  components: Array<PageGeneratorModelComponentsField>;
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  internalName?: Maybe<Scalars['String']>;
+  seo?: Maybe<SeoField>;
+  updatedAt: Scalars['DateTime'];
+};
+
+/** Record of type Page Generator (page_generator) */
+export type PageGeneratorRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 export type PersonModelFilter = {
   OR?: InputMaybe<Array<InputMaybe<PersonModelFilter>>>;
   _createdAt?: InputMaybe<CreatedAtFilter>;
@@ -2409,6 +2570,8 @@ export type PublishedAtFilter = {
 export type Query = {
   __typename?: 'Query';
   /** Returns meta information regarding a record collection */
+  _allAlternatingSwitchbacksMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allBlogPostsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allButtonsMeta: CollectionMetadata;
@@ -2420,6 +2583,8 @@ export type Query = {
   _allCategoriesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allCompaniesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allPageGeneratorsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allPeopleMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
@@ -2435,6 +2600,8 @@ export type Query = {
   /** Returns the single instance record */
   _site: Site;
   /** Returns a collection of records */
+  allAlternatingSwitchbacks: Array<AlternatingSwitchbackRecord>;
+  /** Returns a collection of records */
   allBlogPosts: Array<BlogPostRecord>;
   /** Returns a collection of records */
   allButtons: Array<ButtonRecord>;
@@ -2447,6 +2614,8 @@ export type Query = {
   /** Returns a collection of records */
   allCompanies: Array<CompanyRecord>;
   /** Returns a collection of records */
+  allPageGenerators: Array<PageGeneratorRecord>;
+  /** Returns a collection of records */
   allPeople: Array<PersonRecord>;
   /** Returns a collection of records */
   allSwitchbacks: Array<SwitchbackRecord>;
@@ -2458,6 +2627,8 @@ export type Query = {
   allUploads: Array<FileField>;
   /** Returns a collection of records */
   allWorks: Array<WorkRecord>;
+  /** Returns a specific record */
+  alternatingSwitchback?: Maybe<AlternatingSwitchbackRecord>;
   /** Returns the single instance record */
   blogPage?: Maybe<BlogPageRecord>;
   /** Returns a specific record */
@@ -2477,6 +2648,8 @@ export type Query = {
   /** Returns the single instance record */
   homepage?: Maybe<HomepageRecord>;
   /** Returns a specific record */
+  pageGenerator?: Maybe<PageGeneratorRecord>;
+  /** Returns a specific record */
   person?: Maybe<PersonRecord>;
   /** Returns a specific record */
   switchback?: Maybe<SwitchbackRecord>;
@@ -2488,6 +2661,13 @@ export type Query = {
   upload?: Maybe<FileField>;
   /** Returns a specific record */
   work?: Maybe<WorkRecord>;
+};
+
+/** The query root for this schema */
+export type Query_AllAlternatingSwitchbacksMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<AlternatingSwitchbackModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 /** The query root for this schema */
@@ -2529,6 +2709,13 @@ export type Query_AllCategoriesMetaArgs = {
 export type Query_AllCompaniesMetaArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<CompanyModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllPageGeneratorsMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<PageGeneratorModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2577,6 +2764,16 @@ export type Query_AllWorksMetaArgs = {
 export type Query_SiteArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type QueryAllAlternatingSwitchbacksArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<AlternatingSwitchbackModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<AlternatingSwitchbackModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
 };
 
 /** The query root for this schema */
@@ -2640,6 +2837,16 @@ export type QueryAllCompaniesArgs = {
 };
 
 /** The query root for this schema */
+export type QueryAllPageGeneratorsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<PageGeneratorModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<PageGeneratorModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
+/** The query root for this schema */
 export type QueryAllPeopleArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<PersonModelFilter>;
@@ -2697,6 +2904,14 @@ export type QueryAllWorksArgs = {
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<WorkModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']>;
+};
+
+/** The query root for this schema */
+export type QueryAlternatingSwitchbackArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<AlternatingSwitchbackModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<AlternatingSwitchbackModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -2763,6 +2978,14 @@ export type QueryGlobalNavArgs = {
 export type QueryHomepageArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type QueryPageGeneratorArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<PageGeneratorModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<PageGeneratorModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -3943,6 +4166,87 @@ declare global {
     }>;
   };
 
+  export type AlternatingSwitchbackFragment = {
+    __typename: 'AlternatingSwitchbackRecord';
+    id: string;
+    internalName?: string | null;
+    heading?: string | null;
+    headingAs?: string | null;
+    body?: { __typename?: 'AlternatingSwitchbackModelBodyField'; value: unknown } | null;
+    cards: Array<{
+      __typename: 'WorkRecord';
+      id: string;
+      internalName?: string | null;
+      title?: string | null;
+      subtitle?: string | null;
+      heading?: string | null;
+      seo?: {
+        __typename?: 'SeoField';
+        description?: string | null;
+        title?: string | null;
+        image?: {
+          __typename: 'FileField';
+          id: string;
+          alt?: string | null;
+          blurhash?: string | null;
+          height?: number | null;
+          width?: number | null;
+          url: string;
+        } | null;
+      } | null;
+      body?: { __typename?: 'WorkModelBodyField'; value: unknown; blocks: Array<string> } | null;
+      information?: { __typename?: 'WorkModelInformationField'; value: unknown; blocks: Array<string> } | null;
+      bannerImage?: {
+        __typename: 'FileField';
+        id: string;
+        alt?: string | null;
+        blurhash?: string | null;
+        height?: number | null;
+        width?: number | null;
+        url: string;
+      } | null;
+      ctas: Array<{
+        __typename: 'ButtonRecord';
+        id: string;
+        internalName?: string | null;
+        disabled?: boolean | null;
+        icon?: string | null;
+        title?: string | null;
+        url?: string | null;
+      }>;
+      techStack: Array<{
+        __typename: 'TechStackRecord';
+        id: string;
+        internalName?: string | null;
+        title?: string | null;
+        thumbnail?: {
+          __typename: 'FileField';
+          id: string;
+          alt?: string | null;
+          blurhash?: string | null;
+          height?: number | null;
+          width?: number | null;
+          url: string;
+        } | null;
+      }>;
+      slider: Array<{
+        __typename: 'CaseStudyCardRecord';
+        id: string;
+        internalName?: string | null;
+        image?: {
+          __typename: 'FileField';
+          id: string;
+          alt?: string | null;
+          blurhash?: string | null;
+          height?: number | null;
+          width?: number | null;
+          url: string;
+        } | null;
+        body?: { __typename?: 'CaseStudyCardModelBodyField'; value: unknown } | null;
+      }>;
+    }>;
+  };
+
   export type WorkFragment = {
     __typename: 'WorkRecord';
     id: string;
@@ -4148,23 +4452,191 @@ declare global {
     } | null;
   };
 
+  export type PageGenFragment = {
+    __typename: 'PageGeneratorRecord';
+    id: string;
+    seo?: {
+      __typename?: 'SeoField';
+      description?: string | null;
+      title?: string | null;
+      image?: {
+        __typename: 'FileField';
+        id: string;
+        alt?: string | null;
+        blurhash?: string | null;
+        height?: number | null;
+        width?: number | null;
+        url: string;
+      } | null;
+    } | null;
+    components: Array<
+      | {
+          __typename: 'AlternatingSwitchbackRecord';
+          id: string;
+          internalName?: string | null;
+          heading?: string | null;
+          headingAs?: string | null;
+          body?: { __typename?: 'AlternatingSwitchbackModelBodyField'; value: unknown } | null;
+          cards: Array<{
+            __typename: 'WorkRecord';
+            id: string;
+            internalName?: string | null;
+            title?: string | null;
+            subtitle?: string | null;
+            heading?: string | null;
+            seo?: {
+              __typename?: 'SeoField';
+              description?: string | null;
+              title?: string | null;
+              image?: {
+                __typename: 'FileField';
+                id: string;
+                alt?: string | null;
+                blurhash?: string | null;
+                height?: number | null;
+                width?: number | null;
+                url: string;
+              } | null;
+            } | null;
+            body?: { __typename?: 'WorkModelBodyField'; value: unknown; blocks: Array<string> } | null;
+            information?: { __typename?: 'WorkModelInformationField'; value: unknown; blocks: Array<string> } | null;
+            bannerImage?: {
+              __typename: 'FileField';
+              id: string;
+              alt?: string | null;
+              blurhash?: string | null;
+              height?: number | null;
+              width?: number | null;
+              url: string;
+            } | null;
+            ctas: Array<{
+              __typename: 'ButtonRecord';
+              id: string;
+              internalName?: string | null;
+              disabled?: boolean | null;
+              icon?: string | null;
+              title?: string | null;
+              url?: string | null;
+            }>;
+            techStack: Array<{
+              __typename: 'TechStackRecord';
+              id: string;
+              internalName?: string | null;
+              title?: string | null;
+              thumbnail?: {
+                __typename: 'FileField';
+                id: string;
+                alt?: string | null;
+                blurhash?: string | null;
+                height?: number | null;
+                width?: number | null;
+                url: string;
+              } | null;
+            }>;
+            slider: Array<{
+              __typename: 'CaseStudyCardRecord';
+              id: string;
+              internalName?: string | null;
+              image?: {
+                __typename: 'FileField';
+                id: string;
+                alt?: string | null;
+                blurhash?: string | null;
+                height?: number | null;
+                width?: number | null;
+                url: string;
+              } | null;
+              body?: { __typename?: 'CaseStudyCardModelBodyField'; value: unknown } | null;
+            }>;
+          }>;
+        }
+      | {
+          __typename: 'CarouselRecord';
+          id: string;
+          internalName?: string | null;
+          cards: Array<{
+            __typename: 'TestimonialCardRecord';
+            id: string;
+            internalName?: string | null;
+            quote?: { __typename?: 'TestimonialCardModelQuoteField'; value: unknown } | null;
+            person?: {
+              __typename: 'PersonRecord';
+              id: string;
+              internalName?: string | null;
+              firstName?: string | null;
+              lastName?: string | null;
+              website?: string | null;
+              role?: string | null;
+              company?: {
+                __typename: 'CompanyRecord';
+                id: string;
+                internalName?: string | null;
+                name?: string | null;
+                website?: string | null;
+                logo?: {
+                  __typename: 'FileField';
+                  id: string;
+                  alt?: string | null;
+                  blurhash?: string | null;
+                  height?: number | null;
+                  width?: number | null;
+                  url: string;
+                } | null;
+              } | null;
+              thumbnail?: {
+                __typename: 'FileField';
+                id: string;
+                alt?: string | null;
+                blurhash?: string | null;
+                height?: number | null;
+                width?: number | null;
+                url: string;
+              } | null;
+            } | null;
+          }>;
+        }
+      | {
+          __typename: 'SwitchbackRecord';
+          id: string;
+          internalName?: string | null;
+          reverse?: boolean | null;
+          heading?: string | null;
+          headingAs?: string | null;
+          showDots?: boolean | null;
+          body?: { __typename?: 'SwitchbackModelBodyField'; value: unknown } | null;
+          image?: {
+            __typename: 'FileField';
+            id: string;
+            alt?: string | null;
+            blurhash?: string | null;
+            height?: number | null;
+            width?: number | null;
+            url: string;
+          } | null;
+          buttons: Array<{
+            __typename: 'ButtonRecord';
+            id: string;
+            internalName?: string | null;
+            disabled?: boolean | null;
+            icon?: string | null;
+            title?: string | null;
+            url?: string | null;
+          }>;
+        }
+    >;
+  };
+
   export type HomepageQueryQueryVariables = Exact<{ [key: string]: never }>;
 
   export type HomepageQueryQuery = {
     __typename?: 'Query';
-    homepage?: {
-      __typename: 'HomepageRecord';
-      worksHeading?: string | null;
-      worksIntro?: { __typename?: 'HomepageModelWorksIntroField'; value: unknown } | null;
-      aboutMe?: {
-        __typename: 'SwitchbackRecord';
-        id: string;
-        internalName?: string | null;
-        reverse?: boolean | null;
-        heading?: string | null;
-        headingAs?: string | null;
-        showDots?: boolean | null;
-        body?: { __typename?: 'SwitchbackModelBodyField'; value: unknown } | null;
+    pageGenerator?: {
+      __typename: 'PageGeneratorRecord';
+      id: string;
+      seo?: {
+        __typename?: 'SeoField';
+        description?: string | null;
+        title?: string | null;
         image?: {
           __typename: 'FileField';
           id: string;
@@ -4174,31 +4646,88 @@ declare global {
           width?: number | null;
           url: string;
         } | null;
-        buttons: Array<{
-          __typename: 'ButtonRecord';
-          id: string;
-          internalName?: string | null;
-          disabled?: boolean | null;
-          icon?: string | null;
-          title?: string | null;
-          url?: string | null;
-        }>;
       } | null;
-      works: Array<{
-        __typename?: 'WorkRecord';
-        slug?: string | null;
-        title?: string | null;
-        bannerImage?: {
-          __typename: 'FileField';
-          id: string;
-          alt?: string | null;
-          blurhash?: string | null;
-          height?: number | null;
-          width?: number | null;
-          url: string;
-        } | null;
-      }>;
       components: Array<
+        | {
+            __typename: 'AlternatingSwitchbackRecord';
+            id: string;
+            internalName?: string | null;
+            heading?: string | null;
+            headingAs?: string | null;
+            body?: { __typename?: 'AlternatingSwitchbackModelBodyField'; value: unknown } | null;
+            cards: Array<{
+              __typename: 'WorkRecord';
+              id: string;
+              internalName?: string | null;
+              title?: string | null;
+              subtitle?: string | null;
+              heading?: string | null;
+              seo?: {
+                __typename?: 'SeoField';
+                description?: string | null;
+                title?: string | null;
+                image?: {
+                  __typename: 'FileField';
+                  id: string;
+                  alt?: string | null;
+                  blurhash?: string | null;
+                  height?: number | null;
+                  width?: number | null;
+                  url: string;
+                } | null;
+              } | null;
+              body?: { __typename?: 'WorkModelBodyField'; value: unknown; blocks: Array<string> } | null;
+              information?: { __typename?: 'WorkModelInformationField'; value: unknown; blocks: Array<string> } | null;
+              bannerImage?: {
+                __typename: 'FileField';
+                id: string;
+                alt?: string | null;
+                blurhash?: string | null;
+                height?: number | null;
+                width?: number | null;
+                url: string;
+              } | null;
+              ctas: Array<{
+                __typename: 'ButtonRecord';
+                id: string;
+                internalName?: string | null;
+                disabled?: boolean | null;
+                icon?: string | null;
+                title?: string | null;
+                url?: string | null;
+              }>;
+              techStack: Array<{
+                __typename: 'TechStackRecord';
+                id: string;
+                internalName?: string | null;
+                title?: string | null;
+                thumbnail?: {
+                  __typename: 'FileField';
+                  id: string;
+                  alt?: string | null;
+                  blurhash?: string | null;
+                  height?: number | null;
+                  width?: number | null;
+                  url: string;
+                } | null;
+              }>;
+              slider: Array<{
+                __typename: 'CaseStudyCardRecord';
+                id: string;
+                internalName?: string | null;
+                image?: {
+                  __typename: 'FileField';
+                  id: string;
+                  alt?: string | null;
+                  blurhash?: string | null;
+                  height?: number | null;
+                  width?: number | null;
+                  url: string;
+                } | null;
+                body?: { __typename?: 'CaseStudyCardModelBodyField'; value: unknown } | null;
+              }>;
+            }>;
+          }
         | {
             __typename: 'CarouselRecord';
             id: string;
@@ -4535,321 +5064,6 @@ export const ImageFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ImageFragment, unknown>;
-export const CompanyFragmentDoc = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'Company' },
-      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'CompanyRecord' } },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'internalName' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'website' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'logo' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Image' } }],
-            },
-          },
-        ],
-      },
-    },
-    ...ImageFragmentDoc.definitions,
-  ],
-} as unknown as DocumentNode<CompanyFragment, unknown>;
-export const PersonFragmentDoc = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'Person' },
-      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'PersonRecord' } },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'internalName' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'lastName' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'website' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'company' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Company' } }],
-            },
-          },
-          { kind: 'Field', name: { kind: 'Name', value: 'role' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'thumbnail' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Image' } }],
-            },
-          },
-        ],
-      },
-    },
-    ...CompanyFragmentDoc.definitions,
-    ...ImageFragmentDoc.definitions,
-  ],
-} as unknown as DocumentNode<PersonFragment, unknown>;
-export const TestimonialCardFragmentDoc = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'TestimonialCard' },
-      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'TestimonialCardRecord' } },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'internalName' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'quote' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'value' } }],
-            },
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'person' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Person' } }],
-            },
-          },
-        ],
-      },
-    },
-    ...PersonFragmentDoc.definitions,
-  ],
-} as unknown as DocumentNode<TestimonialCardFragment, unknown>;
-export const CarouselFragmentDoc = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'Carousel' },
-      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'CarouselRecord' } },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'internalName' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'cards' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'TestimonialCard' } }],
-            },
-          },
-        ],
-      },
-    },
-    ...TestimonialCardFragmentDoc.definitions,
-  ],
-} as unknown as DocumentNode<CarouselFragment, unknown>;
-export const ButtonFragmentDoc = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'Button' },
-      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'ButtonRecord' } },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'internalName' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'disabled' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'icon' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'url' } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<ButtonFragment, unknown>;
-export const TechStackFragmentDoc = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'TechStack' },
-      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'TechStackRecord' } },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'internalName' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'thumbnail' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Image' } }],
-            },
-          },
-        ],
-      },
-    },
-    ...ImageFragmentDoc.definitions,
-  ],
-} as unknown as DocumentNode<TechStackFragment, unknown>;
-export const CaseStudyCardFragmentDoc = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'CaseStudyCard' },
-      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'CaseStudyCardRecord' } },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'internalName' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'image' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Image' } }],
-            },
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'body' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'value' } }],
-            },
-          },
-        ],
-      },
-    },
-    ...ImageFragmentDoc.definitions,
-  ],
-} as unknown as DocumentNode<CaseStudyCardFragment, unknown>;
-export const WorkFragmentDoc = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'Work' },
-      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'WorkRecord' } },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'internalName' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'seo' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'description' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'image' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Image' } }],
-                  },
-                },
-              ],
-            },
-          },
-          { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'subtitle' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'heading' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'body' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'value' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'blocks' } },
-              ],
-            },
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'information' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'value' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'blocks' } },
-              ],
-            },
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'bannerImage' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Image' } }],
-            },
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'ctas' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Button' } }],
-            },
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'techStack' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'TechStack' } }],
-            },
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'slider' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'CaseStudyCard' } }],
-            },
-          },
-        ],
-      },
-    },
-    ...ImageFragmentDoc.definitions,
-    ...ButtonFragmentDoc.definitions,
-    ...TechStackFragmentDoc.definitions,
-    ...CaseStudyCardFragmentDoc.definitions,
-  ],
-} as unknown as DocumentNode<WorkFragment, unknown>;
 export const CategoryFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -5031,6 +5245,29 @@ export const BlogCardFragmentDoc = {
     ...ImageFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<BlogCardFragment, unknown>;
+export const ButtonFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'Button' },
+      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'ButtonRecord' } },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'internalName' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'disabled' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'icon' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ButtonFragment, unknown>;
 export const SwitchBackFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -5125,6 +5362,387 @@ export const BlogPageFragmentDoc = {
     ...SwitchBackFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<BlogPageFragment, unknown>;
+export const CompanyFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'Company' },
+      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'CompanyRecord' } },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'internalName' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'website' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'logo' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Image' } }],
+            },
+          },
+        ],
+      },
+    },
+    ...ImageFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<CompanyFragment, unknown>;
+export const PersonFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'Person' },
+      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'PersonRecord' } },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'internalName' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'lastName' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'website' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'company' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Company' } }],
+            },
+          },
+          { kind: 'Field', name: { kind: 'Name', value: 'role' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'thumbnail' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Image' } }],
+            },
+          },
+        ],
+      },
+    },
+    ...CompanyFragmentDoc.definitions,
+    ...ImageFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<PersonFragment, unknown>;
+export const TestimonialCardFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'TestimonialCard' },
+      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'TestimonialCardRecord' } },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'internalName' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'quote' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'value' } }],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'person' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Person' } }],
+            },
+          },
+        ],
+      },
+    },
+    ...PersonFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<TestimonialCardFragment, unknown>;
+export const CarouselFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'Carousel' },
+      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'CarouselRecord' } },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'internalName' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'cards' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'TestimonialCard' } }],
+            },
+          },
+        ],
+      },
+    },
+    ...TestimonialCardFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<CarouselFragment, unknown>;
+export const TechStackFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'TechStack' },
+      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'TechStackRecord' } },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'internalName' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'thumbnail' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Image' } }],
+            },
+          },
+        ],
+      },
+    },
+    ...ImageFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<TechStackFragment, unknown>;
+export const CaseStudyCardFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'CaseStudyCard' },
+      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'CaseStudyCardRecord' } },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'internalName' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'image' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Image' } }],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'body' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'value' } }],
+            },
+          },
+        ],
+      },
+    },
+    ...ImageFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<CaseStudyCardFragment, unknown>;
+export const WorkFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'Work' },
+      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'WorkRecord' } },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'internalName' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'seo' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'description' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'image' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Image' } }],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'subtitle' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'heading' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'body' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'blocks' } },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'information' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'blocks' } },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'bannerImage' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Image' } }],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'ctas' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Button' } }],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'techStack' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'TechStack' } }],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'slider' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'CaseStudyCard' } }],
+            },
+          },
+        ],
+      },
+    },
+    ...ImageFragmentDoc.definitions,
+    ...ButtonFragmentDoc.definitions,
+    ...TechStackFragmentDoc.definitions,
+    ...CaseStudyCardFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<WorkFragment, unknown>;
+export const AlternatingSwitchbackFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'AlternatingSwitchback' },
+      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'AlternatingSwitchbackRecord' } },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'internalName' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'heading' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'headingAs' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'body' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'value' } }],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'cards' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Work' } }],
+            },
+          },
+        ],
+      },
+    },
+    ...WorkFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<AlternatingSwitchbackFragment, unknown>;
+export const PageGenFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'PageGen' },
+      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'PageGeneratorRecord' } },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'seo' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'description' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'image' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Image' } }],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'components' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'SwitchBack' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'Carousel' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'AlternatingSwitchback' } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    ...ImageFragmentDoc.definitions,
+    ...SwitchBackFragmentDoc.definitions,
+    ...CarouselFragmentDoc.definitions,
+    ...AlternatingSwitchbackFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<PageGenFragment, unknown>;
 export const HomepageQueryDocument = {
   kind: 'Document',
   definitions: [
@@ -5137,67 +5755,41 @@ export const HomepageQueryDocument = {
         selections: [
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'homepage' },
+            name: { kind: 'Name', value: 'pageGenerator' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'filter' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'internalName' },
+                      value: {
+                        kind: 'ObjectValue',
+                        fields: [
+                          {
+                            kind: 'ObjectField',
+                            name: { kind: 'Name', value: 'eq' },
+                            value: { kind: 'StringValue', value: 'Homepage', block: false },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
             selectionSet: {
               kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'worksHeading' } },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'worksIntro' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [{ kind: 'Field', name: { kind: 'Name', value: 'value' } }],
-                  },
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'aboutMe' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'SwitchBack' } }],
-                  },
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'works' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'bannerImage' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Image' } }],
-                        },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'components' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'FragmentSpread', name: { kind: 'Name', value: 'SwitchBack' } },
-                      { kind: 'FragmentSpread', name: { kind: 'Name', value: 'Carousel' } },
-                    ],
-                  },
-                },
-              ],
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'PageGen' } }],
             },
           },
         ],
       },
     },
-    ...SwitchBackFragmentDoc.definitions,
-    ...ImageFragmentDoc.definitions,
-    ...CarouselFragmentDoc.definitions,
+    ...PageGenFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<HomepageQueryQuery, HomepageQueryQueryVariables>;
 export const WorkPageSlugsDocument = {

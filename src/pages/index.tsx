@@ -16,38 +16,29 @@ const Switchback = lazy(() => import('components/Switchback/Switchback'));
 
 const Carousel = lazy(() => import('components/Carousel/Carousel'));
 
-type IHomePage = {
-  data: HomepageRecord;
-};
-
 // Query Data
 export const getStaticProps: GetStaticProps = async () => {
   const data = await sdk.HomepageQuery();
 
   return {
-    props: {
-      data: data.homepage,
-    },
+    props: { ...data.pageGenerator },
   };
 };
 
-const Home: FC<IHomePage> = ({ data }) => {
-  const { worksHeading, worksIntro, works, components } = data;
-
-  return (
-    <>
-      <SEO />
-      <Container as="main">
-        <Hero />
-        {/* @ts-expect-error Will add to compgen  */}
-        <Switchback {...components[0]} />
-        {/* will remove cards */}
-        <Carousel cards={[]} {...components[1]} />
-        <AlternatingSwitchbacks works={works} worksHeading={worksHeading} worksIntro={worksIntro} />
-      </Container>
-      <Footer />
-    </>
-  );
-};
+const Home: FC<HomepageRecord> = ({ components }) => (
+  <>
+    <SEO />
+    <Container as="main">
+      <Hero />
+      {/* @ts-expect-error Will add to compgen  */}
+      <Switchback {...components[0]} />
+      {/* will remove cards */}
+      <Carousel cards={[]} {...components[1]} />
+      {/* @ts-expect-error Will add to compgen  */}
+      <AlternatingSwitchbacks {...components[2]} />
+    </Container>
+    <Footer />
+  </>
+);
 
 export default Home;
