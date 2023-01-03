@@ -4471,24 +4471,7 @@ declare global {
       }>;
     } | null;
     componentGenerator?: {
-      __typename: 'PageGeneratorRecord';
-      internalName?: string | null;
-      id: string;
-      slug?: string | null;
-      seo?: {
-        __typename?: 'SeoField';
-        description?: string | null;
-        title?: string | null;
-        image?: {
-          __typename: 'FileField';
-          id: string;
-          alt?: string | null;
-          blurhash?: string | null;
-          height?: number | null;
-          width?: number | null;
-          url: string;
-        } | null;
-      } | null;
+      __typename?: 'PageGeneratorRecord';
       components: Array<
         | {
             __typename: 'AlternatingSwitchbackRecord';
@@ -5345,24 +5328,7 @@ declare global {
         }>;
       } | null;
       componentGenerator?: {
-        __typename: 'PageGeneratorRecord';
-        internalName?: string | null;
-        id: string;
-        slug?: string | null;
-        seo?: {
-          __typename?: 'SeoField';
-          description?: string | null;
-          title?: string | null;
-          image?: {
-            __typename: 'FileField';
-            id: string;
-            alt?: string | null;
-            blurhash?: string | null;
-            height?: number | null;
-            width?: number | null;
-            url: string;
-          } | null;
-        } | null;
+        __typename?: 'PageGeneratorRecord';
         components: Array<
           | {
               __typename: 'AlternatingSwitchbackRecord';
@@ -6233,6 +6199,75 @@ export const AlternatingSwitchbackFragmentDoc = {
     ...WorkFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<AlternatingSwitchbackFragment, unknown>;
+export const BlogPageFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'BlogPage' },
+      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'BlogPageRecord' } },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'seo' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'description' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'image' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Image' } }],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'switchback' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'SwitchBack' } }],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'componentGenerator' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'components' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'FragmentSpread', name: { kind: 'Name', value: 'SwitchBack' } },
+                      { kind: 'FragmentSpread', name: { kind: 'Name', value: 'Carousel' } },
+                      { kind: 'FragmentSpread', name: { kind: 'Name', value: 'AlternatingSwitchback' } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    ...ImageFragmentDoc.definitions,
+    ...SwitchBackFragmentDoc.definitions,
+    ...CarouselFragmentDoc.definitions,
+    ...AlternatingSwitchbackFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<BlogPageFragment, unknown>;
 export const PageGenFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -6287,61 +6322,6 @@ export const PageGenFragmentDoc = {
     ...AlternatingSwitchbackFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<PageGenFragment, unknown>;
-export const BlogPageFragmentDoc = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'BlogPage' },
-      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'BlogPageRecord' } },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'seo' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'description' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'image' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Image' } }],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'switchback' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'SwitchBack' } }],
-            },
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'componentGenerator' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'PageGen' } }],
-            },
-          },
-        ],
-      },
-    },
-    ...ImageFragmentDoc.definitions,
-    ...SwitchBackFragmentDoc.definitions,
-    ...PageGenFragmentDoc.definitions,
-  ],
-} as unknown as DocumentNode<BlogPageFragment, unknown>;
 export const HomepageQueryDocument = {
   kind: 'Document',
   definitions: [

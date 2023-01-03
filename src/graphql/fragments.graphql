@@ -241,7 +241,11 @@ fragment BlogPage on BlogPageRecord {
     ...SwitchBack
   }
   componentGenerator {
-    ...PageGen
+    components {
+      ...SwitchBack
+      ...Carousel
+      ...AlternatingSwitchback
+    }
   }
 }
 

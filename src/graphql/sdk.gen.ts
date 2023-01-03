@@ -265,6 +265,33 @@ export const AlternatingSwitchbackFragmentDoc = gql`
   }
   ${WorkFragmentDoc}
 `;
+export const BlogPageFragmentDoc = gql`
+  fragment BlogPage on BlogPageRecord {
+    __typename
+    id
+    seo {
+      description
+      title
+      image {
+        ...Image
+      }
+    }
+    switchback {
+      ...SwitchBack
+    }
+    componentGenerator {
+      components {
+        ...SwitchBack
+        ...Carousel
+        ...AlternatingSwitchback
+      }
+    }
+  }
+  ${ImageFragmentDoc}
+  ${SwitchBackFragmentDoc}
+  ${CarouselFragmentDoc}
+  ${AlternatingSwitchbackFragmentDoc}
+`;
 export const PageGenFragmentDoc = gql`
   fragment PageGen on PageGeneratorRecord {
     internalName
@@ -288,28 +315,6 @@ export const PageGenFragmentDoc = gql`
   ${SwitchBackFragmentDoc}
   ${CarouselFragmentDoc}
   ${AlternatingSwitchbackFragmentDoc}
-`;
-export const BlogPageFragmentDoc = gql`
-  fragment BlogPage on BlogPageRecord {
-    __typename
-    id
-    seo {
-      description
-      title
-      image {
-        ...Image
-      }
-    }
-    switchback {
-      ...SwitchBack
-    }
-    componentGenerator {
-      ...PageGen
-    }
-  }
-  ${ImageFragmentDoc}
-  ${SwitchBackFragmentDoc}
-  ${PageGenFragmentDoc}
 `;
 export const HomepageQueryDocument = gql`
   query HomepageQuery {
