@@ -7,8 +7,6 @@ import { Container, Dots, Flex, Heading, Image } from 'quarks';
 import { media } from 'atoms/breakpoints/breakpoints';
 import container from 'atoms/spacing/containers';
 
-import Section from 'molecules/Section/Section';
-
 import { emailObfuscator } from 'utils/functions';
 
 import type { ButtonRecord, SwitchbackRecord } from 'graphql/types.gen';
@@ -64,7 +62,7 @@ const Switchback: FC<SwitchbackProps> = ({ headingAs, image, heading, reverse, b
     );
 
   return (
-    <Section>
+    <>
       <Flex
         className="switchBack"
         width="100%"
@@ -95,7 +93,7 @@ const Switchback: FC<SwitchbackProps> = ({ headingAs, image, heading, reverse, b
         {!isDesktop && renderButtons()}
       </Flex>
       {showDots && <Dots position="absolute" bottom="0" left="45%" lg={{ bottom: '-50px', left: '60%' }} />}
-    </Section>
+    </>
   );
 };
 

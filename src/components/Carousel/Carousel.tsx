@@ -6,7 +6,6 @@ import { Container, Flex } from 'quarks';
 import { media } from 'atoms/breakpoints/breakpoints';
 
 import ComponentPagination from 'molecules/ComponentPagination/ComponentPagination';
-import Section from 'molecules/Section/Section';
 
 import useDarkMode from 'contexts/ThemeProvider';
 
@@ -83,7 +82,7 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
   };
 
   return cards?.length > 0 ? (
-    <Section>
+    <>
       <Flex
         width="100%"
         gap="32px"
@@ -143,7 +142,7 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
           showArrows={isDesktop}
         />
       </Flex>
-    </Section>
+    </>
   ) : null;
 };
 

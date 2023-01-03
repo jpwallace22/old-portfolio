@@ -6,7 +6,6 @@ import { Container, Flex, Heading, Image, LargeCircle, Link } from 'quarks';
 
 import { media } from 'atoms/breakpoints/breakpoints';
 
-import Section from 'molecules/Section/Section';
 import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 
 import useDarkMode from 'contexts/ThemeProvider';
@@ -31,7 +30,7 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({
   const isDesktop = useMediaQuery(media.lg);
 
   return (
-    <Section>
+    <>
       <LargeCircle position="absolute" left="-900px" top="90px" zIndex={-10} lg={{ bottom: '-200px' }} />
       <StandardFadeIn>
         <Flex gap="24px" flexDirection="column" lg={{ maxWidth: '66%' }}>
@@ -122,7 +121,7 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({
           );
         })}
       </Flex>
-    </Section>
+    </>
   );
 };
 
