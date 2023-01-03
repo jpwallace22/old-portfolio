@@ -15,13 +15,9 @@ export const getStaticPaths: GetStaticPaths<PageGeneratorRecord['id']> = async (
 
   const pagesWithSlugs = allPageGenerators.filter(page => page.slug);
 
-  const paths = pagesWithSlugs.map(page => {
-    const slug = page.slug === 'home' ? '/' : page.slug;
-
-    return {
-      params: { id: slug },
-    };
-  });
+  const paths = pagesWithSlugs.map(page => ({
+    params: { id: page.slug },
+  }));
 
   return { paths, fallback: false };
 };
