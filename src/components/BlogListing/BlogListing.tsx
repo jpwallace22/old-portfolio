@@ -5,7 +5,7 @@ import { Container, Dots, Grid, Link, SmallCircle } from 'quarks';
 
 import { media } from 'atoms/breakpoints/breakpoints';
 
-import type { BlogPostRecord } from 'graphql/generatedTypes';
+import type { BlogPostRecord } from 'graphql/types.gen';
 import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC } from 'react';
 

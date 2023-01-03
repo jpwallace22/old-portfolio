@@ -9,7 +9,7 @@ import SEO from 'components/SEO/SEO';
 
 import { randomIntFromInterval } from 'utils/functions';
 
-import type { BlogPostRecord } from 'graphql/generatedTypes';
+import type { BlogPostRecord } from 'graphql/types.gen';
 import type { FC } from 'react';
 
 const BlogPostHero = lazy(() => import('templates/Blog/BlogPostHero'));

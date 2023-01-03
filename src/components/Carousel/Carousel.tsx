@@ -10,7 +10,7 @@ import Section from 'molecules/Section/Section';
 
 import useDarkMode from 'contexts/ThemeProvider';
 
-import type { TestimonialCardRecord } from 'graphql/generatedTypes';
+import type { TestimonialCardRecord } from 'graphql/types.gen';
 import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC, MutableRefObject, UIEvent } from 'react';
 

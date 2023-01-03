@@ -6,7 +6,7 @@ import { timeToRead } from 'utils/functions';
 
 import useDarkMode from 'contexts/ThemeProvider';
 
-import type { BlogPostRecord } from 'graphql/generatedTypes';
+import type { BlogPostRecord } from 'graphql/types.gen';
 import type { BadgeTitles } from 'molecules/Badge/Badge';
 import type { FC } from 'react';
 

@@ -7,7 +7,7 @@ import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 
 import useDarkMode from 'contexts/ThemeProvider';
 
-import type { WorkRecord } from 'graphql/generatedTypes';
+import type { WorkRecord } from 'graphql/types.gen';
 import type { FC } from 'react';
 
 const TechStack = lazy(() => import('components/TechStack/TechStack'));

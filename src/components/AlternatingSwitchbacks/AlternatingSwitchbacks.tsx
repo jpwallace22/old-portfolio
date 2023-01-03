@@ -11,7 +11,7 @@ import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 
 import useDarkMode from 'contexts/ThemeProvider';
 
-import type { HomepageModelWorksIntroField, WorkRecord } from 'graphql/generatedTypes';
+import type { HomepageModelWorksIntroField, WorkRecord } from 'graphql/types.gen';
 import type { BasicProps } from 'quarks/interpolations/basic';
 import type { HeadingTypes } from 'quarks/styleProps/heading';
 import type { FC } from 'react';

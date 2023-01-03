@@ -1,14 +1,13 @@
 import { lazy } from 'react';
 
-import request from 'graphql/datocms';
-import { blogCardFrag, blogPageFrag } from 'graphql/fragments';
+import sdk from 'graphql/datoCmsGqlClient';
 
 import Container from 'quarks/Container';
 import Flex from 'quarks/Flex';
 
 import SEO from 'components/SEO/SEO';
 
-import type { BlogPageRecord, BlogPostRecord } from 'graphql/generatedTypes';
+import type { BlogPageRecord, BlogPostRecord } from 'graphql/types.gen';
 import type { GetStaticProps } from 'next';
 import type { FC } from 'react';
 
@@ -20,6 +19,15 @@ const Switchback = lazy(() => import('components/Switchback/Switchback'));
 interface IBlogPage extends BlogPageRecord {
   blogs: BlogPostRecord[];
 }
+
+// Query data
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await sdk.BlogPageData();
+
+  return {
+    props: { ...data.blogPage, blogs: data.allBlogPosts },
+  };
+};
 
 const BlogPage: FC<IBlogPage> = ({ switchback, blogs, seo }) => {
   const breadcrumbs = [{ label: 'Home', link: 'https://www.justinwallace.dev' }, { label: 'All Blogs' }];
@@ -54,28 +62,6 @@ const BlogPage: FC<IBlogPage> = ({ switchback, blogs, seo }) => {
       <Footer size={50} />
     </>
   );
-};
-
-export const getStaticProps: GetStaticProps = async () => {
-  const QUERY = `
-    query blogPageQuery {
-      blogPage {
-        ...blogPageFrag
-      }
-      allBlogPosts(orderBy: publishDate_DESC) {
-        ...blogCardFrag
-      }
-    }
-    ${blogPageFrag}
-    ${blogCardFrag}
-  `;
-  const data = await request({
-    query: QUERY,
-  });
-
-  return {
-    props: { ...data.blogPage, blogs: data.allBlogPosts },
-  };
 };
 
 export default BlogPage;

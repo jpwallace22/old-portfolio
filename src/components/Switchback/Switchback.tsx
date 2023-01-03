@@ -11,7 +11,7 @@ import Section from 'molecules/Section/Section';
 
 import { emailObfuscator } from 'utils/functions';
 
-import type { ButtonRecord, SwitchbackRecord } from 'graphql/generatedTypes';
+import type { ButtonRecord, SwitchbackRecord } from 'graphql/types.gen';
 import type { FlexProps } from 'quarks/interpolations/flex';
 import type { HeadingTypes } from 'quarks/styleProps/heading';
 import type { FC } from 'react';

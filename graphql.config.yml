@@ -2,14 +2,17 @@ schema:
   - https://graphql.datocms.com:
       headers:
         Authorization: 1304c69562e74449e19115f1191c16
+documents:
+  - ./src/**/*.graphql
 config:
   namingConvention:
     enumValues: 'change-case-all#upperCaseFirst'
 generates:
-  src/graphql/generatedTypes.ts:
+  src/graphql/types.gen.ts:
     plugins:
       - typescript
       - typescript-operations:
+          globalNamespace: true
           strictScalars: true
           scalars:
             BooleanType: boolean
@@ -23,5 +26,8 @@ generates:
             MetaTagAttributes: Record<string, string>
             UploadId: string
       - typed-document-node
+  src/graphql/sdk.gen.ts:
+    plugins:
+      - typescript-graphql-request
 hooks:
   afterAllFileWrite: 'prettier --write'

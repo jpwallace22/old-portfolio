@@ -1,13 +1,12 @@
 import { lazy } from 'react';
 
-import request from 'graphql/datocms';
-import { buttonFrag, carouselFrag, companyFrag, imageFrag, personFrag, switchBackFrag } from 'graphql/fragments';
+import sdk from 'graphql/datoCmsGqlClient';
 import { Container } from 'quarks';
 
 import Hero from 'components/Hero/Hero';
 import SEO from 'components/SEO/SEO';
 
-import type { HomepageRecord } from 'graphql/generatedTypes';
+import type { HomepageRecord } from 'graphql/types.gen';
 import type { GetStaticProps } from 'next';
 import type { FC } from 'react';
 
@@ -21,6 +20,17 @@ type IHomePage = {
   data: HomepageRecord;
 };
 
+// Query Data
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await sdk.HomepageQuery();
+
+  return {
+    props: {
+      data: data.homepage,
+    },
+  };
+};
+
 const Home: FC<IHomePage> = ({ data }) => {
   const { worksHeading, worksIntro, works, components } = data;
 
@@ -29,6 +39,7 @@ const Home: FC<IHomePage> = ({ data }) => {
       <SEO />
       <Container as="main">
         <Hero />
+        {/* @ts-expect-error Will add to compgen  */}
         <Switchback {...components[0]} />
         {/* will remove cards */}
         <Carousel cards={[]} {...components[1]} />
@@ -37,53 +48,6 @@ const Home: FC<IHomePage> = ({ data }) => {
       <Footer />
     </>
   );
-};
-
-export const getStaticProps: GetStaticProps = async () => {
-  const QUERY = `
-    query {
-      homepage {
-        __typename
-        worksHeading
-        worksIntro {
-          value
-        }
-        aboutMe {
-          ...switchBackFrag
-        }
-        works {
-          slug
-          title
-          bannerImage {
-            ...imageFrag
-          }
-        }
-        testimonials {
-          ...testimonialCardFrag
-        }
-        components {
-          ...switchBackFrag
-          ...carouselFrag
-        }
-      }
-    }
-    ${personFrag}
-    ${companyFrag}
-    ${buttonFrag}
-    ${imageFrag}
-    ${switchBackFrag}
-    ${carouselFrag}
-  `;
-
-  const data = await request({
-    query: QUERY,
-  });
-
-  return {
-    props: {
-      data: data.homepage,
-    },
-  };
 };
 
 export default Home;

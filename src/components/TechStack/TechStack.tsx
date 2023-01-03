@@ -1,6 +1,6 @@
 import { Flex, Image } from 'quarks';
 
-import type { TechStackRecord } from 'graphql/generatedTypes';
+import type { TechStackRecord } from 'graphql/types.gen';
 import type { FlexProps } from 'quarks/interpolations/flex';
 import type { FC } from 'react';
 

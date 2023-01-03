@@ -3,7 +3,7 @@ import { lazy, useEffect, useState } from 'react';
 import { Container, Flex } from 'quarks';
 import { useSwipeable } from 'react-swipeable';
 
-import type { CaseStudyCardRecord } from 'graphql/generatedTypes';
+import type { CaseStudyCardRecord } from 'graphql/types.gen';
 import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC } from 'react';
 

@@ -7,7 +7,7 @@ import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 
 import SEO from 'components/SEO/SEO';
 
-import type { WorkRecord } from 'graphql/generatedTypes';
+import type { WorkRecord } from 'graphql/types.gen';
 import type { FC } from 'react';
 
 const SmallCard = lazy(() => import('components/cards/SmallCard/SmallCard'));
