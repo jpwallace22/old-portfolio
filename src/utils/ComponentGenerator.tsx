@@ -2,6 +2,8 @@ import React, { lazy } from 'react';
 
 import Section from 'molecules/Section/Section';
 
+import getSectionInfo from 'utils/getSectionInfo';
+
 import type { PageGeneratorModelComponentsField } from 'graphql/types.gen';
 import type { FC } from 'react';
 
@@ -31,9 +33,15 @@ const ComponentGenerator: FC<IComponentGenerator> = ({ components }) => {
 
   return (
     <>
-      {components.map(component => (
-        <Section key={component.id}>{componentChecker(component)}</Section>
-      ))}
+      {components.map(component => {
+        const { sectionId, backgroundColor } = getSectionInfo(component);
+
+        return (
+          <Section id={sectionId} key={component.id} backgroundColor={backgroundColor}>
+            {componentChecker(component)}
+          </Section>
+        );
+      })}
     </>
   );
 };

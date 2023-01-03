@@ -1,4 +1,4 @@
-import { Flex } from 'quarks';
+import { Container, Flex } from 'quarks';
 
 import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC, ReactNode } from 'react';
@@ -29,19 +29,20 @@ export const sectionSizing = {
 } as const;
 
 const Section: FC<SectionProps> = ({ children, as, ...props }) => (
-  <Flex
-    as={as || 'section'}
-    contain="layout"
-    position="relative"
-    justifyContent="center"
-    alignItems="center"
-    flexDirection="column"
-    marginX="auto"
-    {...sectionSizing}
-    {...props}
-  >
-    {children}
-  </Flex>
+  <Container marginX="auto" {...props}>
+    <Flex
+      as={as || 'section'}
+      contain="layout"
+      position="relative"
+      justifyContent="center"
+      alignItems="center"
+      flexDirection="column"
+      marginX="auto"
+      {...sectionSizing}
+    >
+      {children}
+    </Flex>
+  </Container>
 );
 
 export default Section;

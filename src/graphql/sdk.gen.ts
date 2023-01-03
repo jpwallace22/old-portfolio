@@ -105,6 +105,8 @@ export const SwitchBackFragmentDoc = gql`
     __typename
     id
     internalName
+    sectionId
+    sectionBackgroundColor
     reverse
     heading
     headingAs
@@ -251,6 +253,7 @@ export const AlternatingSwitchbackFragmentDoc = gql`
     __typename
     id
     internalName
+    sectionId
     heading
     headingAs
     body {

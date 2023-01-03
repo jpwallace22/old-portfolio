@@ -47,6 +47,7 @@ export type AlternatingSwitchbackModelFilter = {
   headingAs?: InputMaybe<StringFilter>;
   id?: InputMaybe<ItemIdFilter>;
   internalName?: InputMaybe<StringFilter>;
+  sectionId?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<UpdatedAtFilter>;
 };
 
@@ -77,6 +78,8 @@ export enum AlternatingSwitchbackModelOrderBy {
   Id_DESC = 'id_DESC',
   InternalName_ASC = 'internalName_ASC',
   InternalName_DESC = 'internalName_DESC',
+  SectionId_ASC = 'sectionId_ASC',
+  SectionId_DESC = 'sectionId_DESC',
   UpdatedAt_ASC = 'updatedAt_ASC',
   UpdatedAt_DESC = 'updatedAt_DESC',
 }
@@ -102,6 +105,7 @@ export type AlternatingSwitchbackRecord = RecordInterface & {
   headingAs?: Maybe<Scalars['String']>;
   id: Scalars['ItemId'];
   internalName?: Maybe<Scalars['String']>;
+  sectionId?: Maybe<Scalars['String']>;
   updatedAt: Scalars['DateTime'];
 };
 
@@ -3215,6 +3219,8 @@ export type SwitchbackModelFilter = {
   image?: InputMaybe<FileFilter>;
   internalName?: InputMaybe<StringFilter>;
   reverse?: InputMaybe<BooleanFilter>;
+  sectionBackgroundColor?: InputMaybe<StringFilter>;
+  sectionId?: InputMaybe<StringFilter>;
   showDots?: InputMaybe<BooleanFilter>;
   updatedAt?: InputMaybe<UpdatedAtFilter>;
 };
@@ -3248,6 +3254,10 @@ export enum SwitchbackModelOrderBy {
   InternalName_DESC = 'internalName_DESC',
   Reverse_ASC = 'reverse_ASC',
   Reverse_DESC = 'reverse_DESC',
+  SectionBackgroundColor_ASC = 'sectionBackgroundColor_ASC',
+  SectionBackgroundColor_DESC = 'sectionBackgroundColor_DESC',
+  SectionId_ASC = 'sectionId_ASC',
+  SectionId_DESC = 'sectionId_DESC',
   ShowDots_ASC = 'showDots_ASC',
   ShowDots_DESC = 'showDots_DESC',
   UpdatedAt_ASC = 'updatedAt_ASC',
@@ -3277,6 +3287,8 @@ export type SwitchbackRecord = RecordInterface & {
   image?: Maybe<FileField>;
   internalName?: Maybe<Scalars['String']>;
   reverse?: Maybe<Scalars['BooleanType']>;
+  sectionBackgroundColor?: Maybe<Scalars['String']>;
+  sectionId?: Maybe<Scalars['String']>;
   showDots?: Maybe<Scalars['BooleanType']>;
   updatedAt: Scalars['DateTime'];
 };
@@ -4090,6 +4102,8 @@ declare global {
     __typename: 'SwitchbackRecord';
     id: string;
     internalName?: string | null;
+    sectionId?: string | null;
+    sectionBackgroundColor?: string | null;
     reverse?: boolean | null;
     heading?: string | null;
     headingAs?: string | null;
@@ -4173,6 +4187,7 @@ declare global {
     __typename: 'AlternatingSwitchbackRecord';
     id: string;
     internalName?: string | null;
+    sectionId?: string | null;
     heading?: string | null;
     headingAs?: string | null;
     body?: { __typename?: 'AlternatingSwitchbackModelBodyField'; value: unknown } | null;
@@ -4429,6 +4444,8 @@ declare global {
       __typename: 'SwitchbackRecord';
       id: string;
       internalName?: string | null;
+      sectionId?: string | null;
+      sectionBackgroundColor?: string | null;
       reverse?: boolean | null;
       heading?: string | null;
       headingAs?: string | null;
@@ -4477,6 +4494,7 @@ declare global {
             __typename: 'AlternatingSwitchbackRecord';
             id: string;
             internalName?: string | null;
+            sectionId?: string | null;
             heading?: string | null;
             headingAs?: string | null;
             body?: { __typename?: 'AlternatingSwitchbackModelBodyField'; value: unknown } | null;
@@ -4602,6 +4620,8 @@ declare global {
             __typename: 'SwitchbackRecord';
             id: string;
             internalName?: string | null;
+            sectionId?: string | null;
+            sectionBackgroundColor?: string | null;
             reverse?: boolean | null;
             heading?: string | null;
             headingAs?: string | null;
@@ -4654,6 +4674,7 @@ declare global {
           __typename: 'AlternatingSwitchbackRecord';
           id: string;
           internalName?: string | null;
+          sectionId?: string | null;
           heading?: string | null;
           headingAs?: string | null;
           body?: { __typename?: 'AlternatingSwitchbackModelBodyField'; value: unknown } | null;
@@ -4779,6 +4800,8 @@ declare global {
           __typename: 'SwitchbackRecord';
           id: string;
           internalName?: string | null;
+          sectionId?: string | null;
+          sectionBackgroundColor?: string | null;
           reverse?: boolean | null;
           heading?: string | null;
           headingAs?: string | null;
@@ -4834,6 +4857,7 @@ declare global {
             __typename: 'AlternatingSwitchbackRecord';
             id: string;
             internalName?: string | null;
+            sectionId?: string | null;
             heading?: string | null;
             headingAs?: string | null;
             body?: { __typename?: 'AlternatingSwitchbackModelBodyField'; value: unknown } | null;
@@ -4959,6 +4983,8 @@ declare global {
             __typename: 'SwitchbackRecord';
             id: string;
             internalName?: string | null;
+            sectionId?: string | null;
+            sectionBackgroundColor?: string | null;
             reverse?: boolean | null;
             heading?: string | null;
             headingAs?: string | null;
@@ -5031,6 +5057,7 @@ declare global {
             __typename: 'AlternatingSwitchbackRecord';
             id: string;
             internalName?: string | null;
+            sectionId?: string | null;
             heading?: string | null;
             headingAs?: string | null;
             body?: { __typename?: 'AlternatingSwitchbackModelBodyField'; value: unknown } | null;
@@ -5156,6 +5183,8 @@ declare global {
             __typename: 'SwitchbackRecord';
             id: string;
             internalName?: string | null;
+            sectionId?: string | null;
+            sectionBackgroundColor?: string | null;
             reverse?: boolean | null;
             heading?: string | null;
             headingAs?: string | null;
@@ -5289,6 +5318,8 @@ declare global {
         __typename: 'SwitchbackRecord';
         id: string;
         internalName?: string | null;
+        sectionId?: string | null;
+        sectionBackgroundColor?: string | null;
         reverse?: boolean | null;
         heading?: string | null;
         headingAs?: string | null;
@@ -5337,6 +5368,7 @@ declare global {
               __typename: 'AlternatingSwitchbackRecord';
               id: string;
               internalName?: string | null;
+              sectionId?: string | null;
               heading?: string | null;
               headingAs?: string | null;
               body?: { __typename?: 'AlternatingSwitchbackModelBodyField'; value: unknown } | null;
@@ -5466,6 +5498,8 @@ declare global {
               __typename: 'SwitchbackRecord';
               id: string;
               internalName?: string | null;
+              sectionId?: string | null;
+              sectionBackgroundColor?: string | null;
               reverse?: boolean | null;
               heading?: string | null;
               headingAs?: string | null;
@@ -5832,6 +5866,8 @@ export const SwitchBackFragmentDoc = {
           { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'internalName' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'sectionId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'sectionBackgroundColor' } },
           { kind: 'Field', name: { kind: 'Name', value: 'reverse' } },
           { kind: 'Field', name: { kind: 'Name', value: 'heading' } },
           { kind: 'Field', name: { kind: 'Name', value: 'headingAs' } },
@@ -6172,6 +6208,7 @@ export const AlternatingSwitchbackFragmentDoc = {
           { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'internalName' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'sectionId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'heading' } },
           { kind: 'Field', name: { kind: 'Name', value: 'headingAs' } },
           {
