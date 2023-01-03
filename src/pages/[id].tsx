@@ -13,7 +13,9 @@ import type { FC } from 'react';
 export const getStaticPaths: GetStaticPaths<PageGeneratorRecord['id']> = async () => {
   const { allPageGenerators } = await sdk.PageSlugs();
 
-  const paths = allPageGenerators.map(page => {
+  const pagesWithSlugs = allPageGenerators.filter(page => page.slug);
+
+  const paths = pagesWithSlugs.map(page => {
     const slug = page.slug === 'home' ? '/' : page.slug;
 
     return {
