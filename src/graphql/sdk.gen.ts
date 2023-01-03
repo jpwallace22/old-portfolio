@@ -88,6 +88,17 @@ export const BlogCardFragmentDoc = gql`
   ${CategoryFragmentDoc}
   ${ImageFragmentDoc}
 `;
+export const BlogListingFragmentDoc = gql`
+  fragment BlogListing on BlogListingRecord {
+    __typename
+    id
+    internalName
+    blogs {
+      ...BlogCard
+    }
+  }
+  ${BlogCardFragmentDoc}
+`;
 export const ButtonFragmentDoc = gql`
   fragment Button on ButtonRecord {
     __typename

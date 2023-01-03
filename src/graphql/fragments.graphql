@@ -227,6 +227,15 @@ fragment BlogCard on BlogPostRecord {
   }
 }
 
+fragment BlogListing on BlogListingRecord {
+  __typename
+  id
+  internalName
+  blogs {
+    ...BlogCard
+  }
+}
+
 fragment BlogPage on BlogPageRecord {
   __typename
   id

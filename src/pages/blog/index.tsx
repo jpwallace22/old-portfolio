@@ -1,44 +1,40 @@
-import { lazy } from 'react';
-
 import sdk from 'graphql/datoCmsGqlClient';
 import Layout from 'templates/Layout';
-
-import Section from 'molecules/Section/Section';
 
 import SEO from 'components/SEO/SEO';
 
 import ComponentGenerator from 'utils/ComponentGenerator';
 
-import type { BlogPageRecord, BlogPostRecord } from 'graphql/types.gen';
+import type { BlogListingRecord, BlogPageRecord } from 'graphql/types.gen';
 import type { GetStaticProps } from 'next';
 import type { FC } from 'react';
 
-const BlogListing = lazy(() => import('components/BlogListing/BlogListing'));
 interface IBlogPage extends BlogPageRecord {
-  blogs: BlogPostRecord[];
+  blogListing: BlogListingRecord;
 }
 
 // Query data
 export const getStaticProps: GetStaticProps = async () => {
   const data = await sdk.BlogPageData();
+  const blogListing = {
+    __typename: 'BlogListingRecord',
+    blogs: data.allBlogPosts,
+  };
 
   return {
-    props: { ...data.blogPage, blogs: data.allBlogPosts },
+    props: { ...data.blogPage, blogListing },
   };
 };
 
-const BlogPage: FC<IBlogPage> = ({ blogs, seo, componentGenerator }) => {
-  const [compBeforeListing, ...compsAfterListing] = componentGenerator?.components || [];
+const BlogPage: FC<IBlogPage> = ({ blogListing, seo, componentGenerator }) => {
+  const [firstComp, ...compsAfterListing] = componentGenerator?.components || [];
+  const blogPageComponents = [firstComp, blogListing, ...compsAfterListing];
 
   return (
     <>
       <SEO {...seo} slug="/blog" />
       <Layout>
-        <ComponentGenerator components={[compBeforeListing]} />
-        <Section>
-          <BlogListing blogs={blogs} />
-        </Section>
-        <ComponentGenerator components={compsAfterListing} />
+        <ComponentGenerator components={blogPageComponents} />
       </Layout>
     </>
   );

@@ -114,6 +114,76 @@ export type AlternatingSwitchbackRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+export type BlogListingModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<BlogListingModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  blogs?: InputMaybe<LinksFilter>;
+  createdAt?: InputMaybe<CreatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  internalName?: InputMaybe<StringFilter>;
+  updatedAt?: InputMaybe<UpdatedAtFilter>;
+};
+
+export enum BlogListingModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  CreatedAt_ASC = 'createdAt_ASC',
+  CreatedAt_DESC = 'createdAt_DESC',
+  Id_ASC = 'id_ASC',
+  Id_DESC = 'id_DESC',
+  InternalName_ASC = 'internalName_ASC',
+  InternalName_DESC = 'internalName_DESC',
+  UpdatedAt_ASC = 'updatedAt_ASC',
+  UpdatedAt_DESC = 'updatedAt_DESC',
+}
+
+/** Record of type Blog Listing (blog_listing) */
+export type BlogListingRecord = RecordInterface & {
+  __typename?: 'BlogListingRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  blogs: Array<BlogPostRecord>;
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  internalName?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['DateTime'];
+};
+
+/** Record of type Blog Listing (blog_listing) */
+export type BlogListingRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Record of type Blog Page (blog_page) */
 export type BlogPageRecord = RecordInterface & {
   __typename?: 'BlogPageRecord';
@@ -2391,7 +2461,11 @@ export type OrientationFilter = {
   neq?: InputMaybe<UploadOrientation>;
 };
 
-export type PageGeneratorModelComponentsField = AlternatingSwitchbackRecord | CarouselRecord | SwitchbackRecord;
+export type PageGeneratorModelComponentsField =
+  | AlternatingSwitchbackRecord
+  | BlogListingRecord
+  | CarouselRecord
+  | SwitchbackRecord;
 
 export type PageGeneratorModelFilter = {
   OR?: InputMaybe<Array<InputMaybe<PageGeneratorModelFilter>>>;
@@ -2579,6 +2653,8 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allAlternatingSwitchbacksMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allBlogListingsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allBlogPostsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allButtonsMeta: CollectionMetadata;
@@ -2609,6 +2685,8 @@ export type Query = {
   /** Returns a collection of records */
   allAlternatingSwitchbacks: Array<AlternatingSwitchbackRecord>;
   /** Returns a collection of records */
+  allBlogListings: Array<BlogListingRecord>;
+  /** Returns a collection of records */
   allBlogPosts: Array<BlogPostRecord>;
   /** Returns a collection of records */
   allButtons: Array<ButtonRecord>;
@@ -2636,6 +2714,8 @@ export type Query = {
   allWorks: Array<WorkRecord>;
   /** Returns a specific record */
   alternatingSwitchback?: Maybe<AlternatingSwitchbackRecord>;
+  /** Returns a specific record */
+  blogListing?: Maybe<BlogListingRecord>;
   /** Returns the single instance record */
   blogPage?: Maybe<BlogPageRecord>;
   /** Returns a specific record */
@@ -2674,6 +2754,13 @@ export type Query = {
 export type Query_AllAlternatingSwitchbacksMetaArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<AlternatingSwitchbackModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllBlogListingsMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<BlogListingModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2780,6 +2867,16 @@ export type QueryAllAlternatingSwitchbacksArgs = {
   first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<AlternatingSwitchbackModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
+/** The query root for this schema */
+export type QueryAllBlogListingsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<BlogListingModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<BlogListingModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']>;
 };
 
@@ -2919,6 +3016,14 @@ export type QueryAlternatingSwitchbackArgs = {
   filter?: InputMaybe<AlternatingSwitchbackModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<AlternatingSwitchbackModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QueryBlogListingArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<BlogListingModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<BlogListingModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -4423,6 +4528,38 @@ declare global {
     excerpt?: { __typename?: 'BlogPostModelExcerptField'; value: unknown } | null;
   };
 
+  export type BlogListingFragment = {
+    __typename: 'BlogListingRecord';
+    id: string;
+    internalName?: string | null;
+    blogs: Array<{
+      __typename: 'BlogPostRecord';
+      id: string;
+      internalName?: string | null;
+      title?: string | null;
+      publishDate?: string | null;
+      slug?: string | null;
+      categories: Array<{
+        __typename: 'CategoryRecord';
+        id: string;
+        internalName?: string | null;
+        name?: string | null;
+        slug?: string | null;
+      }>;
+      body?: { __typename?: 'BlogPostModelBodyField'; value: unknown } | null;
+      featuredImage?: {
+        __typename: 'FileField';
+        id: string;
+        alt?: string | null;
+        blurhash?: string | null;
+        height?: number | null;
+        width?: number | null;
+        url: string;
+      } | null;
+      excerpt?: { __typename?: 'BlogPostModelExcerptField'; value: unknown } | null;
+    }>;
+  };
+
   export type BlogPageFragment = {
     __typename: 'BlogPageRecord';
     id: string;
@@ -4554,6 +4691,7 @@ declare global {
               }>;
             }>;
           }
+        | { __typename?: 'BlogListingRecord' }
         | {
             __typename: 'CarouselRecord';
             id: string;
@@ -4734,6 +4872,7 @@ declare global {
             }>;
           }>;
         }
+      | { __typename?: 'BlogListingRecord' }
       | {
           __typename: 'CarouselRecord';
           id: string;
@@ -4917,6 +5056,7 @@ declare global {
               }>;
             }>;
           }
+        | { __typename?: 'BlogListingRecord' }
         | {
             __typename: 'CarouselRecord';
             id: string;
@@ -5117,6 +5257,7 @@ declare global {
               }>;
             }>;
           }
+        | { __typename?: 'BlogListingRecord' }
         | {
             __typename: 'CarouselRecord';
             id: string;
@@ -5415,6 +5556,7 @@ declare global {
                 }>;
               }>;
             }
+          | { __typename?: 'BlogListingRecord' }
           | {
               __typename: 'CarouselRecord';
               id: string;
@@ -5796,6 +5938,33 @@ export const BlogCardFragmentDoc = {
     ...ImageFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<BlogCardFragment, unknown>;
+export const BlogListingFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'BlogListing' },
+      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'BlogListingRecord' } },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'internalName' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'blogs' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'BlogCard' } }],
+            },
+          },
+        ],
+      },
+    },
+    ...BlogCardFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<BlogListingFragment, unknown>;
 export const ButtonFragmentDoc = {
   kind: 'Document',
   definitions: [
