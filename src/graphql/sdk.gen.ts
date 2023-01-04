@@ -223,6 +223,7 @@ export const WorkFragmentDoc = gql`
     __typename
     id
     internalName
+    slug
     seo {
       description
       title
@@ -327,14 +328,6 @@ export const PageGenFragmentDoc = gql`
   ${CarouselFragmentDoc}
   ${AlternatingSwitchbackFragmentDoc}
 `;
-export const HomepageQueryDocument = gql`
-  query HomepageQuery {
-    pageGenerator(filter: { internalName: { eq: "Homepage" } }) {
-      ...PageGen
-    }
-  }
-  ${PageGenFragmentDoc}
-`;
 export const WorkPageSlugsDocument = gql`
   query WorkPageSlugs {
     allWorks {
@@ -356,6 +349,18 @@ export const PageDataDocument = gql`
     }
   }
   ${PageGenFragmentDoc}
+`;
+export const PageDataWithBlogsDocument = gql`
+  query PageDataWithBlogs($slug: String) {
+    pageGenerator(filter: { slug: { eq: $slug } }) {
+      ...PageGen
+    }
+    allBlogPosts(orderBy: publishDate_DESC) {
+      ...BlogCard
+    }
+  }
+  ${PageGenFragmentDoc}
+  ${BlogCardFragmentDoc}
 `;
 export const WorkPageDataDocument = gql`
   query WorkPageData($slug: String) {
@@ -403,20 +408,6 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    HomepageQuery(
-      variables?: HomepageQueryQueryVariables,
-      requestHeaders?: Dom.RequestInit['headers'],
-    ): Promise<HomepageQueryQuery> {
-      return withWrapper(
-        wrappedRequestHeaders =>
-          client.request<HomepageQueryQuery>(HomepageQueryDocument, variables, {
-            ...requestHeaders,
-            ...wrappedRequestHeaders,
-          }),
-        'HomepageQuery',
-        'query',
-      );
-    },
     WorkPageSlugs(
       variables?: WorkPageSlugsQueryVariables,
       requestHeaders?: Dom.RequestInit['headers'],
@@ -447,6 +438,20 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
         wrappedRequestHeaders =>
           client.request<PageDataQuery>(PageDataDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }),
         'PageData',
+        'query',
+      );
+    },
+    PageDataWithBlogs(
+      variables?: PageDataWithBlogsQueryVariables,
+      requestHeaders?: Dom.RequestInit['headers'],
+    ): Promise<PageDataWithBlogsQuery> {
+      return withWrapper(
+        wrappedRequestHeaders =>
+          client.request<PageDataWithBlogsQuery>(PageDataWithBlogsDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'PageDataWithBlogs',
         'query',
       );
     },

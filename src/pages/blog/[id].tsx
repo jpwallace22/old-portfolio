@@ -10,9 +10,9 @@ const BlogPostPage = lazy(() => import('templates/Blog/BlogPostPage'));
 
 // Create paths
 export const getStaticPaths: GetStaticPaths<BlogPostRecord['id']> = async () => {
-  const data = await sdk.BlogPostSlugs();
+  const { allBlogPosts } = await sdk.BlogPostSlugs();
 
-  const paths = data.allBlogPosts.map(post => ({
+  const paths = allBlogPosts.map(post => ({
     params: { id: post.slug },
   }));
 

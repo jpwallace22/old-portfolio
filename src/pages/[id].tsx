@@ -13,11 +13,11 @@ import type { FC } from 'react';
 export const getStaticPaths: GetStaticPaths<PageGeneratorRecord['id']> = async () => {
   const { allPageGenerators } = await sdk.PageSlugs();
 
-  const pagesWithSlugs = allPageGenerators.filter(page => page.slug);
-
-  const paths = pagesWithSlugs.map(page => ({
-    params: { id: page.slug },
-  }));
+  const paths = allPageGenerators
+    .filter(page => page.slug !== 'home')
+    .map(page => ({
+      params: { id: page.slug },
+    }));
 
   return { paths, fallback: false };
 };
@@ -26,6 +26,24 @@ export const getStaticPaths: GetStaticPaths<PageGeneratorRecord['id']> = async (
 export const getStaticProps: GetStaticProps<PageGeneratorRecord, { id: string }> = async ({ params }) => {
   const slug = params?.id;
 
+  /**
+   * secondary query for the blog listing page to get all of the
+   * blog posts and splice them into a blog listing component
+   */
+  if (slug === 'blog') {
+    const data = await sdk.PageDataWithBlogs({ slug });
+    const blogListing = {
+      __typename: 'BlogListingRecord',
+      blogs: data.allBlogPosts,
+    } as const;
+
+    data.pageGenerator?.components.splice(1, 0, blogListing);
+
+    return {
+      props: data.pageGenerator as PageGeneratorRecord,
+    };
+  }
+
   const data = await sdk.PageData({ slug });
 
   return {
@@ -33,9 +51,9 @@ export const getStaticProps: GetStaticProps<PageGeneratorRecord, { id: string }>
   };
 };
 
-const Page: FC<PageGeneratorRecord> = ({ components }) => (
+const Page: FC<PageGeneratorRecord> = ({ slug, components }) => (
   <>
-    <SEO />
+    <SEO slug={slug} />
     <Layout>
       <ComponentGenerator components={components} />
     </Layout>

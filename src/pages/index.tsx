@@ -12,7 +12,7 @@ import type { FC } from 'react';
 
 // Query Data
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await sdk.HomepageQuery();
+  const data = await sdk.PageData({ slug: 'home' });
 
   return {
     props: { ...data.pageGenerator },

@@ -44,15 +44,15 @@ const BlogListing: FC<BlogListingProps> = ({ blogs, ...props }) => {
   }, [currentPage, amountOfPages, postsPerPage]);
 
   return (
-    <Container paddingBottom={32} paddingX={24} {...props} marginX="auto" position="relative" contain="layout">
+    <Container {...props}>
       <Dots position="absolute" left="-100px" top="-200px" zIndex={-1} />
       <SmallCircle position="absolute" left="80%" top="20%" zIndex={-1} lg={{ left: '75%' }} />
       <Grid
         gap="30px"
         justifyItems="center"
         paddingBottom={32}
-        md={{ gridTemplateColumns: 'repeat(2, 1fr)', maxWidth: '970px' }}
-        xl={{ gridTemplateColumns: 'repeat(3, 1fr)', maxWidth: '1256px' }}
+        md={{ gridTemplateColumns: 'repeat(2, 1fr)' }}
+        xl={{ gridTemplateColumns: 'repeat(3, 1fr)' }}
         marginX="auto"
       >
         {currentPosts?.map((post, i) => (

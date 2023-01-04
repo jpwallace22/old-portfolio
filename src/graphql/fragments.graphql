@@ -145,6 +145,7 @@ fragment Work on WorkRecord {
   __typename
   id
   internalName
+  slug
   seo {
     description
     title

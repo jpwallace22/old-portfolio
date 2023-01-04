@@ -22,7 +22,6 @@ export const getStaticPaths: GetStaticPaths<WorkRecord['id']> = async () => {
 // Query Data
 export const getStaticProps: GetStaticProps<WorkRecord, { id: string }> = async ({ params }) => {
   const slug = params?.id;
-
   const data = await sdk.WorkPageData({ slug });
 
   return {

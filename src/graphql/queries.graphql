@@ -1,11 +1,5 @@
 #import "./fragments.graphql"
 
-query HomepageQuery {
-  pageGenerator(filter: { internalName: { eq: "Homepage" } }) {
-    ...PageGen
-  }
-}
-
 query WorkPageSlugs {
   allWorks {
     slug
@@ -21,6 +15,15 @@ query PageSlugs {
 query PageData($slug: String) {
   pageGenerator(filter: { slug: { eq: $slug } }) {
     ...PageGen
+  }
+}
+
+query PageDataWithBlogs($slug: String) {
+  pageGenerator(filter: { slug: { eq: $slug } }) {
+    ...PageGen
+  }
+  allBlogPosts(orderBy: publishDate_DESC) {
+    ...BlogCard
   }
 }
 
