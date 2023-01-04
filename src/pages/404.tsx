@@ -51,7 +51,7 @@ const fourOhFour = () => (
         </Container>
       </Container>
     </Grid>
-    <Footer size={50} />
+    <Footer />
   </>
 );
 

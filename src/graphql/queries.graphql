@@ -1,0 +1,55 @@
+#import "./fragments.graphql"
+
+query WorkPageSlugs {
+  allWorks {
+    slug
+  }
+}
+
+query PageSlugs {
+  allPageGenerators {
+    slug
+  }
+}
+
+query PageData($slug: String) {
+  pageGenerator(filter: { slug: { eq: $slug } }) {
+    ...PageGen
+  }
+}
+
+query PageDataWithBlogs($slug: String) {
+  pageGenerator(filter: { slug: { eq: $slug } }) {
+    ...PageGen
+  }
+  allBlogPosts(orderBy: publishDate_DESC) {
+    ...BlogCard
+  }
+}
+
+query WorkPageData($slug: String) {
+  work(filter: { slug: { eq: $slug } }) {
+    ...Work
+  }
+}
+
+query BlogPageData {
+  blogPage {
+    ...BlogPage
+  }
+  allBlogPosts(orderBy: publishDate_DESC) {
+    ...BlogCard
+  }
+}
+
+query BlogPostSlugs {
+  allBlogPosts {
+    slug
+  }
+}
+
+query BlogPostData($slug: String) {
+  blogPost(filter: { slug: { eq: $slug } }) {
+    ...BlogPost
+  }
+}

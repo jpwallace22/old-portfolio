@@ -6,7 +6,7 @@ import { TiArrowRightThick } from 'react-icons/ti';
 import { timeToRead } from 'utils/functions';
 import useResizeObserver from 'utils/useResizeObserver';
 
-import type { BlogPostRecord } from 'graphql/generatedTypes';
+import type { BlogPostRecord } from 'graphql/types.gen';
 import type { FC } from 'react';
 
 const Button = lazy(() => import('molecules/Button/Button'));

@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 import color, { gradient } from 'atoms/colors/colors';
 
-import type { TestimonialCardRecord } from 'graphql/generatedTypes';
+import type { TestimonialCardRecord } from 'graphql/types.gen';
 import type { FlexProps } from 'quarks/interpolations/flex';
 import type { Dispatch, FC, SetStateAction } from 'react';
 

@@ -1,14 +1,18 @@
 import { lazy } from 'react';
 
 import { useMediaQuery } from '@mui/material';
-import { Container, Flex, Heading, Image } from 'quarks';
+import { useRouter } from 'next/router';
+import { Container, Dots, Flex, Heading, Image } from 'quarks';
 
 import { media } from 'atoms/breakpoints/breakpoints';
+import container from 'atoms/spacing/containers';
 
-import type { ButtonRecord, SwitchbackRecord } from 'graphql/generatedTypes';
+import { emailObfuscator } from 'utils/functions';
+
+import type { ButtonRecord, SwitchbackRecord } from 'graphql/types.gen';
 import type { FlexProps } from 'quarks/interpolations/flex';
 import type { HeadingTypes } from 'quarks/styleProps/heading';
-import type { FC, MouseEvent } from 'react';
+import type { FC } from 'react';
 import type { CleanDato } from 'utils/typeUtils';
 
 const Button = lazy(() => import('molecules/Button/Button'));
@@ -16,108 +20,80 @@ const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/S
 
 interface SwitchbackProps extends FlexProps, Omit<CleanDato<SwitchbackRecord>, 'buttons'> {
   buttons?: ButtonRecord[] | null;
-  cta1Action?: (e?: MouseEvent<Element, globalThis.MouseEvent>) => void;
-  cta2Action?: (e?: MouseEvent<Element, globalThis.MouseEvent>) => void;
+  showDots?: boolean;
 }
 
-const Switchback: FC<SwitchbackProps> = ({
-  headingAs,
-  image,
-  heading,
-  reverse,
-  body,
-  buttons,
-  cta1Action,
-  cta2Action,
-  ...props
-}) => {
+const Switchback: FC<SwitchbackProps> = ({ headingAs, image, heading, reverse, body, buttons, showDots, ...props }) => {
   const isDesktop = useMediaQuery(media.lg);
+  const router = useRouter();
 
   const renderButtons = () =>
     buttons &&
     buttons?.length > 0 && (
       <Flex
-        marginY={24}
         gap="24px"
         justifyContent="center"
         flexDirection="column"
         lg={{ flexDirection: 'row', justifyContent: 'flex-start' }}
       >
-        {buttons[0] && (
-          <Button
-            variant="contained"
-            cursor="pointer"
-            size="large"
-            width="100%"
-            md={{ width: 'unset' }}
-            href={buttons[0]?.url || ''}
-            onClick={cta1Action}
-          >
-            {buttons[0]?.title}
-          </Button>
-        )}
-        {buttons[1] && (
-          <Button
-            variant="outlined"
-            size="large"
-            cursor="pointer"
-            width="100%"
-            md={{ width: 'unset' }}
-            href={buttons[1]?.url || ''}
-            onClick={cta2Action}
-          >
-            {buttons[1]?.title}
-          </Button>
-        )}
+        {buttons.map((button, i) => {
+          const navigation =
+            button.url === 'https://contact'
+              ? ({
+                  href: '',
+                  onClick: () => emailObfuscator(router),
+                } as const)
+              : ({ href: button.url || '' } as const);
+
+          return (
+            <Button
+              key={button.internalName}
+              {...navigation}
+              variant={i === 0 ? 'contained' : 'outlined'}
+              size="large"
+              width="100%"
+              md={{ width: '100%' }}
+            >
+              {button.title}
+            </Button>
+          );
+        })}
       </Flex>
     );
 
   return (
-    <Flex
-      flexDirection={reverse ? 'column-reverse' : 'column'}
-      justifyContent="center"
-      maxWidth="1280px"
-      marginX="auto"
-      gap="24px"
-      lg={{ flexDirection: reverse ? 'row-reverse' : 'row', gap: '64px', flexBasis: '500px' }}
-      {...props}
-    >
-      <Container lg={{ maxWidth: '50%' }}>
-        <Heading
-          as={headingAs as HeadingTypes}
-          position="relative"
-          alignSelf="flex-start"
-          marginBottom={24}
-          lg={{ textStyle: 'xl' }}
-          after={{
-            content: '',
-            height: '5px',
-            marginX: 'auto',
-            width: '100%',
-            left: '0',
-            bottom: '-25px',
-            position: 'absolute',
-          }}
-        >
-          {heading}
-        </Heading>
-        <StructuredTextParser text={body} textColor={{ dark: 'gray-500', light: 'purple-900' }} />
-        {isDesktop && renderButtons()}
-      </Container>
-      {image && (
-        <Container
-          position="relative"
-          width="100%"
-          flex="1 1 50%"
-          maxWidth="550px"
-          marginX="auto"
-          aspectRatio={[image.width, image.height]}
-        >
-          <Image src={image.url} alt={image.alt || ''} fill objectFit="contain" sizes="50vw" lg={{ marginX: 0 }} />
-        </Container>
-      )}
-      {!isDesktop && renderButtons()}
-    </Flex>
+    <>
+      <Flex
+        className="switchBack"
+        width="100%"
+        flexDirection={reverse ? 'column-reverse' : 'column'}
+        gap="24px"
+        lg={{ flexDirection: reverse ? 'row-reverse' : 'row', gap: '64px', alignItems: 'center' }}
+        {...props}
+      >
+        <Flex flexDirection="column" gap="24px" lg={{ flex: '0 1 50%' }}>
+          <Heading as={(headingAs as HeadingTypes) || 'h3'} lg={{ textStyle: 'xl' }}>
+            {heading}
+          </Heading>
+          <StructuredTextParser text={body} textColor={{ dark: 'gray-500', light: 'purple-900' }} />
+          {isDesktop && renderButtons()}
+        </Flex>
+        {image && (
+          <Container
+            position="relative"
+            width="100%"
+            marginX="auto"
+            flex="0 0 50%"
+            maxWidth={container.sm}
+            aspectRatio={[image.width, image.height]}
+          >
+            <Image src={image.url} alt={image.alt || ''} fill objectFit="contain" sizes="50vw" lg={{ marginX: 0 }} />
+          </Container>
+        )}
+        {!isDesktop && renderButtons()}
+      </Flex>
+      {showDots && <Dots position="absolute" bottom="0" left="45%" lg={{ bottom: '-50px', left: '60%' }} />}
+    </>
   );
 };
 

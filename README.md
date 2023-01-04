@@ -25,7 +25,5 @@
 - create components generator styled paradigm
 - add recent || featured blogs to homepage
 - add jest
-- Create an SEO component
 - refactor Button molecule (reduce size)
 - text clip for animation?
-- Refactor link quark to no longer

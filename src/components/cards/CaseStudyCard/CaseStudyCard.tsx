@@ -1,6 +1,6 @@
 import { Container, Image } from 'quarks';
 
-import type { CaseStudyCardRecord } from 'graphql/generatedTypes';
+import type { CaseStudyCardRecord } from 'graphql/types.gen';
 import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC } from 'react';
 

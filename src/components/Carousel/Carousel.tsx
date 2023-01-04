@@ -9,7 +9,7 @@ import ComponentPagination from 'molecules/ComponentPagination/ComponentPaginati
 
 import useDarkMode from 'contexts/ThemeProvider';
 
-import type { TestimonialCardRecord } from 'graphql/generatedTypes';
+import type { TestimonialCardRecord } from 'graphql/types.gen';
 import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC, MutableRefObject, UIEvent } from 'react';
 
@@ -82,68 +82,67 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
   };
 
   return cards?.length > 0 ? (
-    <Flex
-      as="section"
-      gap="32px"
-      flexDirection="column"
-      paddingY={48}
-      justifyContent="center"
-      md={{ paddingY: 64 }}
-      lg={{ paddingY: 96, gap: '48px' }}
-      position="relative"
-    >
-      <Container
-        position="absolute"
-        top="0"
-        bottom="0"
-        left="-2px"
-        right="-2px"
-        zIndex={2}
-        backgroundImage={
-          isDark ? getEdgeGradient(scrollPos, [17, 14, 45]) : getEdgeGradient(scrollPos, [255, 255, 255])
-        }
-        css={`
-          pointer-events: none;
-        `}
-      />
+    <>
       <Flex
+        width="100%"
         gap="32px"
-        flexWrap="nowrap"
-        alignItems="stretch"
-        overflowX="scroll"
-        ref={scrollBoxRef}
-        onScroll={e => handleScroll(e)}
-        css={`
-          overflow-anchor: none;
-          scroll-snap-type: x mandatory;
-          scroll-behavior: smooth;
-          scrollbar-width: none;
-          ::-webkit-scrollbar {
-            display: none;
-          }
-        `}
+        flexDirection="column"
+        justifyContent="center"
+        lg={{ gap: '48px' }}
+        position="relative"
       >
-        {cards?.map((card, i) => (
-          <TestimonialCard
-            key={card.id}
-            flex="1 0 100%"
-            lg={{ flex: '1 0 80%' }}
-            index={i}
-            setActive={setActive}
-            {...card}
-          />
-        ))}
+        <Container
+          position="absolute"
+          top="0"
+          bottom="0"
+          left="-2px"
+          right="-2px"
+          zIndex={2}
+          transition="background .5s ease"
+          backgroundImage={getEdgeGradient(scrollPos, isDark ? [17, 14, 45] : [255, 255, 255])}
+          css={`
+            pointer-events: none;
+          `}
+        />
+        <Flex
+          gap="32px"
+          flexWrap="nowrap"
+          alignItems="stretch"
+          overflowX="scroll"
+          ref={scrollBoxRef}
+          onScroll={e => handleScroll(e)}
+          css={`
+            overflow-anchor: none;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            ::-webkit-scrollbar {
+              display: none;
+            }
+          `}
+        >
+          {cards?.map((card, i) => (
+            <TestimonialCard
+              key={card.id}
+              flex="1 0 100%"
+              lg={{ flex: '1 0 80%' }}
+              index={i}
+              setActive={setActive}
+              {...card}
+            />
+          ))}
+        </Flex>
+        <ComponentPagination
+          dotsCount={cardCount}
+          onLeftArrowClick={() => handleButtonClick('left')}
+          onRightArrowClick={() => handleButtonClick('right')}
+          onSetActiveDot={i => handleDotClick(i)}
+          activeDot={active}
+          disableOnEnd
+          showArrows={isDesktop}
+        />
       </Flex>
-      <ComponentPagination
-        dotsCount={cardCount}
-        onLeftArrowClick={() => handleButtonClick('left')}
-        onRightArrowClick={() => handleButtonClick('right')}
-        onSetActiveDot={i => handleDotClick(i)}
-        activeDot={active}
-        disableOnEnd
-        showArrows={isDesktop}
-      />
-    </Flex>
+    </>
   ) : null;
 };
 

@@ -1,7 +1,7 @@
 import Head from 'next/head';
 
-import type { FileField } from 'graphql/generatedTypes';
 import type { Maybe } from 'graphql/jsutils/Maybe';
+import type { FileField } from 'graphql/types.gen';
 import type { FC } from 'react';
 
 interface ISeo {

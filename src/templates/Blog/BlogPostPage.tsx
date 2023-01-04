@@ -9,7 +9,7 @@ import SEO from 'components/SEO/SEO';
 
 import { randomIntFromInterval } from 'utils/functions';
 
-import type { BlogPostRecord } from 'graphql/generatedTypes';
+import type { BlogPostRecord } from 'graphql/types.gen';
 import type { FC } from 'react';
 
 const BlogPostHero = lazy(() => import('templates/Blog/BlogPostHero'));
@@ -119,7 +119,7 @@ const BlogPostPage: FC<BlogPostRecord> = props => {
         zIndex={9999}
         lg={{ top: '82px' }}
       />
-      <Footer size={50} marginTop={0} ref={footerRef} />
+      <Footer marginTop={0} ref={footerRef} />
     </>
   );
 };

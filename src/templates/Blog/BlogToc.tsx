@@ -6,7 +6,7 @@ import tocParser from 'utils/tocParser';
 
 import useDarkMode from 'contexts/ThemeProvider';
 
-import type { BlogPostRecord } from 'graphql/generatedTypes';
+import type { BlogPostRecord } from 'graphql/types.gen';
 import type { FC } from 'react';
 import type { StructuredData } from 'utils/tocParser';
 

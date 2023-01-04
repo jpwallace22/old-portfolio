@@ -1,0 +1,279 @@
+fragment Image on FileField {
+  __typename
+  id
+  alt
+  blurhash
+  height
+  width
+  url
+}
+
+fragment Company on CompanyRecord {
+  __typename
+  id
+  internalName
+  name
+  website
+  logo {
+    ...Image
+  }
+}
+
+fragment StructuredTextImage on ImageRecord {
+  id
+  media {
+    title
+    ...Image
+  }
+}
+
+fragment Button on ButtonRecord {
+  __typename
+  id
+  internalName
+  disabled
+  icon
+  id
+  title
+  url
+}
+
+fragment CaseStudyCard on CaseStudyCardRecord {
+  __typename
+  id
+  internalName
+  image {
+    ...Image
+  }
+  body {
+    value
+  }
+}
+
+fragment Person on PersonRecord {
+  __typename
+  id
+  internalName
+  firstName
+  lastName
+  website
+  company {
+    ...Company
+  }
+  role
+  thumbnail {
+    ...Image
+  }
+}
+
+fragment TestimonialCard on TestimonialCardRecord {
+  __typename
+  id
+  internalName
+  quote {
+    value
+  }
+  person {
+    ...Person
+  }
+}
+
+fragment TechStack on TechStackRecord {
+  __typename
+  id
+  internalName
+  title
+  thumbnail {
+    ...Image
+  }
+}
+
+fragment SwitchBack on SwitchbackRecord {
+  __typename
+  id
+  internalName
+  sectionId
+  sectionBackgroundColor
+  reverse
+  heading
+  headingAs
+  showDots
+  body {
+    value
+  }
+  image {
+    ...Image
+  }
+  buttons {
+    ...Button
+  }
+}
+
+fragment Category on CategoryRecord {
+  __typename
+  id
+  internalName
+  name
+  slug
+}
+
+fragment Carousel on CarouselRecord {
+  __typename
+  id
+  internalName
+  cards {
+    ...TestimonialCard
+  }
+}
+
+fragment AlternatingSwitchback on AlternatingSwitchbackRecord {
+  __typename
+  id
+  internalName
+  sectionId
+  heading
+  headingAs
+  body {
+    value
+  }
+  cards {
+    ...Work
+  }
+}
+
+fragment Work on WorkRecord {
+  __typename
+  id
+  internalName
+  slug
+  seo {
+    description
+    title
+    image {
+      ...Image
+    }
+  }
+  title
+  subtitle
+  heading
+  body {
+    value
+    blocks
+  }
+  information {
+    value
+    blocks
+  }
+  bannerImage {
+    ...Image
+  }
+  ctas {
+    ...Button
+  }
+  techStack {
+    ...TechStack
+  }
+  slider {
+    ...CaseStudyCard
+  }
+}
+
+fragment BlogPost on BlogPostRecord {
+  __typename
+  id
+  internalName
+  seo {
+    description
+    title
+    image {
+      ...Image
+    }
+  }
+  title
+  subtitle
+  publishDate
+  slug
+  categories {
+    ...Category
+  }
+  body {
+    value
+    blocks {
+      ...StructuredTextImage
+    }
+  }
+  featuredImage {
+    ...Image
+  }
+}
+
+fragment BlogCard on BlogPostRecord {
+  __typename
+  id
+  internalName
+  title
+  publishDate
+  slug
+  categories {
+    ...Category
+  }
+  body {
+    value
+  }
+  featuredImage {
+    ...Image
+  }
+  excerpt {
+    value
+  }
+}
+
+fragment BlogListing on BlogListingRecord {
+  __typename
+  id
+  internalName
+  blogs {
+    ...BlogCard
+  }
+}
+
+fragment BlogPage on BlogPageRecord {
+  __typename
+  id
+  seo {
+    description
+    title
+    image {
+      ...Image
+    }
+  }
+  switchback {
+    ...SwitchBack
+  }
+  componentGenerator {
+    components {
+      ...SwitchBack
+      ...Carousel
+      ...AlternatingSwitchback
+    }
+  }
+}
+
+fragment PageGen on PageGeneratorRecord {
+  internalName
+  __typename
+  id
+  slug
+  seo {
+    description
+    title
+    image {
+      ...Image
+    }
+  }
+  components {
+    ...SwitchBack
+    ...Carousel
+    ...AlternatingSwitchback
+  }
+}

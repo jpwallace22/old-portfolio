@@ -18,7 +18,7 @@ import { stringToKebabCase } from 'utils/functions';
 
 import type { GetColorDefinition } from 'atoms/colors/colors';
 import type { Heading as HeadingType, Record as NodeType, Span } from 'datocms-structured-text-utils';
-import type { ButtonRecord } from 'graphql/generatedTypes';
+import type { ButtonRecord } from 'graphql/types.gen';
 import type { ReactElement } from 'react';
 import type { StructuredTextGraphQlResponse } from 'react-datocms';
 
