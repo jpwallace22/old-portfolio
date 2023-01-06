@@ -113,7 +113,7 @@ const Hero: FC<BasicProps> = ({ ...props }) => {
                 stroke-dasharray: 1000;
                 stroke-dashoffset: 1000;
                 animation: draw 1s ease-in forwards;
-                animation-delay: 2.5s;
+                animation-delay: 0.7s;
               }
               @keyframes draw {
                 to {
