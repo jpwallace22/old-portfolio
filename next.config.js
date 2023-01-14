@@ -24,5 +24,10 @@ module.exports = withBundleAnalyzer({
       destination: '/resume.pdf',
       permanent: true,
     },
+    {
+      source: '/works/:slug',
+      destination: '/projects/:slug',
+      permanent: true,
+    },
   ],
 });

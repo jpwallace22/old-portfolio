@@ -44,6 +44,7 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({
       <Flex flexDirection="column" gap="48px" alignItems="center" {...props}>
         {cards?.map((card, i) => {
           const isEven = i % 2 === 0;
+          const slug = card.__typename === 'WorkRecord' ? `projects/${card.slug}` : card.slug;
 
           return (
             <m.div
@@ -53,7 +54,7 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({
               viewport={{ once: true }}
               key={card.id}
             >
-              <Link href={`https://www.justinwallace.dev/works/${card.slug}`}>
+              <Link href={`https://www.justinwallace.dev/${slug}`}>
                 <Flex
                   gap="32px"
                   justifyContent="center"
