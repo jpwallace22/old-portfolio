@@ -6,7 +6,7 @@ export const navbar = {
       url: 'https://www.justinwallace.dev/#about',
     },
     {
-      text: 'works',
+      text: 'projects',
       url: 'https://www.justinwallace.dev/#works',
     },
     {
