@@ -58,67 +58,71 @@ const BlogPostPage: FC<BlogPostRecord> = props => {
   return (
     <>
       <SEO {...seo} image={seo?.image || featuredImage} type="article" slug={slug} />
-      <BlogPostHero {...props} />
-      <Flex
-        justifyContent="space-between"
-        alignItems="center"
-        paddingTop={48}
-        gap="60px"
-        flexDirection="column-reverse"
-        paddingX={24}
-        marginX="auto"
-        maxWidth="924px"
-        xl={{ maxWidth: '1256px', flexDirection: 'row', alignItems: 'unset', paddingBottom: 96 }}
-      >
+      <Container width="100%">
+        <BlogPostHero {...props} />
         <Flex
-          flex="1 0 250px"
-          position="sticky"
-          top="120px"
-          display="flex"
-          height="100%"
-          flexDirection="column"
-          gap="32px"
-          alignSelf="flex-start"
+          width="100%"
+          justifyContent="space-between"
+          alignItems="center"
+          paddingTop={48}
+          gap="60px"
+          flexDirection="column-reverse"
+          paddingX={24}
+          marginX="auto"
+          maxWidth="924px"
+          xl={{ maxWidth: '1256px', flexDirection: 'row', alignItems: 'unset', paddingBottom: 96 }}
         >
-          <LargeCircle
-            position="absolute"
-            left="-1300px"
-            top={`${scrollPercentage * 3}px`}
-            zIndex={-10}
-            display="none"
-            xl={{ display: 'block' }}
-          />
-          <BlogToc {...props} />
-          <Container>
-            <Text textStyle="xl" fontWeight="bold">
-              Share
-            </Text>
-            <Socials socials={socials} size={24} marginTop={16} justifyContent="flex-start" lg={{ marginLeft: 8 }} />
+          <Flex
+            flex="1 0 250px"
+            position="sticky"
+            top="120px"
+            display="flex"
+            height="100%"
+            flexDirection="column"
+            gap="32px"
+            alignSelf="flex-start"
+          >
+            <LargeCircle
+              position="absolute"
+              left="-1300px"
+              top={`${scrollPercentage * 3}px`}
+              zIndex={-10}
+              display="none"
+              xl={{ display: 'block' }}
+            />
+            <BlogToc {...props} />
+            <Container>
+              <Text textStyle="xl" fontWeight="bold">
+                Share
+              </Text>
+              <Socials socials={socials} size={24} marginTop={16} justifyContent="flex-start" lg={{ marginLeft: 8 }} />
+            </Container>
+          </Flex>
+          <Container width="100%" paddingX={24} lg={{ maxWidth: '1024px' }}>
+            <Dots position="absolute" bottom={circleY + 'px'} right={circleX + 'px'} />
+            {body?.value && (
+              <StructuredTextParser
+                width="100%"
+                text={body}
+                textStyle="lg"
+                textColor={{ dark: 'gray-300', light: 'purple-900' }}
+                fontSize={20}
+                lineHeight={32}
+              />
+            )}
           </Container>
         </Flex>
-        <Container maxWidth="100vw" paddingX={24} lg={{ maxWidth: '1024px' }}>
-          <Dots position="absolute" bottom={circleY + 'px'} right={circleX + 'px'} />
-          {body?.value && (
-            <StructuredTextParser
-              text={body}
-              textStyle="lg"
-              textColor={{ dark: 'gray-300', light: 'purple-900' }}
-              fontSize={20}
-              lineHeight={32}
-            />
-          )}
-        </Container>
-      </Flex>
-      <LinearProgress
-        value={scrollPercentage > 0 ? scrollPercentage : 0}
-        aria-label="progress bar"
-        position="fixed"
-        top="70px"
-        width="100%"
-        bottomBarColor="transparent"
-        zIndex={9999}
-        lg={{ top: '82px' }}
-      />
+        <LinearProgress
+          value={scrollPercentage > 0 ? scrollPercentage : 0}
+          aria-label="progress bar"
+          position="fixed"
+          top="70px"
+          width="100%"
+          bottomBarColor="transparent"
+          zIndex={9999}
+          lg={{ top: '82px' }}
+        />
+      </Container>
       <Footer marginTop={0} ref={footerRef} />
     </>
   );
