@@ -23,15 +23,17 @@ export interface CustomImageProps extends ModifiedBasicProps, Omit<ImageProps, '
   alt: string;
   objectPosition?: string;
   objectFit?: BasicProps['objectFit'];
+  /**
+   * if true, image will be all white (use for svg's in dark mode)
+   */
+  white?: boolean;
 }
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const { height, width, objectFit: removed, ...remainingProps } = basicCSS;
+const { height: _height, width: _width, objectFit: _objectFit, ...remainingProps } = basicCSS;
 
 const customCSS = { ...remainingProps, ...breakpoints, ...pseudos, ...pseudoElements };
 const allCSSKeys = Object.keys(customCSS);
 
-const Image: FunctionComponent<CustomImageProps> = props => {
+const Image: FunctionComponent<CustomImageProps> = ({ white, ...props }) => {
   type filteredProp = [keyof CustomImageProps, valueof<CustomImageProps>];
 
   const { filteredQuarkProps, filteredNextProps } = objectEntries(props).reduce(
@@ -49,7 +51,7 @@ const Image: FunctionComponent<CustomImageProps> = props => {
   const { src, alt, objectFit, ...nextProps } = Object.fromEntries(filteredNextProps);
 
   return (
-    <Container width="fit-content" height="fit-content" {...quarkProps}>
+    <Container width="fit-content" height="fit-content" filter={white && 'brightness(0) invert(1)'} {...quarkProps}>
       <NextImage src={src} alt={alt} {...nextProps} style={{ objectFit }} />
     </Container>
   );
