@@ -9,7 +9,6 @@ import type { StructuredData } from 'utils/structuredTextParser';
 
 /**
  * @param router `NextRouter`
- *
  * routes to personal email, but robots cant read it
  */
 export const emailObfuscator = async (router: NextRouter) => {
@@ -37,10 +36,10 @@ export const useOnScreen = <T extends Element | null>(ref: MutableRefObject<T>, 
     }
 
     return () => {
-      if (!ref) {
+      if (!ref.current) {
         return;
       }
-      observer.unobserve(ref.current as Element);
+      observer.unobserve(ref.current);
     };
   }, []);
 
@@ -53,9 +52,14 @@ export const useOnScreen = <T extends Element | null>(ref: MutableRefObject<T>, 
  */
 export const getSemiRandomString = () => Math.random().toString(36).slice(2, 12);
 
-export const timeToRead = (structuredText?: StructuredData) => {
-  const wordsPerMin = 200;
-
+/**
+ * Will take in Structured text data from Data and return how long in minutes
+ * it would take to read the given text. Defaults to a reading speed of 200 wpm, but can be changed
+ * @param structuredText StructuredData
+ * @param wordsPerMin number `default = 200`
+ * @returns number | "" | null
+ */
+export const timeToRead = (structuredText?: StructuredData, wordsPerMin = 200) => {
   const content = render(structuredText as StructuredTextGraphQlResponse);
 
   return content && Math.ceil(content.split(' ').length / wordsPerMin);
@@ -70,8 +74,13 @@ export const stringToKebabCase = (str?: string) =>
     ?.join('-')
     .toLowerCase();
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export const throttle = (fn: Function, delay: number) => {
+/**
+ * Used to slow down the amount of fires from an event listener
+ * @param fn any callback function
+ * @param delay number
+ * @returns The callback function but throttles to ensure it is only fired at a minimum of of the delay time
+ */
+export const throttle = (fn: () => void, delay: number) => {
   let time = Date.now();
 
   return () => {

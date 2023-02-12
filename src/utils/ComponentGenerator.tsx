@@ -17,7 +17,7 @@ interface IComponentGenerator {
 }
 
 const ComponentGenerator: FC<IComponentGenerator> = ({ components }) => {
-  if (!components || components.length < 0) return null;
+  if (!components || !components.length) return null;
 
   const componentChecker = (component: PageGeneratorModelComponentsField) => {
     switch (component.__typename) {
@@ -40,7 +40,7 @@ const ComponentGenerator: FC<IComponentGenerator> = ({ components }) => {
         const { sectionId, backgroundColor } = getSectionInfo(component);
 
         return (
-          <Section id={sectionId} key={component.id} backgroundColor={backgroundColor}>
+          <Section key={component.id} id={sectionId} backgroundColor={backgroundColor}>
             {componentChecker(component)}
           </Section>
         );
