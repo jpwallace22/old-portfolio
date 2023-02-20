@@ -89,7 +89,7 @@ const structuredTextParser = (data?: StructuredData, textColor?: false | GetColo
               <List
                 key={key}
                 discColor="purple-500"
-                marginLeft={24}
+                marginLeft={8}
                 textColor={{ dark: 'gray-500', light: 'purple-900' }}
               >
                 {children}
