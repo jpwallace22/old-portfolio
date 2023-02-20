@@ -174,8 +174,8 @@ const structuredTextParser = (data?: StructuredData, textColor?: false | GetColo
         ]}
         customMarkRules={[
           renderMarkRule('strong', ({ children, key }) => (
-            <Text key={key} fontWeight="bold" textColor={textColor}>
-              {children}
+            <Text key={key} textColor={textColor}>
+              <strong>{children}</strong>
             </Text>
           )),
           renderMarkRule('code', ({ children, key }) => (
