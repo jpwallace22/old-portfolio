@@ -98,7 +98,7 @@ const BlogPostPage: FC<BlogPostRecord> = props => {
               <Socials socials={socials} size={24} marginTop={16} justifyContent="flex-start" lg={{ marginLeft: 8 }} />
             </Container>
           </Flex>
-          <Container width="100%" paddingX={24} lg={{ maxWidth: '1024px' }}>
+          <Container width="100%" lg={{ maxWidth: '1024px' }}>
             <Dots position="absolute" bottom={circleY + 'px'} right={circleX + 'px'} />
             {body?.value && (
               <StructuredTextParser
