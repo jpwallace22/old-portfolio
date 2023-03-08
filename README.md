@@ -1,5 +1,14 @@
 # The portfolio of Justin Wallace
 
+## Tech Stack
+
+- **React**
+- **Typescript**
+- **NextJS**
+- **Styled Components**
+- **DatoCMS**
+- **Graphql**
+
 ## Features
 
 1. **Atoms**: These are a code implementation of a design system. Values can be replaced easily and used across the
@@ -14,16 +23,3 @@
 5. **Type-safety**: This portfolio takes full advantage of Typescript for easy debugging, scalability, and (of course)
    portfolio purposes.
 
-## TODO
-
-- implement category taxonomy into the blog (after writing more blogs)
-- add global nav to DatoCMS q(added, need to query)
-- create featured blog component
-  - use the same component for related blogs?
-- create testimonial component
-- add shutter animation to TechStack
-- create components generator styled paradigm
-- add recent || featured blogs to homepage
-- add jest
-- refactor Button molecule (reduce size)
-- text clip for animation?
