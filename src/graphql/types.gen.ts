@@ -817,9 +817,9 @@ export type FileFieldAltArgs = {
 
 export type FileFieldBlurUpThumbArgs = {
   imgixParams?: InputMaybe<ImgixParams>;
-  punch?: InputMaybe<Scalars['Float']>;
-  quality?: InputMaybe<Scalars['Int']>;
-  size?: InputMaybe<Scalars['Int']>;
+  punch?: Scalars['Float'];
+  quality?: Scalars['Int'];
+  size?: Scalars['Int'];
 };
 
 export type FileFieldCustomDataArgs = {
@@ -885,9 +885,9 @@ export type FileFieldInterfaceAltArgs = {
 
 export type FileFieldInterfaceBlurUpThumbArgs = {
   imgixParams?: InputMaybe<ImgixParams>;
-  punch?: InputMaybe<Scalars['Float']>;
-  quality?: InputMaybe<Scalars['Int']>;
-  size?: InputMaybe<Scalars['Int']>;
+  punch?: Scalars['Float'];
+  quality?: Scalars['Int'];
+  size?: Scalars['Int'];
 };
 
 export type FileFieldInterfaceCustomDataArgs = {
@@ -3264,12 +3264,14 @@ export type StatusFilter = {
 export type StringFilter = {
   /** Search for records with an exact match */
   eq?: InputMaybe<Scalars['String']>;
-  /** Filter records with the specified field defined (i.e. with any value) or not */
+  /** Filter records with the specified field defined (i.e. with any value) or not [DEPRECATED] */
   exists?: InputMaybe<Scalars['BooleanType']>;
   /** Filter records that equal one of the specified values */
   in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Filter records with the specified field set as blank (null or empty string) */
   isBlank?: InputMaybe<Scalars['BooleanType']>;
+  /** Filter records with the specified field present (neither null, nor empty string) */
+  isPresent?: InputMaybe<Scalars['BooleanType']>;
   /** Filter records based on a regular expression */
   matches?: InputMaybe<StringMatchesFilter>;
   /** Exclude records with an exact match */
@@ -3288,10 +3290,12 @@ export type StringMatchesFilter = {
 
 /** Specifies how to filter Structured Text fields */
 export type StructuredTextFilter = {
-  /** Filter records with the specified field defined (i.e. with any value) or not */
+  /** Filter records with the specified field defined (i.e. with any value) or not [DEPRECATED] */
   exists?: InputMaybe<Scalars['BooleanType']>;
   /** Filter records with the specified field set as blank (null or single empty paragraph) */
   isBlank?: InputMaybe<Scalars['BooleanType']>;
+  /** Filter records with the specified field present (neither null, nor empty string) */
+  isPresent?: InputMaybe<Scalars['BooleanType']>;
   /** Filter records based on a regular expression */
   matches?: InputMaybe<StringMatchesFilter>;
   /** Exclude records based on a regular expression */
@@ -5450,6 +5454,90 @@ declare global {
         body?: { __typename?: 'CaseStudyCardModelBodyField'; value: unknown } | null;
       }>;
     } | null;
+    pageGenerator?: {
+      __typename?: 'PageGeneratorRecord';
+      components: Array<
+        | {
+            __typename: 'AlternatingSwitchbackRecord';
+            cards: Array<{
+              __typename: 'WorkRecord';
+              id: string;
+              internalName?: string | null;
+              slug?: string | null;
+              title?: string | null;
+              subtitle?: string | null;
+              heading?: string | null;
+              seo?: {
+                __typename?: 'SeoField';
+                description?: string | null;
+                title?: string | null;
+                image?: {
+                  __typename: 'FileField';
+                  id: string;
+                  alt?: string | null;
+                  blurhash?: string | null;
+                  height?: number | null;
+                  width?: number | null;
+                  url: string;
+                } | null;
+              } | null;
+              body?: { __typename?: 'WorkModelBodyField'; value: unknown; blocks: Array<string> } | null;
+              information?: { __typename?: 'WorkModelInformationField'; value: unknown; blocks: Array<string> } | null;
+              bannerImage?: {
+                __typename: 'FileField';
+                id: string;
+                alt?: string | null;
+                blurhash?: string | null;
+                height?: number | null;
+                width?: number | null;
+                url: string;
+              } | null;
+              ctas: Array<{
+                __typename: 'ButtonRecord';
+                id: string;
+                internalName?: string | null;
+                disabled?: boolean | null;
+                icon?: string | null;
+                title?: string | null;
+                url?: string | null;
+              }>;
+              techStack: Array<{
+                __typename: 'TechStackRecord';
+                id: string;
+                internalName?: string | null;
+                title?: string | null;
+                thumbnail?: {
+                  __typename: 'FileField';
+                  id: string;
+                  alt?: string | null;
+                  blurhash?: string | null;
+                  height?: number | null;
+                  width?: number | null;
+                  url: string;
+                } | null;
+              }>;
+              slider: Array<{
+                __typename: 'CaseStudyCardRecord';
+                id: string;
+                internalName?: string | null;
+                image?: {
+                  __typename: 'FileField';
+                  id: string;
+                  alt?: string | null;
+                  blurhash?: string | null;
+                  height?: number | null;
+                  width?: number | null;
+                  url: string;
+                } | null;
+                body?: { __typename?: 'CaseStudyCardModelBodyField'; value: unknown } | null;
+              }>;
+            }>;
+          }
+        | { __typename: 'BlogListingRecord' }
+        | { __typename: 'CarouselRecord' }
+        | { __typename: 'SwitchbackRecord' }
+      >;
+    } | null;
   };
 
   export type BlogPageDataQueryVariables = Exact<{ [key: string]: never }>;
@@ -6750,6 +6838,70 @@ export const WorkPageDataDocument = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Work' } }],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'pageGenerator' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'filter' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'slug' },
+                      value: {
+                        kind: 'ObjectValue',
+                        fields: [
+                          {
+                            kind: 'ObjectField',
+                            name: { kind: 'Name', value: 'eq' },
+                            value: { kind: 'StringValue', value: 'home', block: false },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'components' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                      {
+                        kind: 'InlineFragment',
+                        typeCondition: {
+                          kind: 'NamedType',
+                          name: { kind: 'Name', value: 'AlternatingSwitchbackRecord' },
+                        },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'cards' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Work' } }],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
           },
         ],

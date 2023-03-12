@@ -14,10 +14,11 @@ import type { AlternatingSwitchbackRecord } from 'graphql/types.gen';
 import type { BasicProps } from 'quarks/interpolations/basic';
 import type { HeadingTypes } from 'quarks/styleProps/heading';
 import type { FC } from 'react';
+import type { CleanDato } from 'utils/typeUtils';
 
 const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/StructuredTextParser'));
 
-type AlternatingSwitchbacksProps = BasicProps & AlternatingSwitchbackRecord;
+type AlternatingSwitchbacksProps = BasicProps & CleanDato<AlternatingSwitchbackRecord>;
 
 const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({
   cards,
@@ -30,7 +31,7 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({
   const isDesktop = useMediaQuery(media.lg);
 
   return (
-    <>
+    <Container {...props}>
       <LargeCircle position="absolute" left="-900px" top="90px" zIndex={-10} lg={{ bottom: '-200px' }} />
       <StandardFadeIn>
         <Flex gap="24px" flexDirection="column" lg={{ maxWidth: '66%' }}>
@@ -41,7 +42,7 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({
         </Flex>
       </StandardFadeIn>
 
-      <Flex flexDirection="column" gap="48px" alignItems="center" {...props}>
+      <Flex flexDirection="column" gap="48px" alignItems="center">
         {cards?.map((card, i) => {
           const isEven = i % 2 === 0;
           const slug = card.__typename === 'WorkRecord' ? `projects/${card.slug}` : card.slug;
@@ -122,7 +123,7 @@ const AlternatingSwitchbacks: FC<AlternatingSwitchbacksProps> = ({
           );
         })}
       </Flex>
-    </>
+    </Container>
   );
 };
 

@@ -1,22 +1,23 @@
 import { lazy } from 'react';
 
-import { Container, Dots, Flex, Heading } from 'quarks';
+import { Container, Dots, Flex, Heading, Paragraph } from 'quarks';
 import WorkHero from 'templates/Work/WorkHero';
 
 import StandardFadeIn from 'molecules/StandardFadeIn/StandardFadeIn';
 
 import SEO from 'components/SEO/SEO';
 
-import type { WorkRecord } from 'graphql/types.gen';
+import type { WorkPageProps } from 'pages/projects/[id]';
 import type { FC } from 'react';
 
+const AlternatingSwitchbacks = lazy(() => import('components/AlternatingSwitchbacks/AlternatingSwitchbacks'));
 const SmallCard = lazy(() => import('components/cards/SmallCard/SmallCard'));
 const Footer = lazy(() => import('components/Footer/Footer'));
 const Slider = lazy(() => import('components/Slider/Slider'));
 const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/StructuredTextParser'));
 
-const WorkPageTemplate: FC<WorkRecord> = props => {
-  const { heading, ctas, body, information, slider, seo, slug, bannerImage } = props;
+const WorkPageTemplate: FC<WorkPageProps> = props => {
+  const { heading, ctas, body, information, slider, seo, slug, bannerImage, nextWork } = props;
 
   return (
     <>
@@ -61,6 +62,16 @@ const WorkPageTemplate: FC<WorkRecord> = props => {
             </Container>
           )}
         </Container>
+        {nextWork ? (
+          <AlternatingSwitchbacks heading="Next Project" marginTop={128} paddingX={16} cards={[nextWork]} />
+        ) : (
+          <Flex flexDirection="column" gap="16px" alignItems="center">
+            <Heading as="h3">This is the last project!</Heading>
+            <Paragraph textColor={{ dark: 'gray-500', light: 'purple-900' }}>
+              Did you look at ALL of them? I think you HAVE to contact me now...👇
+            </Paragraph>
+          </Flex>
+        )}
       </Container>
       <Footer />
     </>

@@ -367,6 +367,16 @@ export const WorkPageDataDocument = gql`
     work(filter: { slug: { eq: $slug } }) {
       ...Work
     }
+    pageGenerator(filter: { slug: { eq: "home" } }) {
+      components {
+        __typename
+        ... on AlternatingSwitchbackRecord {
+          cards {
+            ...Work
+          }
+        }
+      }
+    }
   }
   ${WorkFragmentDoc}
 `;
