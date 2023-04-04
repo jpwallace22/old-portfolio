@@ -30,7 +30,7 @@ const WorkHero: FC<WorkRecord> = ({ title, subtitle, bannerImage, techStack }) =
           as="h2"
           textStyle="xxl"
           fontSize={60}
-          marginBottom={12}
+          marginBottom={20}
           lineHeight={44}
           sm={{ fontSize: 72, lineHeight: 56 }}
           md={{ fontSize: 96, lineHeight: 72 }}
