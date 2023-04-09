@@ -8,8 +8,8 @@ import type { StructuredTextGraphQlResponse } from 'react-datocms';
 import type { StructuredData } from 'utils/structuredTextParser';
 
 /**
- * @param router `NextRouter`
  * routes to personal email, but robots cant read it
+ * @param router `NextRouter`
  */
 export const emailObfuscator = async (router: NextRouter) => {
   const dot = '.';
@@ -17,6 +17,11 @@ export const emailObfuscator = async (router: NextRouter) => {
   router.push(`${['m', 'a', 'i', 'l', 't', 'o'].join('')}:hello${at}justinwallace${dot}dev`);
 };
 
+/**
+ * @param ref Mutable ref of the element being tracked
+ * @param rootMargin a css value (defaulted to `0px`) for the intersection Observer root margin
+ * @returns true if element is on screen
+ */
 export const useOnScreen = <T extends Element | null>(ref: MutableRefObject<T>, rootMargin = '0px'): boolean => {
   const [isIntersecting, setIntersecting] = useState<boolean>(false);
   useEffect(() => {
@@ -65,6 +70,11 @@ export const timeToRead = (structuredText?: StructuredData, wordsPerMin = 200) =
   return content && Math.ceil(content.split(' ').length / wordsPerMin);
 };
 
+/**
+ * @param min lowest number
+ * @param max highest number
+ * @returns a random integer no lower or higher than the provided limit
+ */
 export const randomIntFromInterval = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1) + min);
 
 export const stringToKebabCase = (str?: string) =>
