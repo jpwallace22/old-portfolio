@@ -101,9 +101,9 @@ const Footer = forwardRef(({ fullHeight, ...props }: FooterProps, ref?: Forwarde
             textAlign="right"
             lg={{ width: '33%' }}
           >
-            ©JW Development {date.getFullYear()} •{' '}
+            ©JW Development 2019–{date.getFullYear()} •{' '}
             <Link href="/Resume">
-              <Text textColor={{ dark: 'gray-200', light: 'common-black' }}>Resume</Text>
+              <Text textColor={{ dark: 'gray-100', light: 'common-black' }}>Resume</Text>
             </Link>
           </Text>
         </Flex>
