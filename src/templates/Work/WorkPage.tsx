@@ -55,7 +55,7 @@ const WorkPageTemplate: FC<WorkPageProps> = props => {
         </Container>
         <Dots position="absolute" transform="rotate(45deg)" top="1000px" left="-270px" md={{ left: '-400px' }} />
         <Slider cards={slider} />
-        <Container maxWidth="1100px" paddingX={16} lg={{ marginX: 'auto', paddingX: 32 }}>
+        <Container maxWidth="1100px" paddingX={16} marginBottom={128} lg={{ marginX: 'auto', paddingX: 32 }}>
           {information && (
             <Container as="section">
               <StructuredTextParser text={information} marginTop={16} />
@@ -63,7 +63,7 @@ const WorkPageTemplate: FC<WorkPageProps> = props => {
           )}
         </Container>
         {nextWork ? (
-          <AlternatingSwitchbacks heading="Next Project" marginTop={128} paddingX={16} cards={[nextWork]} />
+          <AlternatingSwitchbacks heading="Next Project" paddingX={16} cards={[nextWork]} />
         ) : (
           <Flex flexDirection="column" gap="16px" alignItems="center">
             <Heading as="h3">This is the last project!</Heading>
