@@ -83,7 +83,8 @@ const Switchback: FC<SwitchbackProps> = ({ headingAs, image, heading, reverse, b
             position="relative"
             width="100%"
             marginX="auto"
-            flex="0 0 50%"
+            flex="0 0 40%"
+            xl={{ flex: '0 0 50%' }}
             maxWidth={container.sm}
             aspectRatio={[image.width, image.height]}
           >
