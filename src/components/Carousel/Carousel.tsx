@@ -1,7 +1,7 @@
 import { lazy, useRef, useState } from 'react';
 
 import { useMediaQuery } from '@mui/material';
-import { Container, Flex } from 'quarks';
+import { Container, Flex, Link } from 'quarks';
 
 import { media } from 'atoms/breakpoints/breakpoints';
 
@@ -129,17 +129,16 @@ const Carousel: FC<CarouselCardProps> = ({ cards, showPagination = true }) => {
         >
           {cards?.map((card, i) =>
             isBlog(card) ? (
-              <BlogListingCard
+              <Link
                 key={card.id}
-                marginTop={16}
-                cursor="pointer"
-                width="unset"
+                href={`https://www.justinwallace.dev/blog/${card.slug}`}
                 flex="1 0 100%"
                 sm={{ flex: '1 0 75%' }}
                 md={{ flex: '1 0 50%' }}
                 xl={{ flex: '1 0 30%' }}
-                {...card}
-              />
+              >
+                <BlogListingCard marginTop={16} {...card} />
+              </Link>
             ) : (
               <TestimonialCard
                 key={card.id}
