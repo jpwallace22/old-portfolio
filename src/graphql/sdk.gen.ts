@@ -187,9 +187,11 @@ export const CarouselFragmentDoc = gql`
     id
     internalName
     cards {
+      ...BlogCard
       ...TestimonialCard
     }
   }
+  ${BlogCardFragmentDoc}
   ${TestimonialCardFragmentDoc}
 `;
 export const TechStackFragmentDoc = gql`
@@ -304,6 +306,21 @@ export const BlogPageFragmentDoc = gql`
   ${CarouselFragmentDoc}
   ${AlternatingSwitchbackFragmentDoc}
 `;
+export const FeaturedBlogFragmentDoc = gql`
+  fragment FeaturedBlog on FeaturedBlogRecord {
+    __typename
+    id
+    internalName
+    heading
+    body {
+      value
+    }
+    blogs {
+      ...BlogCard
+    }
+  }
+  ${BlogCardFragmentDoc}
+`;
 export const PageGenFragmentDoc = gql`
   fragment PageGen on PageGeneratorRecord {
     internalName
@@ -318,12 +335,14 @@ export const PageGenFragmentDoc = gql`
       }
     }
     components {
+      ...FeaturedBlog
       ...SwitchBack
       ...Carousel
       ...AlternatingSwitchback
     }
   }
   ${ImageFragmentDoc}
+  ${FeaturedBlogFragmentDoc}
   ${SwitchBackFragmentDoc}
   ${CarouselFragmentDoc}
   ${AlternatingSwitchbackFragmentDoc}

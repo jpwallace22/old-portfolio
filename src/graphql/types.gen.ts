@@ -407,6 +407,8 @@ export type ButtonRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+export type CarouselModelCardsField = BlogPostRecord | TestimonialCardRecord;
+
 export type CarouselModelFilter = {
   OR?: InputMaybe<Array<InputMaybe<CarouselModelFilter>>>;
   _createdAt?: InputMaybe<CreatedAtFilter>;
@@ -465,7 +467,7 @@ export type CarouselRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
-  cards: Array<TestimonialCardRecord>;
+  cards: Array<CarouselModelCardsField>;
   createdAt: Scalars['DateTime'];
   id: Scalars['ItemId'];
   internalName?: Maybe<Scalars['String']>;
@@ -654,6 +656,7 @@ export type ColorField = {
   __typename?: 'ColorField';
   alpha: Scalars['IntType'];
   blue: Scalars['IntType'];
+  cssRgb: Scalars['String'];
   green: Scalars['IntType'];
   hex: Scalars['String'];
   red: Scalars['IntType'];
@@ -779,6 +782,89 @@ export enum FaviconType {
   MsApplication = 'msApplication',
 }
 
+export type FeaturedBlogModelBodyField = {
+  __typename?: 'FeaturedBlogModelBodyField';
+  blocks: Array<Scalars['String']>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+};
+
+export type FeaturedBlogModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<FeaturedBlogModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  blogs?: InputMaybe<LinksFilter>;
+  body?: InputMaybe<StructuredTextFilter>;
+  createdAt?: InputMaybe<CreatedAtFilter>;
+  heading?: InputMaybe<StringFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  internalName?: InputMaybe<StringFilter>;
+  updatedAt?: InputMaybe<UpdatedAtFilter>;
+};
+
+export enum FeaturedBlogModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  CreatedAt_ASC = 'createdAt_ASC',
+  CreatedAt_DESC = 'createdAt_DESC',
+  Heading_ASC = 'heading_ASC',
+  Heading_DESC = 'heading_DESC',
+  Id_ASC = 'id_ASC',
+  Id_DESC = 'id_DESC',
+  InternalName_ASC = 'internalName_ASC',
+  InternalName_DESC = 'internalName_DESC',
+  UpdatedAt_ASC = 'updatedAt_ASC',
+  UpdatedAt_DESC = 'updatedAt_DESC',
+}
+
+/** Record of type Featured Blog (featured_blog) */
+export type FeaturedBlogRecord = RecordInterface & {
+  __typename?: 'FeaturedBlogRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  blogs: Array<BlogPostRecord>;
+  body?: Maybe<FeaturedBlogModelBodyField>;
+  createdAt: Scalars['DateTime'];
+  heading?: Maybe<Scalars['String']>;
+  id: Scalars['ItemId'];
+  internalName?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['DateTime'];
+};
+
+/** Record of type Featured Blog (featured_blog) */
+export type FeaturedBlogRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 export type FileField = FileFieldInterface & {
   __typename?: 'FileField';
   _createdAt: Scalars['DateTime'];
@@ -804,6 +890,7 @@ export type FileField = FileFieldInterface & {
   size: Scalars['IntType'];
   smartTags: Array<Scalars['String']>;
   tags: Array<Scalars['String']>;
+  thumbhash?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   url: Scalars['String'];
   video?: Maybe<UploadVideoField>;
@@ -872,6 +959,7 @@ export type FileFieldInterface = {
   size: Scalars['IntType'];
   smartTags: Array<Scalars['String']>;
   tags: Array<Scalars['String']>;
+  thumbhash?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   url: Scalars['String'];
   video?: Maybe<UploadVideoField>;
@@ -2465,6 +2553,7 @@ export type PageGeneratorModelComponentsField =
   | AlternatingSwitchbackRecord
   | BlogListingRecord
   | CarouselRecord
+  | FeaturedBlogRecord
   | SwitchbackRecord;
 
 export type PageGeneratorModelFilter = {
@@ -2667,6 +2756,8 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allCompaniesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allFeaturedBlogsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allPageGeneratorsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allPeopleMeta: CollectionMetadata;
@@ -2699,6 +2790,8 @@ export type Query = {
   /** Returns a collection of records */
   allCompanies: Array<CompanyRecord>;
   /** Returns a collection of records */
+  allFeaturedBlogs: Array<FeaturedBlogRecord>;
+  /** Returns a collection of records */
   allPageGenerators: Array<PageGeneratorRecord>;
   /** Returns a collection of records */
   allPeople: Array<PersonRecord>;
@@ -2730,6 +2823,8 @@ export type Query = {
   category?: Maybe<CategoryRecord>;
   /** Returns a specific record */
   company?: Maybe<CompanyRecord>;
+  /** Returns a specific record */
+  featuredBlog?: Maybe<FeaturedBlogRecord>;
   /** Returns the single instance record */
   globalNav?: Maybe<GlobalNavRecord>;
   /** Returns the single instance record */
@@ -2803,6 +2898,13 @@ export type Query_AllCategoriesMetaArgs = {
 export type Query_AllCompaniesMetaArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<CompanyModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllFeaturedBlogsMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<FeaturedBlogModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2937,6 +3039,16 @@ export type QueryAllCompaniesArgs = {
   first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<CompanyModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
+/** The query root for this schema */
+export type QueryAllFeaturedBlogsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<FeaturedBlogModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<FeaturedBlogModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']>;
 };
 
@@ -3078,6 +3190,14 @@ export type QueryCompanyArgs = {
   filter?: InputMaybe<CompanyModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<CompanyModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QueryFeaturedBlogArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<FeaturedBlogModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<FeaturedBlogModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -4250,26 +4370,23 @@ declare global {
     __typename: 'CarouselRecord';
     id: string;
     internalName?: string | null;
-    cards: Array<{
-      __typename: 'TestimonialCardRecord';
-      id: string;
-      internalName?: string | null;
-      quote?: { __typename?: 'TestimonialCardModelQuoteField'; value: unknown } | null;
-      person?: {
-        __typename: 'PersonRecord';
-        id: string;
-        internalName?: string | null;
-        firstName?: string | null;
-        lastName?: string | null;
-        website?: string | null;
-        role?: string | null;
-        company?: {
-          __typename: 'CompanyRecord';
+    cards: Array<
+      | {
+          __typename: 'BlogPostRecord';
           id: string;
           internalName?: string | null;
-          name?: string | null;
-          website?: string | null;
-          logo?: {
+          title?: string | null;
+          publishDate?: string | null;
+          slug?: string | null;
+          categories: Array<{
+            __typename: 'CategoryRecord';
+            id: string;
+            internalName?: string | null;
+            name?: string | null;
+            slug?: string | null;
+          }>;
+          body?: { __typename?: 'BlogPostModelBodyField'; value: unknown } | null;
+          featuredImage?: {
             __typename: 'FileField';
             id: string;
             alt?: string | null;
@@ -4278,18 +4395,49 @@ declare global {
             width?: number | null;
             url: string;
           } | null;
-        } | null;
-        thumbnail?: {
-          __typename: 'FileField';
+          excerpt?: { __typename?: 'BlogPostModelExcerptField'; value: unknown } | null;
+        }
+      | {
+          __typename: 'TestimonialCardRecord';
           id: string;
-          alt?: string | null;
-          blurhash?: string | null;
-          height?: number | null;
-          width?: number | null;
-          url: string;
-        } | null;
-      } | null;
-    }>;
+          internalName?: string | null;
+          quote?: { __typename?: 'TestimonialCardModelQuoteField'; value: unknown } | null;
+          person?: {
+            __typename: 'PersonRecord';
+            id: string;
+            internalName?: string | null;
+            firstName?: string | null;
+            lastName?: string | null;
+            website?: string | null;
+            role?: string | null;
+            company?: {
+              __typename: 'CompanyRecord';
+              id: string;
+              internalName?: string | null;
+              name?: string | null;
+              website?: string | null;
+              logo?: {
+                __typename: 'FileField';
+                id: string;
+                alt?: string | null;
+                blurhash?: string | null;
+                height?: number | null;
+                width?: number | null;
+                url: string;
+              } | null;
+            } | null;
+            thumbnail?: {
+              __typename: 'FileField';
+              id: string;
+              alt?: string | null;
+              blurhash?: string | null;
+              height?: number | null;
+              width?: number | null;
+              url: string;
+            } | null;
+          } | null;
+        }
+    >;
   };
 
   export type AlternatingSwitchbackFragment = {
@@ -4566,6 +4714,40 @@ declare global {
     }>;
   };
 
+  export type FeaturedBlogFragment = {
+    __typename: 'FeaturedBlogRecord';
+    id: string;
+    internalName?: string | null;
+    heading?: string | null;
+    body?: { __typename?: 'FeaturedBlogModelBodyField'; value: unknown } | null;
+    blogs: Array<{
+      __typename: 'BlogPostRecord';
+      id: string;
+      internalName?: string | null;
+      title?: string | null;
+      publishDate?: string | null;
+      slug?: string | null;
+      categories: Array<{
+        __typename: 'CategoryRecord';
+        id: string;
+        internalName?: string | null;
+        name?: string | null;
+        slug?: string | null;
+      }>;
+      body?: { __typename?: 'BlogPostModelBodyField'; value: unknown } | null;
+      featuredImage?: {
+        __typename: 'FileField';
+        id: string;
+        alt?: string | null;
+        blurhash?: string | null;
+        height?: number | null;
+        width?: number | null;
+        url: string;
+      } | null;
+      excerpt?: { __typename?: 'BlogPostModelExcerptField'; value: unknown } | null;
+    }>;
+  };
+
   export type BlogPageFragment = {
     __typename: 'BlogPageRecord';
     id: string;
@@ -4703,26 +4885,23 @@ declare global {
             __typename: 'CarouselRecord';
             id: string;
             internalName?: string | null;
-            cards: Array<{
-              __typename: 'TestimonialCardRecord';
-              id: string;
-              internalName?: string | null;
-              quote?: { __typename?: 'TestimonialCardModelQuoteField'; value: unknown } | null;
-              person?: {
-                __typename: 'PersonRecord';
-                id: string;
-                internalName?: string | null;
-                firstName?: string | null;
-                lastName?: string | null;
-                website?: string | null;
-                role?: string | null;
-                company?: {
-                  __typename: 'CompanyRecord';
+            cards: Array<
+              | {
+                  __typename: 'BlogPostRecord';
                   id: string;
                   internalName?: string | null;
-                  name?: string | null;
-                  website?: string | null;
-                  logo?: {
+                  title?: string | null;
+                  publishDate?: string | null;
+                  slug?: string | null;
+                  categories: Array<{
+                    __typename: 'CategoryRecord';
+                    id: string;
+                    internalName?: string | null;
+                    name?: string | null;
+                    slug?: string | null;
+                  }>;
+                  body?: { __typename?: 'BlogPostModelBodyField'; value: unknown } | null;
+                  featuredImage?: {
                     __typename: 'FileField';
                     id: string;
                     alt?: string | null;
@@ -4731,19 +4910,51 @@ declare global {
                     width?: number | null;
                     url: string;
                   } | null;
-                } | null;
-                thumbnail?: {
-                  __typename: 'FileField';
+                  excerpt?: { __typename?: 'BlogPostModelExcerptField'; value: unknown } | null;
+                }
+              | {
+                  __typename: 'TestimonialCardRecord';
                   id: string;
-                  alt?: string | null;
-                  blurhash?: string | null;
-                  height?: number | null;
-                  width?: number | null;
-                  url: string;
-                } | null;
-              } | null;
-            }>;
+                  internalName?: string | null;
+                  quote?: { __typename?: 'TestimonialCardModelQuoteField'; value: unknown } | null;
+                  person?: {
+                    __typename: 'PersonRecord';
+                    id: string;
+                    internalName?: string | null;
+                    firstName?: string | null;
+                    lastName?: string | null;
+                    website?: string | null;
+                    role?: string | null;
+                    company?: {
+                      __typename: 'CompanyRecord';
+                      id: string;
+                      internalName?: string | null;
+                      name?: string | null;
+                      website?: string | null;
+                      logo?: {
+                        __typename: 'FileField';
+                        id: string;
+                        alt?: string | null;
+                        blurhash?: string | null;
+                        height?: number | null;
+                        width?: number | null;
+                        url: string;
+                      } | null;
+                    } | null;
+                    thumbnail?: {
+                      __typename: 'FileField';
+                      id: string;
+                      alt?: string | null;
+                      blurhash?: string | null;
+                      height?: number | null;
+                      width?: number | null;
+                      url: string;
+                    } | null;
+                  } | null;
+                }
+            >;
           }
+        | { __typename?: 'FeaturedBlogRecord' }
         | {
             __typename: 'SwitchbackRecord';
             id: string;
@@ -4885,26 +5096,23 @@ declare global {
           __typename: 'CarouselRecord';
           id: string;
           internalName?: string | null;
-          cards: Array<{
-            __typename: 'TestimonialCardRecord';
-            id: string;
-            internalName?: string | null;
-            quote?: { __typename?: 'TestimonialCardModelQuoteField'; value: unknown } | null;
-            person?: {
-              __typename: 'PersonRecord';
-              id: string;
-              internalName?: string | null;
-              firstName?: string | null;
-              lastName?: string | null;
-              website?: string | null;
-              role?: string | null;
-              company?: {
-                __typename: 'CompanyRecord';
+          cards: Array<
+            | {
+                __typename: 'BlogPostRecord';
                 id: string;
                 internalName?: string | null;
-                name?: string | null;
-                website?: string | null;
-                logo?: {
+                title?: string | null;
+                publishDate?: string | null;
+                slug?: string | null;
+                categories: Array<{
+                  __typename: 'CategoryRecord';
+                  id: string;
+                  internalName?: string | null;
+                  name?: string | null;
+                  slug?: string | null;
+                }>;
+                body?: { __typename?: 'BlogPostModelBodyField'; value: unknown } | null;
+                featuredImage?: {
                   __typename: 'FileField';
                   id: string;
                   alt?: string | null;
@@ -4913,17 +5121,81 @@ declare global {
                   width?: number | null;
                   url: string;
                 } | null;
-              } | null;
-              thumbnail?: {
-                __typename: 'FileField';
+                excerpt?: { __typename?: 'BlogPostModelExcerptField'; value: unknown } | null;
+              }
+            | {
+                __typename: 'TestimonialCardRecord';
                 id: string;
-                alt?: string | null;
-                blurhash?: string | null;
-                height?: number | null;
-                width?: number | null;
-                url: string;
-              } | null;
+                internalName?: string | null;
+                quote?: { __typename?: 'TestimonialCardModelQuoteField'; value: unknown } | null;
+                person?: {
+                  __typename: 'PersonRecord';
+                  id: string;
+                  internalName?: string | null;
+                  firstName?: string | null;
+                  lastName?: string | null;
+                  website?: string | null;
+                  role?: string | null;
+                  company?: {
+                    __typename: 'CompanyRecord';
+                    id: string;
+                    internalName?: string | null;
+                    name?: string | null;
+                    website?: string | null;
+                    logo?: {
+                      __typename: 'FileField';
+                      id: string;
+                      alt?: string | null;
+                      blurhash?: string | null;
+                      height?: number | null;
+                      width?: number | null;
+                      url: string;
+                    } | null;
+                  } | null;
+                  thumbnail?: {
+                    __typename: 'FileField';
+                    id: string;
+                    alt?: string | null;
+                    blurhash?: string | null;
+                    height?: number | null;
+                    width?: number | null;
+                    url: string;
+                  } | null;
+                } | null;
+              }
+          >;
+        }
+      | {
+          __typename: 'FeaturedBlogRecord';
+          id: string;
+          internalName?: string | null;
+          heading?: string | null;
+          body?: { __typename?: 'FeaturedBlogModelBodyField'; value: unknown } | null;
+          blogs: Array<{
+            __typename: 'BlogPostRecord';
+            id: string;
+            internalName?: string | null;
+            title?: string | null;
+            publishDate?: string | null;
+            slug?: string | null;
+            categories: Array<{
+              __typename: 'CategoryRecord';
+              id: string;
+              internalName?: string | null;
+              name?: string | null;
+              slug?: string | null;
+            }>;
+            body?: { __typename?: 'BlogPostModelBodyField'; value: unknown } | null;
+            featuredImage?: {
+              __typename: 'FileField';
+              id: string;
+              alt?: string | null;
+              blurhash?: string | null;
+              height?: number | null;
+              width?: number | null;
+              url: string;
             } | null;
+            excerpt?: { __typename?: 'BlogPostModelExcerptField'; value: unknown } | null;
           }>;
         }
       | {
@@ -5086,26 +5358,23 @@ declare global {
             __typename: 'CarouselRecord';
             id: string;
             internalName?: string | null;
-            cards: Array<{
-              __typename: 'TestimonialCardRecord';
-              id: string;
-              internalName?: string | null;
-              quote?: { __typename?: 'TestimonialCardModelQuoteField'; value: unknown } | null;
-              person?: {
-                __typename: 'PersonRecord';
-                id: string;
-                internalName?: string | null;
-                firstName?: string | null;
-                lastName?: string | null;
-                website?: string | null;
-                role?: string | null;
-                company?: {
-                  __typename: 'CompanyRecord';
+            cards: Array<
+              | {
+                  __typename: 'BlogPostRecord';
                   id: string;
                   internalName?: string | null;
-                  name?: string | null;
-                  website?: string | null;
-                  logo?: {
+                  title?: string | null;
+                  publishDate?: string | null;
+                  slug?: string | null;
+                  categories: Array<{
+                    __typename: 'CategoryRecord';
+                    id: string;
+                    internalName?: string | null;
+                    name?: string | null;
+                    slug?: string | null;
+                  }>;
+                  body?: { __typename?: 'BlogPostModelBodyField'; value: unknown } | null;
+                  featuredImage?: {
                     __typename: 'FileField';
                     id: string;
                     alt?: string | null;
@@ -5114,17 +5383,81 @@ declare global {
                     width?: number | null;
                     url: string;
                   } | null;
-                } | null;
-                thumbnail?: {
-                  __typename: 'FileField';
+                  excerpt?: { __typename?: 'BlogPostModelExcerptField'; value: unknown } | null;
+                }
+              | {
+                  __typename: 'TestimonialCardRecord';
                   id: string;
-                  alt?: string | null;
-                  blurhash?: string | null;
-                  height?: number | null;
-                  width?: number | null;
-                  url: string;
-                } | null;
+                  internalName?: string | null;
+                  quote?: { __typename?: 'TestimonialCardModelQuoteField'; value: unknown } | null;
+                  person?: {
+                    __typename: 'PersonRecord';
+                    id: string;
+                    internalName?: string | null;
+                    firstName?: string | null;
+                    lastName?: string | null;
+                    website?: string | null;
+                    role?: string | null;
+                    company?: {
+                      __typename: 'CompanyRecord';
+                      id: string;
+                      internalName?: string | null;
+                      name?: string | null;
+                      website?: string | null;
+                      logo?: {
+                        __typename: 'FileField';
+                        id: string;
+                        alt?: string | null;
+                        blurhash?: string | null;
+                        height?: number | null;
+                        width?: number | null;
+                        url: string;
+                      } | null;
+                    } | null;
+                    thumbnail?: {
+                      __typename: 'FileField';
+                      id: string;
+                      alt?: string | null;
+                      blurhash?: string | null;
+                      height?: number | null;
+                      width?: number | null;
+                      url: string;
+                    } | null;
+                  } | null;
+                }
+            >;
+          }
+        | {
+            __typename: 'FeaturedBlogRecord';
+            id: string;
+            internalName?: string | null;
+            heading?: string | null;
+            body?: { __typename?: 'FeaturedBlogModelBodyField'; value: unknown } | null;
+            blogs: Array<{
+              __typename: 'BlogPostRecord';
+              id: string;
+              internalName?: string | null;
+              title?: string | null;
+              publishDate?: string | null;
+              slug?: string | null;
+              categories: Array<{
+                __typename: 'CategoryRecord';
+                id: string;
+                internalName?: string | null;
+                name?: string | null;
+                slug?: string | null;
+              }>;
+              body?: { __typename?: 'BlogPostModelBodyField'; value: unknown } | null;
+              featuredImage?: {
+                __typename: 'FileField';
+                id: string;
+                alt?: string | null;
+                blurhash?: string | null;
+                height?: number | null;
+                width?: number | null;
+                url: string;
               } | null;
+              excerpt?: { __typename?: 'BlogPostModelExcerptField'; value: unknown } | null;
             }>;
           }
         | {
@@ -5274,26 +5607,23 @@ declare global {
             __typename: 'CarouselRecord';
             id: string;
             internalName?: string | null;
-            cards: Array<{
-              __typename: 'TestimonialCardRecord';
-              id: string;
-              internalName?: string | null;
-              quote?: { __typename?: 'TestimonialCardModelQuoteField'; value: unknown } | null;
-              person?: {
-                __typename: 'PersonRecord';
-                id: string;
-                internalName?: string | null;
-                firstName?: string | null;
-                lastName?: string | null;
-                website?: string | null;
-                role?: string | null;
-                company?: {
-                  __typename: 'CompanyRecord';
+            cards: Array<
+              | {
+                  __typename: 'BlogPostRecord';
                   id: string;
                   internalName?: string | null;
-                  name?: string | null;
-                  website?: string | null;
-                  logo?: {
+                  title?: string | null;
+                  publishDate?: string | null;
+                  slug?: string | null;
+                  categories: Array<{
+                    __typename: 'CategoryRecord';
+                    id: string;
+                    internalName?: string | null;
+                    name?: string | null;
+                    slug?: string | null;
+                  }>;
+                  body?: { __typename?: 'BlogPostModelBodyField'; value: unknown } | null;
+                  featuredImage?: {
                     __typename: 'FileField';
                     id: string;
                     alt?: string | null;
@@ -5302,17 +5632,81 @@ declare global {
                     width?: number | null;
                     url: string;
                   } | null;
-                } | null;
-                thumbnail?: {
-                  __typename: 'FileField';
+                  excerpt?: { __typename?: 'BlogPostModelExcerptField'; value: unknown } | null;
+                }
+              | {
+                  __typename: 'TestimonialCardRecord';
                   id: string;
-                  alt?: string | null;
-                  blurhash?: string | null;
-                  height?: number | null;
-                  width?: number | null;
-                  url: string;
-                } | null;
+                  internalName?: string | null;
+                  quote?: { __typename?: 'TestimonialCardModelQuoteField'; value: unknown } | null;
+                  person?: {
+                    __typename: 'PersonRecord';
+                    id: string;
+                    internalName?: string | null;
+                    firstName?: string | null;
+                    lastName?: string | null;
+                    website?: string | null;
+                    role?: string | null;
+                    company?: {
+                      __typename: 'CompanyRecord';
+                      id: string;
+                      internalName?: string | null;
+                      name?: string | null;
+                      website?: string | null;
+                      logo?: {
+                        __typename: 'FileField';
+                        id: string;
+                        alt?: string | null;
+                        blurhash?: string | null;
+                        height?: number | null;
+                        width?: number | null;
+                        url: string;
+                      } | null;
+                    } | null;
+                    thumbnail?: {
+                      __typename: 'FileField';
+                      id: string;
+                      alt?: string | null;
+                      blurhash?: string | null;
+                      height?: number | null;
+                      width?: number | null;
+                      url: string;
+                    } | null;
+                  } | null;
+                }
+            >;
+          }
+        | {
+            __typename: 'FeaturedBlogRecord';
+            id: string;
+            internalName?: string | null;
+            heading?: string | null;
+            body?: { __typename?: 'FeaturedBlogModelBodyField'; value: unknown } | null;
+            blogs: Array<{
+              __typename: 'BlogPostRecord';
+              id: string;
+              internalName?: string | null;
+              title?: string | null;
+              publishDate?: string | null;
+              slug?: string | null;
+              categories: Array<{
+                __typename: 'CategoryRecord';
+                id: string;
+                internalName?: string | null;
+                name?: string | null;
+                slug?: string | null;
+              }>;
+              body?: { __typename?: 'BlogPostModelBodyField'; value: unknown } | null;
+              featuredImage?: {
+                __typename: 'FileField';
+                id: string;
+                alt?: string | null;
+                blurhash?: string | null;
+                height?: number | null;
+                width?: number | null;
+                url: string;
               } | null;
+              excerpt?: { __typename?: 'BlogPostModelExcerptField'; value: unknown } | null;
             }>;
           }
         | {
@@ -5535,6 +5929,7 @@ declare global {
           }
         | { __typename: 'BlogListingRecord' }
         | { __typename: 'CarouselRecord' }
+        | { __typename: 'FeaturedBlogRecord' }
         | { __typename: 'SwitchbackRecord' }
       >;
     } | null;
@@ -5685,26 +6080,23 @@ declare global {
               __typename: 'CarouselRecord';
               id: string;
               internalName?: string | null;
-              cards: Array<{
-                __typename: 'TestimonialCardRecord';
-                id: string;
-                internalName?: string | null;
-                quote?: { __typename?: 'TestimonialCardModelQuoteField'; value: unknown } | null;
-                person?: {
-                  __typename: 'PersonRecord';
-                  id: string;
-                  internalName?: string | null;
-                  firstName?: string | null;
-                  lastName?: string | null;
-                  website?: string | null;
-                  role?: string | null;
-                  company?: {
-                    __typename: 'CompanyRecord';
+              cards: Array<
+                | {
+                    __typename: 'BlogPostRecord';
                     id: string;
                     internalName?: string | null;
-                    name?: string | null;
-                    website?: string | null;
-                    logo?: {
+                    title?: string | null;
+                    publishDate?: string | null;
+                    slug?: string | null;
+                    categories: Array<{
+                      __typename: 'CategoryRecord';
+                      id: string;
+                      internalName?: string | null;
+                      name?: string | null;
+                      slug?: string | null;
+                    }>;
+                    body?: { __typename?: 'BlogPostModelBodyField'; value: unknown } | null;
+                    featuredImage?: {
                       __typename: 'FileField';
                       id: string;
                       alt?: string | null;
@@ -5713,19 +6105,51 @@ declare global {
                       width?: number | null;
                       url: string;
                     } | null;
-                  } | null;
-                  thumbnail?: {
-                    __typename: 'FileField';
+                    excerpt?: { __typename?: 'BlogPostModelExcerptField'; value: unknown } | null;
+                  }
+                | {
+                    __typename: 'TestimonialCardRecord';
                     id: string;
-                    alt?: string | null;
-                    blurhash?: string | null;
-                    height?: number | null;
-                    width?: number | null;
-                    url: string;
-                  } | null;
-                } | null;
-              }>;
+                    internalName?: string | null;
+                    quote?: { __typename?: 'TestimonialCardModelQuoteField'; value: unknown } | null;
+                    person?: {
+                      __typename: 'PersonRecord';
+                      id: string;
+                      internalName?: string | null;
+                      firstName?: string | null;
+                      lastName?: string | null;
+                      website?: string | null;
+                      role?: string | null;
+                      company?: {
+                        __typename: 'CompanyRecord';
+                        id: string;
+                        internalName?: string | null;
+                        name?: string | null;
+                        website?: string | null;
+                        logo?: {
+                          __typename: 'FileField';
+                          id: string;
+                          alt?: string | null;
+                          blurhash?: string | null;
+                          height?: number | null;
+                          width?: number | null;
+                          url: string;
+                        } | null;
+                      } | null;
+                      thumbnail?: {
+                        __typename: 'FileField';
+                        id: string;
+                        alt?: string | null;
+                        blurhash?: string | null;
+                        height?: number | null;
+                        width?: number | null;
+                        url: string;
+                      } | null;
+                    } | null;
+                  }
+              >;
             }
+          | { __typename?: 'FeaturedBlogRecord' }
           | {
               __typename: 'SwitchbackRecord';
               id: string;
@@ -6284,12 +6708,16 @@ export const CarouselFragmentDoc = {
             name: { kind: 'Name', value: 'cards' },
             selectionSet: {
               kind: 'SelectionSet',
-              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'TestimonialCard' } }],
+              selections: [
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'BlogCard' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'TestimonialCard' } },
+              ],
             },
           },
         ],
       },
     },
+    ...BlogCardFragmentDoc.definitions,
     ...TestimonialCardFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<CarouselFragment, unknown>;
@@ -6562,6 +6990,42 @@ export const BlogPageFragmentDoc = {
     ...AlternatingSwitchbackFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<BlogPageFragment, unknown>;
+export const FeaturedBlogFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'FeaturedBlog' },
+      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'FeaturedBlogRecord' } },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'internalName' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'heading' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'body' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'value' } }],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'blogs' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'BlogCard' } }],
+            },
+          },
+        ],
+      },
+    },
+    ...BlogCardFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<FeaturedBlogFragment, unknown>;
 export const PageGenFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -6601,6 +7065,7 @@ export const PageGenFragmentDoc = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'FeaturedBlog' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'SwitchBack' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'Carousel' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'AlternatingSwitchback' } },
@@ -6611,6 +7076,7 @@ export const PageGenFragmentDoc = {
       },
     },
     ...ImageFragmentDoc.definitions,
+    ...FeaturedBlogFragmentDoc.definitions,
     ...SwitchBackFragmentDoc.definitions,
     ...CarouselFragmentDoc.definitions,
     ...AlternatingSwitchbackFragmentDoc.definitions,

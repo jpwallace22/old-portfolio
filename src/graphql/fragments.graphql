@@ -122,6 +122,7 @@ fragment Carousel on CarouselRecord {
   id
   internalName
   cards {
+    ...BlogCard
     ...TestimonialCard
   }
 }
@@ -237,6 +238,19 @@ fragment BlogListing on BlogListingRecord {
   }
 }
 
+fragment FeaturedBlog on FeaturedBlogRecord {
+  __typename
+  id
+  internalName
+  heading
+  body {
+    value
+  }
+  blogs {
+    ...BlogCard
+  }
+}
+
 fragment BlogPage on BlogPageRecord {
   __typename
   id
@@ -272,6 +286,7 @@ fragment PageGen on PageGeneratorRecord {
     }
   }
   components {
+    ...FeaturedBlog
     ...SwitchBack
     ...Carousel
     ...AlternatingSwitchback

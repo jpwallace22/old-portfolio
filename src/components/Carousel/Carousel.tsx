@@ -7,16 +7,19 @@ import { media } from 'atoms/breakpoints/breakpoints';
 
 import ComponentPagination from 'molecules/ComponentPagination/ComponentPagination';
 
+import { BlogListingCard } from 'components/cards';
+
 import useDarkMode from 'contexts/ThemeProvider';
 
-import type { TestimonialCardRecord } from 'graphql/types.gen';
+import type { BlogPostRecord, TestimonialCardRecord } from 'graphql/types.gen';
 import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC, MutableRefObject, UIEvent } from 'react';
 
 const TestimonialCard = lazy(() => import('components/cards/TestimonialCard/TestimonialCard'));
 
 type CarouselCardProps = BasicProps & {
-  cards: TestimonialCardRecord[];
+  cards: Array<TestimonialCardRecord | BlogPostRecord>;
+  showPagination?: boolean;
 };
 
 type ScrollPosition = 'start' | 'end' | null;
@@ -32,7 +35,7 @@ const getEdgeGradient = (scrollPos: ScrollPosition, rgb: [number, number, number
   return `linear-gradient(90deg, rgb(${rgbValues}) 0%, rgba(${rgbValues}, 0) 8%), linear-gradient(90deg, rgba(${rgbValues}, 0) 92%, rgb(${rgbValues}) 100%)`;
 };
 
-const Carousel: FC<CarouselCardProps> = ({ cards }) => {
+const Carousel: FC<CarouselCardProps> = ({ cards, showPagination = true }) => {
   const [scrollPos, setScrollPos] = useState<ScrollPosition>('start');
   const [active, setActive] = useState(0);
   const scrollBoxRef = useRef<HTMLDivElement | null>(null);
@@ -81,6 +84,9 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
     }
   };
 
+  const isBlog = (card: TestimonialCardRecord | BlogPostRecord): card is BlogPostRecord =>
+    card.__typename === 'BlogPostRecord';
+
   return cards?.length > 0 ? (
     <>
       <Flex
@@ -121,26 +127,42 @@ const Carousel: FC<CarouselCardProps> = ({ cards }) => {
             }
           `}
         >
-          {cards?.map((card, i) => (
-            <TestimonialCard
-              key={card.id}
-              flex="1 0 100%"
-              lg={{ flex: '1 0 80%' }}
-              index={i}
-              setActive={setActive}
-              {...card}
-            />
-          ))}
+          {cards?.map((card, i) =>
+            isBlog(card) ? (
+              <BlogListingCard
+                key={card.id}
+                marginTop={16}
+                cursor="pointer"
+                width="unset"
+                flex="1 0 100%"
+                sm={{ flex: '1 0 75%' }}
+                md={{ flex: '1 0 50%' }}
+                xl={{ flex: '1 0 30%' }}
+                {...card}
+              />
+            ) : (
+              <TestimonialCard
+                key={card.id}
+                flex="1 0 100%"
+                lg={{ flex: '1 0 80%' }}
+                index={i}
+                setActive={setActive}
+                {...card}
+              />
+            ),
+          )}
         </Flex>
-        <ComponentPagination
-          dotsCount={cardCount}
-          onLeftArrowClick={() => handleButtonClick('left')}
-          onRightArrowClick={() => handleButtonClick('right')}
-          onSetActiveDot={i => handleDotClick(i)}
-          activeDot={active}
-          disableOnEnd
-          showArrows={isDesktop}
-        />
+        {showPagination && (
+          <ComponentPagination
+            dotsCount={cardCount}
+            onLeftArrowClick={() => handleButtonClick('left')}
+            onRightArrowClick={() => handleButtonClick('right')}
+            onSetActiveDot={i => handleDotClick(i)}
+            activeDot={active}
+            disableOnEnd
+            showArrows={isDesktop}
+          />
+        )}
       </Flex>
     </>
   ) : null;

@@ -7,16 +7,18 @@ import { timeToRead } from 'utils/functions';
 import useResizeObserver from 'utils/useResizeObserver';
 
 import type { BlogPostRecord } from 'graphql/types.gen';
+import type { BasicProps } from 'quarks/interpolations/basic';
 import type { FC } from 'react';
+import type { CleanDato } from 'utils/typeUtils';
 
 const Button = lazy(() => import('molecules/Button/Button'));
 const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/StructuredTextParser'));
 
-interface IBlogCard extends BlogPostRecord {
+interface IBlogCard extends CleanDato<BlogPostRecord>, BasicProps {
   index?: number;
 }
 
-const BlogListingCard: FC<IBlogCard> = ({ title, featuredImage, excerpt, index, body }) => {
+const BlogListingCard: FC<IBlogCard> = ({ title, featuredImage, excerpt, index, body, ...props }) => {
   const [titleSize, setTitleSize] = useState<number>(0);
   const titleRef = useRef<HTMLParagraphElement | null>(null);
 
@@ -34,6 +36,7 @@ const BlogListingCard: FC<IBlogCard> = ({ title, featuredImage, excerpt, index, 
       transition="box-shadow .4s, transform .4s"
       md={{ maxWidth: 'unset' }}
       hover={{ boxShadow: 'xl', transform: 'translateY(-8px)' }}
+      {...props}
     >
       {featuredImage && (
         <Container

@@ -7,6 +7,7 @@ import getSectionInfo from 'utils/getSectionInfo';
 import type { PageGeneratorModelComponentsField } from 'graphql/types.gen';
 import type { FC } from 'react';
 
+const FeaturedBlogs = lazy(() => import('components/FeaturedBlogs/FeaturedBlogs'));
 const AlternatingSwitchbacks = lazy(() => import('components/AlternatingSwitchbacks/AlternatingSwitchbacks'));
 const Carousel = lazy(() => import('components/Carousel/Carousel'));
 const Switchback = lazy(() => import('components/Switchback/Switchback'));
@@ -29,6 +30,8 @@ const ComponentGenerator: FC<IComponentGenerator> = ({ components }) => {
         return <Switchback {...component} />;
       case 'BlogListingRecord':
         return <BlogListing {...component} />;
+      case 'FeaturedBlogRecord':
+        return <FeaturedBlogs {...component} />;
       default:
         return null;
     }
