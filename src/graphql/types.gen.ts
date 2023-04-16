@@ -1147,6 +1147,14 @@ export type ImgixParams = {
    */
   bg?: InputMaybe<Scalars['String']>;
   /**
+   * Background Removal
+   *
+   * Removes background from image.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background-removal/bg-remove)
+   */
+  bgRemove?: InputMaybe<Scalars['BooleanType']>;
+  /**
    * Blend
    *
    * Specifies the location of the blend image.
@@ -1599,6 +1607,18 @@ export type ImgixParams = {
    */
   fpZ?: InputMaybe<Scalars['FloatType']>;
   /**
+   * Frames Per Second
+   *
+   * Specifies the framerate of the generated image.
+   */
+  fps?: InputMaybe<Scalars['IntType']>;
+  /**
+   * Frame Selection
+   *
+   * Specifies the frame of an animated image to use.
+   */
+  frame?: InputMaybe<Scalars['String']>;
+  /**
    * Gamma
    *
    * Adjusts the gamma of the source image.
@@ -1606,6 +1626,12 @@ export type ImgixParams = {
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/gam)
    */
   gam?: InputMaybe<Scalars['IntType']>;
+  /**
+   * Animated Gif Quality
+   *
+   * Depends on: `fm=gif`
+   */
+  gifQ?: InputMaybe<Scalars['IntType']>;
   /**
    * Grid Colors
    *
@@ -1655,6 +1681,12 @@ export type ImgixParams = {
    */
   hue?: InputMaybe<Scalars['IntType']>;
   /**
+   * Frame Interval
+   *
+   * Displays every Nth frame starting with the first frame.
+   */
+  interval?: InputMaybe<Scalars['IntType']>;
+  /**
    * Invert
    *
    * Inverts the colors on the source image.
@@ -1668,6 +1700,12 @@ export type ImgixParams = {
    * Determine if IPTC data should be passed for JPEG images.
    */
   iptc?: InputMaybe<ImgixParamsIptc>;
+  /**
+   * Animation Loop Count
+   *
+   * Specifies the number of times an animated image should repeat. A value of 0 means infinite looping.
+   */
+  loop?: InputMaybe<Scalars['IntType']>;
   /**
    * Lossless Compression
    *
@@ -1995,6 +2033,12 @@ export type ImgixParams = {
    */
   rect?: InputMaybe<Scalars['String']>;
   /**
+   * Reverse
+   *
+   * Reverses the frame order on the source animation.
+   */
+  reverse?: InputMaybe<Scalars['BooleanType']>;
+  /**
    * Rotation
    *
    * Rotates an image by a specified number of degrees.
@@ -2034,6 +2078,12 @@ export type ImgixParams = {
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/sharp)
    */
   sharp?: InputMaybe<Scalars['FloatType']>;
+  /**
+   * Frame Skip
+   *
+   * Skips every Nth frame starting with the first frame.
+   */
+  skip?: InputMaybe<Scalars['IntType']>;
   /**
    * Transparency
    *
@@ -2554,6 +2604,7 @@ export type PageGeneratorModelComponentsField =
   | BlogListingRecord
   | CarouselRecord
   | FeaturedBlogRecord
+  | ScrollingSwitchbackRecord
   | SwitchbackRecord;
 
 export type PageGeneratorModelFilter = {
@@ -2762,6 +2813,8 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allPeopleMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allScrollingSwitchbacksMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allSwitchbacksMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allTechStacksMeta: CollectionMetadata;
@@ -2795,6 +2848,8 @@ export type Query = {
   allPageGenerators: Array<PageGeneratorRecord>;
   /** Returns a collection of records */
   allPeople: Array<PersonRecord>;
+  /** Returns a collection of records */
+  allScrollingSwitchbacks: Array<ScrollingSwitchbackRecord>;
   /** Returns a collection of records */
   allSwitchbacks: Array<SwitchbackRecord>;
   /** Returns a collection of records */
@@ -2833,6 +2888,8 @@ export type Query = {
   pageGenerator?: Maybe<PageGeneratorRecord>;
   /** Returns a specific record */
   person?: Maybe<PersonRecord>;
+  /** Returns a specific record */
+  scrollingSwitchback?: Maybe<ScrollingSwitchbackRecord>;
   /** Returns a specific record */
   switchback?: Maybe<SwitchbackRecord>;
   /** Returns a specific record */
@@ -2919,6 +2976,13 @@ export type Query_AllPageGeneratorsMetaArgs = {
 export type Query_AllPeopleMetaArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<PersonModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllScrollingSwitchbacksMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ScrollingSwitchbackModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -3069,6 +3133,16 @@ export type QueryAllPeopleArgs = {
   first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<PersonModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
+/** The query root for this schema */
+export type QueryAllScrollingSwitchbacksArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ScrollingSwitchbackModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ScrollingSwitchbackModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']>;
 };
 
@@ -3229,6 +3303,14 @@ export type QueryPersonArgs = {
 };
 
 /** The query root for this schema */
+export type QueryScrollingSwitchbackArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ScrollingSwitchbackModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ScrollingSwitchbackModelOrderBy>>>;
+};
+
+/** The query root for this schema */
 export type QuerySwitchbackArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<SwitchbackModelFilter>;
@@ -3319,6 +3401,89 @@ export type ResponsiveImage = {
   title?: Maybe<Scalars['String']>;
   webpSrcSet: Scalars['String'];
   width: Scalars['IntType'];
+};
+
+export type ScrollingSwitchbackModelBodyField = {
+  __typename?: 'ScrollingSwitchbackModelBodyField';
+  blocks: Array<Scalars['String']>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+};
+
+export type ScrollingSwitchbackModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<ScrollingSwitchbackModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  body?: InputMaybe<StructuredTextFilter>;
+  createdAt?: InputMaybe<CreatedAtFilter>;
+  heading?: InputMaybe<StringFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  internalName?: InputMaybe<StringFilter>;
+  switchbacks?: InputMaybe<LinksFilter>;
+  updatedAt?: InputMaybe<UpdatedAtFilter>;
+};
+
+export enum ScrollingSwitchbackModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  CreatedAt_ASC = 'createdAt_ASC',
+  CreatedAt_DESC = 'createdAt_DESC',
+  Heading_ASC = 'heading_ASC',
+  Heading_DESC = 'heading_DESC',
+  Id_ASC = 'id_ASC',
+  Id_DESC = 'id_DESC',
+  InternalName_ASC = 'internalName_ASC',
+  InternalName_DESC = 'internalName_DESC',
+  UpdatedAt_ASC = 'updatedAt_ASC',
+  UpdatedAt_DESC = 'updatedAt_DESC',
+}
+
+/** Record of type Scrolling Switchback (scrolling_switchback) */
+export type ScrollingSwitchbackRecord = RecordInterface & {
+  __typename?: 'ScrollingSwitchbackRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  body?: Maybe<ScrollingSwitchbackModelBodyField>;
+  createdAt: Scalars['DateTime'];
+  heading?: Maybe<Scalars['String']>;
+  id: Scalars['ItemId'];
+  internalName?: Maybe<Scalars['String']>;
+  switchbacks: Array<SwitchbackRecord>;
+  updatedAt: Scalars['DateTime'];
+};
+
+/** Record of type Scrolling Switchback (scrolling_switchback) */
+export type ScrollingSwitchbackRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
 };
 
 export type SeoField = {
@@ -4523,6 +4688,44 @@ declare global {
     }>;
   };
 
+  export type ScrollingSwitchbackFragment = {
+    __typename: 'ScrollingSwitchbackRecord';
+    id: string;
+    internalName?: string | null;
+    heading?: string | null;
+    body?: { __typename?: 'ScrollingSwitchbackModelBodyField'; value: unknown } | null;
+    switchbacks: Array<{
+      __typename: 'SwitchbackRecord';
+      id: string;
+      internalName?: string | null;
+      sectionId?: string | null;
+      sectionBackgroundColor?: string | null;
+      reverse?: boolean | null;
+      heading?: string | null;
+      headingAs?: string | null;
+      showDots?: boolean | null;
+      body?: { __typename?: 'SwitchbackModelBodyField'; value: unknown } | null;
+      image?: {
+        __typename: 'FileField';
+        id: string;
+        alt?: string | null;
+        blurhash?: string | null;
+        height?: number | null;
+        width?: number | null;
+        url: string;
+      } | null;
+      buttons: Array<{
+        __typename: 'ButtonRecord';
+        id: string;
+        internalName?: string | null;
+        disabled?: boolean | null;
+        icon?: string | null;
+        title?: string | null;
+        url?: string | null;
+      }>;
+    }>;
+  };
+
   export type WorkFragment = {
     __typename: 'WorkRecord';
     id: string;
@@ -4954,7 +5157,76 @@ declare global {
                 }
             >;
           }
-        | { __typename?: 'FeaturedBlogRecord' }
+        | {
+            __typename: 'FeaturedBlogRecord';
+            id: string;
+            internalName?: string | null;
+            heading?: string | null;
+            body?: { __typename?: 'FeaturedBlogModelBodyField'; value: unknown } | null;
+            blogs: Array<{
+              __typename: 'BlogPostRecord';
+              id: string;
+              internalName?: string | null;
+              title?: string | null;
+              publishDate?: string | null;
+              slug?: string | null;
+              categories: Array<{
+                __typename: 'CategoryRecord';
+                id: string;
+                internalName?: string | null;
+                name?: string | null;
+                slug?: string | null;
+              }>;
+              body?: { __typename?: 'BlogPostModelBodyField'; value: unknown } | null;
+              featuredImage?: {
+                __typename: 'FileField';
+                id: string;
+                alt?: string | null;
+                blurhash?: string | null;
+                height?: number | null;
+                width?: number | null;
+                url: string;
+              } | null;
+              excerpt?: { __typename?: 'BlogPostModelExcerptField'; value: unknown } | null;
+            }>;
+          }
+        | {
+            __typename: 'ScrollingSwitchbackRecord';
+            id: string;
+            internalName?: string | null;
+            heading?: string | null;
+            body?: { __typename?: 'ScrollingSwitchbackModelBodyField'; value: unknown } | null;
+            switchbacks: Array<{
+              __typename: 'SwitchbackRecord';
+              id: string;
+              internalName?: string | null;
+              sectionId?: string | null;
+              sectionBackgroundColor?: string | null;
+              reverse?: boolean | null;
+              heading?: string | null;
+              headingAs?: string | null;
+              showDots?: boolean | null;
+              body?: { __typename?: 'SwitchbackModelBodyField'; value: unknown } | null;
+              image?: {
+                __typename: 'FileField';
+                id: string;
+                alt?: string | null;
+                blurhash?: string | null;
+                height?: number | null;
+                width?: number | null;
+                url: string;
+              } | null;
+              buttons: Array<{
+                __typename: 'ButtonRecord';
+                id: string;
+                internalName?: string | null;
+                disabled?: boolean | null;
+                icon?: string | null;
+                title?: string | null;
+                url?: string | null;
+              }>;
+            }>;
+          }
         | {
             __typename: 'SwitchbackRecord';
             id: string;
@@ -5196,6 +5468,43 @@ declare global {
               url: string;
             } | null;
             excerpt?: { __typename?: 'BlogPostModelExcerptField'; value: unknown } | null;
+          }>;
+        }
+      | {
+          __typename: 'ScrollingSwitchbackRecord';
+          id: string;
+          internalName?: string | null;
+          heading?: string | null;
+          body?: { __typename?: 'ScrollingSwitchbackModelBodyField'; value: unknown } | null;
+          switchbacks: Array<{
+            __typename: 'SwitchbackRecord';
+            id: string;
+            internalName?: string | null;
+            sectionId?: string | null;
+            sectionBackgroundColor?: string | null;
+            reverse?: boolean | null;
+            heading?: string | null;
+            headingAs?: string | null;
+            showDots?: boolean | null;
+            body?: { __typename?: 'SwitchbackModelBodyField'; value: unknown } | null;
+            image?: {
+              __typename: 'FileField';
+              id: string;
+              alt?: string | null;
+              blurhash?: string | null;
+              height?: number | null;
+              width?: number | null;
+              url: string;
+            } | null;
+            buttons: Array<{
+              __typename: 'ButtonRecord';
+              id: string;
+              internalName?: string | null;
+              disabled?: boolean | null;
+              icon?: string | null;
+              title?: string | null;
+              url?: string | null;
+            }>;
           }>;
         }
       | {
@@ -5461,6 +5770,43 @@ declare global {
             }>;
           }
         | {
+            __typename: 'ScrollingSwitchbackRecord';
+            id: string;
+            internalName?: string | null;
+            heading?: string | null;
+            body?: { __typename?: 'ScrollingSwitchbackModelBodyField'; value: unknown } | null;
+            switchbacks: Array<{
+              __typename: 'SwitchbackRecord';
+              id: string;
+              internalName?: string | null;
+              sectionId?: string | null;
+              sectionBackgroundColor?: string | null;
+              reverse?: boolean | null;
+              heading?: string | null;
+              headingAs?: string | null;
+              showDots?: boolean | null;
+              body?: { __typename?: 'SwitchbackModelBodyField'; value: unknown } | null;
+              image?: {
+                __typename: 'FileField';
+                id: string;
+                alt?: string | null;
+                blurhash?: string | null;
+                height?: number | null;
+                width?: number | null;
+                url: string;
+              } | null;
+              buttons: Array<{
+                __typename: 'ButtonRecord';
+                id: string;
+                internalName?: string | null;
+                disabled?: boolean | null;
+                icon?: string | null;
+                title?: string | null;
+                url?: string | null;
+              }>;
+            }>;
+          }
+        | {
             __typename: 'SwitchbackRecord';
             id: string;
             internalName?: string | null;
@@ -5710,6 +6056,43 @@ declare global {
             }>;
           }
         | {
+            __typename: 'ScrollingSwitchbackRecord';
+            id: string;
+            internalName?: string | null;
+            heading?: string | null;
+            body?: { __typename?: 'ScrollingSwitchbackModelBodyField'; value: unknown } | null;
+            switchbacks: Array<{
+              __typename: 'SwitchbackRecord';
+              id: string;
+              internalName?: string | null;
+              sectionId?: string | null;
+              sectionBackgroundColor?: string | null;
+              reverse?: boolean | null;
+              heading?: string | null;
+              headingAs?: string | null;
+              showDots?: boolean | null;
+              body?: { __typename?: 'SwitchbackModelBodyField'; value: unknown } | null;
+              image?: {
+                __typename: 'FileField';
+                id: string;
+                alt?: string | null;
+                blurhash?: string | null;
+                height?: number | null;
+                width?: number | null;
+                url: string;
+              } | null;
+              buttons: Array<{
+                __typename: 'ButtonRecord';
+                id: string;
+                internalName?: string | null;
+                disabled?: boolean | null;
+                icon?: string | null;
+                title?: string | null;
+                url?: string | null;
+              }>;
+            }>;
+          }
+        | {
             __typename: 'SwitchbackRecord';
             id: string;
             internalName?: string | null;
@@ -5930,6 +6313,7 @@ declare global {
         | { __typename: 'BlogListingRecord' }
         | { __typename: 'CarouselRecord' }
         | { __typename: 'FeaturedBlogRecord' }
+        | { __typename: 'ScrollingSwitchbackRecord' }
         | { __typename: 'SwitchbackRecord' }
       >;
     } | null;
@@ -6149,7 +6533,76 @@ declare global {
                   }
               >;
             }
-          | { __typename?: 'FeaturedBlogRecord' }
+          | {
+              __typename: 'FeaturedBlogRecord';
+              id: string;
+              internalName?: string | null;
+              heading?: string | null;
+              body?: { __typename?: 'FeaturedBlogModelBodyField'; value: unknown } | null;
+              blogs: Array<{
+                __typename: 'BlogPostRecord';
+                id: string;
+                internalName?: string | null;
+                title?: string | null;
+                publishDate?: string | null;
+                slug?: string | null;
+                categories: Array<{
+                  __typename: 'CategoryRecord';
+                  id: string;
+                  internalName?: string | null;
+                  name?: string | null;
+                  slug?: string | null;
+                }>;
+                body?: { __typename?: 'BlogPostModelBodyField'; value: unknown } | null;
+                featuredImage?: {
+                  __typename: 'FileField';
+                  id: string;
+                  alt?: string | null;
+                  blurhash?: string | null;
+                  height?: number | null;
+                  width?: number | null;
+                  url: string;
+                } | null;
+                excerpt?: { __typename?: 'BlogPostModelExcerptField'; value: unknown } | null;
+              }>;
+            }
+          | {
+              __typename: 'ScrollingSwitchbackRecord';
+              id: string;
+              internalName?: string | null;
+              heading?: string | null;
+              body?: { __typename?: 'ScrollingSwitchbackModelBodyField'; value: unknown } | null;
+              switchbacks: Array<{
+                __typename: 'SwitchbackRecord';
+                id: string;
+                internalName?: string | null;
+                sectionId?: string | null;
+                sectionBackgroundColor?: string | null;
+                reverse?: boolean | null;
+                heading?: string | null;
+                headingAs?: string | null;
+                showDots?: boolean | null;
+                body?: { __typename?: 'SwitchbackModelBodyField'; value: unknown } | null;
+                image?: {
+                  __typename: 'FileField';
+                  id: string;
+                  alt?: string | null;
+                  blurhash?: string | null;
+                  height?: number | null;
+                  width?: number | null;
+                  url: string;
+                } | null;
+                buttons: Array<{
+                  __typename: 'ButtonRecord';
+                  id: string;
+                  internalName?: string | null;
+                  disabled?: boolean | null;
+                  icon?: string | null;
+                  title?: string | null;
+                  url?: string | null;
+                }>;
+              }>;
+            }
           | {
               __typename: 'SwitchbackRecord';
               id: string;
@@ -6586,6 +7039,42 @@ export const SwitchBackFragmentDoc = {
     ...ButtonFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<SwitchBackFragment, unknown>;
+export const FeaturedBlogFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'FeaturedBlog' },
+      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'FeaturedBlogRecord' } },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'internalName' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'heading' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'body' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'value' } }],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'blogs' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'BlogCard' } }],
+            },
+          },
+        ],
+      },
+    },
+    ...BlogCardFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<FeaturedBlogFragment, unknown>;
 export const CompanyFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -6921,6 +7410,42 @@ export const AlternatingSwitchbackFragmentDoc = {
     ...WorkFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<AlternatingSwitchbackFragment, unknown>;
+export const ScrollingSwitchbackFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'ScrollingSwitchback' },
+      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'ScrollingSwitchbackRecord' } },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'internalName' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'heading' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'body' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'value' } }],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'switchbacks' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'SwitchBack' } }],
+            },
+          },
+        ],
+      },
+    },
+    ...SwitchBackFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<ScrollingSwitchbackFragment, unknown>;
 export const BlogPageFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -6972,9 +7497,11 @@ export const BlogPageFragmentDoc = {
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
+                      { kind: 'FragmentSpread', name: { kind: 'Name', value: 'FeaturedBlog' } },
                       { kind: 'FragmentSpread', name: { kind: 'Name', value: 'SwitchBack' } },
                       { kind: 'FragmentSpread', name: { kind: 'Name', value: 'Carousel' } },
                       { kind: 'FragmentSpread', name: { kind: 'Name', value: 'AlternatingSwitchback' } },
+                      { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ScrollingSwitchback' } },
                     ],
                   },
                 },
@@ -6986,46 +7513,12 @@ export const BlogPageFragmentDoc = {
     },
     ...ImageFragmentDoc.definitions,
     ...SwitchBackFragmentDoc.definitions,
+    ...FeaturedBlogFragmentDoc.definitions,
     ...CarouselFragmentDoc.definitions,
     ...AlternatingSwitchbackFragmentDoc.definitions,
+    ...ScrollingSwitchbackFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<BlogPageFragment, unknown>;
-export const FeaturedBlogFragmentDoc = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'FeaturedBlog' },
-      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'FeaturedBlogRecord' } },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'internalName' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'heading' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'body' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'value' } }],
-            },
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'blogs' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'BlogCard' } }],
-            },
-          },
-        ],
-      },
-    },
-    ...BlogCardFragmentDoc.definitions,
-  ],
-} as unknown as DocumentNode<FeaturedBlogFragment, unknown>;
 export const PageGenFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -7069,6 +7562,7 @@ export const PageGenFragmentDoc = {
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'SwitchBack' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'Carousel' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'AlternatingSwitchback' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ScrollingSwitchback' } },
               ],
             },
           },
@@ -7080,6 +7574,7 @@ export const PageGenFragmentDoc = {
     ...SwitchBackFragmentDoc.definitions,
     ...CarouselFragmentDoc.definitions,
     ...AlternatingSwitchbackFragmentDoc.definitions,
+    ...ScrollingSwitchbackFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<PageGenFragment, unknown>;
 export const WorkPageSlugsDocument = {

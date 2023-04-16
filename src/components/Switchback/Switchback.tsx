@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { forwardRef, lazy } from 'react';
 
 import { useMediaQuery } from '@mui/material';
 import { useRouter } from 'next/router';
@@ -12,7 +12,7 @@ import { emailObfuscator } from 'utils/functions';
 import type { ButtonRecord, SwitchbackRecord } from 'graphql/types.gen';
 import type { FlexProps } from 'quarks/interpolations/flex';
 import type { HeadingTypes } from 'quarks/styleProps/heading';
-import type { FC } from 'react';
+import type { MutableRefObject } from 'react';
 import type { CleanDato } from 'utils/typeUtils';
 
 const Button = lazy(() => import('molecules/Button/Button'));
@@ -21,9 +21,11 @@ const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/S
 interface SwitchbackProps extends FlexProps, Omit<CleanDato<SwitchbackRecord>, 'buttons'> {
   buttons?: ButtonRecord[] | null;
   showDots?: boolean;
+  ref?: MutableRefObject<HTMLDivElement>;
 }
 
-const Switchback: FC<SwitchbackProps> = ({ headingAs, image, heading, reverse, body, buttons, showDots, ...props }) => {
+const Switchback = forwardRef<HTMLDivElement, SwitchbackProps>((props, ref) => {
+  const { headingAs, image, heading, reverse, body, buttons, showDots, ...rest } = props;
   const isDesktop = useMediaQuery(media.lg);
   const router = useRouter();
 
@@ -31,10 +33,12 @@ const Switchback: FC<SwitchbackProps> = ({ headingAs, image, heading, reverse, b
     buttons &&
     buttons?.length > 0 && (
       <Flex
+        ref={ref}
         gap="24px"
         justifyContent="center"
         flexDirection="column"
         lg={{ flexDirection: 'row', justifyContent: 'flex-start' }}
+        {...rest}
       >
         {buttons.map((button, i) => {
           const navigation =
@@ -96,6 +100,6 @@ const Switchback: FC<SwitchbackProps> = ({ headingAs, image, heading, reverse, b
       {showDots && <Dots position="absolute" bottom="0" left="45%" lg={{ bottom: '-50px', left: '60%' }} />}
     </>
   );
-};
+});
 
 export default Switchback;

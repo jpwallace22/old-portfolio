@@ -142,6 +142,19 @@ fragment AlternatingSwitchback on AlternatingSwitchbackRecord {
   }
 }
 
+fragment ScrollingSwitchback on ScrollingSwitchbackRecord {
+  __typename
+  id
+  internalName
+  heading
+  body {
+    value
+  }
+  switchbacks {
+    ...SwitchBack
+  }
+}
+
 fragment Work on WorkRecord {
   __typename
   id
@@ -266,9 +279,11 @@ fragment BlogPage on BlogPageRecord {
   }
   componentGenerator {
     components {
+      ...FeaturedBlog
       ...SwitchBack
       ...Carousel
       ...AlternatingSwitchback
+      ...ScrollingSwitchback
     }
   }
 }
@@ -290,5 +305,6 @@ fragment PageGen on PageGeneratorRecord {
     ...SwitchBack
     ...Carousel
     ...AlternatingSwitchback
+    ...ScrollingSwitchback
   }
 }

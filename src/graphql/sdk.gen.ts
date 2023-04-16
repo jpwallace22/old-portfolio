@@ -135,6 +135,21 @@ export const SwitchBackFragmentDoc = gql`
   ${ImageFragmentDoc}
   ${ButtonFragmentDoc}
 `;
+export const FeaturedBlogFragmentDoc = gql`
+  fragment FeaturedBlog on FeaturedBlogRecord {
+    __typename
+    id
+    internalName
+    heading
+    body {
+      value
+    }
+    blogs {
+      ...BlogCard
+    }
+  }
+  ${BlogCardFragmentDoc}
+`;
 export const CompanyFragmentDoc = gql`
   fragment Company on CompanyRecord {
     __typename
@@ -279,6 +294,21 @@ export const AlternatingSwitchbackFragmentDoc = gql`
   }
   ${WorkFragmentDoc}
 `;
+export const ScrollingSwitchbackFragmentDoc = gql`
+  fragment ScrollingSwitchback on ScrollingSwitchbackRecord {
+    __typename
+    id
+    internalName
+    heading
+    body {
+      value
+    }
+    switchbacks {
+      ...SwitchBack
+    }
+  }
+  ${SwitchBackFragmentDoc}
+`;
 export const BlogPageFragmentDoc = gql`
   fragment BlogPage on BlogPageRecord {
     __typename
@@ -295,31 +325,20 @@ export const BlogPageFragmentDoc = gql`
     }
     componentGenerator {
       components {
+        ...FeaturedBlog
         ...SwitchBack
         ...Carousel
         ...AlternatingSwitchback
+        ...ScrollingSwitchback
       }
     }
   }
   ${ImageFragmentDoc}
   ${SwitchBackFragmentDoc}
+  ${FeaturedBlogFragmentDoc}
   ${CarouselFragmentDoc}
   ${AlternatingSwitchbackFragmentDoc}
-`;
-export const FeaturedBlogFragmentDoc = gql`
-  fragment FeaturedBlog on FeaturedBlogRecord {
-    __typename
-    id
-    internalName
-    heading
-    body {
-      value
-    }
-    blogs {
-      ...BlogCard
-    }
-  }
-  ${BlogCardFragmentDoc}
+  ${ScrollingSwitchbackFragmentDoc}
 `;
 export const PageGenFragmentDoc = gql`
   fragment PageGen on PageGeneratorRecord {
@@ -339,6 +358,7 @@ export const PageGenFragmentDoc = gql`
       ...SwitchBack
       ...Carousel
       ...AlternatingSwitchback
+      ...ScrollingSwitchback
     }
   }
   ${ImageFragmentDoc}
@@ -346,6 +366,7 @@ export const PageGenFragmentDoc = gql`
   ${SwitchBackFragmentDoc}
   ${CarouselFragmentDoc}
   ${AlternatingSwitchbackFragmentDoc}
+  ${ScrollingSwitchbackFragmentDoc}
 `;
 export const WorkPageSlugsDocument = gql`
   query WorkPageSlugs {

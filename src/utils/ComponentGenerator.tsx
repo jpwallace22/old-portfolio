@@ -2,6 +2,8 @@ import React, { lazy } from 'react';
 
 import Section from 'molecules/Section/Section';
 
+import StaticScrollerSwitchback from 'components/StaticScrollerSwitchback/StaticScrollerSwitchback';
+
 import getSectionInfo from 'utils/getSectionInfo';
 
 import type { PageGeneratorModelComponentsField } from 'graphql/types.gen';
@@ -19,11 +21,12 @@ interface IComponentGenerator {
 
 const ComponentGenerator: FC<IComponentGenerator> = ({ components }) => {
   if (!components || !components.length) return null;
-
   const componentChecker = (component: PageGeneratorModelComponentsField) => {
     switch (component.__typename) {
       case 'AlternatingSwitchbackRecord':
         return <AlternatingSwitchbacks {...component} />;
+      case 'ScrollingSwitchbackRecord':
+        return <StaticScrollerSwitchback {...component} />;
       case 'CarouselRecord':
         return <Carousel {...component} />;
       case 'SwitchbackRecord':
