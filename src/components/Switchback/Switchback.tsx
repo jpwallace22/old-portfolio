@@ -1,10 +1,8 @@
 import { forwardRef, lazy } from 'react';
 
-import { useMediaQuery } from '@mui/material';
 import { useRouter } from 'next/router';
 import { Container, Dots, Flex, Heading, Image } from 'quarks';
 
-import { media } from 'atoms/breakpoints/breakpoints';
 import container from 'atoms/spacing/containers';
 
 import { emailObfuscator } from 'utils/functions';
@@ -26,7 +24,6 @@ interface SwitchbackProps extends FlexProps, Omit<CleanDato<SwitchbackRecord>, '
 
 const Switchback = forwardRef<HTMLDivElement, SwitchbackProps>((props, ref) => {
   const { headingAs, image, heading, reverse, body, buttons, showDots, ...rest } = props;
-  const isDesktop = useMediaQuery(media.lg);
   const router = useRouter();
 
   const renderButtons = () =>
@@ -38,7 +35,6 @@ const Switchback = forwardRef<HTMLDivElement, SwitchbackProps>((props, ref) => {
         justifyContent="center"
         flexDirection="column"
         lg={{ flexDirection: 'row', justifyContent: 'flex-start' }}
-        {...rest}
       >
         {buttons.map((button, i) => {
           const navigation =
@@ -73,14 +69,16 @@ const Switchback = forwardRef<HTMLDivElement, SwitchbackProps>((props, ref) => {
         flexDirection={reverse ? 'column-reverse' : 'column'}
         gap="24px"
         lg={{ flexDirection: reverse ? 'row-reverse' : 'row', gap: '64px', alignItems: 'center' }}
-        {...props}
+        {...rest}
       >
         <Flex flexDirection="column" gap="24px" lg={{ flex: '0 1 50%' }}>
           <Heading as={(headingAs as HeadingTypes) || 'h3'} lg={{ textStyle: 'xl' }}>
             {heading}
           </Heading>
           <StructuredTextParser text={body} textColor={{ dark: 'gray-500', light: 'purple-900' }} />
-          {isDesktop && renderButtons()}
+          <Container display="none" lg={{ display: 'block' }}>
+            {renderButtons()}
+          </Container>
         </Flex>
         {image && (
           <Container
@@ -95,7 +93,9 @@ const Switchback = forwardRef<HTMLDivElement, SwitchbackProps>((props, ref) => {
             <Image src={image.url} alt={image.alt || ''} fill objectFit="contain" sizes="50vw" lg={{ marginX: 0 }} />
           </Container>
         )}
-        {!isDesktop && renderButtons()}
+        <Container display="block" lg={{ display: 'none' }}>
+          {renderButtons()}
+        </Container>
       </Flex>
       {showDots && <Dots position="absolute" bottom="0" left="45%" lg={{ bottom: '-50px', left: '60%' }} />}
     </>

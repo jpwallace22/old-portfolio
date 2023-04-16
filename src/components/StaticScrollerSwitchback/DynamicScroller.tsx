@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { Image } from 'quarks';
 
-import color from 'atoms/colors/colors';
+import { gradient } from 'atoms/colors/colors';
 
 import Container from 'quarks/Container';
 import Flex from 'quarks/Flex';
@@ -73,7 +73,8 @@ const DynamicScroller: FC<StaticScrollerSwitchbackProps> = ({ switchbacks, ...pr
           <Container
             ref={el => el && (imagesRef.current[i] = el)}
             key={`${segment?.id}-img`}
-            width="570px"
+            width="400px"
+            xl={{ width: '570px' }}
             display={i === maxVisibleIndex ? 'block' : 'none'}
           >
             <Container
@@ -96,20 +97,38 @@ const DynamicScroller: FC<StaticScrollerSwitchbackProps> = ({ switchbacks, ...pr
       <Flex flexDirection="column" gap="132px" paddingBottom={256} transform="translateY(100px)">
         {switchbacks?.map((segment, i) => (
           <Flex
+            position="relative"
             ref={el => el && (paragraphsRef.current[i] = el)}
             id={segment?.id}
             key={`${segment?.id}-p`}
             flexDirection="column"
             justifyContent="center"
-            border={i === maxVisibleIndex ? `1px solid ${color.primary[400]}` : 'none'}
             borderRadius="8px"
-            boxShadow={i === maxVisibleIndex ? 'xl' : 'none'}
-            backgroundColor={i === maxVisibleIndex ? 'primary-900' : 'inherit'}
             paddingAll={40}
             gap="16px"
-            css={`
-              transition: border 0.5s ease, border-radius 0.5s ease, box-shadow 0.5s ease, background-color 0.5s ease;
-            `}
+            border="5px solid transparent"
+            boxShadow={i === maxVisibleIndex ? 'xl' : 'none'}
+            backgroundColor={i === maxVisibleIndex && { dark: 'purple-800', light: 'gray-50' }}
+            css={
+              i === maxVisibleIndex &&
+              `
+            background-clip: padding-box;
+            border: solid 5px transparent;
+            border-radius: 32px;
+            &:before {
+              content: '';
+              position: absolute;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              z-index: -1;
+              margin: -3px;
+              border-radius: inherit;
+              background: ${gradient.purpleLeft};
+            }
+          `
+            }
           >
             {segment?.heading && <Heading textStyle="sm">{segment?.heading}</Heading>}
             {segment?.body && <StructuredTextParser text={segment?.body} textStyle="md" />}

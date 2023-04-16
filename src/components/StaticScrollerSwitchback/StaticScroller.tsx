@@ -1,6 +1,6 @@
 import Flex from 'quarks/Flex';
 
-import Switchback from 'components/Switchback/Switchback';
+import Switchback from 'components/Switchback/ScrollingSwitchback';
 
 import type { StaticScrollerSwitchbackProps } from 'components/StaticScrollerSwitchback/StaticScrollerSwitchback';
 import type { FC } from 'react';

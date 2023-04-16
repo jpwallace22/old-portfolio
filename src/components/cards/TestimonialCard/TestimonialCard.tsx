@@ -50,7 +50,6 @@ const TestimonialCard: FC<TestimonialCardProps> = ({ quote, person, index, setAc
       paddingTop={48}
       paddingBottom={24}
       marginTop={48}
-      // height="100%"
       justifyContent="center"
       lg={{ paddingAll: 64 }}
       xl={{ paddingAll: 80 }}

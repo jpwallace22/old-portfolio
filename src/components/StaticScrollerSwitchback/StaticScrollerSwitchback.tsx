@@ -5,10 +5,8 @@ import { useMediaQuery } from '@mui/material';
 import { media } from 'atoms/breakpoints/breakpoints';
 
 import Container from 'quarks/Container';
-import Flex from 'quarks/Flex';
-import Heading from 'quarks/Heading';
 
-import StructuredTextParser from 'molecules/StructuredTextParser/StructuredTextParser';
+import StandardHeading from 'molecules/StandardHeading/StandardHeading';
 
 import type { ScrollingSwitchbackRecord } from 'graphql/types.gen';
 import type { BasicProps } from 'quarks/interpolations/basic';
@@ -24,14 +22,8 @@ const StaticScrollerSwitchback: FC<StaticScrollerSwitchbackProps> = ({ heading, 
 
   return (
     <Container {...props}>
-      <Flex flexDirection="column" textAlign="center" gap="1rem">
-        {heading && (
-          <Heading textStyle="xs" lg={{ textStyle: 'md' }} xl={{ textStyle: 'lg' }}>
-            {heading}
-          </Heading>
-        )}
-        {body && <StructuredTextParser text={body} />}
-      </Flex>
+      <StandardHeading heading={heading} body={body} />
+
       {isDesktop ? (
         <DynamicScroller switchbacks={switchbacks} {...props} />
       ) : (
