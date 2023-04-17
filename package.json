@@ -65,7 +65,7 @@
     "babel-loader": "^8.2.5",
     "babel-plugin-styled-components": "^2.1.1",
     "eslint": "^7.11.0",
-    "eslint-config-next": "^13.0.7",
+    "eslint-config-next": "^13.3.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-absolute-only": "^1.0.0",
     "eslint-plugin-import": "^2.22.1",
