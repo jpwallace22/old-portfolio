@@ -24,6 +24,7 @@ const Home: FC<PageGeneratorRecord> = ({ components }) => (
     <SEO />
     <Layout fullHeightFooter>
       <Hero />
+
       <ComponentGenerator components={components} />
     </Layout>
   </>

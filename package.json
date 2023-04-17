@@ -8,15 +8,16 @@
     "url": "https://www.justinwallace.dev/"
   },
   "scripts": {
-    "dev": "yarn && next dev -p 3030",
+    "dev": "next dev -p 3030",
+    "predev": "yarn",
     "build": "next build",
     "start": "next start -p 3090",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx,mdx}\" --fix",
     "format": "prettier --write  --loglevel silent \"src/**/*.{js,jsx,ts,tsx,mdx}\"",
     "create-types": "graphql-codegen --config graphql.config.yml",
     "prettier-watch": "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}",
-    "check-bundle": "ANALYZE=true yarn build",
-    "check-types": "tsc --noEmit"
+    "check:bundle": "ANALYZE=true yarn build",
+    "check:types": "tsc --noEmit"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
@@ -37,6 +38,7 @@
     "next": "^13.0.7",
     "prismjs": "^1.29.0",
     "react": "^18.2.0",
+    "react-chrono": "^2.1.1",
     "react-datocms": "^4.0.6",
     "react-dom": "^18.2.0",
     "react-icons": "^4.3.1",

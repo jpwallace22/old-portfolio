@@ -3,7 +3,7 @@ export const navbar = {
   links: [
     {
       text: 'about',
-      url: 'https://www.justinwallace.dev/#about',
+      url: 'https://www.justinwallace.dev/about',
     },
     {
       text: 'projects',

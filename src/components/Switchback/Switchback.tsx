@@ -1,10 +1,8 @@
-import { lazy } from 'react';
+import { forwardRef, lazy } from 'react';
 
-import { useMediaQuery } from '@mui/material';
 import { useRouter } from 'next/router';
 import { Container, Dots, Flex, Heading, Image } from 'quarks';
 
-import { media } from 'atoms/breakpoints/breakpoints';
 import container from 'atoms/spacing/containers';
 
 import { emailObfuscator } from 'utils/functions';
@@ -12,7 +10,7 @@ import { emailObfuscator } from 'utils/functions';
 import type { ButtonRecord, SwitchbackRecord } from 'graphql/types.gen';
 import type { FlexProps } from 'quarks/interpolations/flex';
 import type { HeadingTypes } from 'quarks/styleProps/heading';
-import type { FC } from 'react';
+import type { MutableRefObject } from 'react';
 import type { CleanDato } from 'utils/typeUtils';
 
 const Button = lazy(() => import('molecules/Button/Button'));
@@ -21,16 +19,18 @@ const StructuredTextParser = lazy(() => import('molecules/StructuredTextParser/S
 interface SwitchbackProps extends FlexProps, Omit<CleanDato<SwitchbackRecord>, 'buttons'> {
   buttons?: ButtonRecord[] | null;
   showDots?: boolean;
+  ref?: MutableRefObject<HTMLDivElement>;
 }
 
-const Switchback: FC<SwitchbackProps> = ({ headingAs, image, heading, reverse, body, buttons, showDots, ...props }) => {
-  const isDesktop = useMediaQuery(media.lg);
+const Switchback = forwardRef<HTMLDivElement, SwitchbackProps>((props, ref) => {
+  const { headingAs, image, heading, reverse, body, buttons, showDots, ...rest } = props;
   const router = useRouter();
 
   const renderButtons = () =>
     buttons &&
     buttons?.length > 0 && (
       <Flex
+        ref={ref}
         gap="24px"
         justifyContent="center"
         flexDirection="column"
@@ -69,14 +69,16 @@ const Switchback: FC<SwitchbackProps> = ({ headingAs, image, heading, reverse, b
         flexDirection={reverse ? 'column-reverse' : 'column'}
         gap="24px"
         lg={{ flexDirection: reverse ? 'row-reverse' : 'row', gap: '64px', alignItems: 'center' }}
-        {...props}
+        {...rest}
       >
         <Flex flexDirection="column" gap="24px" lg={{ flex: '0 1 50%' }}>
           <Heading as={(headingAs as HeadingTypes) || 'h3'} lg={{ textStyle: 'xl' }}>
             {heading}
           </Heading>
           <StructuredTextParser text={body} textColor={{ dark: 'gray-500', light: 'purple-900' }} />
-          {isDesktop && renderButtons()}
+          <Container display="none" lg={{ display: 'block' }}>
+            {renderButtons()}
+          </Container>
         </Flex>
         {image && (
           <Container
@@ -91,11 +93,13 @@ const Switchback: FC<SwitchbackProps> = ({ headingAs, image, heading, reverse, b
             <Image src={image.url} alt={image.alt || ''} fill objectFit="contain" sizes="50vw" lg={{ marginX: 0 }} />
           </Container>
         )}
-        {!isDesktop && renderButtons()}
+        <Container display="block" lg={{ display: 'none' }}>
+          {renderButtons()}
+        </Container>
       </Flex>
       {showDots && <Dots position="absolute" bottom="0" left="45%" lg={{ bottom: '-50px', left: '60%' }} />}
     </>
   );
-};
+});
 
 export default Switchback;
