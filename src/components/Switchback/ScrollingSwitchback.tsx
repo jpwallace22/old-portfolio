@@ -23,7 +23,7 @@ const Switchback: FC<SwitchbackProps> = ({ headingAs, image, heading, reverse, b
   const observer = useIntersection(ref, {
     root: null,
     rootMargin: '0px',
-    threshold: 0.75,
+    threshold: 0.5,
   });
 
   return (

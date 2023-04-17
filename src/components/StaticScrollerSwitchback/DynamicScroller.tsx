@@ -29,11 +29,10 @@ const DynamicScroller: FC<StaticScrollerSwitchbackProps> = ({ switchbacks, ...pr
   }, [switchbacks]);
 
   useEffect(() => {
-    const tallComponent = window.innerHeight > 1080;
     const options = {
       root: null,
       threshold: 1,
-      rootMargin: tallComponent ? '0px 0px -10% 0px' : '0px 0px -25% 0px',
+      rootMargin: '20px',
     };
     const { current } = paragraphsRef;
     const observer = new IntersectionObserver(segments => {
@@ -131,7 +130,11 @@ const DynamicScroller: FC<StaticScrollerSwitchbackProps> = ({ switchbacks, ...pr
           `
             }
           >
-            {segment?.heading && <Heading textStyle="sm">{segment?.heading}</Heading>}
+            {segment?.heading && (
+              <Heading as="h3" textStyle="md">
+                {segment?.heading}
+              </Heading>
+            )}
             {segment?.body && <StructuredTextParser text={segment?.body} textStyle="md" />}
           </Flex>
         ))}
