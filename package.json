@@ -20,7 +20,7 @@
     "check:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@emotion/react": "^11.7.1",
+    "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.6.0",
     "@graphql-codegen/cli": "^2.13.12",
     "@graphql-codegen/typed-document-node": "^2.3.7",
