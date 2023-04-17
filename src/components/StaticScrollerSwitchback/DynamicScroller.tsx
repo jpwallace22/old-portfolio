@@ -87,6 +87,7 @@ const DynamicScroller: FC<StaticScrollerSwitchbackProps> = ({ switchbacks, ...pr
                 src={segment?.image?.url || ''}
                 alt={segment?.image?.alt || ''}
                 fill
+                priority
                 objectFit="contain"
                 lg={{ marginX: 0 }}
               />
