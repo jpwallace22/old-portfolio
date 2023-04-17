@@ -33,7 +33,7 @@ const DynamicScroller: FC<StaticScrollerSwitchbackProps> = ({ switchbacks, ...pr
     const options = {
       root: null,
       threshold: 1,
-      rootMargin: tallComponent ? '0px 0px -35% 0px' : '0px 0px -15% 0px',
+      rootMargin: tallComponent ? '0px 0px -10% 0px' : '0px 0px -25% 0px',
     };
     const { current } = paragraphsRef;
     const observer = new IntersectionObserver(segments => {

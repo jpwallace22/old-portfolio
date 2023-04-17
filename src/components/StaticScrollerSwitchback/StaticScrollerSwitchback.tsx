@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useMediaQuery } from '@mui/material';
+import { Dots } from 'quarks';
 
 import { media } from 'atoms/breakpoints/breakpoints';
 
@@ -22,6 +23,7 @@ const StaticScrollerSwitchback: FC<StaticScrollerSwitchbackProps> = ({ heading, 
 
   return (
     <Container {...props}>
+      <Dots position="absolute" top="0" right="-70%" lg={{ top: '-50px', left: '60%' }} />
       <StandardHeading heading={heading} body={body} />
 
       {isDesktop ? (
